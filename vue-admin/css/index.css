@@ -1,7 +1,9 @@
 body {
-    overflow: hidden;
+    overflow-x: hidden;
     padding-left: 10px;
     margin: auto;
+    width: 100%;
+    height: 100%;
 }
 
 .el-menu-margin {
@@ -15,7 +17,7 @@ body {
 .el-menu-item.title {
     font-size: x-large;
     left: 2%;
-    margin-top:3px;
+    margin-top: 3px;
 }
 
 .el-menu-item.solo {
@@ -38,6 +40,7 @@ body {
 }
 
 .nav.left {
+    overflow: hidden;
     margin: 0 auto;
     width: 18%;
     height: inherit;
@@ -139,4 +142,8 @@ body {
 
 .dialog-info {
     margin-bottom: 1em;
+}
+
+.my-icon:hover{
+    cursor: pointer;
 }

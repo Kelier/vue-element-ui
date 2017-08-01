@@ -1,0 +1,244 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>online-class-student</title>
+    <link rel="stylesheet" href="../../bower_components/foundation-sites/dist/css/foundation.min.css">
+    <link rel="stylesheet" href="../font/foundation-icons.css">
+    <link rel="stylesheet" href="../css/onlineclass.css" />
+    <link rel="stylesheet" href="../css/nav.css">
+</head>
+<body>
+<!--头部-->
+<header id="header" class="header">
+    <div class="box-content header-between">
+        <div class="logo"><img src="../image/logo.png" alt=""></div>
+        <div class="search-info">
+            <ul class="menu menu-padding">
+                <li>
+                    <select class="select-left">
+                        <option value="全部">全部</option>
+                        <option value="首页">首页</option>
+                        <option value="找课程">找课程</option>
+                    </select>
+                </li>
+                <li><input type="search" placeholder="搜索" class="select-middle"></li>
+                <li>
+                    <button type="button" class="button search-button select-right"><i class="fi-magnifying-glass"></i></button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</header>
+
+<!--内容部分-->
+<div id="content" class="online-box">
+    <!--导航部分-->
+    <div id="nav" class="nav">
+        <div class="nav-box">
+
+            <div class="box-content">
+                <div class="cell small-6 small-order-2 medium-order-1 cell-lay-start">
+                    <div class="large-auto cell cell-custom"><a href="" class="a-custom">首页</a></div>
+                    <div class="large-auto cell cell-custom"><a href="" class="a-custom">找课程</a></div>
+                </div>
+               <div class="cell small-6 small-order-2 medium-order-1 cell-lay-end">
+                   <div class="large-auto cell cell-custom nav-padding"><a href="" class="a-custom">我的学习</a></div>
+                   <div class="large-auto cell cell-custom normal-padding" onmouseover="show_li()" onmouseout="hide_li()">
+                       <a href="" class="a-custom">
+                           <i class="fi-torso icon-padding"></i>用户名
+                       </a>
+                       <ul class="ul-custom" id="ul-my">
+                           <li class="li-custom"><a href="" class="li-href">修改密码</a></li>
+                           <li class="li-custom"><a href="" class="li-href">退出</a></li>
+                       </ul>
+                   </div>
+               </div>
+            </div>
+
+            <!--<div><a href="about.html" class="button button-custom">我的教学</a></div>-->
+        </div>
+    </div>
+    <!--面包屑-->
+    <div id="bread_nav" class="bread-nav bread-box">
+        <div class="box-content bread-content">
+        <nav aria-label="You are here:" role="navigation" class="ul-margin">
+
+            <ul class="breadcrumbs">
+                <li><i class="fi-marker"></i> 当前位置</li>
+                <li>首页</li>
+                <li>找课程</li>
+                <li>
+                    <span class="show-for-sr">当前: </span> 课程详情
+                </li>
+            </ul>
+        </nav>
+        </div>
+    </div>
+
+ <div class="class-detail">
+    <div class="mylearn">
+        <p class="mytitle">我的学习</p>
+        <ul class="vertical tabs learn-tabs">
+            <li class="tabs-title is-active learn-active"><a href="#classlist-1" class="" id="learn-active"  aria-selected="true">我的课程</a></li>
+        </ul>
+    </div>
+     <div class="myclass" id="classlist-1">
+               <p class="mytitle">我的课程</p>
+
+
+           <ul class="tabs tabs-flex">
+               <li class="tab-title" id="tabli-1"><a href="#learn-do" id="learn-before" class="learn-before">学习中</a></li>
+               <li class="tab-title" id="tabli-2"><a href="#learn-over" id="learn-delay" class="learn-delay" >已学习</a></li>
+           </ul>
+         <div class="tabs-panel" id="learn-do">
+         <div class="row row-list">
+             <a href="" class="medium-3 columns">
+                 <div class="card card-list">
+                     <img src="../image/myclass1.png">
+                     <div class="card-section">
+                         <p>20070123</p>
+                         <h6>javaSE之语言包</h6>
+                     </div>
+                 </div>
+             </a>
+             <a href="" class="medium-3 columns">
+                 <div class="card card-list">
+                     <img src="../image/myclass1.png">
+                     <div class="card-section">
+                         <p>20070123</p>
+                         <h6>javaSE之语言包</h6>
+                     </div>
+                 </div>
+             </a>
+             <a href="" class="medium-3 columns">
+                 <div class="card card-list">
+                     <img src="../image/myclass1.png">
+                     <div class="card-section">
+                         <p>20070123</p>
+                         <h6>javaSE之语言包</h6>
+                     </div>
+                 </div>
+             </a>
+             <a href="" class="medium-3 columns">
+                 <div class="card card-list">
+                     <img src="../image/myclass1.png">
+                     <div class="card-section">
+                         <p>20070123</p>
+                         <h6>javaSE之语言包</h6>
+                     </div>
+                 </div>
+             </a>
+         </div>
+         <div class="row row-list">
+             <a href="" class="medium-3 columns">
+                 <div class="card card-list">
+                     <img src="../image/myclass1.png">
+                     <div class="card-section">
+                         <p>20070123</p>
+                         <h6>javaSE之语言包</h6>
+                     </div>
+                 </div>
+             </a>
+             <a href="" class="medium-3 columns">
+                 <div class="card card-list">
+                     <img src="../image/myclass1.png">
+                     <div class="card-section">
+                         <p>20070123</p>
+                         <h6>javaSE之语言包</h6>
+                     </div>
+                 </div>
+             </a>
+         </div>
+         </div>
+         <div class="tabs-panel" id="learn-over">
+             <div class="row  row-list">
+                 <a href="" class="medium-3 columns">
+                     <div class="card card-list">
+                         <img src="../image/myclass1.png">
+                         <div class="card-section">
+                             <p>20070123</p>
+                             <h6>javaSE之语言包</h6>
+                         </div>
+                     </div>
+                 </a>
+                 <a href="" class="medium-3 columns">
+                     <div class="card card-list">
+                         <img src="../image/myclass1.png">
+                         <div class="card-section">
+                             <p>20070123</p>
+                             <h6>javaSE之语言包</h6>
+                         </div>
+                     </div>
+                 </a>
+                 <a href="" class="medium-3 columns">
+                     <div class="card card-list">
+                         <img src="../image/myclass1.png">
+                         <div class="card-section">
+                             <p>20070123</p>
+                             <h6>javaSE之语言包</h6>
+                         </div>
+                     </div>
+                 </a>
+                 <a href="" class="medium-3 columns">
+                     <div class="card card-list">
+                         <img src="../image/myclass1.png">
+                         <div class="card-section">
+                             <p>20070123</p>
+                             <h6>javaSE之语言包</h6>
+                         </div>
+                     </div>
+                 </a>
+             </div>
+             <div class="row row-list">
+
+                 <a href="" class="medium-3 columns">
+                     <div class="card card-list">
+                         <img src="../image/myclass1.png">
+                         <div class="card-section">
+                             <p>20070123</p>
+                             <h6>javaSE之语言包</h6>
+                         </div>
+                     </div>
+                 </a>
+
+             </div>
+         </div>
+ </div>
+ </div>
+
+</div>
+<footer id="footer" class="footer">footer</footer>
+ <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+ <script src="../../bower_components/foundation-sites/dist/js/foundation.min.js"></script>
+ <script src="../../bower_components/foundation-sites/dist/js/plugins/foundation.util.motion.min.js"></script>
+ <script src="../js/nav.js"></script>
+
+<script>
+    /*
+    * 切换tab
+    * */
+    $(function () {
+        $("#learn-do").show();
+        $("#learn-before").addClass("axis");
+        $("#learn-before").on("click", function () {
+            $("#learn-over").hide();
+            $("#learn-do").show();
+            $("#learn-before").addClass("axis");
+            $("#learn-delay").removeClass("axis");
+        });
+        $("#learn-delay").on("click", function () {
+            $("#learn-over").show();
+            $("#learn-do").hide();
+            $("#learn-delay").addClass("axis");
+            $("#learn-before").removeClass("axis");
+        });
+    });
+
+</script>
+
+</body>
+</html>

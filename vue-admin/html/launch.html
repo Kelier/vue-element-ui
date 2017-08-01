@@ -25,10 +25,10 @@
 
             <div class="info_change">
                 <el-button type="success" class="mould" @click="importmould1">导入学生<i class="el-icon-upload el-icon--right"></i></el-button>
-                <input type="file" id="file_stu" style="display:none" @change="fileupload">
+                <input type="file" id="file_stu" style="display:none" @change="fileupload1">
 
                 <el-button type="success" class="mould" @click="importmould2">导入老师<i class="el-icon-upload el-icon--right"></i></el-button>
-                <input type="file" id="file_tea" style="display:none" @change="fileupload">
+                <input type="file" id="file_tea" style="display:none" @change="fileupload2">
 
             </div>
         </div>
@@ -57,7 +57,7 @@
 
 
 
-            <el-button type="primary" icon="search" class="boot-auto">搜索</el-button>
+            <el-button type="primary" icon="search" class="boot-auto" @click="loadData(1,8)">搜索</el-button>
         </div>
 
 
@@ -84,15 +84,35 @@
                       </el-form-item>
                       <el-form-item label="教师姓名">
                         <span>{{ props.row.tname }}</span>
+                          <i class="my-icon el-icon-edit" @click="choose_tea(props.$index)"></i>
+
+                          <el-dialog title="选择老师" :visible.sync="dialogTeaTableVisible">
+                              <el-form :model="teaform" style="width: 100%;">
+                                  <el-form-item label="" :label-width="tformLabelWidth" style="width: inherit;display: grid">
+                                      <el-input v-model="teaform.name" auto-complete="off" style="width: 70%;"></el-input>
+                                      <el-button type="primary" icon="search" style="position: absolute;margin-left: 10%">搜索</el-button>
+                                  </el-form-item>
+                              </el-form>
+                              <el-table :data="teaData" style="margin-top: 20px">
+                                  <el-table-column property="id"label="序号" width="150"></el-table-column>
+                                  <el-table-column property="wid" label="工号" width="230"></el-table-column>
+                                  <el-table-column property="name" label="姓名" width="230"></el-table-column>
+                                  <el-table-column label="操作" width="200">
+                                      <template scope="teascope">
+                                          <el-button :plain="true" type="success">选定</el-button>
+                                      </template>
+                                  </el-table-column>
+                              </el-table>
+                          </el-dialog>
                       </el-form-item>
                       <el-form-item label="操作">
                         <el-button type="primary" icon="el-icon-information" @click="edit_stu(props.$index)">查看学生信息</el-button>
 
                         <el-dialog title="学生选课信息" :visible.sync="dialogTableVisible">
                           <el-table :data="gridData">
-                            <el-table-column property="sid" label="序号" width="120"></el-table-column>
-                            <el-table-column property="snum" label="学号" width="200"></el-table-column>
-                            <el-table-column property="sname" label="姓名" width="200"></el-table-column>
+                            <el-table-column property="sid" label="序号" width="150"></el-table-column>
+                            <el-table-column property="snum" label="学号" width="280"></el-table-column>
+                            <el-table-column property="sname" label="姓名" width="280"></el-table-column>
                             <el-table-column label="操作" width="122">
                               <template scope="info">
                                 <el-button @click.native.prevent="deleteRow(info.$index, gridData)" type="text" size="small">
@@ -117,13 +137,13 @@
 
 
 
-            <el-table-column fixed prop="id" label="序号" width="60">
+            <el-table-column fixed prop="id" label="序号" width="100">
                 <template scope="scope">
 
                       <span>{{scope.row.id}}</span>
                </template>
             </el-table-column>
-            <el-table-column prop="cid" label="课序号" width="120">
+            <el-table-column prop="cid" label="课序号" width="150">
                 <!-- <template scope="scope">
 
                  <el-popover
@@ -149,7 +169,7 @@
                 <!-- <span v-popover:popover>{{scope.row.cid}}</span> -->
 
             </el-table-column>
-            <el-table-column prop="cnum" label="课程编号" width="200">
+            <el-table-column prop="cnum" label="课程编号" width="240">
                 <template scope="scope">
                <span>{{scope.row.cnum}}</span>
                </template>
@@ -164,7 +184,7 @@
                <span>{{scope.row.tnum}}</span>
                </template>
             </el-table-column>
-            <el-table-column prop="tname" label="教师姓名" width="100">
+            <el-table-column prop="tname" label="教师姓名" width="200">
                 <template scope="scope">
                <span>{{scope.row.tname}}</span>
                </template>
@@ -182,7 +202,7 @@
         <div align="center">
             <div class="block">
 
-                <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-sizes="[10, 20, 30, 40]" :page-size="10" layout="total, sizes, prev, pager, next, jumper" :total="40">
+                <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-sizes="pagesizes" :page-size="pagesize" layout="total, sizes, prev, pager, next, jumper" :total="total">
                 </el-pagination>
             </div>
         </div>
@@ -193,6 +213,7 @@
     </div>
 </body>
 
+<script src="../js/url.js"></script>
 <script src="../js/launch.js">
    
 </script>

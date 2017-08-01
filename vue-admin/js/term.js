@@ -1,4 +1,8 @@
-    new Vue({
+Vue.prototype.$http = axios;//原型链
+
+
+
+    var vue =  new Vue({
         el: '#nav',
         data: function () {
             return {
@@ -7,7 +11,7 @@
                 form: {
                     id: '',
                     name: '',
-
+                    date:''
 
                 },
 
@@ -43,7 +47,7 @@
                 formLabelWidth: '120px',
 
                 //表格
-                tableData: [{
+                tableData: [/*{
                     id: 1,
                     tid: '3122',
                     tname: '春天',
@@ -57,12 +61,67 @@
                     tstart: '2017-7-2',
                     tend: '2016-8-5',
                     thandle: true
-                }],
+                }*/],
 
-                currentPage: 4
+                currentPage: 1,
+                pagesize: 8,
+                pagesizes: [8, 16, 32, 64],
+                total: 0,
+
+                tempRange:''
+
             }
         },
         methods: {
+            loadData(page, rows){
+                //列表渲染数据
+                var data = [];
+                let url = globalurl + 'BTerm/queryBTermsByPagination';
+                let _this = this;
+                this.$http.get(url, {
+                    params: {
+                        page: page,
+                        rows: rows
+                    }
+                }).then(function (res) {
+                    // alert(JSON.stringify(res));
+                    var pages = res.data.rows;//查询过来的每页数据
+                    _this.total = res.data.total;//总记录数
+                    for (let i = 0; i < pages.length; i++) {
+                        var obj = {};
+                        obj.tid = i + 1;
+                        obj.tbusinessId = pages[i].businessId;
+                        obj.tname = pages[i].name;
+                        obj.tcode = pages[i].code;
+                        obj.tstart = eduUtil.subString(pages[i].startDate,10);
+                        obj.tend = eduUtil.subString(pages[i].endDate,10);
+                        data[i] = obj;
+                    }
+                    /*
+                     * 前台分页
+                     * */
+                    // for (let i = 0; i < rows; i++) {
+                    //     //规定页码范围，只渲染当前页
+                    //     var obj = {};
+                    //     if (res.data.tableData.length > i + (page - 1) * rows) {
+                    //         obj.id = res.data.tableData[i + (page - 1) * rows].id;
+                    //         obj.tid = res.data.tableData[i + (page - 1) * rows].tid;
+                    //         obj.tname = res.data.tableData[i + (page - 1) * rows].tname;
+                    //         obj.tsex = res.data.tableData[i + (page - 1) * rows].tsex;
+                    //         data[i] = obj;
+                    //     } else {
+                    //         continue;
+                    //     }
+                    // }
+
+                    _this.tableData = data;
+
+
+                }).catch(function (error) {
+                    console.log(error);
+                })
+            },
+
             insert_term() {
                 this.$prompt('请输入编号', '信息补录', {
                     confirmButtonText: '确定',
@@ -95,7 +154,50 @@
             },
             handleCurrentChange(val) {
                 console.log(`当前页: ${val}`);
+            },
+            saveRange(val){
+                this.tempRange=val;
+            },
+
+            createTerm(){
+
+                this.dialogFormVisible = false;
+                let that = this;
+
+                //获取日期
+                // this.tempRange
+
+                /*axios.post(globalurl + 'BTerm/add', {
+                        params: {
+                            code: this.form.code,
+                            name: this.form.name,
+                            startDate:this.form.date,
+                            endDate:this.form.endDate
+                        }
+                    })
+                    .then(function (response) {
+                        // alert(JSON.stringify(response));
+                        var type = response.data.success;
+                        var message = response.data.message;
+                        type = tip_custom(type);
+                        that.$notify({
+                            title: '提示信息',
+                            message: message,
+                            type: type
+                        });
+                        that.loadData(vue.currentPage, vue.pagesize);
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                    });
+
+                this.loadData(this.currentPage, this.pagesize);
+                */
             }
         }
 
     });
+
+
+
+vue.loadData(vue.currentPage, vue.pagesize);

@@ -18,8 +18,8 @@
             <div class="nav">
                 <el-menu theme="dark" class="el-menu-demo el-menu-margin" mode="horizontal">
                     <el-menu-item class="title" index="0-1">后台管理系统</el-menu-item>
-                    <el-menu-item class="solo left" index="0-2">注销</el-menu-item>
-                    <el-menu-item class="solo left" index="0-3">用户名</el-menu-item>
+                    <el-menu-item class="solo left" index="0-2" @click="logout">注销</el-menu-item>
+                    <el-menu-item class="solo left" index="0-3" v-model="username">{{username}}</el-menu-item>
                 </el-menu>
             </div>
         </header>
@@ -42,7 +42,6 @@
                                 <el-menu-item index="2-1" @click="doThis($event)">教师管理</el-menu-item>
                                 <el-menu-item index="2-2" @click="doThis($event)">学生管理</el-menu-item>
                                 <el-menu-item index="2-3" @click="doThis($event)">班级管理</el-menu-item>
-                                <el-menu-item index="2-4" @click="doThis($event)">角色管理</el-menu-item>
                             </el-menu-item-group>
                         </el-submenu>
                     </el-menu>
@@ -58,18 +57,21 @@
     </div>
 
 </body>
+
 <!--引入axios-->
-<script src="../../js/axios/dist/axios.min.js"></script>
+<script src="../../bower_components/axios/dist/axios.min.js"></script>
 <!-- 引入 Vue -->
-<script src="../../js/vue/dist/vue.min.js"></script>
-<!-- 引入 jquery -->
-<script src="../../js/jquery/dist/jquery.min.js"></script>
+<script src="../../bower_components/vue/dist/vue.min.js"></script>
 <!-- 引入组件库 -->
-<script src="../../js/element-ui/lib/index.js"></script>
+<script src="../../node_modules/element-ui/lib/index.js"></script>
+<!-- 引入 jquery -->
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+
 
 
 <!--引入自定义入口-->
+<script src="../js/axios.js"></script>
 <script src="../js/admin.js"></script>
-
-
+<script src="../js/url.js"></script>
+<script src="../js/util.js"></script>
 </html>

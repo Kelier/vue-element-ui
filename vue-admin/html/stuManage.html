@@ -23,7 +23,7 @@
         <div class="info_change">
             <el-button type="info" @click="dialogFormVisible=true">+ 新增</el-button>
 
-            <el-dialog title="信息补录" :visible.sync="dialogFormVisible">
+            <el-dialog title="" :visible.sync="dialogFormVisible">
                 <el-form :model="form">
                     <el-form-item label="学号" :label-width="formLabelWidth">
                         <el-input v-model="form.id" auto-complete="off"></el-input>
@@ -40,7 +40,7 @@
                 </el-form>
                 <div slot="footer" class="dialog-footer">
                     <el-button @click="dialogFormVisible = false">取 消</el-button>
-                    <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+                    <el-button type="primary" @click="createUser">确 定</el-button>
                 </div>
             </el-dialog>
 
@@ -50,13 +50,13 @@
         </div>
 
         <div class="search_area">
-            <el-input placeholder="请输入学号" v-model="stuid">
+            <el-input placeholder="请输入学号" v-model="search_id">
 
             </el-input>
-            <el-input placeholder="请输入姓名" v-model="stuname" class="boot">
+            <el-input placeholder="请输入姓名" v-model="search_name" class="boot">
 
             </el-input>
-            <el-button type="primary" icon="search" class="boot">搜索</el-button>
+            <el-button type="primary" icon="search" class="boot" @click="loadData(1,8)">搜索</el-button>
         </div>
 
 
@@ -64,7 +64,7 @@
         <div class="table_box">
 
             <el-table :data="tableData" border style="width: 100%">
-                <el-table-column fixed prop="id" label="序号" width="120">
+                <el-table-column fixed prop="id" label="序号" width="150">
                     <template scope="scope">
 
                       <span>{{scope.row.id}}</span>
@@ -105,12 +105,12 @@
                <span v-popover:popover>{{scope.row.sid}}</span>
                </template>
                 </el-table-column>
-                <el-table-column prop="sname" label="姓名" width="250">
+                <el-table-column prop="sname" label="姓名" width="300">
                     <template scope="scope">
                <span>{{scope.row.sname}}</span>
                </template>
                 </el-table-column>
-                <el-table-column prop="sex" label="性别" width="200">
+                <el-table-column prop="sex" label="性别" width="300">
                     <template scope="scope">
                <span>{{scope.row.sex}}</span>
                </template>
@@ -128,10 +128,11 @@
         <div align="center">
             <div class="block">
 
-                <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-sizes="[10, 20, 30, 40]" :page-size="10" layout="total, sizes, prev, pager, next, jumper" :total="40">
+                <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-sizes="pagesizes" :page-size="pagesize" layout="total, sizes, prev, pager, next, jumper" :total="total">
                 </el-pagination>
             </div>
         </div>
+
 
         <footer>
 
@@ -139,6 +140,7 @@
     </div>
 </body>
 
+<script src="../js/url.js"></script>
 <script src="../js/stuManage.js">
    
 </script>

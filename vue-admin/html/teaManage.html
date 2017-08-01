@@ -9,7 +9,7 @@
 
 </head>
 
-<body style="padding-right: -17px">
+<body>
     <div class="v-modal">
 
     </div>
@@ -24,7 +24,7 @@
         <div class="info_change">
             <el-button type="info" @click="dialogFormVisible=true">+ 新增</el-button>
 
-            <el-dialog title="信息补录" :visible.sync="dialogFormVisible">
+            <el-dialog title="" :visible.sync="dialogFormVisible">
                 <el-form :model="form">
                     <el-form-item label="工号" :label-width="formLabelWidth">
                         <el-input v-model="form.id" auto-complete="off"></el-input>
@@ -46,18 +46,20 @@
             </el-dialog>
             <el-button type="success" class="mould" @click="exportmould">下载模板<i class="el-icon-upload el-icon--right"></i></el-button>
             <el-button type="success" class="mould" @click="importmould">导入教师信息<i class="el-icon-upload el-icon--right"></i></el-button>
-            <input type="file" id="btn_file" style="display:none" @change="fileupload">
+            <form name="subForm" method="post" style="display:none" enctype="multipart/form-data">
+            <input type="file" id="btn_file"  @change="fileupload()">
+            </form>
 
         </div>
 
         <div class="search_area">
-            <el-input placeholder="请输入工号" v-model="teaid">
+            <el-input placeholder="请输入工号" v-model="search_id">
 
             </el-input>
-            <el-input placeholder="请输入姓名" v-model="teaname" class="boot">
+            <el-input placeholder="请输入姓名"  class="boot" v-model="search_name">
 
             </el-input>
-            <el-button type="primary" icon="search" class="boot">搜索</el-button>
+            <el-button type="primary" icon="search" class="boot" @click="loadData(1,10)" >搜索</el-button>
         </div>
 
 
@@ -65,12 +67,13 @@
         <div class="table_box">
 
             <el-table :data="tableData" border style="width: 100%">
-                <el-table-column fixed prop="id" label="序号" width="120">
-                    <template scope="scope">
 
-                      <span>{{scope.row.id}}</span>
-               </template>
+                <el-table-column fixed prop="id" label="序号" width="150">
+                    <template scope="scope">
+                        <span>{{scope.row.id}}</span>
+                    </template>
                 </el-table-column>
+
                 <el-table-column prop="tid" label="工号" width="300">
                     <template scope="scope">
 
@@ -79,15 +82,15 @@
                    placement="right"
                    width="300"
                    trigger="click">
-                     <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
+                     <el-form :label-position="labelPosition" label-width="80px" :model="tableData">
                          <el-form-item label="工号">
-                           <el-input v-model="formLabelAlign.name"></el-input>
+                           <el-input v-model="scope.row.tid"></el-input>
                          </el-form-item>
                      <el-form-item label="姓名">
-                       <el-input v-model="formLabelAlign.region"></el-input>
+                       <el-input v-model="scope.row.tname"></el-input>
                      </el-form-item>
                      <el-form-item label="性别" label-width="80px">
-                       <el-select v-model="form.sex" placeholder="请选择">
+                       <el-select v-model="scope.row.tsex" placeholder="请选择">
                         <el-option
                           v-for="item in options"
                           :key="item.value"
@@ -106,12 +109,13 @@
                <span v-popover:popover>{{scope.row.tid}}</span>
                </template>
                 </el-table-column>
-                <el-table-column prop="tname" label="姓名" width="250">
+
+                <el-table-column prop="tname" label="姓名" width="300">
                     <template scope="scope">
                <span>{{scope.row.tname}}</span>
                </template>
                 </el-table-column>
-                <el-table-column prop="tsex" label="性别" width="200">
+                <el-table-column prop="tsex" label="性别" width="300">
                     <template scope="scope">
                <span>{{scope.row.tsex}}</span>
                </template>
@@ -129,7 +133,7 @@
         <div align="center">
             <div class="block">
 
-                <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-sizes="pagesizes" :page-size="pagesize" layout="total, sizes, prev, pager, next, jumper" :total="totals">
+                <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-sizes="pagesizes" :page-size="pagesize" layout="total, sizes, prev, pager, next, jumper" :total="total">
                 </el-pagination>
             </div>
         </div>
@@ -139,6 +143,7 @@
         </footer>
     </div>
 </body>
+
 
 <script src="../js/teaManage.js">
 

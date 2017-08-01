@@ -20,24 +20,25 @@
         <div class="info_change">
             <el-button type="info" @click="dialogFormVisible=true">+ 新增</el-button>
 
-            <el-dialog title="信息补录" :visible.sync="dialogFormVisible">
+            <el-dialog title="" :visible.sync="dialogFormVisible">
                 <el-form :model="form">
                     <el-form-item label="编号" :label-width="formLabelWidth">
-                        <el-input v-model="form.id" auto-complete="off"></el-input>
+                        <el-input v-model="form.code" auto-complete="off"></el-input>
                     </el-form-item>
                     <el-form-item label="名称" :label-width="formLabelWidth">
                         <el-input v-model="form.name" auto-complete="off"></el-input>
                     </el-form-item>
                     <el-form-item label="时间" :label-width="formLabelWidth">
-                        <div class="block" id="datepicker">
-                            <el-date-picker v-model="value6" type="daterange" placeholder="选择日期范围">
-                            </el-date-picker>
-                        </div>
+                    <div class="block">
+                        <el-date-picker v-model="form.date" type="daterange" placeholder="选择日期范围" :picker-options="pickerOptions2" @change="saveRange">
+                        </el-date-picker>
+                    </div>
                     </el-form-item>
                 </el-form>
+
                 <div slot="footer" class="dialog-footer">
                     <el-button @click="dialogFormVisible = false">取 消</el-button>
-                    <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+                    <el-button type="primary" @click="createTerm">确 定</el-button>
                 </div>
             </el-dialog>
 
@@ -46,9 +47,9 @@
 
         <div class="table_box">
             <el-table :data="tableData" border style="width: 100%">
-                <el-table-column fixed prop="id" label="序号" width="120">
+                <el-table-column fixed prop="tid" label="序号" width="180">
                 </el-table-column>
-                <el-table-column prop="tid" label="编号" width="200">
+                <el-table-column prop="tcode" label="编号" width="200">
                 </el-table-column>
                 <el-table-column prop="tname" label="名称" width="280">
                 </el-table-column>
@@ -56,7 +57,7 @@
                 </el-table-column>
                 <el-table-column prop="tend" label="结束日期" width="200">
                 </el-table-column>
-                <el-table-column fixed="right" label="操作" width="100" prop="thandle">
+                <el-table-column fixed="right" label="操作" width="180" prop="thandle">
                     <template scope="scope">
                  <el-switch v-model="scope.row.thandle" on-color="#13ce66" off-color="#ff4949" on-text="开" off-text="关" @change="toggle(scope.$index,scope.row)">
                  </el-switch>
@@ -69,7 +70,7 @@
         <div align="center">
             <div class="block">
 
-                <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-sizes="[10, 20, 30, 40]" :page-size="10" layout="total, sizes, prev, pager, next, jumper" :total="40">
+                <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-sizes="pagesizes" :page-size="pagesize" layout="total, sizes, prev, pager, next, jumper" :total="total">
                 </el-pagination>
             </div>
         </div>
@@ -80,6 +81,5 @@
     </div>
 </body>
 
-<script src="../js/term.js">
-</script>
+<script src="../js/term.js"/>
 </html>

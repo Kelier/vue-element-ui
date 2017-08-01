@@ -1,25 +1,27 @@
 {
-    "name": "tianyou",
-    "description": "Basic template for a new Foundation for Sites project.",
-    "main": "gulpfile.js",
-    "authors": [
+  "name": "foundation-sites-template",
+  "version": "1.0.0",
+  "authors": [
     "ZURB <foundation@zurb.com>"
   ],
-    "license": "MIT",
-    "homepage": "",
-    "private": true,
-    "dependencies": {
-        "foundation-sites": "~6.3.0",
-        "motion-ui": "~1.2.2",
-        "vue": "^2.4.1",
-        "axios": "~0.16.2"
-    },
-    "ignore": [
+  "description": "Basic template for a new Foundation for Sites project.",
+  "main": "index.html",
+  "license": "MIT",
+  "homepage": "http://foundation.zurb.com",
+  "dependencies": {
+    "foundation-sites": "~6.3.0",
+    "motion-ui": "~1.2.2",
+    "vue": "^2.4.1",
+    "axios": "~0.16.2",
+    "editor.md": "^1.5.0",
+    "marked": "^0.3.6"
+  },
+  "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
-    "js",
     "test",
     "tests"
-  ]
+  ],
+  "private": true
 }
