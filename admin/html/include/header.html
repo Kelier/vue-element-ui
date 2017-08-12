@@ -1,0 +1,7 @@
+<div class="nav">
+    <el-menu theme="dark" class="el-menu-demo el-menu-margin" mode="horizontal">
+        <el-menu-item class="title" index="0-1">运维平台</el-menu-item>
+        <el-menu-item class="solo left" index="0-2" @click="logout">注销</el-menu-item>
+        <el-menu-item class="solo left" index="0-3" v-model="username">{{username}}</el-menu-item>
+    </el-menu>
+</div>

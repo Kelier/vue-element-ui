@@ -1,0 +1,43 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login</title>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="../css/element.css">
+    <link rel="stylesheet" href="../css/login.css" />
+
+</head>
+<body style="background: url('../image/bg1.jpg')">
+    <form id="form" action="">
+        <div class="login-box">
+            <p>智慧运维教育平台</p>
+            <div class="text-box">
+                <label for="number" class="text-input">
+                 <img src="../image/login_number.png">
+                    <input type="text" placeholder="请输入学号/工号" id="number" v-model="yourId">
+                 </label>
+                <label for="password" class="text-input">
+                 <img src="../image/login_password.png">
+
+                    <input type="password" placeholder="请输入密码" id="password" v-model="yourPass">
+                 </label>
+                <button class="button login-btn" type="button" @click="login()">登&nbsp;&nbsp;&nbsp;&nbsp;录</button>
+
+            </div>
+        </div>
+    </form>
+
+
+    <!--引入axios-->
+    <script src="../../bower_components/axios/dist/axios.min.js"></script>
+    <!-- 引入 Vue -->
+    <script src="../../bower_components/vue/dist/vue.min.js"></script>
+    <!-- 引入组件库 -->
+    <script src="../js/index.js"></script>
+    <script src="../../config/url.js"></script>
+    <script src="../js/axios.js"></script>
+</body>
+</html>

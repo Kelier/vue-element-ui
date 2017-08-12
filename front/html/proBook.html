@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../bower_components/foundation-sites/dist/css/foundation.min.css">
+    <link rel="stylesheet" href="../font/foundation-icons.css">
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/book.css">
+</head>
+<body>
+
+<!--头部-->
+<header id="header" class="header">
+    <div class="box-content header-between">
+        <div class="logo"><img src="../image/logo.png" alt=""></div>
+        <div class="search-info">
+            <ul class="menu menu-padding">
+                <li>
+                    <select class="select-left">
+                        <option value="全部">全部</option>
+                        <option value="首页">首页</option>
+                        <option value="找课程">找课程</option>
+                    </select>
+                </li>
+                <li><input type="search" placeholder="搜索" class="select-middle"></li>
+                <li>
+                    <button type="button" class="button search-button select-right"><i class="fi-magnifying-glass"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</header>
+<!--内容部分-->
+<div id="content">
+    <!--导航部分-->
+    <div id="nav" class="nav">
+        <div class="nav-box">
+
+            <div class="box-content">
+                <div class="cell small-6 small-order-2 medium-order-1 cell-lay-start">
+                    <div class="large-auto cell cell-custom"><a href="" class="a-custom">首页</a></div>
+                    <div class="large-auto cell cell-custom"><a href="" class="a-custom">找课程</a></div>
+                </div>
+                <div class="cell small-6 small-order-2 medium-order-1 cell-lay-end">
+                    <div class="large-auto cell cell-custom nav-padding"><a href="" class="a-custom">我的教学</a></div>
+                    <div class="large-auto cell cell-custom normal-padding" onmouseover="show_li()"
+                         onmouseout="hide_li()">
+                        <a href="" class="a-custom">
+                            <i class="fi-torso icon-padding"></i>用户名
+                        </a>
+                        <ul class="ul-custom" id="ul-my">
+                            <li class="li-custom"><a href="" class="li-href">修改密码</a></li>
+                            <li class="li-custom"><a href="" class="li-href">退出</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!--<div><a href="about.html" class="button button-custom">我的教学</a></div>-->
+        </div>
+    </div>
+
+
+    <!--面包屑-->
+    <div id="bread_nav" class="bread-nav bread-box">
+        <div class="box-content bread-content">
+            <nav aria-label="You are here:" role="navigation" class="ul-margin">
+
+                <ul class="breadcrumbs">
+                    <li><i class="fi-marker"></i> 当前位置</li>
+                    <li>首页</li>
+                    <li>找课程</li>
+                    <li>
+                        <span class="show-for-sr">当前: </span> 课程详情
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="nav-box">
+        <div class="box-content">
+            <div class="book-title">
+                <p>Node中间件</p>
+            </div>
+        </div>
+    </div>
+    <div class="nav-box">
+        <div class="box-content">
+            <div class="book-content">
+                <div class="book-left-content">
+                    <h5><b>第一节 初识Node.js</b></h5>
+                    <hr>
+                    <article id="article">
+                        <h6><b>序言</b></h6>
+                        <p>
+                            Java是由Sun Microsystems公司于1995年5月推出的 Java 程序设计语言（以下简称Java语言）和 Java 平台的总称。Java
+                            语言是一种面向对象的编程语言语言。虽然
+                            Java 仅仅只产生了短短20年，但是它的发展是非常迅速的。在2009年4月20号，ORACLE 收购了 Sun 公司，也就是说 Java 这门语言现在归属于 ORACLE
+                            这家公司门下。
+
+                        </p>
+                        <p>
+                            Java发展历程
+
+                            在 Java 这门语言体系当中，最基础的部分就是 Java SE 部分，Java 的标准版本。它包括Java最基础的一些结构，包括面向对象的一些特性等等，同时它也是 Java
+                            技术基础和核心。在
+                            Java SE 的基础之上，又分为了 Java EE（Java 的企业版），应用于大型企业级应用的开发。Java ME 主要用于嵌入式开发。初学的时候我们都是从 Java SE
+                            开始的。
+
+                        </p>
+
+                        <p>
+                            Java SE
+
+                            JVM 叫 Java 虚拟机，它也是整个 Java 技术的核心。Java 语言的跨平台就多亏了 JVM。
+
+                            JDK 叫 Java 开发工具包，没有 JDK 就没有办法进行 Java 程序的开发。
+
+                            JRE 叫 Java 运行环境，如果我们需要运行一个Java程序，就得安装 JRE。
+
+                            JDK、JRE和JVM之间的关系：
+
+                            JDK、JRE和JVM……
+                        </p>
+
+                    </article>
+                </div>
+                <div class="book-right-content">
+                    <div class="book-cover">
+                        <div class="card card-issue">
+                            <img src="../image/banner_1.jpg">
+                            <div class="card-section">
+                                <p>Koa框架</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="book-tea">
+                        <div class="card card-issue">
+                            <div class="card-section">
+                                <span>课程详情</span>
+                                <span class="tea-a">详情</span>
+                                <hr>
+                                <div class="tea-panel">
+                                    <img src="../image/banner_2.jpg" alt="" class="tea-cover">
+                                    <div class="tea-info">
+                                        <label>小栗子</label>
+                                        <label>发布过三门课程</label>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="card card-issue">
+                            <div class="card-section">
+                                <span>课程特色</span>
+                                <hr>
+
+                                <div style="display: flex;">
+                                    <div class="button-group keep">
+                                        <a class="button wire">实验</a>
+                                        <a class="button wireless"><span>7</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<footer id="footer" class="footer">footer</footer>
+<script src="../js/hasToken.js"></script>
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../../bower_components/foundation-sites/dist/js/foundation.min.js"></script>
+<script src="../../bower_components/foundation-sites/dist/js/plugins/foundation.util.motion.min.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/course.js"></script>
+<script src="../../bower_components/marked/marked.min.js"></script>
+<script>
+    $(function () {
+        $("#article").html(marked('# Marked in browser\n\nRendered by **marked**.'));
+
+    })
+</script>
+
+</body>
+</html>

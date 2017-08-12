@@ -1,0 +1,289 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>online-class-teacher</title>
+    <link rel="stylesheet" href="../../bower_components/foundation-sites/dist/css/foundation.min.css">
+    <link rel="stylesheet" href="../font/foundation-icons.css">
+    <link rel="stylesheet" href="../css/onlineclass.css" />
+    <link rel="stylesheet" href="../css/nav.css">
+</head>
+<body>
+<!--头部-->
+<header id="header" class="header">
+    <div class="box-content header-between">
+        <div class="logo"><img src="../image/logo.png" alt=""></div>
+        <div class="search-info">
+            <ul class="menu menu-padding">
+                <li>
+                    <select class="select-left">
+                        <option value="全部">全部</option>
+                        <option value="首页">首页</option>
+                        <option value="找课程">找课程</option>
+                    </select>
+                </li>
+                <li><input type="search" placeholder="搜索" class="select-middle"></li>
+                <li>
+                    <button type="button" class="button search-button select-right"><i class="fi-magnifying-glass"></i></button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</header>
+<!--内容部分-->
+<div id="content" class="online-box">
+    <!--导航部分-->
+    <div id="nav" class="nav">
+        <div class="nav-box">
+
+            <div class="box-content">
+                <div class="cell small-6 small-order-2 medium-order-1 cell-lay-start">
+                    <div class="large-auto cell cell-custom"><a href="" class="a-custom">首页</a></div>
+                    <div class="large-auto cell cell-custom"><a href="" class="a-custom">找课程</a></div>
+                </div>
+                <div class="cell small-6 small-order-2 medium-order-1 cell-lay-end">
+                    <div class="large-auto cell cell-custom nav-padding"><a href="" class="a-custom">我的教学</a></div>
+                    <div class="large-auto cell cell-custom normal-padding" onmouseover="show_li()" onmouseout="hide_li()">
+                        <a href="" class="a-custom">
+                            <i class="fi-torso icon-padding"></i>用户名
+                        </a>
+                        <ul class="ul-custom" id="ul-my">
+                            <li class="li-custom"><a href="" class="li-href">修改密码</a></li>
+                            <li class="li-custom"><a href="" class="li-href">退出</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!--<div><a href="about.html" class="button button-custom">我的教学</a></div>-->
+        </div>
+    </div>
+    <!--面包屑-->
+    <div id="bread_nav" class="bread-nav bread-box">
+        <div class="box-content bread-content">
+            <nav aria-label="You are here:" role="navigation" class="ul-margin">
+
+                <ul class="breadcrumbs">
+                    <li><i class="fi-marker"></i> 当前位置</li>
+                    <li>首页</li>
+                    <li>找课程</li>
+                    <li>
+                        <span class="show-for-sr">当前: </span> 课程详情
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="class-detail">
+        <div class="mylearn">
+            <p class="mytitle">我的教学</p>
+            <ul class="vertical tabs learn-tabs">
+                <li class="tabs-title "><a href="#classlist-1" class="learn-active" id="learn-active"  aria-selected="true">在教课程</a></li>
+                <li class="tabs-title "><a href="#classlist-2" id="learn-apply"  class="learn-apply" aria-selected="true">开课申请</a></li>
+            </ul>
+        </div>
+        <div class="myclass" id="classlist-1">
+            <p class="mytitle">在教课程</p>
+
+
+            <ul class="tabs tabs-flex">
+                <li class="tab-title" id="tabli-1"><a href="#learn-do" id="learn-before" class="learn-before">已上线</a></li>
+                <li class="tab-title" id="tabli-2"><a href="#learn-over" id="learn-delay" class="learn-delay" >已下线</a></li>
+            </ul>
+            <div class="tabs-panel" id="learn-do">
+                <div class="row row-list" id="learn-do-list">
+
+                </div>
+            </div>
+            <div class="tabs-panel" id="learn-over">
+                <div class="row  row-list" id="learn-over-list">
+
+                </div>
+            </div>
+        </div>
+        <div class="myclass" id="classlist-2">
+            <p class="row mytitle">
+                <span class="small-11">开课申请</span>
+                <span class="small-1"><button class="apply-btn" data-toggle="classmodal6">申请开课</button></span>
+                <div class="reveal reveal-r" id="classmodal6" data-reveal data-overlay="false">
+            <p class="mytitle">申请开课</p>
+            <form class="window" action=" " method="post">
+                <label>
+                    <span> 开课学期：</span>
+                    <select>
+                        <option value="">2017-2018 上学期</option>
+                        <option value="">2018 下学期</option>
+                    </select>
+                </label>
+                <label>
+                    <span>课程名称：</span>
+                    <input class="win-input">
+                </label>
+                <label>
+                    <span>申请理由：</span>
+                    <textarea> </textarea>
+                </label>
+                <button class="orange-btn1" class="close-button" data-close aria-label="Close reveal" type="button">取消</button>
+                <button class="orange-btn">添加</button>
+            </form>
+        </div>
+        </p>
+        <ul>
+            <li class="row apply-list">
+                <img class="small-3" src="../image/myclass1.png">
+                <dl class="small-7">
+                    <dt>2017-2018学年 上学期</dt>
+                    <dt><a href="">JavaSE之语言包</a>  （46456457）</dt>
+                    <dd>计算机必修课，申请理由申请理由申请理由申请理由申请理由申请理由申请理由申请理由申请理由申请理由申请理由申请理由申请理由申请理由申请理由申请理由申请理由。</dd>
+                </dl>
+                <div class="small-2">待审批</div>
+            </li>
+            <li class="row apply-list">
+                <img class="small-3" src="../image/myclass1.png">
+                <dl class="small-7">
+                    <dt>2017-2018学年 上学期</dt>
+                    <dt><a href="">JavaSE之语言包</a>  （46456457）</dt>
+                    <dd>计算机必修课，申请理由申请理由申请理由申请理由申请理由申请理由申请理由申请理由申请理由申请理由申请理由申请理由申请理由申请理由申请理由申请理由申请理由。</dd>
+                </dl>
+                <div class="small-1">
+                    <p> </p>
+                </div>
+                <span class="small-1"><img src="../image/pass.png"></span>
+            </li>
+            <li class="row apply-list">
+                <img class="small-3" src="../image/myclass1.png">
+                <dl class="small-7">
+                    <dt>2017-2018学年 上学期</dt>
+                    <dt><a href="">JavaSE之语言包</a>  （46456457）</dt>
+                    <dd>计算机必修课，申请理由申请理由申请理由申请理由申请理由申请理由申请理由申请理由申请理由申请理由申请理由申请理由申请理由申请理由申请理由申请理由申请理由。</dd>
+                </dl>
+                <div class="small-1" >
+                    <p class="" data-toggle="classmodal7">编辑</p>
+                    <div class="reveal reveal-r" id="classmodal7" data-reveal data-overlay="false">
+                        <p class="mytitle">申请开课</p>
+                        <form class="window" action=" " method="post">
+                            <label>
+                                <span> 开课学期：</span>
+                                <select>
+                                    <option value="">2017-2018 上学期</option>
+                                    <option value="">2018 下学期</option>
+                                </select>
+                            </label>
+                            <label>
+                                <span>课程名称：</span>
+                                <input class="win-input">
+                            </label>
+                            <label>
+                                <span>申请理由：</span>
+                                <textarea> </textarea>
+                            </label>
+                            <button class="orange-btn1" class="close-button" data-close aria-label="Close reveal" type="button">取消</button>
+                            <button class="orange-btn">添加</button>
+                        </form>
+                    </div>
+                    <p><a href="" >删除</a></p>
+                </div>
+                <span class="small-1 " ><img data-tooltip title="拒绝原因：学期选择不对" style="border: none;" src="../image/unpass.png"></span>
+            </li>
+        </ul>
+    </div>
+    </div>
+
+</div>
+<!--尾部-->
+<footer id="footer" class="footer">footer</footer>
+
+<script src="../js/hasToken.js"></script>
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../../bower_components/foundation-sites/dist/js/foundation.min.js"></script>
+<script src="../../bower_components/foundation-sites/dist/js/plugins/foundation.util.motion.min.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../../config/url.js"></script>
+
+<script>
+    $(function () {
+        $("#classlist-1").show();
+        $("#classlist-2").hide();
+        $("#learn-active").addClass("learn-a");
+        $("#learn-active").on("click", function () {
+            $("#classlist-2").hide();
+            $("#classlist-1").show();
+            $("#learn-active").addClass("learn-a");
+            $("#learn-apply").removeClass("learn-a");
+        });
+        $("#learn-apply").on("click", function () {
+            $("#classlist-2").show();
+            $("#classlist-1").hide();
+            $("#learn-apply").addClass("learn-a");
+            $("#learn-active").removeClass("learn-a");
+        });
+    });
+
+    $(function () {
+        loadData();
+        $("#learn-do").show();
+        $("#learn-before").addClass("axis");
+        $("#learn-before").on("click", function () {
+            $("#learn-over").hide();
+            $("#learn-do").show();
+            $("#learn-before").addClass("axis");
+            $("#learn-delay").removeClass("axis");
+        });
+        $("#learn-delay").on("click", function () {
+            $("#learn-over").show();
+            $("#learn-do").hide();
+            $("#learn-delay").addClass("axis");
+            $("#learn-before").removeClass("axis");
+        });
+    });
+
+    function loadData() {
+        $.ajax({
+            url:globalurl+'BSl/mySlByTeacherCode',
+            method:'post',
+            data:{
+                page:1,
+                rows:99999,
+            },
+            beforeSend: function (res) {
+                res.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+            },
+            success:function (result) {
+              //   console.log(JSON.stringify(result));
+                var list =result.rows;
+                var learn_do = '';
+                var learn_over = '';
+                for(var i=0;i<list.length;i++){
+                    var item = '<a id="'+list[i].businessId+'" href="teaCourse.html?id='+list[i].businessId+'" class="medium-3 columns">'+
+                            '<div class="card card-list">'+
+                            '<img src="'+imagepath+list[i].slCoverUrl+'">'+
+                            '<div class="card-section">'+
+                            '<p>'+list[i].code+'</p>'+
+                            '<h6>'+list[i].lessonName+'</h6>'+
+                            '</div>'+
+                            '</div>'+
+                            '</a>';
+                    if(list[i].isOnline=='1'){
+                        learn_do+=item;
+                    }
+                    if(list[i].isOnline=='2'){
+                        learn_over+=item;
+                    }
+                }
+                $('#learn-do-list').html(learn_do);
+                $('#learn-over-list').html(learn_over);
+            },
+            error:function (error) {
+                alert('访问服务器失败');
+                console.log(JSON.stringify(error));
+            }
+        })
+    }
+</script>
+
+</body>
+</html>

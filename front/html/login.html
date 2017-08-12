@@ -1,0 +1,46 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login</title>
+    <link rel="stylesheet" href="../../bower_components/foundation-sites/dist/css/foundation.min.css">
+    <link rel="stylesheet" href="../font/foundation-icons.css">
+    <link rel="stylesheet" href="../../bower_components/cropper/dist/cropper.min.css">
+
+    <link rel="stylesheet" href="../css/login.css" />
+
+</head>
+<body style="background: url('../image/bg7.jpg')">
+    <from>
+        <div class="login-box">
+            <p>智慧教育平台</p>
+            <div class="text-box">
+                <label for="number" class="text-input">
+                 <img src="../image/login_number.png">
+                    <input type="" placeholder="请输入学号/工号" id="number">
+                 </label>
+                <label for="password" class="text-input">
+                 <img src="../image/login_password.png">
+
+                    <input type="" placeholder="请输入密码" id="password">
+                 </label>
+            <button type="button" class="button login-btn" onclick="loginIndex()">登&nbsp;&nbsp;&nbsp;&nbsp;录</button>
+            </div>
+        </div>
+    </from>
+
+    <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../../bower_components/foundation-sites/dist/js/foundation.min.js"></script>
+    <script src="../../bower_components/foundation-sites/dist/js/plugins/foundation.util.motion.min.js"></script>
+    <script src="../../bower_components/cropper/dist/cropper.min.js"></script>
+    <script src="../../config/url.js"></script>
+    <script src="../../config/ajaxUtils.js"></script>
+    <script src="../js/login.js"></script>
+<script>
+    $(document).foundation();
+</script>
+
+</body>
+</html>

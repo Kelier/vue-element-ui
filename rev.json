@@ -1,0 +1,6 @@
+{
+  "../../bower_components/foundation-sites/dist/css/foundation.min.css":"../../bower_components/foundation-sites/css/foundation.min.css",
+  "../../bower_components/foundation-sites/dist/js/foundation.min.js":"../../bower_components/foundation-sites/js/foundation.min.js",
+  "../../bower_components/foundation-sites/dist/js/plugins/foundation.util.motion.min.js":"../../bower_components/foundation-sites/plugins/foundation.util.motion.min.js"
+
+}

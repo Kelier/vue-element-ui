@@ -1,0 +1,233 @@
+<div id="nav">
+    <div class="breadNav">
+        <el-breadcrumb separator="/">
+            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+            <el-breadcrumb-item>课程配置</el-breadcrumb-item>
+            <el-breadcrumb-item>开课管理</el-breadcrumb-item>
+        </el-breadcrumb>
+    </div>
+    <div class="padding">
+
+
+        <div class="info_change">
+            <el-button type="success" class="mould" @click="exportmould2">下载学生选课模板<i
+                    class="el-icon-upload el-icon--right"></i>
+            </el-button>
+
+            <el-button type="success" class="mould" @click="exportmould1">下载老师开课模板<i
+                    class="el-icon-upload el-icon--right"></i>
+            </el-button>
+
+
+            <el-button type="success" class="mould" @click="importmould1">导入学生<i
+                    class="el-icon-upload el-icon--right"></i></el-button>
+            <input type="file" id="file_stu" style="display:none" @change="fileupload1">
+
+            <el-button type="success" class="mould" @click="importmould2">导入老师<i
+                    class="el-icon-upload el-icon--right"></i></el-button>
+            <input type="file" id="file_tea" style="display:none" @change="fileupload2">
+
+        </div>
+    </div>
+    <div class="search_area">
+
+        <el-select v-model="select" placeholder="请选择学期">
+            <el-option v-for="item in cities" :key="item.value" :label="item.label" :value="item.value">
+                <span style="float: left">{{ item.label }}</span>
+            </el-option>
+        </el-select>
+
+        <el-input placeholder="请输入课程" v-model="coursename" class="boot-auto">
+
+        </el-input>
+        <el-input placeholder="请输入教师" v-model="teaname" class="boot-auto">
+
+        </el-input>
+
+        <el-select v-model="mode" placeholder="请选择状态" class="boot-auto">
+            <el-option v-for="item in status" :key="item.value" :label="item.label" :value="item.value">
+                <span style="float: left">{{ item.label }}</span>
+            </el-option>
+        </el-select>
+
+
+        <el-button type="primary" icon="search" class="boot-auto" @click="loadData(1,8)">搜索</el-button>
+    </div>
+
+
+    <div class="table_box">
+
+        <el-table :data="tableData" border style="width: 100%">
+
+
+            <el-table-column type="expand">
+                <template scope="props">
+                    <el-form label-position="left" inline class="demo-table-expand">
+                        <el-form-item label="课序号">
+                            <span>{{ props.row.cid }}</span>
+                        </el-form-item>
+                        <el-form-item label="课程编号">
+                            <span>{{ props.row.cnum }}</span>
+                        </el-form-item>
+                        <el-form-item label="课程名称">
+                            <span>{{ props.row.cname }}</span>
+                        </el-form-item>
+                        <el-form-item label="教师工号">
+                            <span>{{ props.row.tnum }}</span>
+                        </el-form-item>
+                        <el-form-item label="教师姓名">
+                            <span>{{ props.row.tname }}</span>
+                            <i class="my-icon el-icon-edit" @click="choose_tea(props.$index)"></i>
+
+                            <el-dialog title="选择老师" :visible.sync="dialogTeaTableVisible">
+                                <el-form :model="teaform" style="width: 100%;">
+                                    <el-form-item label="" :label-width="tformLabelWidth"
+                                                  style="width: inherit;display: grid">
+                                        <el-input v-model="teaform.name" auto-complete="off" style="width: 70%;"
+                                                  placeholder="请输入姓名"></el-input>
+                                        <el-button type="primary" icon="search"
+                                                   style="position: absolute;margin-left: 10%"
+                                                   @click="loadteaData(1,8)">搜索
+                                        </el-button>
+                                    </el-form-item>
+                                </el-form>
+                                <el-table :data="teaData" style="margin-top: 20px">
+                                    <el-table-column property="id" label="序号" width="100" align="center"></el-table-column>
+                                    <el-table-column property="tid" label="工号" width="250" align="center"></el-table-column>
+                                    <el-table-column property="tname" label="姓名" width="250" align="center"></el-table-column>
+                                    <el-table-column label="操作" min-width align="center">
+                                        <template scope="teascope">
+                                            <el-button  type="text" @click="changeTea(teascope.$index)">
+                                                选定
+                                            </el-button>
+                                        </template>
+                                    </el-table-column>
+                                </el-table>
+                                <div align="center">
+                                <el-pagination @size-change="handleteaSizeChange"
+                                               @current-change="handleteaCurrentChange" :current-page="teacurrentPage"
+                                               class="pagi" :page-size="teapagesize"
+                                               layout="total, prev, pager, next, jumper" :total="teatotal">
+                                </el-pagination>
+                                </div>
+                            </el-dialog>
+                        </el-form-item>
+                        <el-form-item label="操作">
+                            <el-button type="primary" icon="el-icon-information" @click="edit_stu(props.$index)">
+                                查看学生信息
+                            </el-button>
+
+                            <el-dialog title="学生选课信息" :visible.sync="dialogTableVisible">
+                                <el-table :data="gridData">
+                                    <el-table-column property="sid" label="序号" width="100"></el-table-column>
+                                    <el-table-column property="snum" label="学号" width="250"></el-table-column>
+                                    <el-table-column property="sname" label="姓名" width="250"></el-table-column>
+                                    <el-table-column label="操作" min-width>
+                                        <template scope="info">
+                                            <el-button @click.native.prevent="deleteRow(info.$index, gridData)"
+                                                       type="text" size="small">
+                                                移除
+                                            </el-button>
+                                        </template>
+                                    </el-table-column>
+                                </el-table>
+                                <div align="center">
+                                <el-pagination @size-change="handlestuSizeChange"
+                                               @current-change="handlestuCurrentChange" :current-page="stucurrentPage"
+                                               class="pagi" :page-size="stupagesize"
+                                               layout="total, prev, pager, next, jumper" :total="stutotal">
+                                </el-pagination>
+                                </div>
+                            </el-dialog>
+
+                        </el-form-item>
+
+
+                    </el-form>
+                </template>
+            </el-table-column>
+
+
+            <el-table-column align="center" prop="id" label="序号" width="80">
+                <template scope="scope">
+
+                    <span>{{scope.row.id}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column align="center" prop="cid" label="课序号" width="220">
+                <!-- <template scope="scope">
+
+                 <el-popover
+                   ref="popover"
+                   placement="right"
+                   width="300"
+                   trigger="click">
+                     <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
+                         <el-form-item label="课程编号">
+                           <el-input v-model="formLabelAlign.name"></el-input>
+                         </el-form-item>
+                     <el-form-item label="课程名称">
+                       <el-input v-model="formLabelAlign.region"></el-input>
+                     </el-form-item>
+                     <el-form-item label="操作">
+                       <el-button type="info" @click="change_course(scope.$index)">修改</el-button>
+                     </el-form-item>
+
+                   </el-form>
+                 </el-popover> -->
+
+
+                <!-- <span v-popover:popover>{{scope.row.cid}}</span> -->
+
+            </el-table-column>
+            <el-table-column align="center" prop="cnum" label="课程编号" width="220">
+                <template scope="scope">
+                    <span>{{scope.row.cnum}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column align="center" prop="cname" label="课程名称" width="220">
+                <template scope="scope">
+                    <span>{{scope.row.cname}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column align="center" prop="tnum" label="教师编号" width="220">
+                <template scope="scope">
+                    <span>{{scope.row.tnum}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column align="center" prop="tname" label="教师姓名" width="220">
+                <template scope="scope">
+                    <span>{{scope.row.tname}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column align="center" label="操作" min-width prop="thandle">
+                <template scope="scope">
+                    <el-switch v-model="scope.row.thandle" on-color="#13ce66" off-color="#ff4949" on-text="开"
+                               off-text="关" @change="toggle(scope.$index,scope.row)">
+                    </el-switch>
+                    <!--<el-switch v-model="scope.row.thandle_recommend" on-color="#13ce66" off-color="#ff4949" on-text="推荐"
+                               off-text="取消" @change="toggle_recommend(scope.$index,scope.row)">
+                    </el-switch>-->
+                </template>
+            </el-table-column>
+        </el-table>
+    </div>
+
+    <div align="center">
+        <div class="block">
+
+            <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
+                           :current-page="currentPage" :page-size="pagesize" layout="total, prev, pager, next, jumper"
+                           :total="total">
+            </el-pagination>
+        </div>
+    </div>
+
+    <footer>
+
+    </footer>
+</div>
+
+<script src="../js/launch.js">
+
+</script>

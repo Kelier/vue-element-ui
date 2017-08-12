@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>课程详情</title>
+    <link rel="stylesheet" href="../../bower_components/foundation-sites/dist/css/foundation.min.css">
+    <link rel="stylesheet" href="../font/foundation-icons.css">
+    <link rel="stylesheet" href="../../bower_components/cropper/dist/cropper.min.css">
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/course.css">
+</head>
+<body>
+<!--头部-->
+<header id="header" class="header">
+    <div class="box-content header-between">
+        <div class="logo"><img src="../image/logo.png" alt=""></div>
+        <div class="search-info">
+            <ul class="menu menu-padding">
+                <li>
+                    <select class="select-left">
+                        <option value="全部">全部</option>
+                        <option value="首页">首页</option>
+                        <option value="找课程">找课程</option>
+                    </select>
+                </li>
+                <li><input type="search" placeholder="搜索" class="select-middle"></li>
+                <li>
+                    <button type="button" class="button search-button select-right"><i class="fi-magnifying-glass"></i></button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</header>
+<!--内容部分-->
+<div id="content">
+    <!--导航部分-->
+    <div id="nav" class="nav">
+        <div class="nav-box">
+
+            <div class="box-content">
+                <div class="cell small-6 small-order-2 medium-order-1 cell-lay-start">
+                    <div class="large-auto cell cell-custom"><a href="" class="a-custom">首页</a></div>
+                    <div class="large-auto cell cell-custom"><a href="" class="a-custom">找课程</a></div>
+                </div>
+                <div class="cell small-6 small-order-2 medium-order-1 cell-lay-end">
+                    <div class="large-auto cell cell-custom nav-padding"><a href="" class="a-custom">我的教学</a></div>
+                    <div class="large-auto cell cell-custom normal-padding" onmouseover="show_li()" onmouseout="hide_li()">
+                        <a href="" class="a-custom">
+                            <i class="fi-torso icon-padding"></i>用户名
+                        </a>
+                        <ul class="ul-custom" id="ul-my">
+                            <li class="li-custom"><a href="" class="li-href">修改密码</a></li>
+                            <li class="li-custom"><a href="" class="li-href">退出</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!--<div><a href="about.html" class="button button-custom">我的教学</a></div>-->
+        </div>
+    </div>
+    <!--面包屑-->
+    <div id="bread_nav" class="bread-nav bread-box">
+        <div class="box-content bread-content">
+            <nav aria-label="You are here:" role="navigation" class="ul-margin">
+
+                <ul class="breadcrumbs">
+                    <li><i class="fi-marker"></i> 当前位置</li>
+                    <li>首页</li>
+                    <li>找课程</li>
+                    <li>
+                        <span class="show-for-sr">当前: </span> 课程详情
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="course-flex">
+        <div class="course-box">
+    <div id="course_details" class="course_details">
+        <!--课程介绍-->
+        <div id="course_panel" class="course_panel">
+            <div class="course_cover">
+                <img id="coverUrl" src="http://bizhi.zhuoku.com/2012/04/19/jingxuan/Jingxuan018.jpg" alt="" class="cover">
+
+                <!-- This is the first modal -->
+                <div class="reveal cover_modal" id="cover_modal" data-reveal>
+                    <h4>课程封面</h4>
+                    <p class="lead">
+                    <hr>
+                    </p>
+                    <div class="image-cover" id="image_cover"><img src="" id="cover_path">
+                    </div>
+                    <input type="file" style="display: none;" id="file_cover" onchange="change_cover()">
+                    <p class="lead-cover">可以上传jpg，gif，png格式的文件，图片建议尺寸至少为480X270px，文件大小不要超过2M</p>
+                    <div class="padding-button">
+                        <button class="upload-cover-button button" onclick="upload_cover()" id="change-image">选择要上传的图片
+                        </button>
+                        <button class="upload-cover-button button save-button" onclick="save_cover()" id="save-image">
+                            保存
+                        </button>
+                    </div>
+
+                    <div class="upload-cover"></div>
+                    <button class="close-button" data-close aria-label="Close reveal" type="button">
+                        <span aria-hidden="true" class="close-custom">&times;</span>
+                    </button>
+                </div>
+
+
+            </div>
+            <div class="course_page">
+                <div class="pre-setting" id="pre_setting"><i class="fi-wrench"></i></div>
+                <div class="course_title">
+                    <span id="lessonName"></span>
+                    <span class="span-config" id="slCode">66666</span>
+
+
+                    <!--<div class="tri-label" id="tri-label"></div>-->
+                    <!--<span class="tri-title" id="tri-title">已发布</span>-->
+                </div>
+                <div class="text_edit"><textarea name="title_edit" id="title_edit" placeholder="请输入课程简介" cols="30"
+                                                 rows="10" class="title-edit"
+                                                 onkeydown="invokeHandle(event)"></textarea></div>
+                <div class="course_info" id="course_info" style="-webkit-line-clamp:3">
+                    我们经常在很多网站上见到更改网站的主题时,图标的颜色也改变了,我们总是觉的这一项功能非常伟大,
+                    因为我们知道使用CSS是无法完成更改图片的颜色的。因为我们知道使用CSS是无法完成更改图片的颜色的
+                </div>
+                <a href="" class="minify_text" id="mini_more" style="display: none;"><span>更多>></span></a>
+                <div class="course-config" id="course_config">
+                    <label class="button button-custom-small" style="border-radius: 0px">总分：67</label>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="content-flex">
+            <!--课程目录及成绩信息-->
+            <div id="course_catalog" class="course_catalog">
+                <div class="catalog_tilte">
+                    <ul class="tabs" data-tabs id="catalog-tabs">
+                        <li class="tabs-title is-active"><a href="#panel1" aria-selected="true" style="height:inherit"
+                                                            id="panelTab1">目录</a>
+                        </li>
+
+                    </ul>
+
+                    <div class="tabs-content" data-tabs-content="example-tabs">
+                        <!--目录部分-->
+                        <div class="tabs-panel is-active" id="panel1">
+                            <dl class="catalog-content" id="catalog-content">
+                                <div class='no-content' id="nocontent" style="display: none">暂未添加任何课程</div>
+                           <!--     <dt class="chapter">
+                                <div class="chapter-inline">
+                                    <div class="inline-index">第1章</div>
+                                    <div class="inline-title">Three.js教程</div>
+
+                                </div>
+                                </dt>
+                                <dd class="section">
+                                    <div class="section-inline">
+
+                                        <div class="view_icon"><i class="fi-check"></i></div>
+                                        <div class="view_code">第1节</div>
+                                        <div class="view_preface">绘制简单的2D形状</div>
+                                        <div class="view_scheme">
+                                                <span>10分</span>
+                                        </div>
+                                        <div class="view_pro"><a class="align-hollow hollow button"
+                                                                    href="proBook.html">项目任务书</a></div>
+                                        <div class="view_exp"><a class="align-hollow hollow button" href="markdown.html">实验</a>
+                                        </div>
+                                    </div>
+                                </dd>-->
+                            </dl>
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="right-info">
+                <div id="course_teacher">
+                    <div class="card">
+
+                        <div class="tea_tilte_plat">
+                            <p class="tea_tilte">课程教师</p>
+                            <a href="" class="tea_tilte tea-a">详情</a>
+                        </div>
+                        <div style="display: flex;margin-bottom: 20px;">
+                            <img class="tea_icon" id="teaPic"
+                                 src="http://cdn.duitang.com/uploads/item/201208/27/20120827162441_JWvVZ.jpeg">
+                            <div style="display: inline-block;">
+                                <div class="tea-info" id="teaName">王思聪</div>
+                                <div class="tea-info-course" >共发布过<span id="teaSlNum">3</span>门课程</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div id="course_feature" class="course_feature">
+                    <div class="card">
+                        <div class="tea_tilte_plat">
+                            <p class="tea_tilte">课程特色</p>
+                        </div>
+                        <div style="display: flex;">
+                            <div class="button-group keep">
+                                <a class="button wire">实验</a>
+                                <a class="button wireless"><span>7</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+        </div>
+
+    </div>
+</div>
+<footer id="footer" class="footer">footer</footer>
+
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../../bower_components/foundation-sites/dist/js/foundation.min.js"></script>
+<script src="../../bower_components/foundation-sites/dist/js/plugins/foundation.util.motion.min.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../../config/url.js"></script>
+<script src="../../config/ajaxUtils.js"></script>
+<script src="../js/stucourse.js"></script>
+
+<script>
+
+
+</script>
+
+
+</body>
+</html>
