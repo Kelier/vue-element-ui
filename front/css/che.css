@@ -1,0 +1,192 @@
+@font-face {
+    font-family: Led-font;
+    src: url("../font/led.TTF");
+}
+
+html,body{
+    height:100%;
+}
+
+.contail {
+    position: relative;
+    margin: auto;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+
+}
+
+.probook {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    float: left;
+    overflow: hidden;
+}
+
+.che {
+    width: 50%;
+    float: right;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    z-index: 999 !important;
+}
+
+.line {
+    width: 5px;
+    position: absolute;
+    left: 50%;
+    height: 60px;
+    background: steelblue;
+    cursor: w-resize;
+    overflow: hidden;
+}
+
+.archive {
+    margin: 5px;
+    line-height: 0;
+    position: relative;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.handle {
+    width: 100%;
+    height: 0px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    -webkit-box-shadow: 1px 1px 1px;
+    box-shadow: 1px 1px 1px;
+    justify-content: space-around;
+    background-color: #edf3f5;
+}
+
+.handle-lin {
+    justify-content: flex-end;
+    padding: 20px;
+}
+
+.area-left {
+    justify-content: flex-start;
+}
+
+.area-right {
+    justify-content: flex-end;
+}
+
+.area-left, .area-right {
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.procss {
+
+    line-height: 3;
+    font-weight: inherit;
+    margin-left: 20px;
+    font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+}
+
+#this {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#content {
+
+    position: relative;
+    margin: 0 auto;
+    bottom: 0;
+    height: 100%;
+
+}
+
+.bookcontent {
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+    overflow-y: scroll;
+}
+
+.area-left i {
+    color: #4a90e2;
+    font-size: xx-large;
+    padding: 10px;
+    position: relative;
+}
+
+.area-right i {
+    color: #4a90e2;
+    font-size: large;
+    padding: 10px;
+    position: relative;
+}
+
+.full {
+    width: 100%;
+    height: 100%;
+}
+
+.book-content {
+
+    display: flex;
+    justify-content: center;
+}
+
+.mark {
+    margin: 20px;
+    height: auto;
+}
+
+.years {
+    height: 30px;
+    line-height: 0;
+    margin-right: 20px;
+    float: right;
+}
+
+ul.countdown {
+    list-style: none;
+    margin-bottom: 0px;
+    padding: 0;
+    display: block;
+    text-align: center;
+}
+
+ul.countdown li {
+    display: inline-block;
+}
+
+ul.countdown li div {
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 20px;
+}
+
+ul.countdown li span {
+    border: 1px solid #9E9E9E;
+    padding: 5px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    margin-right: 5px;
+    font-family: Led-font;
+}
+
+ul.countdown li.seperator {
+    font-size: 20px;
+    line-height: 20px;
+    vertical-align: top;
+}
+
+ul.countdown li p {
+    color: #a7abb1;
+    font-size: 14px;
+}

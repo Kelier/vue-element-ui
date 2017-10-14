@@ -1,0 +1,155 @@
+<div id="nav">
+    <div class="breadNav">
+        <el-breadcrumb separator="/">
+            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+            <el-breadcrumb-item>基础配置</el-breadcrumb-item>
+            <el-breadcrumb-item>教师管理</el-breadcrumb-item>
+        </el-breadcrumb>
+    </div>
+    <div class="info_change">
+        <el-button type="info" @click="dialogFormVisible=true">+ 新增</el-button>
+
+        <el-dialog title="" :visible.sync="dialogFormVisible" size="tiny">
+            <el-form :model="form" style="margin-top: 1em;margin-right: 1em;" :rules="formrule1" ref="form">
+                <el-form-item label="工号" :label-width="formLabelWidth" prop="id">
+                    <el-input v-model="form.id" auto-complete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="姓名" :label-width="formLabelWidth" prop="name">
+                    <el-input v-model="form.name" auto-complete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="邮箱" :label-width="formLabelWidth" prop="mail">
+                    <el-input v-model="form.mail" auto-complete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="性别" :label-width="formLabelWidth" prop="sex">
+                    <el-select v-model="form.sex" placeholder="请选择" style="width:100%">
+                        <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogFormVisible = false">取 消</el-button>
+                <el-button type="primary" @click="createUser('form')">确 定</el-button>
+            </div>
+        </el-dialog>
+        <el-button type="success" class="mould" @click="exportmould">下载模板<i class="el-icon-upload el-icon--right"></i>
+        </el-button>
+        <el-button type="success" class="mould" @click="importmould">导入教师信息<i class="el-icon-upload el-icon--right"></i>
+        </el-button>
+        <form name="subForm" method="post" style="display:none" enctype="multipart/form-data">
+            <input type="file" id="btn_file" @change="fileupload()" v-loading.fullscreen.lock="fullscreenLoading">
+        </form>
+
+    </div>
+
+    <div class="search_area">
+        <el-input placeholder="请输入工号" v-model="search_id">
+
+        </el-input>
+        <el-input placeholder="请输入姓名" class="boot" v-model="search_name">
+
+        </el-input>
+        <el-button type="primary" icon="search" class="boot" @click="loadData(1,8)">搜索</el-button>
+    </div>
+
+
+    <div class="table_box">
+
+        <el-table :data="tableData" border style="width: 100%">
+
+            <el-table-column align="center" prop="id" label="序号" width="80">
+                <template scope="scope">
+                    <span>{{scope.row.id}}</span>
+                </template>
+            </el-table-column>
+
+            <el-table-column align="center" prop="tid" label="工号" width="250" title="点击可编辑">
+                <template scope="scope">
+
+                    <el-popover
+                            ref="popover"
+                            placement="right"
+                            width="300"
+                            trigger="click" @show="bindThis(scope.$index)">
+                        <el-form :label-position="labelPosition" label-width="80px" :model="area" style="margin-top: 1em;margin-right: 1em" ref="area" :rules="formrule2">
+                            <el-form-item label="工号">
+                                <el-input v-model="area.tid" :disabled="true"></el-input>
+                            </el-form-item>
+                            <el-form-item label="姓名" prop="tname">
+                                <el-input v-model="area.tname"></el-input>
+                            </el-form-item>
+                            <el-form-item label="性别" label-width="80px" prop="tsex">
+                                <el-select v-model="area.tsex" placeholder="请选择" style="width: 100%">
+                                    <el-option
+                                            v-for="item in options"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+                            <div style=" display: flex;justify-content: flex-end;">
+                                <el-button type="info" @click="change_course('area',scope.$index)" style="margin-left: 80px;">确认
+                                </el-button>
+                            </div>
+
+                        </el-form>
+                    </el-popover>
+
+                    <span v-popover:popover>{{scope.row.tid}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column align="center" prop="tid" label="邮箱" width="250">
+                <template scope="scope">
+                    <span>{{scope.row.tmail}}</span>
+                </template>
+            </el-table-column>
+
+
+            <el-table-column align="center" prop="tname" label="姓名" width="200">
+                <template scope="scope">
+                    <span>{{scope.row.tname}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column align="center" prop="tsex" label="性别" width="80">
+                <template scope="scope">
+                    <span>{{scope.row.tsex}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column align="center" label="操作" min-width>
+                <template scope="scope">
+
+                    <el-button type="text" icon="edit" @click="reset(scope.$index)">重置密码</el-button>
+                    <el-button type="text" icon="delete" @click="deleteTea(scope.$index)">删除</el-button>
+                  <!--  <el-switch v-model="scope.row.thandle" on-color="#13ce66" off-color="#ff4949" on-text="推荐"
+                               off-text="取消" @change="toggle(scope.$index,scope.row)">
+                    </el-switch>-->
+                </template>
+            </el-table-column>
+        </el-table>
+    </div>
+
+    <div align="center">
+        <div class="block">
+
+            <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
+                           :current-page="currentPage" :page-size="pagesize" layout="total,prev, pager, next, jumper"
+                           :total="total">
+            </el-pagination>
+        </div>
+    </div>
+
+    <footer>
+
+    </footer>
+</div>
+
+<script src="../js/teaManage.js">
+
+</script>
+<style>
+    .el-table .cell:hover{
+        cursor: hand;
+    }
+</style>
+

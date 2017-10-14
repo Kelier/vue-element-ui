@@ -1,0 +1,127 @@
+<div id="nav">
+    <div class="breadNav">
+        <el-breadcrumb separator="/">
+            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+            <el-breadcrumb-item>课程配置</el-breadcrumb-item>
+            <el-breadcrumb-item>新闻管理</el-breadcrumb-item>
+        </el-breadcrumb>
+    </div>
+    <div class="info_change">
+        <el-button type="info" @click="dialogFormVisible=true">+ 新增</el-button>
+
+        <el-dialog title="" :visible.sync="dialogFormVisible">
+            <el-form :model="form" style="margin-top: 1em;margin-right: 1em;" :rules="formrule1" ref="form">
+                <el-form-item label="新闻标题" :label-width="formLabelWidth" prop="caption">
+                    <el-input v-model="form.caption" auto-complete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="新闻属性" :label-width="formLabelWidth">
+                    <el-checkbox v-model="form.checked">头条</el-checkbox>
+                </el-form-item>
+                <el-form-item label="新闻正文" :label-width="formLabelWidth" prop="editor">
+                    <!--markdown编辑-->
+                    <editormd></editormd>
+
+                </el-form-item>
+
+            </el-form>
+
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogFormVisible = false">取 消</el-button>
+                <el-button type="primary" @click="createNews('form')">确 定</el-button>
+            </div>
+        </el-dialog>
+
+
+    </div>
+
+    <div class="search_area">
+        <el-input placeholder="请输入标题关键字" v-model="labelName">
+
+        </el-input>
+        <el-select v-model="selectattr" placeholder="属性" class="boot-news">
+            <el-option v-for="item in toutiao" :key="item.value" :label="item.label" :value="item.value">
+                <span style="float: left">{{ item.label }}</span>
+            </el-option>
+        </el-select>
+
+        <el-select v-model="selectstatus" placeholder="发布状态" class="boot-news">
+            <el-option v-for="item in status" :key="item.value" :label="item.label" :value="item.value">
+                <span style="float: left">{{ item.label }}</span>
+            </el-option>
+        </el-select>
+        <el-button type="primary" icon="search" class="boot-news" @click="loadData(1,8)">搜索</el-button>
+    </div>
+
+    <div class="table_box">
+
+        <el-table :data="tableData" border style="width: 100%">
+
+            <el-table-column align="center" prop="id" label="序号" width="80">
+                <template scope="scope">
+                    <span>{{scope.row.id}}</span>
+                </template>
+            </el-table-column>
+
+            <el-table-column align="center" prop="title" label="新闻标题" width="350">
+                <template scope="scope">
+                    <el-button type="text" @click="touchnews(scope.$index)">{{scope.row.title}}</el-button>
+                </template>
+            </el-table-column>
+
+            <el-table-column align="center" prop="updatetime" label="更新时间" width="350">
+                <template scope="scope">
+                    <span>{{scope.row.updatetime}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column align="center" prop="launchtime" label="发布时间" width="350">
+                <template scope="scope">
+                    <span>{{scope.row.launchtime}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column align="center" prop="pipe" label="属性" width="120">
+                <template scope="scope" >
+
+                    <el-switch v-model="scope.row.pipe" on-color="#13ce66" off-color="#ff4949" on-text="头"
+                               off-text="" @change="toggle_pipe(scope.$index)" >
+                    </el-switch>
+<!--v-if="scope.row.launchstatus==='已发布'"-->
+
+                </template>
+            </el-table-column>
+            <el-table-column align="center" prop="launchstatus" label="发布状态" width="120">
+                <template scope="scope">
+                    <span>{{scope.row.launchstatus}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column align="center" label="操作" width="200">
+                <template scope="scope">
+                    <el-button type="text" @click="editnews(scope.$index)">{{scope.row.otherfork1}}</el-button>
+                    <el-button type="text" @click="launchnews(scope.$index)">{{scope.row.otherfork2}}</el-button>
+                    <el-button type="text" @click="rabbish(scope.$index)">{{scope.row.otherfork3}}</el-button>
+                    <!--  <el-switch v-model="scope.row.thandle" on-color="#13ce66" off-color="#ff4949" on-text="推荐"
+                                 off-text="取消" @change="toggle(scope.$index,scope.row)">
+                      </el-switch>-->
+                </template>
+            </el-table-column>
+        </el-table>
+    </div>
+
+    <div align="center">
+        <div class="block">
+
+            <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
+                           :current-page="currentPage" :page-size="pagesize" layout="total,prev, pager, next, jumper"
+                           :total="total">
+            </el-pagination>
+        </div>
+    </div>
+
+    <footer>
+
+    </footer>
+</div>
+
+<script src="../js/newsTwitter.js"></script>
+
+
+

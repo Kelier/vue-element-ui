@@ -1,0 +1,49 @@
+<div id="nav">
+    <div class="breadNav">
+        <el-breadcrumb separator="/">
+            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+            <el-breadcrumb-item>基础配置</el-breadcrumb-item>
+            <el-breadcrumb-item>图片管理</el-breadcrumb-item>
+        </el-breadcrumb>
+    </div>
+
+
+    <div class="table_box">
+
+        <el-table :data="tableData" border style="width: 100%">
+            <el-table-column align="center" prop="id" label="序号" width="80">
+                <template scope="scope">
+
+                    <span>{{scope.row.id}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column align="center" prop="sid" label="编号" width="300">
+                <template scope="scope">
+                    <span >{{scope.row.imageCode}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column align="center" prop="sname" label="标题" width="250">
+                <template scope="scope">
+                    <span>{{scope.row.imageName}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column align="center" prop="sex" label="更新时间" width="250">
+                <template scope="scope">
+                    <span>{{scope.row.updateDate}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column align="center" label="操作" min-width>
+                <template scope="scope">
+                    <el-button type="text" icon="edit" @click="edit(scope.$index)">编辑内容</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+    </div>
+
+    <footer>
+
+    </footer>
+</div>
+
+
+<script src="../js/imageManager.js"></script>

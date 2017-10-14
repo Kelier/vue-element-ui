@@ -1,0 +1,160 @@
+<div id="nav">
+    <div class="breadNav">
+        <el-breadcrumb separator="/">
+            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+            <el-breadcrumb-item>基础配置</el-breadcrumb-item>
+            <el-breadcrumb-item>班级管理</el-breadcrumb-item>
+        </el-breadcrumb>
+    </div>
+    <div class="info_change">
+        <el-button type="info" @click="dialogFormVisible=true">+ 新增</el-button>
+
+        <el-dialog title="" :visible.sync="dialogFormVisible" size="tiny">
+            <el-form :model="form" style="margin-top: 1em;margin-right: 1em;" :rules="formrule1" ref="form">
+                <el-form-item label="班级编号" :label-width="formLabelWidth" prop="id">
+                    <el-input v-model="form.id" auto-complete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="班级名称" :label-width="formLabelWidth" prop="name">
+                    <el-input v-model="form.name" auto-complete="off"></el-input>
+                </el-form-item>
+
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogFormVisible = false">取 消</el-button>
+                <el-button type="primary" @click="createClasses('form')">确 定</el-button>
+            </div>
+        </el-dialog>
+        <el-button type="success" class="mould" @click="exportmould">下载模板<i class="el-icon-upload el-icon--right"></i>
+        </el-button>
+        <el-button type="success" class="mould" @click="importmould">导入班级与学生<i
+                class="el-icon-upload el-icon--right"></i>
+        </el-button>
+        <input type="file" id="btn_file" style="display:none" @change="fileupload" v-loading.fullscreen.lock="fullscreenLoading">
+
+    </div>
+
+    <div class="search_area">
+        <el-input placeholder="请输入班级编号或名称" v-model="classarea">
+
+        </el-input>
+        <el-input placeholder="请输入人数" v-model="people" class="boot">
+
+        </el-input>
+        <el-button type="primary" icon="search" class="boot" @click="loadData(1,8)">搜索</el-button>
+    </div>
+
+
+    <div class="table_box">
+
+        <el-table :data="tableData" border sortable="true" style="width: 100%">
+            <el-table-column align="center" prop="id" label="序号" width="80">
+                <template scope="scope">
+
+                    <span>{{scope.row.id}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column align="center" prop="cid" label="班级编号" width="250">
+                <template scope="scope">
+
+                    <el-popover
+                            ref="popover"
+                            placement="right"
+                            width="300"
+                            trigger="click" @show="bindThis(scope.$index)">
+                        <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign" style="margin-top: 1em;margin-right: 1em" ref="formLabelAlign" :rules="formrule2">
+                            <el-form-item label="班级编号">
+                                <el-input v-model="formLabelAlign.cid" :disabled="true"></el-input>
+                            </el-form-item>
+                            <el-form-item label="班级名称" prop="region">
+                                <el-input v-model="formLabelAlign.region"></el-input>
+                            </el-form-item>
+
+                            <div style=" display: flex;justify-content: flex-end;">
+                                <el-button type="info" @click="change_course('formLabelAlign',scope.$index)" style="margin-left: 80px;">确认
+                                </el-button>
+                            </div>
+
+                        </el-form>
+                    </el-popover>
+
+                    <span v-popover:popover>{{scope.row.cid}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column align="center" prop="cname" label="班级名称" width="250">
+                <template scope="scope">
+                    <span>{{scope.row.cname}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column align="center" prop="people" label="学生人数" width="100">
+                <template scope="scope">
+                    <span>{{scope.row.people}}</span>
+                </template>
+            </el-table-column>
+
+
+            <el-table-column align="center" label="操作" min-width>
+                <template scope="scope">
+
+                    <el-button type="text" icon="information" @click="see_more(scope.$index)">查看学生信息</el-button>
+                    <el-button type="text" icon="delete" @click="deleteClass(scope.$index)">删除</el-button>
+                    <el-dialog title="" :visible.sync="dialogTableVisible" :model="tableData">
+                        <div class="dialog-title"
+                             style="position: relative;text-align: center;margin-top: -20px;font-size: 20px;font-weight: 600;">
+                            学生清单（{{stutotal}}人）
+                        </div>
+                        <div class="dialog-info" style=" display: flex">
+                            <div class="course-id" style="margin-left: 100px">
+                                班级编号：<span>{{currentCid}}</span>
+                            </div>
+                            <div class="course-name"
+                                 style="float: right;position: relative;margin-left: auto;margin-right: 100px;">
+                                班级名称：<span>{{currentName}}</span>
+                            </div>
+
+                        </div>
+
+
+                        <el-table :data="gridData">
+
+                            <el-table-column property="sid" label="序号" width="100" align="center"></el-table-column>
+                            <el-table-column property="snum" label="学号" width="280" align="center"></el-table-column>
+                            <el-table-column property="sname" label="姓名" width="280" align="center"></el-table-column>
+                            <el-table-column label="操作" width="152" align="center">
+                                <template scope="info">
+                                    <el-button @click.native.prevent="deleteRow(info.$index, gridData)" type="text"
+                                               size="small">
+                                        移除
+                                    </el-button>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+
+                        <el-pagination @size-change="handlestuSizeChange" @current-change="handlestuCurrentChange"
+                                       :current-page="stucurrentPage" class="pagi" :page-size="stupagesize"
+                                       layout="total, prev, pager, next, jumper" :total="stutotal">
+                        </el-pagination>
+                    </el-dialog>
+
+                </template>
+            </el-table-column>
+        </el-table>
+    </div>
+
+    <div align="center">
+        <div class="block">
+
+            <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
+                           :current-page="currentPage" :page-size="pagesize" layout="total, prev, pager, next, jumper"
+                           :total="total">
+            </el-pagination>
+        </div>
+    </div>
+
+    <footer>
+
+    </footer>
+</div>
+
+<script src="../js/classManage.js">
+
+</script>

@@ -1,0 +1,165 @@
+.book-content {
+    display: flex;
+}
+
+.book-left-content {
+    background-color: #fff;
+    width: 900px;
+    display: block;
+    border: 1px solid #e6e6e6;
+    box-shadow: 1px 1px 1px 1px #e6e6e6
+
+}
+.book-left-content>h5{
+    height: 50px;
+    line-height: 50px;
+    padding-left:20px;
+    border-bottom: 1px solid #C1C1C1;
+    font-weight: 500;
+}
+
+.book-right-content {
+    width: 259px;
+    margin-left: 29px;
+    height: auto;
+}
+
+.book-title {
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.book-right-content {
+    display: flex;
+    flex-direction: column;
+}
+
+article > p {
+    text-indent: 2em;
+    line-height: 1.5;
+}
+
+div[class~="card-issue"]{
+    border:none;
+}
+
+.tea-a {
+    color: #ff6d10;
+    margin-left: 102px;
+    font-size: x-small;
+}
+
+.tea-a:hover {
+    color: #FFA54F;
+}
+.tea-panel{
+    display: flex;
+}
+.tea-cover{
+
+    -webkit-border-radius:50%;
+    -moz-border-radius:50%;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    padding: 20px;
+}
+.tea-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.feature{
+    margin-top:-50px;
+}
+.button-group .button {
+    margin-right: 0px;
+    line-height: 0.5;
+}
+.keep {
+    margin-top: 15px;
+    margin-left: 15px;
+    height: 80px;
+}
+.wire {
+    background-color: #ff6d10;
+    border: 1px solid #ff6d10;
+    border-radius: 5px 0px 0px 5px;
+    border-right-width: 0px;
+    height: 30px;
+
+}
+
+.wire:hover {
+    background-color: #FFA54F;
+
+}
+
+.wireless {
+    background-color: #fff;
+    color: #FFA54F;
+    border: 1px solid #ff6d10;
+    border-radius: 0px 5px 5px 0px;
+    border-left-width: 0px;
+    height: 30px;
+
+}
+
+.wireless:hover {
+    color: #FFA54F;
+    background-color: #fff;
+}
+div.book-cover{
+    height: auto;
+}
+.book-cover,.book-tea,.feature{
+    margin:0 0 30px 0;
+    height: 162px;
+    border: 1px solid #e6e6e6;
+    box-shadow: 1px 1px 1px 1px #e6e6e6;
+}
+.feature{
+    margin: 0;
+}
+#article{
+    margin: 10px 15px 10px 30px;
+}
+.book-cover>.card.card-issue{
+    margin-bottom: 0;
+}
+.book_title_plat.title_header.card-title{
+    height: 40px;
+    line-height: 40px;
+    margin-left: 15px;
+    margin-right: 15px;
+    border-bottom: 1px solid #C1C1C1;
+    font-size: small;
+    margin-bottom: 0;
+}
+
+.stu-wire {
+    display: inline-block;
+    background-color: #fba443;
+    border: 1px solid #fba443;
+    border-radius: 5px 0 0 5px;
+    border-right-width: 0;
+    color: #FFFFFF;
+    width: 66px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    margin-right: -4px;
+}
+.stu-wireless {
+    display: inline-block;
+    border: 1px solid #fba443;
+    border-radius: 0 5px 5px 0;
+    border-left-width: 0;
+    height: 30px;
+    width: 33px;
+    line-height: 30px;
+    text-align: center;
+    color: #fba443;
+    background-color: #fff
+
+}

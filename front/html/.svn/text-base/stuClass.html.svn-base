@@ -1,0 +1,83 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>在学课程</title>
+    <link rel="shortcut icon" href="../image/icon.ico"/>
+    <link rel="stylesheet" href="../../bower_components/foundation-sites/dist/css/foundation.min.css">
+    <link rel="stylesheet" href="../font/foundation-icons.css">
+    <link rel="stylesheet" href="../css/onlineclass.css"/>
+    <link rel="stylesheet" href="../css/nav.css">
+</head>
+<body>
+<!--头部-->
+<header id="header" class="header">
+    @@include('include/header.html')
+
+
+</header>
+
+<!--内容部分-->
+<div id="content" class="online-box">
+    <!--导航部分-->
+    @@include('include/nav.html')
+    <!--面包屑-->
+    <div id="bread_nav" class="bread-nav bread-box">
+        <div class="box-content bread-content">
+            <nav aria-label="You are here:" role="navigation" class="ul-margin">
+
+                <ul class="breadcrumbs">
+                    <li><i class="fi-marker"></i> 当前位置</li>
+                    <li>我的课程</li>
+                    <li>
+                        <span class="show-for-sr">当前: </span> 在学课程
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="class-detail">
+        <div class="mylearn" style="display: none;">
+            <p class="mytitle">我的学习</p>
+            <ul class="vertical tabs learn-tabs">
+                <li class="tabs-title is-active learn-active "><a href="#classlist-1" class="" id="learn-active"
+                                                                 aria-selected="true">我的课程</a></li>
+            </ul>
+        </div>
+        <div class="myclass" id="classlist-1" style="display: none;">
+            <p class="mytitle">我的课程</p>
+
+
+            <ul class="tabs tabs-flex">
+                <li class="tabs-title-course" id="tabli-1"><a href="#learn-do" id="learn-before" class="learn-before">学习中</a>
+                </li>
+                <li class="tabs-title-course" id="tabli-2"><a href="#learn-over" id="learn-delay" class="learn-before">已学完</a>
+                </li>
+            </ul>
+            <div  id="learn-do">
+                <div  id="learn-do-list">
+                </div>
+            </div>
+            <div class="tabs-panel" id="learn-over">
+                <div id="learn-over-list">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<footer id="footer" class="footer" style="display: none;">  @@include('include/footer.html')</footer>
+
+<script src="../js/hasToken.js"></script>
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../../bower_components/foundation-sites/dist/js/foundation.min.js"></script>
+<script src="../../bower_components/foundation-sites/dist/js/plugins/foundation.util.motion.min.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../../config/url.js"></script>
+<script src="../js/checkCourse.js"></script>
+
+</body>
+</html>

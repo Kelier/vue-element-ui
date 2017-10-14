@@ -1,0 +1,312 @@
+.myclass, .mylearn {
+    box-shadow: 1px 1px 7px rgba(0, 0, 0, .1)
+}
+
+*, .card-list * {
+    outline: 0
+}
+
+.apply-list div, .learn-tabs li {
+    text-align: center
+}
+
+
+li {
+    list-style: none
+}
+
+input, label, p, table tbody th, ul {
+    margin: 0;
+    padding: 0
+}
+
+a {
+    color: #1a1a1a
+}
+
+.class-detail {
+    width: 1188px;
+    margin: 0px auto;
+    display: flex
+}
+
+.mylearn {
+    width: 170px;
+    height: 575px;
+    float: left;
+    padding: 0 12px;
+    background: #fff
+}
+
+.learn-tabs {
+    border: 0;
+    background: 0 0
+}
+
+.learn-tabs li {
+    width: 100%;
+    line-height: 52px;
+    border: none;
+    display: inline-block
+}
+
+.learn-active, .learn-apply {
+    color: #1a1a1a;
+    background: 0 0
+}
+
+.learn-a, .learn-a:hover {
+    color: #ff6908;
+    background: 0 0
+}
+
+.mytitle {
+    width: 100%;
+    height: 47px;
+    line-height: 47px;
+    border-bottom: 1px solid #ded5d5;
+    font-size: medium;
+    display: flex;
+    font-weight: 500;
+}
+
+.myclass {
+    width: 988px;
+    float: right;
+    padding: 0 38px;
+    background-color: #fff;
+    margin-left: 30px
+}
+
+.class-tabs * {
+    border: none;
+    outline: 0
+}
+
+.class-tabs li {
+    float: left
+}
+
+.class-tabs li a, .learn-custom {
+    display: inline-block;
+    width: 68px;
+    line-height: 26px;
+    text-align: center;
+    margin: 10px 22px 10px 0;
+    border: none;
+    color: #0a0a0a
+}
+
+.learn-custom:hover {
+    color: #ff6908
+}
+
+.learn-custom:focus {
+    color: #fff
+}
+.learn-before:focus {
+    color: #fff
+}
+
+.axis, .axis:hover {
+    color: #FFF;
+    background: #ff6908;
+    border-radius: 6px;
+    padding: 7px 16px 5px 16px;
+
+}
+.learn-before,.learn-delay{
+    padding: 7px 16px 5px 16px;
+}
+.tabs-title-course{
+    margin-right: 30px;
+}
+.tabs-title-course>a[class="learn-before axis"]:hover{
+    color:#fff;
+}
+.tabs-title-course>a:hover{
+    color:#ff6d10;
+}
+.tabs-flex {
+    display: flex;
+    border: none;
+    height: 46px;
+    line-height: 46px;
+    margin-top:6px;
+    margin-bottom: 3px;
+}
+
+#class-active, .class-tabs li a:focus, .class-tabs li a:hover {
+    color: #FFF;
+    background: #ff6908;
+    border-radius: 5px
+}
+
+.row-list {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: flex-start
+}
+
+.card > img {
+    height: 120px;
+    width: 100%
+}
+
+.card-list:hover {
+    box-shadow: 0 0 5px #ff6908
+}
+
+.card-section {
+    padding: 10px
+}
+
+.orange-btn, .orange-btn1 {
+    float: right;
+    width: 85px;
+    height: 39px;
+    margin: 4px 10px;
+    font-size: 1rem;
+    border: 1px solid #ff6908;
+    border-radius: 5px
+}
+
+.online-box {
+    height: auto;
+    min-height: 700px;
+    line-height:1;
+}
+
+.orange-btn {
+    color: #FFF;
+    background-color: #ff6908;
+
+}
+
+.orange-btn1 {
+    color: #ff6908;
+    background-color: #ffebda;
+
+}
+.orange-btn1:hover,.orange-btn:hover{
+    cursor: pointer;
+    color: #fff;
+    background-color: #FFA54F;
+}
+
+
+.apply-list {
+    display: flex;
+    align-items: center;
+    border: 1px solid #cacaca;
+    margin-top: 20px
+}
+
+.apply-list:hover {
+    border: 1px solid transparent;
+    box-shadow: 0 0 5px #ff6908
+}
+
+.apply-btn {
+    color: #FFF;
+    background-color: #ff6908;
+    border-radius: 5px;
+    padding: 8px 10px;
+    font-size: 1rem;
+    width: 105px;
+    height: 39px;
+    float: right;
+    margin-top: 4px;
+}
+.apply-btn:hover{
+    background-color: #FFA54F;
+    cursor: pointer;
+}
+
+.apply-list dl {
+    margin: 0;
+    padding-left: 20px
+}
+
+.apply-list div p {
+    position: relative;
+    right: -50%
+}
+
+.apply-list div p a {
+    color: #ff1c1c
+}
+
+.apply-list span {
+    position: relative;
+    top: -40px;
+    right: -10px
+}
+
+.apply-tip {
+    width: 140px
+}
+
+.window label {
+    margin: 14px 10px;
+    text-align: left
+}
+
+.window label select {
+    width: 60%;
+    height: 34px;
+    margin: 0;
+    font-size: 14px
+}
+
+.window label span {
+    display: inline-block;
+    text-align: right;
+}
+
+.win-input {
+    width: 60%;
+    height: 34px;
+    border: 1px solid #cacaca;
+    background: #FFF
+}
+
+.tabs-title > a:focus, .tabs-title > a[aria-selected=true] {
+    background-color: #fff;
+    color: #ff6908
+}
+
+.tabs-title > a {
+    color: #1e1e1e
+}
+
+.tabs-title > a:hover {
+    color: #ff6908
+}
+
+
+/*-------------------*/
+.stuclass-course-img{
+    width: 210px;
+    margin-right: 18px;
+    display: inline-block;
+}
+
+.mylearn .tabs-title>a {
+    font-size: 14px;
+}
+.reveal.reveal-r{
+    border-radius: 10px;
+}
+.reveal.reveal-r>h5{
+    border-bottom: 1px solid #c1c1c1;
+    margin: 10px 20px 25px;
+    padding-bottom: 10px;
+}
+.window>label{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.window>label>span{
+    font-size: 1rem;
+}

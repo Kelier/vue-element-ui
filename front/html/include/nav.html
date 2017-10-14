@@ -1,0 +1,34 @@
+<div id="nav" class="nav">
+    <div class="nav-box">
+
+        <div class="box-content">
+            <div class="cell small-6 small-order-2 medium-order-1 cell-lay-start">
+                <div class="large-auto cell cell-custom is-selected" onclick="TabSwitch(this)"><a href="index.html" class="a-custom" >首页</a></div>
+                <div class="large-auto cell cell-custom" onclick="TabSwitch(this)"><a class="a-custom" >找课程</a></div>
+            </div>
+            <div class="cell small-6 small-order-2 medium-order-1 cell-lay-end">
+                <div id="lay-role" class="large-auto cell cell-custom nav-padding" style="display: none"><a class="a-custom" onclick="ToCoursePage()">
+                    <div id="role" class="div-my-course">
+                    </div>
+                </a></div>
+                <div id="lay-name" class="large-auto cell cell-custom" style="display: none" onmouseover="show_li()"
+                     onmouseout="hide_li()">
+                    <a href="" class="a-custom">
+                        <img id="avatar" class="icon-padding"></img><span id="username" style="width: 80px;overflow: hidden;height: 24px"></span>
+                    </a>
+                    <ul class="ul-custom" id="ul-my">
+                        <li class="li-custom"><a href="./modifyPwd.html" class="li-href" style="position: relative;top:8px">修改密码</a></li>
+                        <li class="li-custom"><a class="li-href" onclick="exitCurrent()">退出</a></li>
+                    </ul>
+                </div>
+                <div id="lay-hoggle" class="large-auto cell cell-custom nav-padding"><a class="a-custom" onclick="ToTabPage()">
+                    <div style="width: 100%;text-align: center;">
+
+                    </div>
+                </a></div>
+            </div>
+        </div>
+
+        <!--<div><a href="about.html" class="button button-custom">我的教学</a></div>-->
+    </div>
+</div>

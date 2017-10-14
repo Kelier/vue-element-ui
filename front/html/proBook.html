@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查看项目书</title>
+    <link rel="shortcut icon" href="../image/icon.ico"/>
+    <link rel="stylesheet" href="../../bower_components/foundation-sites/dist/css/foundation.min.css">
+    <link rel="stylesheet" href="../font/foundation-icons.css">
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/book.css">
+</head>
+<body>
+
+<!--头部-->
+<header id="header" class="header">
+    @@include('include/header.html')
+
+</header>
+<!--内容部分-->
+<div id="content" style="min-height: 100%">
+    <!--导航部分-->
+    @@include('include/nav.html')
+
+
+    <!--面包屑-->
+    <div id="bread_nav" class="bread-nav bread-box">
+        <div class="box-content bread-content">
+            <nav aria-label="You are here:" role="navigation" class="ul-margin">
+
+                <ul class="breadcrumbs">
+                    <li><i class="fi-marker"></i> 当前位置</li>
+                    <li>首页</li>
+                    <li>在学课程</li>
+                    <li>
+                        <span class="show-for-sr">当前: </span> 项目任务书
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="nav-box" style="display: none;">
+        <div class="box-content">
+            <div class="book-title">
+                <p></p>
+            </div>
+        </div>
+    </div>
+    <div class="nav-box" style="margin-bottom: 36px">
+        <div class="box-content">
+            <div class="book-content">
+                <div class="book-left-content">
+
+                    <h5><b></b></h5>
+                    <article id="article">
+
+
+
+                    </article>
+                </div>
+                <div class="book-right-content">
+                    <div class="book-cover">
+                        <div class="card card-issue">
+                            <img src="" style="height: 140px">
+                            <div class="card-section">
+                                <p></p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="book-tea">
+                        <div class="card card-issue">
+                            <div class="book_title_plat title_header card-title">
+                                <span>课程教师</span>
+                            </div>
+
+                            <div class="tea-panel">
+                                <img src="" alt="" class="tea-cover">
+                                <div class="tea-info">
+                                    <label></label>
+                                    <label></label>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="card card-issue">
+                            <div class="book_title_plat title_header card-title">
+                                <span>课程特色</span>
+                            </div>
+
+                            <div class="tea-panel">
+                                <div class="button-group keep">
+                                    <div class="stu-wire"> <img style=" margin-left: -3px; margin-bottom: 12px;" src="../image/exp2.png"><span style="font-size:small;margin-left: 3px;">实验</span></div>
+                                    <div class="stu-wireless"><span style="font-size: small" id="wire-num">&nbsp;</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<footer id="footer" class="footer">  @@include('include/footer.html')</footer>
+<script src="../js/hasToken.js"></script>
+<script src="../../config/url.js"></script>
+<script src="../../config/ajaxUtils.js"></script>
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../../bower_components/foundation-sites/dist/js/foundation.min.js"></script>
+<script src="../../bower_components/foundation-sites/dist/js/plugins/foundation.util.motion.min.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../../bower_components/marked/marked.min.js"></script>
+<script src="../js/proView.js"></script>
+
+</body>
+</html>

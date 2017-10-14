@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>课程维护</title>
+    <link rel="shortcut icon" href="../image/icon.ico"/>
+
+    <link rel="stylesheet" href="../css/loading.css">
+    <link rel="stylesheet" href="../css/water.css">
+    <link rel="stylesheet" href="../css/drop.css">
+
+    <link rel="stylesheet" href="../../bower_components/foundation-sites/dist/css/foundation.min.css">
+    <link rel="stylesheet" href="../font/foundation-icons.css">
+    <link rel="stylesheet" href="../../bower_components/cropper/dist/cropper.min.css">
+
+
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/course.css">
+    <link rel="stylesheet" href="../css/course2.css">
+    <link rel="stylesheet" href="../css/toastr.css">
+    <link rel="stylesheet" href="../css/pagination-my.css">
+    <style>
+        .row{
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+<!--头部-->
+<header id="header" class="header">
+    @@include('include/header.html')
+
+</header>
+
+<!--内容部分-->
+<div id="content">
+
+    <!--导航部分-->
+    @@include('include/nav.html')
+    <!--面包屑-->
+    <div id="bread_nav" class="bread-nav bread-box">
+        <div class="box-content bread-content">
+            <nav aria-label="You are here:" role="navigation" class="ul-margin">
+
+                <ul class="breadcrumbs">
+                    <li><i class="fi-marker"></i> 当前位置</li>
+                    <li>首页</li>
+                    <li>找课程</li>
+                    <li>
+                        <span class="show-for-sr">当前: </span> 课程详情
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="course-flex">
+        <div class="course-box">
+            <div id="course_details" class="course_details">
+                <!--课程介绍-->
+                <div id="course_panel" class="course_panel">
+                    <div class="course_cover">
+                        <img id="coverUrl" src="" alt=""
+                             class="cover">
+                        <!--<div class="lay-pen" id="lay_pen">-->
+                            <a data-open="cover_modal" class="pencil-lay"><img  src='../image/edit1.png'></a>
+                    <!--    </div>-->
+                        <!-- This is the first modal -->
+                        <div class="reveal cover_modal" id="cover_modal" data-reveal>
+                            <h4>课程封面</h4>
+                            <p class="lead">
+                            <hr>
+                            </p>
+                            <div class="image-cover" id="image_cover"><img src="" id="cover_path">
+                            </div>
+                            <input type="file" style="display: none;" id="file_cover" onchange="change_cover()">
+                            <p class="lead-cover">可以上传jpg，gif，png格式的文件，图片建议尺寸至少为480X270px，文件大小不要超过2M</p>
+                            <div class="padding-button">
+                                <button class="upload-cover-button button" onclick="upload_cover()" id="change-image">
+                                    选择要上传的图片
+                                </button>
+                                <button class="upload-cover-button button save-button" onclick="save_cover()"
+                                        id="save-image">
+                                    保存
+                                </button>
+                            </div>
+
+                            <div class="upload-cover"></div>
+                            <button class="close-button" data-close aria-label="Close reveal" type="button">
+                                <span aria-hidden="true" class="close-custom">&times;</span>
+                            </button>
+                        </div>
+
+
+                    </div>
+                    <div class="course_page">
+                        <div class="pre-setting" id="pre_setting"><i class="fi-wrench"></i></div>
+                        <div class="course_title">
+                            <span id="lessonName"></span>
+                            <span class="span-config course-code" id="slCode"></span>
+                            <span class="span-config" id="span_config"><a onclick="echo_title()"><img  src='../image/edit2.png'></a></span>
+                            <!--<div class="tri-label" id="tri-label"></div>-->
+                            <!--<span class="tri-title" id="tri-title">已发布</span>-->
+                        </div>
+                        <div class="text_edit"><textarea name="title_edit" id="title_edit" placeholder="请输入课程简介"
+                                                         cols="30"
+                                                         rows="10" class="title-edit"
+                                                         onkeydown="invokeHandle(event)"></textarea></div>
+                        <div class="course_info" id="course_info" >
+
+                        </div>
+                        <div class="minify_text">
+                            <a data-open="div_summary" onclick="showCourseSummary()"  id="mini_more" class="a-more"  ><span >更多>></span></a>
+                            <div class="reveal summary_height" id="div_summary" data-reveal>
+                                <h5>课程简介</h5>
+                                <div class="summary_form" id="div_sum_detail">
+                                </div>
+                                <button class="close-button" data-close aria-label="Close modal" type="button">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="course-config" id="course_config">
+                            <a onclick="switchPreview()" class="button button-custom-long"  id="switchPreview">预览</a>
+                            <!--<a href="about.html" class="button button-custom-small">配置</a>-->
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="content-flex">
+                    <!--课程目录及成绩信息-->
+                    <div id="course_catalog" class="course_catalog">
+                        <div class="catalog_tilte">
+                            <!--<span class="span-config">目录</span>-->
+                            <ul class="tabs" data-tabs id="catalog-tabs">
+                                <li class="tabs-title is-active"><a href="#panel1" aria-selected="true"
+                                                                    id="panelTab1">目录</a>
+                                </li>
+                                <li class="tabs-title"><a href="#panel2"  id="panelTab2">成绩评定</a>
+                                </li>
+                            </ul>
+                            <!--编辑章节信息-->
+                            <span class="span-add">
+                        <a data-open="add-chapter"><span class="span-config"><i
+                                class="fi-plus i-view"></i>添加章</span></a>
+                                <!--添加章-->
+                        <div class="reveal chapter-height" id="add-chapter" data-reveal>
+                            <h5>添加章</h5>
+                            <div class="chapter-form">
+                                 <label style="width: 80px;height: 40px;font-size: 1rem">章标题 </label>
+                                  <div class="medium-10 columns">
+                             <input type="text" placeholder="" id="add_chapter_content">
+                            </div>
+
+                            </div>
+                            <div style="display: block;">
+                                <a class="chapter-button window-close clear search-css" data-close>取消</a>
+                            <a class="chapter-button clear search-css" onclick="create_chapter('',0,'create')"
+                               id="create_chapter">确定</a>
+                            </div>
+                        </div>
+                                <!--重新打分提示框-->
+                        <div class="reveal chapter-height" id="reset-score" data-reveal>
+                            <h5>提示</h5>
+                                     <p style="text-indent: 2em;margin-top: 20px">确定要重新打分吗？</p>
+                            <div class="row delete-row">
+                                 <a class="chapter-button search-css maybe-button" data-close>取消</a>
+                                 <a class="chapter-button search-css maybe-button" id="resetThis">确定</a>
+                            </div>
+
+
+                        </div>
+                                <!--编辑章-->
+                        <div class="reveal chapter-height" id="edit-chapter" data-reveal>
+                            <h5>编辑章</h5>
+                            <div class="chapter-form">
+                                <label style="width: 80px;height: 40px;font-size: 1rem">章标题 </label>
+                                <div class="medium-10 columns">
+                                    <input type="text" placeholder="" id="edit_chapter_content">
+                                </div>
+
+                            </div>
+                            <div style="display: block;">
+                                 <a class="chapter-button window-close clear  search-css" data-close="">取消</a>
+                                <a class="chapter-button clear  search-css" id="edit_chapter">确定</a>
+                            </div>
+                        </div>
+                                <!--编辑节-->
+                        <div class="reveal section-height" id="edit-section" data-reveal>
+                            <h5>编辑节</h5>
+                            <div class="chapter-form">
+                                <label style="width: 80px;height: 40px;font-size: 1rem">章标题 </label>
+                                <div class="medium-10 columns">
+                                    <select id="chapter-select">
+                                        <option value="1">第1章</option>
+                                        <option value="2">第2章</option>
+                                        <option value="3">第3章</option>
+                                        <option value="4">第4章</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="chapter-form">
+                                <label style="width: 80px;height: 40px; font-size: 1rem">节标题 </label>
+                                <div class="medium-10 columns">
+                                    <input type="text" placeholder="" id="edit_section_content">
+                                </div>
+
+                            </div>
+
+                            <div class="chapter-form">
+                                <label style="width: 80px;height: 40px; font-size: 1rem">教学手段 </label>
+                                <fieldset class="large-6 columns">
+
+                                    <input id="edit_trial_check" type="checkbox"><label
+                                        for="edit_trial_check">实验</label>
+                                    <input id="edit_video_check" type="checkbox"><label
+                                        for="edit_video_check">视频</label>
+                                </fieldset>
+
+                            </div>
+                            <div class="chapter-form noshow">
+                                <div class="enviroment" id="edit_environment">
+                                    <fieldset class="large-12 columns">
+                                        <input type="radio" name="pokemon" value="webIDE" id="edit_ide_radio"
+                                               required><label for="ide_radio">webIDE</label>
+                                    </fieldset>
+                                </div>
+
+                            </div>
+                             <div class="flex-right">
+                                    <button class="hollow button secondary window-close" style="margin-right: 20px;"
+                                            data-close="">取消
+                                    </button>
+                                    <button class="hollow button secondary window-save" id="edit_section">确定</button>
+
+                                </div>
+                        </div>
+                                <!--删除章-->
+                        <div class="reveal chapter-height" id="delete-chapter" data-reveal>
+                            <h5>删除章</h5>
+                            <p style="text-indent: 2em;margin: 28px 0px;font-size: 1rem">确定要删除这一章么？</p>
+                            <div  >
+                                <a class="chapter-button window-close clear search-css" data-close>取消</a>
+                                <a class="chapter-button clear search-css" id="delete_chapter">确定</a>
+                            </div>
+                        </div>
+                                <!--删除节-->
+                        <div class="reveal chapter-height" id="delete-section" data-reveal>
+                            <h5>删除节</h5>
+                            <p style="text-indent: 2em;margin: 28px 0px;font-size: 1rem">确定要删除这一节么？</p>
+                            <div class="row delete-row">
+                                <a class="chapter-button window-close clear  search-css" data-close="">取消</a>
+                                <a class="chapter-button clear  search-css" id="delete_section">确定</a>
+                            </div>
+                        </div>
+                                <!--添加节-->
+                        <a data-open="add-section" style=""><span class="span-config"><i
+                                class="fi-plus i-view"
+                                ></i>添加节</span></a>
+
+                        <div class="reveal section-height" id="add-section" data-reveal>
+                            <h5>添加节</h5>
+                            <div style="display: block;">
+                                <div class="chapter-form">
+                                    <label style="width: 80px;height: 40px;font-size: 1rem">章标题 </label>
+                                    <div class="medium-10 columns">
+                                        <select id="chapter_sum">
+
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="chapter-form">
+                                    <label style="width: 80px;height: 40px; font-size: 1rem">节标题 </label>
+                                    <div class="medium-10 columns">
+                                        <input type="text" placeholder="" id="add_section_title">
+                                    </div>
+
+                                </div>
+                                <div class="chapter-form">
+                                    <label style="width: 80px;height: 40px; font-size: 1rem">教学手段 </label>
+                                    <fieldset class="large-6 columns">
+
+                                        <input id="trial_check" type="checkbox"><label for="trial_check">实验</label>
+                                        <input id="video_check" type="checkbox"><label for="video_check">视频</label>
+                                    </fieldset>
+
+                                </div>
+                                <div class="chapter-form noshow">
+                                    <div class="enviroment" id="environment">
+                                        <fieldset class="large-12 columns">
+                                            <input type="radio" name="pokemon" value="webIDE" id="ide_radio"
+                                                   required><label for="ide_radio">webIDE</label>
+                                        </fieldset>
+                                    </div>
+
+                                </div>
+                                <div class="flex-right">
+                                    <button class="hollow button secondary window-close" style="margin-right: 20px;"
+                                            data-close="">取消
+                                    </button>
+                                    <button class="hollow button secondary window-save"  onclick="create_section('',0,0,'create')">确定</button>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        </span>
+
+
+                        </div>
+                        <div class="tabs-content" data-tabs-content="example-tabs">
+                            <!--目录部分-->
+                            <div class="tabs-panel is-active" id="panel1">
+                                <div class="no-content"><span>暂未添加任何章节</span></div>
+                                <dl class="catalog-content" id="catalog-content" style="display: none;">
+                                </dl>
+                            </div>
+                            <!--富文本-->
+                            <div class="reveal" id="openEditor" data-reveal>
+
+                                <textarea id="editor"  placeholder="这里输入内容" autofocus></textarea>
+
+                                <div class="center">
+                                    <button class="hollow button secondary" href="#">保存</button>
+                                </div>
+
+                                <button class="close-button" data-close aria-label="Close modal" type="button">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <!--成绩部分-->
+                            <div class="tabs-panel" id="panel2">
+
+                                <dl class="score_content" id="score-content" style="display: none;">
+
+                                </dl>
+                            </div>
+                            <!--改分-->
+                            <div class="reveal reveal-r" id="score-count" data-reveal style="width: 1000px;border-radius: 10px;">
+                                <h5 class="mytitle">成绩评定</h5>
+                                <form class="window" target="pingding" action=" " method="post">
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th width="50px">序号</th>
+                                            <th width="120px">班级</th>
+                                            <th width="150px">学号</th>
+                                            <th width="120px">姓名</th>
+                                            <th width="50px">分数</th>
+                                            <th width="120px">操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="load-list">
+
+                                        </tbody>
+                                    </table>
+
+                                </form>
+                                <div class="center">
+                                    <ul class="pagination" id="pagination-yang" >
+                                    </ul>
+                                </div>
+                                <div class="flex-right">
+                                    <button class="hollow button secondary window-close" style="margin-right: 20px;"
+                                            data-close="">取消
+                                    </button>
+                                    <button class="hollow button secondary window-save" id="submitScore">保存</button>
+
+                                </div>
+                            </div>
+                            <!--查分-->
+                            <div class="reveal reveal-r" id="score-info" data-reveal style="width: 1000px;border-radius: 10px;">
+                                <h5 class="mytitle">分数查看</h5>
+                                <div class="row">
+                                    <ul class="menu menu-padding window-search">
+
+                                        <li style="display: inline-block"><input type="search" id="score-name" placeholder="请输入关键字搜索" class="select-middle">
+                                        </li><li style="display: inline-block">
+                                            <button type="button" onclick="searchScoreList(1)" class="button search-button select-right"><img src="../image/icon_search.png"></i>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <form class="window" action=" " method="post">
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th width="50px">序号</th>
+                                            <th width="120px">班级</th>
+                                            <th width="150px">学号</th>
+                                            <th width="120px">姓名</th>
+                                            <th width="50px">分数</th>
+                                            <th width="120px">操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="mark-list">
+                                    <!--    <tr>
+                                            <td>1</td>
+                                            <td>java2134</td>
+                                            <td>20170721233</td>
+                                            <td>张某某</td>
+                                            <td>9</td>
+                                            <td>
+                                                <a href="#">重新打分</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>java2134</td>
+                                            <td>20170721233</td>
+                                            <td>张某某</td>
+                                            <td>9</td>
+                                            <td>
+                                                <a href="#">重新打分</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>java2134</td>
+                                            <td>20170721233</td>
+                                            <td>张某某</td>
+                                            <td>9</td>
+                                            <td>
+                                                <a href="#">重新打分</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>java2134</td>
+                                            <td>20170721233</td>
+                                            <td>张某某</td>
+                                            <td>9</td>
+                                            <td>
+                                                <a href="#">重新打分</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>java2134</td>
+                                            <td>20170721233</td>
+                                            <td>张某某</td>
+                                            <td>9</td>
+                                            <td>
+                                                <a href="#">重新打分</a>
+                                            </td>
+                                        </tr>-->
+
+                                        </tbody>
+                                    </table>
+
+                                </form>
+                                <div class="center">
+                                    <ul class="pagination" id="pagination-yang2" >
+                                    </ul>
+                                </div>
+                                <div class="center">
+
+                                    <button class="hollow button secondary window-close"
+                                            data-close="">关闭
+                                    </button>
+
+                                </div>
+                                <button class="close-button" data-close aria-label="Close modal" type="button">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="right-info">
+                        <div id="course_teacher">
+                            <div class="card">
+
+                                <div class="stu_tilte_plat">
+                                    <div class="stu_tilte">课程教师</div>
+                                    <!--<a href="" class="stu_title_detail">详情</a>-->
+                                </div>
+                                <div style="display: flex;margin-bottom: 20px;">
+                                    <img class="tea_icon" id="teaPic"
+                                         src="">
+                                    <div style="display: inline-block;">
+                                        <div class="tea-info" id="teaName"></div>
+                                        <div class="tea-info-course">共发布过<span id="teaSlNum"></span>门课程</div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div id="course_feature" class="course_feature">
+                            <div class="card">
+                                <div class="stu_tilte_plat">
+                                    <div class="stu_tilte">课程特色</div>
+                                </div>
+                                <div class="card_body">
+                                    <div class="tea-wire" ><img style=" margin-left: -3px;margin-bottom: 6px" src="../image/exp2.png"><span style="font-size:small;margin-left: 3px;">实验</span></div>
+                                    <div class="tea-wireless"><span style="font-size: small">&nbsp;</span></div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="main clearfix" id="water" style="display: none">
+    <div class="drop"></div>
+    <label>开启che空间中，耗时1-2分钟，请耐心等待</label>
+    <button class="button watermoon" onclick="returnMe()">不想等了，送我回去
+    </button>
+</div>
+<!--尾部-->
+<footer id="footer" class="footer"> @@include('include/footer.html')</footer>
+
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../../bower_components/foundation-sites/dist/js/foundation.min.js"></script>
+<script src="../../bower_components/foundation-sites/dist/js/plugins/foundation.util.motion.min.js"></script>
+<script src="../../bower_components/cropper/dist/cropper.min.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../../config/url.js"></script>
+<script src="../../config/ajaxUtils.js"></script>
+<script src="../js/course.js"></script>
+<script src="../js/toastr.min.js"></script>
+<script src="../js/loading.js"></script>
+<script src="../js/jquery.twbsPagination.js"></script>
+<script src="../js/jquery.toastmessage.js"></script>
+</body>
+</html>

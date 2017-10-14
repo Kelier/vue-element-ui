@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改密码</title>
+    <link rel="shortcut icon" href="../image/icon.ico"/>
+    <link rel="stylesheet" href="../../bower_components/foundation-sites/dist/css/foundation.min.css">
+    <link rel="stylesheet" href="../font/foundation-icons.css">
+    <link rel="stylesheet" href="../css/slider.css">
+    <link rel="stylesheet" href="../css/modifyPwd.css">
+    <link rel="stylesheet" href="../css/toastr.css">
+    <link rel="stylesheet" href="../css/nav.css">
+</head>
+<body>
+<header id="header" class="header">
+    @@include('include/header.html')
+
+</header>
+
+<div id="content">
+    <!--导航部分-->
+    @@include('include/nav.html')
+    <!--面包屑-->
+
+    <div class="main-content">
+        <span class="mp-title">
+            修改密码
+        </span>
+        <div class="mp-items" >
+            <div id="modify-success" style="display: none;">
+                <img  src="../image/pic_yes.png" >
+                <div class="mf-success-tip">
+                    <span >密码修改成功!</span>
+                </div>
+            </div>
+
+            <div class="mp-item">
+                <span class="mp-tip-left">原密码:</span>
+                <input onchange="checkOldPwd()" type="password"  id="old-pwd">
+                <div class="mp-tip-right">
+                    <img id="old-pwd-ok" src="../image/icon_ok.png" style="display: none;">
+                    <span id="old-pwd-tip">
+                        请输入当前用户的登录密码
+                    </span>
+                </div>
+            </div>
+            <div class="mp-item">
+                <span class="mp-tip-left">新密码:</span>
+                <input  onchange="checkPwd();" type="password" id="new-pwd">
+                <div class="mp-tip-right">
+                    <img id="new-pwd-ok" src="../image/icon_ok.png" style="display: none;">
+                    <span id="new-pwd-tip">
+                        请输入6-16位密码(字母或数字)
+                    </span>
+                </div>
+            </div>
+            <div class="mp-item">
+                <span class="mp-tip-left">确认新密码:</span>
+                <input onchange="confirmPwd()" type="password"  id="confirm-pwd">
+                <div class="mp-tip-right">
+                    <img id="cf-pwd-ok" src="../image/icon_ok.png" style="display: none;">
+                    <span id="cf-pwd-tip">
+                        请确认新密码
+                    </span>
+                </div>
+            </div>
+            <div class="mp-item">
+                <button class="mp-btn-save" onclick="savePwd()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="mdpwd-footer">
+    @@include('include/footer.html')
+</footer>
+
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../../bower_components/foundation-sites/dist/js/foundation.min.js"></script>
+<script src="../../bower_components/foundation-sites/dist/js/plugins/foundation.util.motion.min.js"></script>
+<script src="../js/silder.min.js"></script>
+<script src="../../config/url.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../../config/ajaxUtils.js"></script>
+<script src="../js/modifyPwd.js"></script>
+<script src="../js/toastr.min.js"></script>
+<script src="../js/loading.js"></script>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<div id="nav">
+    <div class="breadNav">
+        <el-breadcrumb separator="/">
+            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+            <el-breadcrumb-item>图片管理</el-breadcrumb-item>
+            <el-breadcrumb-item>编辑内容</el-breadcrumb-item>
+        </el-breadcrumb>
+    </div>
+    <div style="margin-left: 15px;">
+        <h4>首页-顶部-轮播图</h4>
+        <div class="bannerEdit">
+            <el-tabs v-model="activeName" @tab-click="handleClick">
+                <el-tab-pane label="图1" name="0">
+                    <el-form ref="form" :model="form">
+                        <el-form-item label="是否开启">
+                            <template>
+                                <el-radio label="1" v-model="form.launch">开启</el-radio>
+                                <el-radio label="0" v-model="form.launch">关闭</el-radio>
+                            </template>
+
+                        </el-form-item>
+
+                        <el-form-item label="选择图片">
+
+                            <el-upload class="upload" ref="upload" :file-list="form.filelist" list-type="picture" :http-request="uploadCustom" :on-change="getUrl">
+
+                                <el-button size="small" type="primary">上传</el-button>
+                                <div slot="tip" class="el-upload__tip">图片推荐尺寸 宽：1920px，高：600px</div>
+                            </el-upload>
+                        </el-form-item>
+                        <el-form-item label="图片描述">
+                            <el-input v-model="form.des"></el-input>
+                        </el-form-item>
+                        <el-form-item label="链接地址">
+                            <el-input v-model="form.url"></el-input>
+                        </el-form-item>
+                        <el-form-item label="新窗口打开">
+                            <template>
+                                <el-radio label="1" v-model="form.blank">是</el-radio>
+                                <el-radio label="0" v-model="form.blank">否</el-radio>
+                            </template>
+                        </el-form-item>
+                        <el-form-item>
+
+                         <el-button type="primary" size="large" @click="saveBanner">保存</el-button>
+                         <el-button type="primary" size="large">取消</el-button>
+                         </el-form-item>
+
+                    </el-form>
+                </el-tab-pane>
+                <el-tab-pane label="图2" name="1">
+                    <el-form ref="form" :model="form">
+                        <el-form-item label="是否开启">
+                            <template>
+                                <el-radio label="1" v-model="form.launch">开启</el-radio>
+                                <el-radio label="0" v-model="form.launch">关闭</el-radio>
+                            </template>
+
+                        </el-form-item>
+
+                        <el-form-item label="选择图片">
+
+                            <el-upload class="upload" ref="upload" :file-list="form.filelist" list-type="picture" :http-request="uploadCustom" :on-change="getUrl">
+
+                                <el-button size="small" type="primary">上传</el-button>
+                                <div slot="tip" class="el-upload__tip">图片推荐尺寸 宽：1920px，高：600px</div>
+                            </el-upload>
+                        </el-form-item>
+                        <el-form-item label="图片描述">
+                            <el-input v-model="form.des"></el-input>
+                        </el-form-item>
+                        <el-form-item label="链接地址">
+                            <el-input v-model="form.url"></el-input>
+                        </el-form-item>
+                        <el-form-item label="新窗口打开">
+                            <template>
+                                <el-radio label="1" v-model="form.blank">是</el-radio>
+                                <el-radio label="0" v-model="form.blank">否</el-radio>
+                            </template>
+                        </el-form-item>
+                        <el-form-item>
+
+                            <el-button type="primary" size="large" @click="saveBanner">保存</el-button>
+                            <el-button type="primary" size="large">取消</el-button>
+                        </el-form-item>
+
+                    </el-form>
+                </el-tab-pane>
+                <el-tab-pane label="图3" name="2">
+                    <el-form ref="form" :model="form">
+                        <el-form-item label="是否开启">
+                            <template>
+                                <el-radio label="1" v-model="form.launch">开启</el-radio>
+                                <el-radio label="0" v-model="form.launch">关闭</el-radio>
+                            </template>
+
+                        </el-form-item>
+
+                        <el-form-item label="选择图片">
+
+                            <el-upload class="upload" ref="upload" :file-list="form.filelist" list-type="picture" :http-request="uploadCustom" :on-change="getUrl">
+
+                                <el-button size="small" type="primary">上传</el-button>
+                                <div slot="tip" class="el-upload__tip">图片推荐尺寸 宽：1920px，高：600px</div>
+                            </el-upload>
+                        </el-form-item>
+                        <el-form-item label="图片描述">
+                            <el-input v-model="form.des"></el-input>
+                        </el-form-item>
+                        <el-form-item label="链接地址">
+                            <el-input v-model="form.url"></el-input>
+                        </el-form-item>
+                        <el-form-item label="新窗口打开">
+                            <template>
+                                <el-radio label="1" v-model="form.blank">是</el-radio>
+                                <el-radio label="0" v-model="form.blank">否</el-radio>
+                            </template>
+                        </el-form-item>
+                        <el-form-item>
+
+                            <el-button type="primary" size="large" @click="saveBanner">保存</el-button>
+                            <el-button type="primary" size="large">取消</el-button>
+                        </el-form-item>
+
+                    </el-form>
+                </el-tab-pane>
+                <el-tab-pane label="图4" name="3">
+                    <el-form ref="form" :model="form">
+                        <el-form-item label="是否开启">
+                            <template>
+                                <el-radio label="1" v-model="form.launch">开启</el-radio>
+                                <el-radio label="0" v-model="form.launch">关闭</el-radio>
+                            </template>
+
+                        </el-form-item>
+
+                        <el-form-item label="选择图片">
+
+                            <el-upload class="upload" ref="upload" :file-list="form.filelist" list-type="picture" :http-request="uploadCustom" :on-change="getUrl">
+
+                                <el-button size="small" type="primary">上传</el-button>
+                                <div slot="tip" class="el-upload__tip">图片推荐尺寸 宽：1920px，高：600px</div>
+                            </el-upload>
+                        </el-form-item>
+                        <el-form-item label="图片描述">
+                            <el-input v-model="form.des"></el-input>
+                        </el-form-item>
+                        <el-form-item label="链接地址">
+                            <el-input v-model="form.url"></el-input>
+                        </el-form-item>
+                        <el-form-item label="新窗口打开">
+                            <template>
+                                <el-radio label="1" v-model="form.blank">是</el-radio>
+                                <el-radio label="0" v-model="form.blank">否</el-radio>
+                            </template>
+                        </el-form-item>
+                        <el-form-item>
+
+                            <el-button type="primary" size="large" @click="saveBanner">保存</el-button>
+                            <el-button type="primary" size="large">取消</el-button>
+                        </el-form-item>
+
+                    </el-form>
+                </el-tab-pane>
+                <el-tab-pane label="图5" name="4">
+                    <el-form ref="form" :model="form">
+                        <el-form-item label="是否开启">
+                            <template>
+                                <el-radio label="1" v-model="form.launch">开启</el-radio>
+                                <el-radio label="0" v-model="form.launch">关闭</el-radio>
+                            </template>
+
+                        </el-form-item>
+
+                        <el-form-item label="选择图片">
+
+                            <el-upload class="upload" ref="upload" :file-list="form.filelist" list-type="picture" :http-request="uploadCustom" :on-change="getUrl">
+
+                                <el-button size="small" type="primary">上传</el-button>
+                                <div slot="tip" class="el-upload__tip">图片推荐尺寸 宽：1920px，高：600px</div>
+                            </el-upload>
+                        </el-form-item>
+                        <el-form-item label="图片描述">
+                            <el-input v-model="form.des"></el-input>
+                        </el-form-item>
+                        <el-form-item label="链接地址">
+                            <el-input v-model="form.url"></el-input>
+                        </el-form-item>
+                        <el-form-item label="新窗口打开">
+                            <template>
+                                <el-radio label="1" v-model="form.blank">是</el-radio>
+                                <el-radio label="0" v-model="form.blank">否</el-radio>
+                            </template>
+                        </el-form-item>
+                        <el-form-item>
+
+                            <el-button type="primary" size="large" @click="saveBanner">保存</el-button>
+                            <el-button type="primary" size="large">取消</el-button>
+                        </el-form-item>
+
+                    </el-form>
+                </el-tab-pane>
+
+            </el-tabs>
+        </div>
+    </div>
+</div>
+<style>
+    .el-upload-list--picture .el-upload-list__item{
+        height:320px;
+    }
+    .el-upload-list--picture .el-upload-list__item-thumbnail{
+        width: 100%;
+        height:100%;
+    }
+    .el-upload-list{
+        width: 90%;
+    }
+    .el-tabs__content{
+        left:5%;
+    }
+    .el-input__inner{
+        width: 60%;
+    }
+    .el-button + .el-button{
+        margin-left:20px;
+    }
+</style>
+<script src="../js/banner.js"></script>

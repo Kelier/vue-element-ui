@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>左右可拖动的内容显示区</title>
+    <style>
+
+        body{font:14px/1.5 Arial;color:#666;}
+        #box{position: relative;
+            margin: auto;
+            overflow: hidden;
+            width: 100%;}
+
+        #top,#bottom{color:#FFF;width:50%;min-height:400px;overflow:hidden;}
+        #top{
+            height: 0px;
+            display: flex;
+            flex-direction: column;
+            float: left;}
+        #bottom{float: right;
+            height: 0px;
+            display: flex;
+            flex-direction: column;}
+        #line{position:absolute;left:50%;height:100%;width:4px;overflow:hidden;background:red;cursor:w-resize;}
+    </style>
+
+</head>
+<body>
+<div>左右拖动红条改变显示区域宽度<span id="msg"></span></div>
+<div class="content">
+<div id="box">
+    <div id="top">
+
+    </div>
+    <div id="bottom">
+        <iframe src="" frameborder="0"></iframe>
+    </div>
+    <div id="line"></div>
+</div>
+</div>
+
+<script>
+    function $(id) {
+        return document.getElementById(id)
+    }
+    window.onload = function() {
+        var oBox = $("box"), oTop = $("top"), oBottom = $("bottom"), oLine = $("line");
+        oLine.onmousedown = function(e) {
+            var disX = (e || event).clientX;
+            oLine.left = oLine.offsetLeft;
+            document.onmousemove = function(e) {
+                var iT = oLine.left + ((e || event).clientX - disX);
+                var e=e||window.event,tarnameb=e.target||e.srcElement;
+                var maxT = oBox.clientWight - oLine.offsetWidth;
+                oLine.style.marginRight = 100;
+                iT < 0 && (iT = 0);
+                iT > maxT && (iT = maxT);
+                oLine.style.left = oTop.style.width = iT-30 + "px";
+                oBottom.style.width = oBox.clientWidth - iT + "px";
+                $("msg").innerText='top.width:'+oLine.style.width+'---bottom.width:'+oBottom.style.width+'---oLine.offsetLeft:'+oLine.offsetLeft+'---disX:'+disX+'---tarnameb:'+tarnameb.tagName;
+                return false
+            };
+            document.onmouseup = function() {
+                document.onmousemove = null;
+                document.onmouseup = null;
+                oLine.releaseCapture && oLine.releaseCapture()
+            };
+            oLine.setCapture && oLine.setCapture();
+            return false
+        };
+    };
+</script>
+</body>
+</html>

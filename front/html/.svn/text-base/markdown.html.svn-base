@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑任务书</title>
+    <link rel="shortcut icon" href="../image/icon.ico"/>
+
+    <link rel="stylesheet" href="../css/loading.css">
+    <link rel="stylesheet" href="../../bower_components/foundation-sites/dist/css/foundation.min.css">
+    <link rel="stylesheet" href="../font/foundation-icons.css">
+    <link rel="stylesheet" href="../../bower_components/editor.md/css/editormd.min.css"/>
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/toastr.css">
+    <style>
+        .editormd-dialog.editormd-image-dialog{
+            min-height: 300px;
+        }
+        .row{
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<!--内容部分-->
+<div id="content" style="min-height: 100%;">
+
+    <div class="course-info" style="display: flex;justify-content: center">
+        <h4></h4>
+    </div>
+
+    <!--markdown编辑-->
+    <div class="mark" style="width:inherit;min-height: 550px;margin-top: 30px;display: flex;justify-content: center">
+        <div class="mark-box"  style="width: 80%">
+            <div id="editormd">
+                <textarea style="display:none;">//在这里编辑你的项目任务书</textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="sho_line" style="display: none;"><button class="hollow button secondary proButton " onclick="submitProBook()">提交</button></div>
+</div>
+
+
+</body>
+
+<script src="../js/hasToken.js"></script>
+<script src="../../config/url.js"></script>
+<script src="../../config/ajaxUtils.js"></script>
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../../bower_components/foundation-sites/dist/js/foundation.min.js"></script>
+<script src="../../bower_components/editor.md/editormd.min.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/toastr.min.js"></script>
+<script src="../js/loading.js"></script>
+<script src="../js/editMark.js"></script>
+</html>

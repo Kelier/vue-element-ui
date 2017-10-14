@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实验</title>
+    <link rel="shortcut icon" href="../image/icon.ico"/>
+    <link rel="stylesheet" href="../css/loading.css">
+    <link rel="stylesheet" href="../../bower_components/foundation-sites/dist/css/foundation.min.css">
+    <link rel="stylesheet" href="../font/foundation-icons.css">
+    <link rel="stylesheet" href="../../bower_components/editor.md/css/editormd.min.css"/>
+    <link rel="stylesheet" href="../css/che.css">
+    <link rel="stylesheet" href="../css/toastr.css">
+    <style>
+        .row {
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+<!--头部-->
+
+<!--内容部分-->
+<div id="content">
+
+
+    <div id="container" class="contail">
+        <div id="probook" class="probook">
+            <div class="handle">
+
+                <div class="area-left">
+                    <a id="gohis" title="返回"><i class="fi-arrow-left icon-padding"></i></a>
+                    <label class="procss">项目任务书</label>
+                </div>
+                <div class="area-right">
+                    <a id="book-full" title="预览项目任务书"><i class="fi-magnifying-glass icon-padding"></i></a>
+                    <a id="che-full" title="进入项目编辑模式"> <i class="fi-arrows-out icon-padding"></i></a>
+                    <button class="button archive" id="taido-it" style="display: none">提交代码</button>
+
+                    <button data-open="archieve-this" class="button archive" id="check-it" style="display: none">完成
+                    </button>
+
+                    <!--添加章-->
+                    <div class="reveal chapter-height" id="archieve-this" data-reveal>
+                        <h5>提示信息</h5>
+                        <label style="text-align: center">确定已学习完此章节？</label>
+                        <div style="display: block;">
+                            <a class="clear button years" id="archieve">确定</a>
+                        </div>
+                        <button class="close-button" data-close aria-label="Close modal" type="button">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="bookcontent" id="book">
+                <div class="mark" id="markbook">
+
+                </div>
+
+            </div>
+        </div>
+
+        <div id="lay" class="che">
+            <div class="handle handle-lin">
+                <label class="count-title" style="display: none">倒计时： </label>
+
+                <ul class="countdown" style="display: none">
+
+                    <li>
+                        <div class="minutes">
+                            <span>0</span> <span>0</span>
+                        </div>
+
+                    </li>
+                    <li class="seperator">:</li>
+                    <li>
+                        <div class="seconds">
+                            <span>0</span> <span>0</span>
+                        </div>
+
+                    </li>
+                </ul>
+                <button class="button archive" id="delay-it" style="display: none">延时</button>
+                <button data-open="close-this" class="button archive" id="close-it" style="display: none">关闭</button>
+                <!--关闭che-->
+                <div class="reveal chapter-height" id="close-this" data-reveal>
+                    <h5>提示信息</h5>
+                    <label style="text-align: center">关闭che空间将不会保存您的代码，请确认是否关闭？</label>
+                    <div style="display: block;">
+                        <a class="clear button years" id="stop">确认</a>
+                    </div>
+                    <button class="close-button" data-close aria-label="Close modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="line" class="line"></div>
+    </div>
+
+
+</div>
+
+
+<script src="../js/hasToken.js"></script>
+<script src="../../config/url.js"></script>
+<script src="../../config/ajaxUtils.js"></script>
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../../bower_components/foundation-sites/dist/js/foundation.min.js"></script>
+<script src="../../bower_components/marked/marked.min.js"></script>
+<script src="../js/toastr.min.js"></script>
+<script src="../js/downCount.js"></script>
+<script src="../js/loading.js"></script>
+<script src="../js/startChe.js"></script>
+
+</body>
+</html>

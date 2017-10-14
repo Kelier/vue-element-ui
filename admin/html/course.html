@@ -1,0 +1,162 @@
+<div id="nav">
+    <div class="breadNav">
+        <el-breadcrumb separator="/">
+            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+            <el-breadcrumb-item>课程配置</el-breadcrumb-item>
+            <el-breadcrumb-item>课程管理</el-breadcrumb-item>
+        </el-breadcrumb>
+    </div>
+    <div class="info_change">
+        <el-button type="info" @click="dialogFormVisible=true">+ 新增</el-button>
+
+        <el-dialog title="" :visible.sync="dialogFormVisible" size="tiny">
+            <el-form :model="form" style="margin-top: 1em;margin-right: 1em;" :rules="formrule1" ref="form">
+                <el-form-item label="课程编号" :label-width="formLabelWidth" prop="id">
+                    <el-input v-model="form.id" auto-complete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="课程名称" :label-width="formLabelWidth" prop="name">
+                    <el-input v-model="form.name" auto-complete="off"></el-input>
+                </el-form-item>
+
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogFormVisible = false">取 消</el-button>
+                <el-button type="primary" @click="createClass('form')">确 定</el-button>
+            </div>
+        </el-dialog>
+        <el-button type="success" class="mould" @click="exportmould">下载模板<i class="el-icon-upload el-icon--right"></i>
+        </el-button>
+        <el-button type="success" class="mould" @click="importmould">导入课程信息<i class="el-icon-upload el-icon--right"></i>
+        </el-button>
+        <input type="file" id="btn_file" style="display:none" @change="fileupload"
+               v-loading.fullscreen.lock="fullscreenLoading">
+
+    </div>
+
+    <div class="search_area">
+        <el-input placeholder="请输入课程编号" v-model="courseid">
+
+        </el-input>
+        <el-input placeholder="请输入课程名称" v-model="coursename" class="boot">
+
+        </el-input>
+        <el-button type="primary" icon="search" class="boot" @click="loadData(1,8)">搜索</el-button>
+    </div>
+
+
+    <div class="table_box">
+
+        <el-table :data="tableData" border sortable="true" class="width:100%">
+            <el-table-column align="center" prop="id" label="序号" width="80">
+                <template scope="scope">
+
+                    <span>{{scope.row.id}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column align="center" prop="tcode" label="课程编号" width="250">
+                <template scope="scope">
+
+                    <el-popover
+                            ref="popover"
+                            placement="right"
+                            width="300"
+                            trigger="click" @show="bindThis(scope.$index)">
+                        <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign"
+                                 style="margin-top: 1em;margin-right: 1em;" ref="formLabelAlign" :rules="formrule2">
+                            <el-form-item label="课程编号">
+                                <el-input v-model="formLabelAlign.id" :disabled="true"></el-input>
+                            </el-form-item>
+                            <el-form-item label="课程名称" prop="region">
+                                <el-input v-model="formLabelAlign.region"></el-input>
+                            </el-form-item>
+                            <div style=" display: flex;justify-content: flex-end;">
+                                <el-button type="info" @click="change_course('formLabelAlign',scope.$index)"
+                                           style="margin-left: 80px;">确认
+                                </el-button>
+                            </div>
+
+                        </el-form>
+                    </el-popover>
+
+                    <span v-popover:popover>{{scope.row.tcode}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column align="center" prop="tlessonName" label="课程名称" width="250">
+                <template scope="scope">
+                    <span>{{scope.row.tlessonName}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column align="center" label="封面" width="350" prop="imageSrc">
+                <template scope="scope">
+
+                    <img :src="scope.row.imageSrc" style="margin:1em;width:180px;height: 70px"
+                         onmouseover="justEnter(event)" onmouseout="justOut(event)"/>
+
+                </template>
+            </el-table-column>
+            <el-table-column align="center" label="操作" width="400">
+                <template scope="scope">
+
+                    <el-button type="text" icon="picture" @click="picturecover(scope.$index,scope.row)">
+                        修改封面<i class="el-icon--right"></i></el-button>
+                    <el-button type="text" icon="picture" @click="resetcover(scope.$index)">
+                        恢复封面<i class="el-icon--right"></i></el-button>
+                    <el-button type="text" icon="delete" @click="removeCourse(scope.$index)">
+                        删除<i class="el-icon--delete"></i></el-button>
+
+                </template>
+            </el-table-column>
+        </el-table>
+    </div>
+    <el-dialog
+            title="提示"
+            :visible.sync="dialogVisible"
+            size="tiny">
+        <el-upload class="upload-demo" :file-list="filelist"
+                   :before-upload="beforeUpload" :http-request="uploadCustom" drag multiple>
+            <i class="el-icon-upload"></i>
+            <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+            <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+        </el-upload>
+        <span slot="footer" class="dialog-footer">
+                       <el-button @click="dialogVisible=false">取 消</el-button>
+                       <el-button type="primary" @click="confirm">确 定</el-button>
+                     </span>
+    </el-dialog>
+    <div align="center">
+        <div class="block">
+
+            <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
+                           :current-page="currentPage" :page-size="pagesize" layout="total, prev, pager, next, jumper"
+                           :total="total" style="margin-bottom: 20px;">
+            </el-pagination>
+        </div>
+    </div>
+
+    <footer>
+
+    </footer>
+</div>
+<script>
+    function justEnter(event) {
+        var node = event.relatedTarget;
+        $("#nav").append("<p id='pic'><img src='" + event.target.src + "' id='pic1'></p>");
+        
+        $(node).find('img').mousemove(function (e) {
+            $("#pic").css({
+                "top": (e.pageY-800) + "px",
+                "left": (e.pageX-800) + "px"
+            }).fadeIn("fast");
+
+        });
+
+
+    }
+
+    function justOut() {
+        $("#pic").remove();
+    }
+
+
+</script>
+<script src="../js/course.js"></script>

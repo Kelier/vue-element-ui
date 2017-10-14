@@ -1,0 +1,109 @@
+<div id="nav">
+    <div class="breadNav">
+        <el-breadcrumb separator="/">
+            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+            <el-breadcrumb-item>课程配置</el-breadcrumb-item>
+            <el-breadcrumb-item>学期管理</el-breadcrumb-item>
+        </el-breadcrumb>
+    </div>
+    <div class="info_change">
+        <el-button type="info" @click="dialogFormVisible=true">+ 新增</el-button>
+
+        <el-dialog title="" :visible.sync="dialogFormVisible" size="tiny">
+            <el-form :model="form" style="margin-top: 1em;margin-right: 1em;" :rules="formrule" ref="form">
+                <el-form-item label="编号" :label-width="formLabelWidth" prop="id">
+                    <el-input v-model="form.id" auto-complete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="名称" :label-width="formLabelWidth" prop="name">
+                    <el-input v-model="form.name" auto-complete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="时间" :label-width="formLabelWidth" prop="date">
+                    <div class="block">
+                        <el-date-picker v-model="form.date" type="daterange" placeholder="选择日期范围"
+                                        :picker-options="pickerOptions2" @change="saveRange"  style="width: 100%">
+                        </el-date-picker>
+                    </div>
+                </el-form-item>
+            </el-form>
+
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogFormVisible = false">取 消</el-button>
+                <el-button type="primary" @click="createTerm('form')">确 定</el-button>
+            </div>
+        </el-dialog>
+
+
+    </div>
+
+    <div class="table_box">
+        <el-table :data="tableData" border style="width: 100%">
+            <el-table-column align="center" prop="tid" label="序号" width="80">
+            </el-table-column>
+            <el-table-column align="center" prop="tcode" label="编号" width="250">
+                <template scope="scope">
+
+                    <el-popover
+                            ref="popover"
+                            placement="right"
+                            width="300"
+                            trigger="click" @show="bindThis(scope.$index)">
+                        <el-form :label-position="labelPosition" label-width="80px" :model="termAbort" style="margin-top: 1em;margin-right: 1em;" ref="termAbort" :rules="formrule">
+                            <el-form-item label="编号" :label-width="formLabelWidth" prop="id">
+                                <el-input v-model="termAbort.id" auto-complete="off"></el-input>
+                            </el-form-item>
+                            <el-form-item label="名称" :label-width="formLabelWidth" prop="name">
+                                <el-input v-model="termAbort.name" auto-complete="off"></el-input>
+                            </el-form-item>
+                            <el-form-item label="时间" :label-width="formLabelWidth" prop="date">
+                                <div class="block">
+                                    <el-date-picker v-model="termAbort.date" type="daterange" placeholder="选择日期范围"
+                                                    :picker-options="pickerOptions2" @change="changeRange"  style="width: 100%">
+                                    </el-date-picker>
+                                </div>
+                            </el-form-item>
+                            <div style=" display: flex;justify-content: flex-end;">
+                                <el-button type="info" @click="change_term('termAbort',scope.$index)" style="margin-left: 80px;">确认
+                                </el-button>
+                            </div>
+
+                        </el-form>
+                    </el-popover>
+
+                    <span v-popover:popover>{{scope.row.tcode}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column align="center" prop="tname" label="名称" width="300">
+            </el-table-column>
+            <el-table-column align="center" prop="tstart" label="开始日期" width="300">
+            </el-table-column>
+            <el-table-column align="center" prop="tend" label="结束日期" width="300">
+            </el-table-column>
+            <el-table-column align="center" label="操作" width="300" prop="thandle">
+                <template scope="scope">
+                    <el-switch v-model="scope.row.thandle" on-color="#13ce66" off-color="#ff4949" on-text="开"
+                               off-text="关" @change="toggle(scope.$index,scope.row)">
+                    </el-switch>
+                    <el-button type="text" icon="delete" @click="removeTerm(scope.$index)" style="padding: 5px;vertical-align: middle">
+                        删除<i class="el-icon--delete"></i></el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+    </div>
+
+    <div align="center">
+        <div class="block">
+
+            <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
+                           :current-page="currentPage" :page-size="pagesize" layout="total, prev, pager, next, jumper"
+                           :total="total">
+            </el-pagination>
+        </div>
+    </div>
+
+    <footer>
+
+    </footer>
+</div>
+
+<script src="../js/term.js"/>
+

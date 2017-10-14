@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新闻详情</title>
+    <link rel="shortcut icon" href="../image/icon.ico"/>
+    <link rel="stylesheet" href="../../bower_components/foundation-sites/dist/css/foundation.min.css">
+    <link rel="stylesheet" href="../font/foundation-icons.css">
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/news.css">
+</head>
+<body>
+<!--头部-->
+<header id="header" class="header">
+    @@include('include/header.html')
+</header>
+<!--内容部分-->
+<div id="content">
+    <!--导航部分-->
+    @@include('include/nav.html')
+    <!--面包屑-->
+    <div id="bread_nav" class="bread-nav bread-box">
+        <div class="box-content bread-content">
+            <nav aria-label="You are here:" role="navigation" class="ul-margin">
+
+                <ul class="breadcrumbs">
+                    <li><i class="fi-marker"></i> 当前位置</li>
+                    <li>首页</li>
+                    <li>
+                        <span class="show-for-sr">当前: </span> 新闻详情
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="box-news">
+        <div class="box-content box-height">
+            <div class="news-page">
+                <center><h2>新闻标题</h2></center>
+                <div class="news-row">
+                    <div class="cell small-6 small-order-2 medium-order-1 cell-lay-start">
+                    </div>
+                    <div class="cell small-6 small-order-2 medium-order-1 cell-lay-end">
+                        <div class="cell small-4 small-order-2 medium-order-1 lay-end-pow">
+                        <label class="news-time">发布时间：公元前221年</label>
+                        </div>
+                        <div class="cell small-2 small-order-2 medium-order-1  lay-end-err">
+                        <i class="fi-eye news-icon-custom"></i>
+                        <label class="news-person">23 亿</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-content">
+                    <p>
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="news-footer">
+
+    <hr>
+    <div class="footer-share">
+        <i class="news-icon-custom-share fi-share"></i>
+    </div>
+</div>
+<footer id="footer" class="footer">  @@include('include/footer.html')</footer>
+
+<!--<script src="../js/hasToken.js"></script>-->
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../../bower_components/foundation-sites/dist/js/foundation.min.js"></script>
+<script src="../../bower_components/foundation-sites/dist/js/plugins/foundation.util.motion.min.js"></script>
+<script src="../../bower_components/cropper/dist/cropper.min.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../../config/url.js"></script>
+<script src="../../config/ajaxUtils.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/news.js"></script>
+</body>
+</html>

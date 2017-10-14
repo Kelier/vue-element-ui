@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="shortcut icon" href="../image/icon.ico"/>
+    <link rel="stylesheet" href="../../bower_components/foundation-sites/dist/css/foundation.min.css">
+    <link rel="stylesheet" href="../font/foundation-icons.css">
+    <link rel="stylesheet" href="../css/slider.css">
+    <link rel="stylesheet" href="../css/entry.css">
+    <link rel="stylesheet" href="../css/nav.css">
+</head>
+<body >
+<!--来吧，双飞翼布局走起-->
+
+
+<!--头部-->
+
+<header id="header" class="header">
+    @@include('include/header.html')
+
+</header>
+<!--内容部分-->
+<div id="content">
+    <!--导航部分-->
+    @@include('include/nav.html')
+
+    <div class="container">
+        <div class="left-abide">
+            <h1></h1>
+        </div>
+        <div class="middle-content">
+            <div class="banner" >
+
+                <div id="silder" onmouseover="show_side()"
+                     onmouseout="hide_side()"></div>
+            </div>
+            <div class="pino" id="course_pino" >
+                <h4>精品课程</h4>
+                <div class="line-bob">
+                    <div class="line-swire">
+                        <div class="swire-bg">
+                            <div class="wire-line"></div>
+                        </div>
+                        <label class="label-custom">精品实训课程，练就专业技能</label>
+                        <div class="course_twit" id="course-twit">
+                            <div class="row">
+                                <div class="medium-3 columns">
+                                    <div class="card cardborder" id="copan-1">
+                                        <div class="resizemab">
+                                            <img src="">
+                                            <div class="resizetxt" onmouseenter="" ></div>
+                                        </div>
+
+                                        <div class="card-course tlign">
+                                            <label></label>
+                                            <h6></h6>
+                                        </div>
+                                        <div class="fire"></div>
+                                        <div class="coure-border" target="cborder1"></div>
+                                        <div class="coure-border" target="cborder2"></div>
+                                    </div>
+                                </div>
+                                <div class="medium-3 columns">
+                                    <div class="card cardborder" id="copan-2">
+                                        <div class="resizemab">
+                                            <img src="">
+                                            <div class="resizetxt" onmouseenter="" ></div>
+                                        </div>
+                                        <div class="card-course tlign">
+                                            <label></label>
+                                            <h6></h6>
+                                        </div>
+
+                                        <div class="coure-border" target="cborder1"></div>
+                                        <div class="coure-border" target="cborder2"></div>
+                                    </div>
+                                </div>
+                                <div class="medium-3 columns">
+                                    <div class="card cardborder" id="copan-3">
+                                        <div class="resizemab">
+                                            <img src="">
+                                            <div class="resizetxt" onmouseenter="" ></div>
+                                        </div>
+                                        <div class="card-course tlign">
+                                            <label></label>
+                                            <h6></h6>
+                                        </div>
+                                        <div class="coure-border" target="cborder1"></div>
+                                        <div class="coure-border" target="cborder2"></div>
+                                    </div>
+                                </div>
+                                <div class="medium-3 columns">
+                                    <div class="card cardborder" id="copan-4">
+                                        <div class="resizemab">
+                                            <img src="">
+                                            <div class="resizetxt" onmouseenter="" ></div>
+                                        </div>
+                                        <div class="card-course tlign">
+                                            <label></label>
+                                            <h6></h6>
+                                        </div>
+                                        <div class="coure-border" target="cborder1"></div>
+                                        <div class="coure-border" target="cborder2"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pinot" id="teacher_pino" >
+                <h4>明星教师</h4>
+                <div class="line-bob">
+                    <div class="line-swire">
+                        <div class="swire-bg">
+                            <div class="wire-line"></div>
+                        </div>
+                        <label class="label-custom">名师汇集，保证教学质量与效果</label>
+
+                        <div class="course_twit" id="tea-pro">
+                            <div class="row" style="width: 1188px;">
+
+                                <div class="medium-4 columns">
+                                    <div class="card teaCard">
+                                        <img src="" class="tea-image">
+                                        <div class="card-section">
+                                            <h5></h5>
+                                            <label></label>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="medium-4 columns">
+                                    <div class="card teaCard">
+                                        <img src="" class="tea-image">
+                                        <div class="card-section">
+                                            <h5></h5>
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="medium-4 columns">
+                                    <div class="card teaCard">
+                                        <img src="" class="tea-image">
+                                        <div class="card-section">
+                                            <h5></h5>
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="line-bob">
+                <div style="width:1188px;">
+
+                    <div class="pino-log">
+
+                        <div class="row bottom-card">
+                            <div class="small-6 columns sn-custom bot-left">
+
+                                <div class="line-half" id="stu-pro" style="display: none;">
+                                    <div class="swire-bg">
+                                        <div class="wire-line smallwindow"></div>
+                                    </div>
+                                    <h4 class="smallwindow-title">优秀学员</h4>
+                                    <div class="rows row-custom">
+                                        <div class="small-3 columns">
+                                            <img src="" alt="">
+                                        </div>
+                                        <div class="small-3 columns attar"></div>
+                                        <div class="small-3 columns">
+                                            <img src="" alt="">
+                                        </div>
+                                        <div class="small-3 columns attar"></div>
+                                    </div>
+                                    <div class="row-custom rows">
+                                        <div class="small-3 columns">
+                                            <img src="" alt="">
+                                        </div>
+                                        <div class="small-3 columns attar"></div>
+                                        <div class="small-3 columns">
+                                            <img src="" alt="">
+                                        </div>
+                                        <div class="small-3 columns attar"></div>
+                                    </div>
+                                    <div class="row-custom rows">
+                                        <div class="small-3 columns">
+                                            <img src="" alt="">
+                                        </div>
+                                        <div class="small-3 columns attar"></div>
+                                        <div class="small-3 columns">
+                                            <img src="" alt="">
+                                        </div>
+                                        <div class="small-3 columns attar"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="small-6 columns sn-custom bot-right">
+
+                                <div class="line-half" id="news-pro" style="display: none;">
+                                    <div class="swire-bg">
+                                        <div class="wire-line smallwindow"></div>
+                                    </div>
+                                    <h4 class="smallwindow-title">头条新闻</h4>
+                                    <div class="news-log" id="news_pro" >
+                                        <div class="rows">
+                                            <div class="medium-6 large-8 columns">
+                                                <i class="fi-clock clock-icon"></i>
+                                                <p></p>
+                                            </div>
+                                            <div class="medium-6 large-4 columns"></div>
+                                        </div>
+                                        <div class="rows">
+                                            <div class="medium-6 large-8 columns">
+                                                <i class="fi-clock clock-icon"></i>
+                                                <p></p>
+                                            </div>
+                                            <div class="medium-6 large-4 columns"></div>
+                                        </div>
+                                        <div class="rows">
+                                            <div class="medium-6 large-8 columns">
+                                                <i class="fi-clock clock-icon"></i>
+                                                <p></p>
+                                            </div>
+                                            <div class="medium-6 large-4 columns"></div>
+                                        </div>
+                                        <div class="rows">
+                                            <div class="medium-6 large-8 columns">
+                                                <i class="fi-clock clock-icon"></i>
+                                                <p></p>
+                                            </div>
+                                            <div class="medium-6 large-4 columns"></div>
+                                        </div>
+                                        <div class="rows">
+                                            <div class="medium-6 large-8 columns">
+                                                <i class="fi-clock clock-icon"></i>
+                                                <p></p>
+                                            </div>
+                                            <div class="medium-6 large-4 columns"></div>
+                                        </div>
+                                        <div class="rows">
+                                            <div class="medium-6 large-8 columns">
+                                                <i class="fi-clock clock-icon"></i>
+                                                <p></p>
+                                            </div>
+                                            <div class="medium-6 large-4 columns"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right-abide">
+            <h1></h1>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    @@include('include/footer.html')
+</footer>
+
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../../bower_components/foundation-sites/dist/js/foundation.min.js"></script>
+<script src="../../bower_components/foundation-sites/dist/js/plugins/foundation.util.motion.min.js"></script>
+<script src="../js/silder.min.js"></script>
+<script src="../../config/url.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../../config/ajaxUtils.js"></script>
+<script src="../js/index.js"></script>
+
+
+</body>
+</html>

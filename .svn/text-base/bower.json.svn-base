@@ -1,0 +1,31 @@
+{
+  "name": "smartedu",
+  "version": "1.0.0",
+  "authors": [
+    "jognyan"
+  ],
+  "description": "Kelier",
+  "main": "index.html",
+  "license": "MIT",
+  "homepage": "Kelier",
+  "dependencies": {
+    "foundation-sites": "~6.3.0",
+    "motion-ui": "~1.2.2",
+    "vue": "^2.4.1",
+    "axios": "~0.16.2",
+    "editor.md": "^1.5.0",
+    "marked": "^0.3.6"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "build",
+    "tests"
+  ],
+  "private": true,
+  "devDependencies": {
+    "cropper": "^2.3.4"
+  }
+}
