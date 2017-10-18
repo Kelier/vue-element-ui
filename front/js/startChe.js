@@ -111,7 +111,7 @@ $(function () {
         $("#lay").append("<iframe id='this'></iframe>");
     }
     if(localStorage.getItem("isP")=="preview"&&sessionStorage.getItem("role")=="1002"){
-        $("#lay").append("<img src='../image/screenshot.jpg'></img>");
+        $("#lay").append("<img src='../image/screenshot.jpg' id='search'></img>");
     }
 
 
@@ -210,7 +210,11 @@ $(function () {
     }
 
     //设置全屏监听
-    var doc = document.getElementById("this").contentDocument || document.frames["this"].document;
+    if(localStorage.getItem("isP")=="preview") {
+        var doc = document.getElementById("search")
+    }else{
+        var doc = document.getElementById("this").contentDocument || document.frames["this"].document;
+    }
 
     var che = document.getElementById("che-full");
     var content = document.getElementById("book-full");
@@ -441,7 +445,6 @@ $(function () {
 
 
     che.addEventListener("click", function () {
-
 
         launchFullScreen(r);
         $("#lay").css("display", "none");

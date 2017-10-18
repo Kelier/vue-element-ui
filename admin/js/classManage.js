@@ -73,6 +73,7 @@ var vue = new Vue({
                 cname: '',
                 people: ''
             }],
+            inIndex:'',
 
 
             //edit form
@@ -132,6 +133,7 @@ var vue = new Vue({
         loadData(page, rows){
             //列表渲染数据
             var data = [];
+            this.bussid=[];
             var url = globalurl + 'BClass/queryBClasssByPagination';
             var _this = this;
             eduUtil.ajaxPostUtil(url, {
@@ -339,11 +341,11 @@ var vue = new Vue({
         },
         handlestuSizeChange(val) {
             this.stupagesize = val;
-            this.edit_stu();
+            this.see_more(this.inIndex);
         },
         handlestuCurrentChange(val) {
             this.stucurrentPage = val;
-            this.edit_stu();
+            this.see_more(this.inIndex);
         },
         toggle(index, row) {
 
@@ -352,6 +354,7 @@ var vue = new Vue({
 
         //edit stu info
         see_more(index) {
+            this.inIndex=index;
             this.dialogTableVisible = true;
             this.currentCid=this.tableData[index].cid;
             this.currentName=this.tableData[index].cname;
@@ -384,6 +387,7 @@ var vue = new Vue({
 
         },
         deleteRow(index, rows) {
+            console.log(index+","+rows)
             var that=this;
             eduUtil.ajaxPostUtil(globalurl+'BRClassStudent/remove',{
                 stuCode:that.gridData[index].snum,

@@ -37,7 +37,7 @@ var vue = new Vue({
             }, 1000);
         };
         var validateDate = (rule, value, callback) => {
-            if (value[0] === '') {
+            if (value === '') {
                 return callback(new Error('请选择起始日期'));
             } else {
                 callback()
@@ -153,7 +153,8 @@ var vue = new Vue({
             this.termAbort.name = this.tableData[index].tname;
             var start=this.tableData[index].tstart;
             var end=this.tableData[index].tend;
-            $(".el-date-handlebar").find('input')[0].value=start+' - '+end;
+            var dateputs=$(".el-date-handlebar").find('input');
+            dateputs[dateputs.length-1].value=start+' - '+end;
             /*new Date(Date.parse(start));
             new Date(Date.parse(end));
             this.$emit('pick', [start,end]);*/

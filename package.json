@@ -24,6 +24,7 @@
     "gulp-sass": "^2.1.0",
     "gulp-sequence": "^0.4.6",
     "gulp-smushit": "^1.2.0",
+    "gulp-imagemin": "^3.3.0",
     "gulp-strip-debug": "^1.1.0"
   },
   "scripts": {

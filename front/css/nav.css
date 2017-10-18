@@ -1,9 +1,9 @@
 html {
-    height:auto;
-    min-height:100%;
+    height: auto;
+    min-height: 100%;
     position: relative;
-    bottom:0;
-    margin:0 auto;
+    bottom: 0;
+    margin: 0 auto;
 }
 
 body {
@@ -165,21 +165,27 @@ body {
     background-color: #fba445;
 }
 
-.large-auto.cell.cell-custom[id=lay-role],.large-auto.cell.cell-custom[id=lay-name]:hover {
+.large-auto.cell.cell-custom[id=lay-role], .large-auto.cell.cell-custom[id=lay-name]:hover {
     background-color: transparent;
 
 }
-.a-custom>#role:hover{
+
+.a-custom > #role:hover {
     background: #fba445;
     border-radius: 5px;
 }
-.a-custom span,.a-custom>#role{
+.a-custom:hover +.ul-custom {
+   display:block !important;
+}
+
+.a-custom span, .a-custom > #role {
     font-size: medium;
 }
+
 .a-custom {
     color: #fff;
     display: flex;
-    justify-content:center;
+    justify-content: center;
     height: 50px;
 
 }
@@ -200,9 +206,13 @@ body {
     z-index: 1;
     font-family: "Microsoft YaHei";
 }
+.ul-custom:hover{
+    display: block !important;
+}
 
-ol, ul{
-    margin-left:0 !important;
+
+ol, ul {
+    margin-left: 0 !important;
 }
 
 .li-custom {
@@ -257,12 +267,13 @@ ol, ul{
     display: inline-block;
 
 }
-.select-middle:focus{
-    border:1px solid #ff6b1b;
+
+.select-middle:focus {
+    border: 1px solid #ff6b1b;
 }
 
-.button.search-button.select-right:focus{
-    border:none;
+.button.search-button.select-right:focus {
+    border: none;
     outline: none;
     background: #ff6b1b;
 }
@@ -274,16 +285,16 @@ ol, ul{
     border-radius: 0px 5px 5px 0px;
 }
 
-.proButton{
+.proButton {
 
     position: relative;
     right: 115px;
-    margin-top:20px;
-    height:40px;
+    margin-top: 20px;
+    height: 40px;
 
 }
 
-.sho_line{
+.sho_line {
 
     height: 100px;
     display: flex;
@@ -291,25 +302,33 @@ ol, ul{
 
 }
 
+.text-insha {
+    line-height: 1em;
+    word-break: keep-all;
+}
 
+#lay-name{
+    width: auto;
+}
 
-.cell-custom.nav-padding[id=lay-role]{
+.cell-custom.nav-padding[id=lay-role] {
     margin-right: 30px;
 }
-#lay-name>.a-custom{
-    display:inline-block;
-    justify-content: center;
-    height: 50px;
-    line-height: 50px;
+
+#lay-name > .a-custom {
+    display: flex;
+    align-items: center;
 }
-.div-my-course{
+
+.div-my-course {
     width: 100%;
     text-align: center;
     margin-top: 10px;
     height: 30px;
     line-height: 30px;
 }
-.div-my-course[target=my-tea-hover]{
+
+.div-my-course[target=my-tea-hover] {
     width: 100%;
     text-align: center;
     margin-top: 10px;
@@ -318,17 +337,20 @@ ol, ul{
     background: #ff6d10;
     border-radius: 5px;
 }
-.watermoon{
+
+.watermoon {
     background-color: #72bcec;
-    margin-top:20px;
-    -webkit-border-radius:5px;
-    -moz-border-radius:5px;
-    border-radius:5px;
+    margin-top: 20px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
-.watermoon:hover{
+
+.watermoon:hover {
     background-color: #3199de;
 }
-.reveal-overlay{
+
+.reveal-overlay {
     overflow-y: hidden;
     overflow-x: hidden;
 }

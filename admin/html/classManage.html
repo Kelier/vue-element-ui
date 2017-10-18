@@ -77,7 +77,8 @@
                         </el-form>
                     </el-popover>
 
-                    <span v-popover:popover>{{scope.row.cid}}</span>
+                    <el-button v-popover:popover type="text"  >
+                        {{scope.row.cid}}</el-button>
                 </template>
             </el-table-column>
             <el-table-column align="center" prop="cname" label="班级名称" width="250">

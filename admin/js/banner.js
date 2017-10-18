@@ -68,6 +68,7 @@ var vue = new Vue({
 
         },
         handleClick(){
+            this.form.filelist[0].url="";
             this.loadTab(parseInt(this.activeName));
 
         },
@@ -98,7 +99,7 @@ var vue = new Vue({
         },
         saveBanner(){
             var that = this;
-
+            console.log(that.form.des)
             eduUtil.ajaxPostUtil(globalurl + 'BCarousel/add', {
                 imageType: "home_top_banner",
                 imageId: "c148428a53fd4a6c9109cec14c8d8d4c",

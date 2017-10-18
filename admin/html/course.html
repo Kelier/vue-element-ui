@@ -1,4 +1,5 @@
-<div id="nav">
+
+<div id="nav" xmlns:v-popover="http://www.w3.org/1999/xhtml">
     <div class="breadNav">
         <el-breadcrumb separator="/">
             <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
@@ -28,8 +29,7 @@
         </el-button>
         <el-button type="success" class="mould" @click="importmould">导入课程信息<i class="el-icon-upload el-icon--right"></i>
         </el-button>
-        <input type="file" id="btn_file" style="display:none" @change="fileupload"
-               v-loading.fullscreen.lock="fullscreenLoading">
+        <input type="file" id="btn_file" style="display:none" @change="fileupload" v-loading.fullscreen.lock="fullscreenLoading">
 
     </div>
 
@@ -61,24 +61,23 @@
                             placement="right"
                             width="300"
                             trigger="click" @show="bindThis(scope.$index)">
-                        <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign"
-                                 style="margin-top: 1em;margin-right: 1em;" ref="formLabelAlign" :rules="formrule2">
+                        <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign" style="margin-top: 1em;margin-right: 1em;" ref="formLabelAlign" :rules="formrule2">
                             <el-form-item label="课程编号">
-                                <el-input v-model="formLabelAlign.id" :disabled="true"></el-input>
+                                <el-input v-model="formLabelAlign.id" :disabled="true" style="color: "></el-input>
                             </el-form-item>
                             <el-form-item label="课程名称" prop="region">
                                 <el-input v-model="formLabelAlign.region"></el-input>
                             </el-form-item>
-                            <div style=" display: flex;justify-content: flex-end;">
-                                <el-button type="info" @click="change_course('formLabelAlign',scope.$index)"
-                                           style="margin-left: 80px;">确认
-                                </el-button>
-                            </div>
+                           <div style=" display: flex;justify-content: flex-end;">
+                            <el-button type="info" @click="change_course('formLabelAlign',scope.$index)" style="margin-left: 80px;">确认
+                            </el-button>
+                           </div>
 
                         </el-form>
                     </el-popover>
-
-                    <span v-popover:popover>{{scope.row.tcode}}</span>
+                    <el-button v-popover:popover type="text"  >
+                        {{scope.row.tcode}}</el-button>
+                 <!--   <span v-popover:popover>{{scope.row.tcode}}</span>-->
                 </template>
             </el-table-column>
             <el-table-column align="center" prop="tlessonName" label="课程名称" width="250">
@@ -89,19 +88,18 @@
             <el-table-column align="center" label="封面" width="350" prop="imageSrc">
                 <template scope="scope">
 
-                    <img :src="scope.row.imageSrc" style="margin:1em;width:180px;height: 70px"
-                         onmouseover="justEnter(event)" onmouseout="justOut(event)"/>
+                    <img :src="scope.row.imageSrc" style="margin:1em;width:180px;height: 70px" onmouseover="justEnter(event)" onmouseout="justOut(event)"/>
 
                 </template>
             </el-table-column>
             <el-table-column align="center" label="操作" width="400">
                 <template scope="scope">
 
-                    <el-button type="text" icon="picture" @click="picturecover(scope.$index,scope.row)">
+                    <el-button type="text" icon="picture" @click="picturecover(scope.$index,scope.row)" >
                         修改封面<i class="el-icon--right"></i></el-button>
-                    <el-button type="text" icon="picture" @click="resetcover(scope.$index)">
+                    <el-button type="text" icon="picture" @click="resetcover(scope.$index)" >
                         恢复封面<i class="el-icon--right"></i></el-button>
-                    <el-button type="text" icon="delete" @click="removeCourse(scope.$index)">
+                    <el-button type="text" icon="delete" @click="removeCourse(scope.$index)" >
                         删除<i class="el-icon--delete"></i></el-button>
 
                 </template>
@@ -113,7 +111,7 @@
             :visible.sync="dialogVisible"
             size="tiny">
         <el-upload class="upload-demo" :file-list="filelist"
-                   :before-upload="beforeUpload" :http-request="uploadCustom" drag multiple>
+                   :before-upload="beforeUpload" :http-request="uploadCustom" :on-remove="removeCover" drag multiple>
             <i class="el-icon-upload"></i>
             <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
             <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
@@ -137,16 +135,28 @@
 
     </footer>
 </div>
+
+<script src="../js/course.js">
+
+</script>
 <script>
     function justEnter(event) {
-        var node = event.relatedTarget;
+        var node=event.relatedTarget;
         $("#nav").append("<p id='pic'><img src='" + event.target.src + "' id='pic1'></p>");
-        
-        $(node).find('img').mousemove(function (e) {
-            $("#pic").css({
-                "top": (e.pageY-800) + "px",
-                "left": (e.pageX-800) + "px"
-            }).fadeIn("fast");
+        $(node).find('img').mousemove(function(e){
+            console.log(e.pageY+","+e.clientY)
+            if(e.pageY<=700){
+                $("#pic").css({
+                    "top": (e.clientY-1200)+"px",
+                    "left":(e.pageX-800)+"px"
+                }).fadeIn("fast");
+            }else if(e.pageY>700){
+                $("#pic").css({
+                    "top": (e.clientY-900)+"px",
+                    "left":(e.pageX-800)+"px"
+                }).fadeIn("fast");
+            }
+            
 
         });
 
@@ -158,5 +168,6 @@
     }
 
 
+
+
 </script>
-<script src="../js/course.js"></script>

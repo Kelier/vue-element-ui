@@ -31,16 +31,16 @@
     </div>
     <div class="search_area">
 
-        <el-select v-model="select" placeholder="请选择学期">
+        <el-select v-model="termthis" placeholder="请选择学期">
             <el-option v-for="item in cities" :key="item.value" :label="item.label" :value="item.value">
                 <span style="float: left">{{ item.label }}</span>
             </el-option>
         </el-select>
 
-        <el-input placeholder="请输入课程" v-model="coursename" class="boot-auto">
+        <el-input placeholder="请输入课程名称" v-model="coursename" class="boot-auto">
 
         </el-input>
-        <el-input placeholder="请输入教师" v-model="teaname" class="boot-auto">
+        <el-input placeholder="请输入教师姓名" v-model="teaname" class="boot-auto">
 
         </el-input>
 

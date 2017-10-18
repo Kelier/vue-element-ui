@@ -69,7 +69,9 @@
                         </el-form>
                     </el-popover>
 
-                    <span v-popover:popover>{{scope.row.tcode}}</span>
+                    <el-button v-popover:popover type="text"  >
+                        {{scope.row.tcode}}</el-button>
+
                 </template>
             </el-table-column>
             <el-table-column align="center" prop="tname" label="名称" width="300">

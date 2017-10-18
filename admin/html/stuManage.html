@@ -94,7 +94,9 @@
                         </el-form>
                     </el-popover>
 
-                    <span v-popover:popover>{{scope.row.sid}}</span>
+                    <el-button v-popover:popover type="text"  >
+                        {{scope.row.sid}}</el-button>
+
                 </template>
             </el-table-column>
             <el-table-column align="center" prop="tid" label="邮箱" width="250">
