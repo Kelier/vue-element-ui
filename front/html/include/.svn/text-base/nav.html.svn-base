@@ -14,7 +14,7 @@
                 <div id="lay-name" class="large-auto cell cell-custom" style="display: none" onmouseover="show_li()"
                      onmouseout="hide_li()">
                     <a href="" class="a-custom">
-                        <img id="avatar" class="icon-padding"></img><span id="username" style="width: 80px;overflow: hidden;height: 24px"></span>
+                        <img id="avatar" class="icon-padding"></img><span id="username" class="text-insha"></span>
                     </a>
                     <ul class="ul-custom" id="ul-my">
                         <li class="li-custom"><a href="./modifyPwd.html" class="li-href" style="position: relative;top:8px">修改密码</a></li>

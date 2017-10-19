@@ -1,0 +1,32 @@
+.uv_button {
+    width: 85px;
+    height: 39px;
+    background: #ff6b1b;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    cursor:pointer;
+}
+.uv_input{
+    width: 169px;
+    height: 39px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    background: #ececec;
+}
+.uv_input_progress{
+    width: 0;
+    height: 33px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    background: #44ee44;
+}
+.player {
+    width: 60%;
+    height: 300px;
+    margin-left: 20%;
+    background: #ececec;
+    border: 1px solid #ff6b1b;
+    border-radius: 5px;
+
+}

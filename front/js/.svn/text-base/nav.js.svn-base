@@ -28,7 +28,7 @@ function readyCheck() {
 
     }
 
-    if (sessionStorage.getItem("token") == null) {
+    if (sessionStorage.getItem("role") == null) {
 
         $("#role").html('登录/注册');
         $("#lay-name").hide();

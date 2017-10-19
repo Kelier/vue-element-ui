@@ -1,13 +1,13 @@
 K 25
 svn:wc:ra_dav:version-url
 V 77
-/svn/wisdomEdus/!svn/ver/328/trunk/wisdomEduClient/src/main/webapp/front/html
+/svn/wisdomEdus/!svn/ver/343/trunk/wisdomEduClient/src/main/webapp/front/html
 END
 stuCourse.html
 K 25
 svn:wc:ra_dav:version-url
 V 92
-/svn/wisdomEdus/!svn/ver/294/trunk/wisdomEduClient/src/main/webapp/front/html/stuCourse.html
+/svn/wisdomEdus/!svn/ver/351/trunk/wisdomEduClient/src/main/webapp/front/html/stuCourse.html
 END
 teaClass.html
 K 25
@@ -25,7 +25,7 @@ markdown.html
 K 25
 svn:wc:ra_dav:version-url
 V 91
-/svn/wisdomEdus/!svn/ver/301/trunk/wisdomEduClient/src/main/webapp/front/html/markdown.html
+/svn/wisdomEdus/!svn/ver/351/trunk/wisdomEduClient/src/main/webapp/front/html/markdown.html
 END
 modifyPwd.html
 K 25
@@ -33,11 +33,17 @@ svn:wc:ra_dav:version-url
 V 92
 /svn/wisdomEdus/!svn/ver/301/trunk/wisdomEduClient/src/main/webapp/front/html/modifyPwd.html
 END
+seeVedio.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/wisdomEdus/!svn/ver/343/trunk/wisdomEduClient/src/main/webapp/front/html/seeVedio.html
+END
 eclipse.html
 K 25
 svn:wc:ra_dav:version-url
 V 90
-/svn/wisdomEdus/!svn/ver/328/trunk/wisdomEduClient/src/main/webapp/front/html/eclipse.html
+/svn/wisdomEdus/!svn/ver/351/trunk/wisdomEduClient/src/main/webapp/front/html/eclipse.html
 END
 publish.html
 K 25
@@ -55,17 +61,23 @@ login.html
 K 25
 svn:wc:ra_dav:version-url
 V 88
-/svn/wisdomEdus/!svn/ver/244/trunk/wisdomEduClient/src/main/webapp/front/html/login.html
+/svn/wisdomEdus/!svn/ver/343/trunk/wisdomEduClient/src/main/webapp/front/html/login.html
 END
 teaCourse.html
 K 25
 svn:wc:ra_dav:version-url
 V 92
-/svn/wisdomEdus/!svn/ver/309/trunk/wisdomEduClient/src/main/webapp/front/html/teaCourse.html
+/svn/wisdomEdus/!svn/ver/351/trunk/wisdomEduClient/src/main/webapp/front/html/teaCourse.html
 END
 proBook.html
 K 25
 svn:wc:ra_dav:version-url
 V 90
 /svn/wisdomEdus/!svn/ver/294/trunk/wisdomEduClient/src/main/webapp/front/html/proBook.html
+END
+uploadVedio.html
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/wisdomEdus/!svn/ver/343/trunk/wisdomEduClient/src/main/webapp/front/html/uploadVedio.html
 END

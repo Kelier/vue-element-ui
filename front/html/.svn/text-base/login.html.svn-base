@@ -15,7 +15,9 @@
     <link rel="stylesheet" href="../css/toastr.css">
 
 </head>
-<body style="">
+<body>
+
+
     <form>
         <div class="login-box">
             <p>智慧教育平台</p>

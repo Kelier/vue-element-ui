@@ -23,13 +23,13 @@ $(function () {
         if (res.rows.length < 1) {
             realpath = imagepath + default_carousel_location;
             alt = "敬请期待";
-            banner.push({'img': realpath, 'alt': alt});
+            banner.push({'img': realpath, 'alt': alt,'title':alt});
 
         } else {
             for (var i = 0; i < res.rows.length; i++) {
                 realpath = imagepath + res.rows[i].carouselUrl;
                 alt = res.rows[i].carouselDes;
-                banner.push({'img': realpath, 'alt': alt});
+                banner.push({'img': realpath, 'alt': alt,'title':alt});
             }
 
         }
@@ -47,10 +47,10 @@ $(function () {
             $("#bantop"+i).on('click',function () {
                 var banid='#'+$(this).attr("id");
                if($(banid).attr("data-op")=='1'){
-                   window.open(res.rows[$(this).attr("id").match(/\d+/g)].linkUrl)
+                   window.open('http://'+res.rows[$(this).attr("id").match(/\d+/g)].linkUrl)
                }
                 if($(banid).attr("data-op")=='0'){
-                    window.location.href=res.rows[i].linkUrl;
+                    window.location.href='http://'+res.rows[i].linkUrl;
                 }
             });
         }
@@ -130,7 +130,8 @@ $(function () {
     /*获取推荐学生*/
     req(globalurl + 'BStudent/queryStudentWithRecommendWithoutAuth', 'post', {
         page: 1,
-        rows: 6
+        rows: 6,
+        sort: 'recommend_order'
     }, function (res) {
         var courseRow = $("div").children("#stu-pro").children();
         var courseLen = courseRow.length;

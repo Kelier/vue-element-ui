@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 76
-/svn/wisdomEdus/!svn/ver/330/trunk/wisdomEduClient/src/main/webapp/front/css
+/svn/wisdomEdus/!svn/ver/343/trunk/wisdomEduClient/src/main/webapp/front/css
 END
 book.css
 K 25
@@ -19,13 +19,13 @@ che.css
 K 25
 svn:wc:ra_dav:version-url
 V 84
-/svn/wisdomEdus/!svn/ver/328/trunk/wisdomEduClient/src/main/webapp/front/css/che.css
+/svn/wisdomEdus/!svn/ver/351/trunk/wisdomEduClient/src/main/webapp/front/css/che.css
 END
 course.css
 K 25
 svn:wc:ra_dav:version-url
 V 87
-/svn/wisdomEdus/!svn/ver/309/trunk/wisdomEduClient/src/main/webapp/front/css/course.css
+/svn/wisdomEdus/!svn/ver/343/trunk/wisdomEduClient/src/main/webapp/front/css/course.css
 END
 entry.css
 K 25
@@ -63,6 +63,12 @@ svn:wc:ra_dav:version-url
 V 92
 /svn/wisdomEdus/!svn/ver/306/trunk/wisdomEduClient/src/main/webapp/front/css/onlineclass.css
 END
+uploadVedio.css
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/wisdomEdus/!svn/ver/343/trunk/wisdomEduClient/src/main/webapp/front/css/uploadVedio.css
+END
 pagination-my.css
 K 25
 svn:wc:ra_dav:version-url
@@ -91,7 +97,7 @@ course2.css
 K 25
 svn:wc:ra_dav:version-url
 V 88
-/svn/wisdomEdus/!svn/ver/285/trunk/wisdomEduClient/src/main/webapp/front/css/course2.css
+/svn/wisdomEdus/!svn/ver/343/trunk/wisdomEduClient/src/main/webapp/front/css/course2.css
 END
 slider.css
 K 25
@@ -109,7 +115,7 @@ nav.css
 K 25
 svn:wc:ra_dav:version-url
 V 84
-/svn/wisdomEdus/!svn/ver/330/trunk/wisdomEduClient/src/main/webapp/front/css/nav.css
+/svn/wisdomEdus/!svn/ver/351/trunk/wisdomEduClient/src/main/webapp/front/css/nav.css
 END
 editor.css
 K 25

@@ -130,7 +130,7 @@ html,body{
 }
 
 .full {
-    width: 100%;
+    width: 100% !important;
     height: 100%;
 }
 
@@ -146,9 +146,9 @@ html,body{
 }
 
 .years {
-    height: 30px;
     line-height: 0;
     margin-right: 20px;
+    border-radius:5px;
     float: right;
 }
 

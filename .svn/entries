@@ -1,15 +1,15 @@
 10
 
 dir
-341
+350
 http://635073826%40qq.com@code.taobao.org/svn/wisdomEdus/trunk/wisdomEduClient/src/main/webapp
 http://635073826%40qq.com@code.taobao.org/svn/wisdomEdus
 
 
 
-2017-09-21T08:48:09.957619Z
-330
-abc635073826
+2017-10-17T01:15:50.339324Z
+343
+Breaker
 has-props
 
 
@@ -63,17 +63,24 @@ abc635073826
 
 41
 
+.git
+dir
+
+
+
+add
+
 gulpfile.js
 file
 
 
 
 
-2017-09-18T08:38:38.000000Z
-a34a14d3130046ee1f10f9ccd77a18c9
-2017-09-18T08:32:40.449032Z
-305
-abc635073826
+2017-10-17T01:20:30.000000Z
+49d8d5d2eaabd840ff27369e4092385d
+2017-10-17T01:15:50.339324Z
+343
+Breaker
 
 
 
@@ -95,7 +102,7 @@ abc635073826
 
 
 
-5032
+6595
 
 package.json
 file
@@ -103,11 +110,11 @@ file
 
 
 
-2017-09-18T08:57:06.000000Z
-8832892c4dc3f5f95c2af546759861e3
-2017-09-21T06:51:11.062678Z
-327
-abc635073826
+2017-10-17T01:20:30.000000Z
+07e3b097ccb08a13465332d136dbd651
+2017-10-17T01:15:50.339324Z
+343
+Breaker
 
 
 
@@ -129,7 +136,7 @@ abc635073826
 
 
 
-1661
+1692
 
 rev.json
 file
@@ -167,6 +174,13 @@ abc635073826
 
 config
 dir
+
+.gitignore
+file
+0
+
+
+add
 
 bower.json
 file
@@ -210,6 +224,13 @@ dir
 
 front
 dir
+
+package-lock.json
+file
+0
+
+
+add
 
 README.md
 file

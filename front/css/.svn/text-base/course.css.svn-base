@@ -334,6 +334,18 @@ textarea[rows] {
     color: #c1c1c1;
     position: relative
 }
+.btn-select {
+    width: 100%;
+    margin: auto;
+    height: 220px;
+    background-color: #f0f2f2;
+    color: #c1c1c1;
+    position: relative;
+    cursor: pointer;
+}
+.btn-select:hover {
+    border: 1px dashed #1d1d1d;
+}
 
 .upload-cover-button {
     border-radius: 5px;
@@ -390,7 +402,7 @@ textarea[rows] {
     top: 10px
 }
 
-.line_delete, .line_handle, .line_scheme {
+.line_delete, .line_handle, .line_scheme,.line_mv ,.line_upload{
     position: relative
 }
 a[data-open]{
@@ -427,7 +439,7 @@ a[data-open]:hover{
     display: inline-block;
     margin-left: 25px;
 }
-.line_index,.line_preface,.line_face,.line_scheme, .line_handle,.line_delete {
+.line_index,.line_preface,.line_face,.line_scheme, .line_handle,.line_delete ,.line_mv,.line_upload{
     display: inline-block;
     margin-left: 25px;
 
@@ -435,7 +447,7 @@ a[data-open]:hover{
 .line_preface,.line_index{
     float: left;
 }
-.line_scheme, .line_handle,.line_delete {
+.line_scheme, .line_handle,.line_delete,.line_mv ,.line_upload{
     float: right;
     margin-right: 25px;
 }
@@ -712,6 +724,33 @@ dl[target=tea-course] dd.section .section-inline-stu{
     background-color: #fff;
     display: inline-block;
     border: 1px solid #fba443;
+    border-radius: 0 5px 5px 0;
+    border-left-width: 0;
+    height: 30px;
+    width: 33px;
+    line-height: 30px;
+    text-align: center;
+
+}
+.tea-wire-mv {
+    display: inline-block;
+    background-color: #7ECEF3;
+    border: 1px solid #7ECEF3;
+    border-radius: 5px 0 0 5px;
+    border-right-width: 0;
+    color: #FFFFFF;
+    width: 66px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    margin-right: -4px;
+}
+
+.tea-wireless-mv {
+    color: #7ECEF3;
+    background-color: #fff;
+    display: inline-block;
+    border: 1px solid #7ECEF3;
     border-radius: 0 5px 5px 0;
     border-left-width: 0;
     height: 30px;

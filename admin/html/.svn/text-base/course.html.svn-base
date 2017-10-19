@@ -1,5 +1,5 @@
 
-<div id="nav">
+<div id="nav" xmlns:v-popover="http://www.w3.org/1999/xhtml">
     <div class="breadNav">
         <el-breadcrumb separator="/">
             <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
@@ -63,7 +63,7 @@
                             trigger="click" @show="bindThis(scope.$index)">
                         <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign" style="margin-top: 1em;margin-right: 1em;" ref="formLabelAlign" :rules="formrule2">
                             <el-form-item label="课程编号">
-                                <el-input v-model="formLabelAlign.id" :disabled="true"></el-input>
+                                <el-input v-model="formLabelAlign.id" :disabled="true" style="color: "></el-input>
                             </el-form-item>
                             <el-form-item label="课程名称" prop="region">
                                 <el-input v-model="formLabelAlign.region"></el-input>
@@ -75,8 +75,9 @@
 
                         </el-form>
                     </el-popover>
-
-                    <span v-popover:popover>{{scope.row.tcode}}</span>
+                    <el-button v-popover:popover type="text"  >
+                        {{scope.row.tcode}}</el-button>
+                 <!--   <span v-popover:popover>{{scope.row.tcode}}</span>-->
                 </template>
             </el-table-column>
             <el-table-column align="center" prop="tlessonName" label="课程名称" width="250">
@@ -110,7 +111,7 @@
             :visible.sync="dialogVisible"
             size="tiny">
         <el-upload class="upload-demo" :file-list="filelist"
-                   :before-upload="beforeUpload" :http-request="uploadCustom" drag multiple>
+                   :before-upload="beforeUpload" :http-request="uploadCustom" :on-remove="removeCover" drag multiple>
             <i class="el-icon-upload"></i>
             <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
             <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
@@ -143,10 +144,19 @@
         var node=event.relatedTarget;
         $("#nav").append("<p id='pic'><img src='" + event.target.src + "' id='pic1'></p>");
         $(node).find('img').mousemove(function(e){
-            $("#pic").css({
-                "top": (e.pageY-1400)+"px",
-                "left":(e.pageX-800)+"px"
-            }).fadeIn("fast");
+            console.log(e.pageY+","+e.clientY)
+            if(e.pageY<=700){
+                $("#pic").css({
+                    "top": (e.clientY-1200)+"px",
+                    "left":(e.pageX-800)+"px"
+                }).fadeIn("fast");
+            }else if(e.pageY>700){
+                $("#pic").css({
+                    "top": (e.clientY-900)+"px",
+                    "left":(e.pageX-800)+"px"
+                }).fadeIn("fast");
+            }
+            
 
         });
 

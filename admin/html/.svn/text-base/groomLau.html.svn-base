@@ -180,9 +180,9 @@
             <el-tab-pane label="开课推荐" name="2">
                 <div class="search_area">
 
-                    <el-input placeholder="请输入课程" v-model="coursename"></el-input>
+                    <el-input placeholder="请输入课程名称" v-model="coursename"></el-input>
 
-                    <el-input placeholder="请输入教师" v-model="teaname" class="boot"></el-input>
+                    <el-input placeholder="请输入教师姓名" v-model="teaname" class="boot"></el-input>
 
                     <el-button type="primary" icon="search" class="boot-auto" @click="sl_loadData(1,8)">搜索</el-button>
                 </div>

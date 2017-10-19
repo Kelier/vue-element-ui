@@ -88,7 +88,7 @@
                     </div>
                     <div class="course_page">
                         <a id="a-setback" onclick="backTeaSet()"
-                           style="float: right;margin-right:2px;display: none;"><img src="../image/set-back.png"/></a>
+                           style="float: right;margin-right:2px;display: none;"><img src="../image/set-back.png" title="返回编辑页面"/></a>
                         <div class="course_title">
                             <span id="lessonName"></span>
                             <span class="span-config course-code" id="slCode"></span>
@@ -168,6 +168,9 @@
                                                                src="../image/exp2.png"><span
                                             style="font-size:small;margin-left: 3px;">实验</span></div>
                                     <div class="stu-wireless"><span style="font-size: small">&nbsp;</span></div>
+
+                                    <div class="tea-wire-mv" ><img style=" margin-left: -3px;margin-bottom: 3px" src="../image/mv_icon_w.png"><span style="font-size:small;margin-left: 3px;">视频</span></div>
+                                    <div class="tea-wireless-mv"><span style="font-size: small">&nbsp;</span></div>
                                 </div>
                             </div>
                         </div>

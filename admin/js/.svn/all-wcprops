@@ -1,19 +1,19 @@
 K 25
 svn:wc:ra_dav:version-url
 V 75
-/svn/wisdomEdus/!svn/ver/327/trunk/wisdomEduClient/src/main/webapp/admin/js
+/svn/wisdomEdus/!svn/ver/343/trunk/wisdomEduClient/src/main/webapp/admin/js
 END
 banner.js
 K 25
 svn:wc:ra_dav:version-url
 V 85
-/svn/wisdomEdus/!svn/ver/236/trunk/wisdomEduClient/src/main/webapp/admin/js/banner.js
+/svn/wisdomEdus/!svn/ver/351/trunk/wisdomEduClient/src/main/webapp/admin/js/banner.js
 END
 term.js
 K 25
 svn:wc:ra_dav:version-url
 V 83
-/svn/wisdomEdus/!svn/ver/284/trunk/wisdomEduClient/src/main/webapp/admin/js/term.js
+/svn/wisdomEdus/!svn/ver/351/trunk/wisdomEduClient/src/main/webapp/admin/js/term.js
 END
 module.min.js
 K 25
@@ -31,7 +31,7 @@ launch.js
 K 25
 svn:wc:ra_dav:version-url
 V 85
-/svn/wisdomEdus/!svn/ver/319/trunk/wisdomEduClient/src/main/webapp/admin/js/launch.js
+/svn/wisdomEdus/!svn/ver/351/trunk/wisdomEduClient/src/main/webapp/admin/js/launch.js
 END
 simditor.min.js
 K 25
@@ -49,13 +49,13 @@ classManage.js
 K 25
 svn:wc:ra_dav:version-url
 V 90
-/svn/wisdomEdus/!svn/ver/323/trunk/wisdomEduClient/src/main/webapp/admin/js/classManage.js
+/svn/wisdomEdus/!svn/ver/351/trunk/wisdomEduClient/src/main/webapp/admin/js/classManage.js
 END
 teaManage.js
 K 25
 svn:wc:ra_dav:version-url
 V 88
-/svn/wisdomEdus/!svn/ver/319/trunk/wisdomEduClient/src/main/webapp/admin/js/teaManage.js
+/svn/wisdomEdus/!svn/ver/351/trunk/wisdomEduClient/src/main/webapp/admin/js/teaManage.js
 END
 axios.js
 K 25
@@ -67,7 +67,7 @@ stuManage.js
 K 25
 svn:wc:ra_dav:version-url
 V 88
-/svn/wisdomEdus/!svn/ver/319/trunk/wisdomEduClient/src/main/webapp/admin/js/stuManage.js
+/svn/wisdomEdus/!svn/ver/351/trunk/wisdomEduClient/src/main/webapp/admin/js/stuManage.js
 END
 groomLau.js
 K 25
@@ -79,7 +79,7 @@ admin.js
 K 25
 svn:wc:ra_dav:version-url
 V 84
-/svn/wisdomEdus/!svn/ver/327/trunk/wisdomEduClient/src/main/webapp/admin/js/admin.js
+/svn/wisdomEdus/!svn/ver/351/trunk/wisdomEduClient/src/main/webapp/admin/js/admin.js
 END
 checkCourse.js
 K 25
@@ -97,5 +97,5 @@ course.js
 K 25
 svn:wc:ra_dav:version-url
 V 85
-/svn/wisdomEdus/!svn/ver/319/trunk/wisdomEduClient/src/main/webapp/admin/js/course.js
+/svn/wisdomEdus/!svn/ver/351/trunk/wisdomEduClient/src/main/webapp/admin/js/course.js
 END

@@ -22,10 +22,10 @@ var vue = new Vue({
                 setTimeout(() => {
 
                     if (pattern.test(value) === false) {
-                        return callback(new Error('请输入英文字母、数字、下划线或连接符“-”组合的编号'));
+                        return callback(new Error('仅支持字母、数字、下划线、-'));
                     } else {
-                        if (value.length > 15) {
-                            callback(new Error('编号不能大于15位'));
+                        if (value.length > 15||value.length()<8) {
+                            callback(new Error('编号应在8-15位之间'));
                         } else {
                             callback();
                         }
@@ -359,14 +359,14 @@ var vue = new Vue({
                                     message: '数据导入成功',
                                     type: type
                                 });
-
+                                $("#btn_file").val('');
+                                that.loadData(that.currentPage, that.pagesize);
+                                that.fullscreenLoading=false;
                             }
                         })
                         .catch(function (err) {
                             console.log(err);
                         });
-                    $("#btn_file").val('');
-                    that.loadData(that.currentPage, that.pagesize);
                     that.fullscreenLoading=false;
 
                     return true;

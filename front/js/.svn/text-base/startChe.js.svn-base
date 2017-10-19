@@ -111,7 +111,7 @@ $(function () {
         $("#lay").append("<iframe id='this'></iframe>");
     }
     if(localStorage.getItem("isP")=="preview"&&sessionStorage.getItem("role")=="1002"){
-        $("#lay").append("<img src='../image/screenshot.jpg'></img>");
+        $("#lay").append("<img src='../image/screenshot.jpg' id='search'></img>");
     }
 
 
@@ -210,7 +210,11 @@ $(function () {
     }
 
     //设置全屏监听
-    var doc = document.getElementById("this").contentDocument || document.frames["this"].document;
+    if(localStorage.getItem("isP")=="preview") {
+        var doc = document.getElementById("search")
+    }else{
+        var doc = document.getElementById("this").contentDocument || document.frames["this"].document;
+    }
 
     var che = document.getElementById("che-full");
     var content = document.getElementById("book-full");
@@ -250,6 +254,24 @@ $(function () {
 
     /*完成此节*/
     $("#archieve").click(function () {
+        $(".reveal-overlay").fadeOut();
+        $('body').loading({
+            loadingWidth: 240,
+            title: '关闭che空间中...',
+            name: 'test',
+            discription: '这是一个描述...',
+            direction: 'row',
+            type: 'origin',
+            originBg: '#BF5A1F',
+            originDivWidth: 30,
+            originDivHeight: 30,
+            originWidth: 4,
+            originHeight: 4,
+            smallLoading: false,
+            titleColor: '#BF5A1F',
+            loadingBg: '#2B2B2B',
+            loadingMaskBg: 'rgba(0,0,0,0.6)'
+        });
         $.ajax({
             url: globalurl + 'BChapter/complete',
             method: 'post',
@@ -260,6 +282,7 @@ $(function () {
                 chapterId: busId
             },
             success: function (res) {
+                removeLoading('test');
                 if (res.success) {
                     setInterval(function () {
                         window.location.href = 'stuCourse.html?id=' + Id;
@@ -423,10 +446,9 @@ $(function () {
 
     che.addEventListener("click", function () {
 
-
         launchFullScreen(r);
         $("#lay").css("display", "none");
-        $("#line").css("display", "none");
+        $("#line").fadeOut();
         $("#lay").addClass("full");
         $("#lay").fadeIn("slow");
         $("#container").css("display","flex");
@@ -435,7 +457,7 @@ $(function () {
     });
     content.addEventListener("click", function () {
         $("#book").css("display", "none");
-        $("#line").css("display", "none");
+        $("#line").fadeOut();
         $("#book").fadeIn("slow");
         launchFullScreen(book);
         $("#book").addClass("full");
@@ -444,8 +466,8 @@ $(function () {
         if (!checkFull()) {
             $("#lay").removeClass("full");
             $("#book").removeClass("full");
-            $("#line").css("position", "absolute");
-
+            $("#line").fadeIn();
+            $("#container").css("display","");
         }
     };
 

@@ -25,7 +25,7 @@ function cancelFullscreen() {
     } else if (document.webkitCancelFullScreen) {
         document.webkitCancelFullScreen();
     }
-
+    
 };
 
 function dumpFullscreen() {
@@ -170,13 +170,13 @@ $(function () {
     if(sessionStorage.getItem("role")=="1002")
         $("#gohis").attr('href', 'teaCourse.html?id=' + Id);
 
-    if (sessionStorage.getItem("timer") != null&&localStorage.getItem("isP")!="preview") {
+    if (localStorage.getItem("timer") != null&&localStorage.getItem("isP")!="preview") {
         $(".count-title").fadeIn();
         $(".countdown").fadeIn();
         $("#delay-it").fadeIn();
         $("#close-it").fadeIn();
         var startTime = new Date();//设置开启时间
-        startTime.setTime(parseInt(sessionStorage.getItem("timer")));
+        startTime.setTime(parseInt(localStorage.getItem("timer")));
         var countTop = formatDate(startTime);
         $('.countdown').downCount({
             date: countTop,
@@ -362,7 +362,7 @@ $(function () {
                     clearInterval(tempclock);
                     var startTime = new Date();
                     startTime.setTime(parseInt(res.result));
-                    sessionStorage.setItem("timer",res.result);
+                    localStorage.setItem("timer",res.result);
                     var countTop = formatDate(startTime);
                     $('.countdown').downCount({
                         date: countTop,
@@ -462,30 +462,39 @@ $(function () {
         launchFullScreen(book);
         $("#book").addClass("full");
     });
-    window.onresize = function () {
-        if (!checkFull()) {
-            $("#lay").removeClass("full");
-            $("#book").removeClass("full");
-            $("#line").fadeIn();
-            $("#container").css("display","");
-        }
-    };
-
-    function checkFull() {
-        var isFull = document.fullscreenEnabled || window.fullScreen || document.webkitIsFullScreen || document.msFullscreenEnabled;
-        if (isFull === undefined) isFull = false;
-        return isFull;
-    }
-
+    
 });
+
+
+
+
+
+
+function checkFull() {
+    var isFull = document.fullscreenEnabled || window.fullScreen || document.webkitIsFullScreen || document.msFullscreenEnabled;
+    if (isFull === undefined) isFull = false;
+    return isFull;
+}
+
+
 
 // 全屏事件Events
 document.addEventListener("fullscreenchange", function (e) {
-    console.dir(e);
+    cancleFull()
 });
 document.addEventListener("mozfullscreenchange", function (e) {
-    console.dir(e);
+    cancleFull()
 });
 document.addEventListener("webkitfullscreenchange", function (e) {
-    console.dir(e);
+    cancleFull()
 });
+
+function cancleFull() {
+    if (!checkFull()) {
+        $("#lay").removeClass("full");
+        $("#book").removeClass("full");
+        $("#line").show();
+        $("#container").css("display","");
+
+    }
+}

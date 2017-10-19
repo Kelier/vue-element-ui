@@ -16,9 +16,9 @@ var vue = new Vue({
             tformLabelWidth: '180px',
 
             //教师表单
-            teaform: [{
+            teaform: {
                 name: ''
-            }],
+            },
             //教师表格
             teaData: [],
 
@@ -53,16 +53,7 @@ var vue = new Vue({
             teatotal:4,
 
             //select
-            cities: [{
-                value: '1',
-                label: '2017-2018春'
-            }, {
-                value: '2',
-                label: '2017-2018秋'
-            }, {
-                value: '3',
-                label: '2016-2017春'
-            }],
+            cities: [],
 
             status: [{
                 value: '0',
@@ -79,7 +70,7 @@ var vue = new Vue({
             }],
 
 
-            select: '',
+            termthis: '',
             mode: '',
 
             //student info
@@ -108,13 +99,14 @@ var vue = new Vue({
             var term_data = [];
             var url = globalurl + 'BSl/queryBSlsByPagination';
             var _this = this;
+            console.log(_this.termthis)
             eduUtil.ajaxPostUtil(url, {
                     page: page,
                     rows: rows,
                     lessonName: _this.coursename,
                     teacherName: _this.teaname,
                     isOnline: _this.mode=='all'?'':_this.mode,
-                    termName: _this.select,
+                    termName: _this.termthis=="all"?"":_this.termthis,
                     sort:'sl.create_date desc'
                 }, (function (res) {
                 _this.bussid=[];
@@ -160,10 +152,14 @@ var vue = new Vue({
                     var pages = res.data.result;//查询过来的每页数据
                     for (var i = 0; i < pages.length; i++) {
                         var obj = {};
-                        obj.value = pages[i].code;
+                        obj.value = pages[i].name;
                         obj.label = pages[i].name;
                         term_data[i] = obj;
                     }
+                    var obj_all = {};
+                    obj_all.value = "all";
+                    obj_all.label = "全部";
+                    term_data[pages.length] = obj_all;
                     _this.cities = term_data;
 
 
@@ -543,13 +539,12 @@ var vue = new Vue({
             eduUtil.ajaxPostUtil(url, {
                     page: page,
                     rows: rows,
-                    code: '',
                     name: _this.teaform.name,
                     sort:'create_date desc'
                 }, (function (res) {
                     //  console.log(JSON.stringify(res.data.rows))
                     var pages = res.data.rows;//查询过来的每页数据
-                    _this.total = res.data.total;//总记录数
+                    _this.teatotal = res.data.total;//总记录数
                     for (var i = 0; i < pages.length; i++) {
                         var obj = {};
                         obj.id = i + 1;
@@ -636,8 +631,15 @@ var vue = new Vue({
                 studentCode:that.gridData[index].snum,
                 slCode:that.tempslCode
             },(res)=>{
-                if(res.data.success)
+                if(res.data.success){
                     rows.splice(index, 1);
+                    that.$notify({
+                        title: '提示信息',
+                        message: res.data.message,
+                        type: 'error'
+                    });
+                }
+                    
                 else{
                     that.$notify({
                         title: '提示信息',

@@ -196,7 +196,7 @@ function create_chapter(chName, index, handle) {
 /*
  * 目录创建节
  * */
-function create_section(seName, seId, chIndex, seIndex, handle) {
+function create_section(seName, seId, chIndex, seIndex, handle,vedioState,vedioUrl) {
     var em_dd = create("dd");
     var em_inline_section = create("div");
     var em_inline_item_trial = create("a");
@@ -235,9 +235,9 @@ function create_section(seName, seId, chIndex, seIndex, handle) {
         for (var i = 0; i < 6; i++)
             currentSt.append("<div></div>");
         if (exsit&&score!="-1") {
-            var css_inline = ["view_icon_stu", "view_code_stu", "view_preface_stu", "view_scheme_stu", "view_pro_stu", "view_exp_stu_1"];
+            var css_inline = ["view_icon_stu", "view_code_stu", "view_preface_stu",  "view_pro_stu", "view_exp_stu_1","view_scheme_stu"];
         } else {
-            var css_inline = ["view_icon_stu", "view_code_stu", "view_preface_stu", "view_scheme_stu", "view_pro_stu", "view_exp_stu"];
+            var css_inline = ["view_icon_stu", "view_code_stu", "view_preface_stu",  "view_pro_stu", "view_exp_stu","view_scheme_stu"];
         }
         for (var k = 0; k < 6; k++)
             currentSt.find("div").eq(k).addClass(css_inline[k]);
@@ -258,32 +258,48 @@ function create_section(seName, seId, chIndex, seIndex, handle) {
         /* find_item.eq(0).children().addClass(icon_demo[0]);*/
 
         var trial_demo = ["align-hollow hollow button", "align-hollow hollow button", "align-hollow hollow button alert"];
-        for (var j = 0; j < 2; j++) {
+        for (var j = 0; j < 3; j++) {
             if (j == 1) {
                 if (exsit&&score!="-1") {
-                    find_item.eq(j + 4).append("<span style='size: 13px;margin:0 3px 0 6px;display: inline-block;width: 45px;'>" + score + "分</span><a style='margin:0 5px'></a>");
+                    find_item.eq(j + 3).append("<span style='size: 13px;margin:0 3px 0 6px;display: inline-block;width: 45px;'>" + score + "分</span><a style='margin:0 5px'></a>");
 
                 } else {
-                    find_item.eq(j + 4).append("<a></a>");
+                    find_item.eq(j + 3).append("<a></a>");
                 }
 
             } else {
-                find_item.eq(j + 4).append("<a></a>");
+                find_item.eq(j + 3).append("<a></a>");
             }
 
             /*  find_item.eq(j + 4).children().addClass(trial_demo[j]);*/
 
         }
-        find_item.eq(4).children().attr('href', 'proBook.html?businessId=' + seId + '&a=' + encodeURI(encodeURI(cpName)) + '&b=' + encodeURI(encodeURI(seName)) + '&c=' + seIndex + '&d=' + GetQueryString('id'));
-        find_item.eq(5).find('a').attr('onclick', 'toJudgeOpen("' + seId + '",event)');
+
+        var lessonAbout={};
+        lessonAbout.cname=encodeURI(encodeURI(cpName));
+        lessonAbout.nodePid=encodeURI(encodeURI($("#catalog-content").find("dt").eq($("#catalog-content").find("dt").length-1)[0].children[0].children[0].innerHTML));
+        lessonAbout.nodePname=encodeURI(encodeURI($("#catalog-content").find("dt").eq($("#catalog-content").find("dt").length-1)[0].children[0].children[1].innerHTML));
+        lessonAbout.nodeCid=encodeURI(encodeURI('第' + (seIndex + 1) + '节'));
+        lessonAbout.nodeCname=encodeURI(encodeURI(seName));
+        var res=JSON.stringify(lessonAbout);
+        find_item.eq(3).children().attr('href', 'proBook.html?businessId=' + seId + '&a=' + encodeURI(encodeURI(cpName)) + '&b=' + encodeURI(encodeURI(seName)) + '&c=' + seIndex + '&d=' + GetQueryString('id'));
+        find_item.eq(4).find('a').attr('onclick', 'toJudgeOpen("' + seId + '",event)');
+        find_item.eq(5).children().attr('href', 'seeVedio.html?businessId=' + seId +'&id=' + GetQueryString('id')+"&courseinfo="+res+"&vedioUrl="+encodeURI(encodeURI(vedioUrl)));
+        if(vedioState=="2"||vedioState=="5"){
+            find_item.eq(5).children().html("<img title='课程视频' src='../image/mv_icon.png'>");
+        }else{
+            find_item.eq(5).children().removeAttr('href');
+            find_item.eq(5).children().css('cursor','default');
+            find_item.eq(5).children().html("<img title='未开设视频' src='../image/mv_icon_no.png'>");
+        }
 
         //往里塞值
         find_item.eq(1).html('第' + (seIndex + 1) + '节');
         find_item.eq(2).html(seName);
-        find_item.eq(4).children().html("<img title='项目任务书' src='../image/pro.png'>");
+        find_item.eq(3).children().html("<img title='项目任务书' src='../image/pro.png'>");
 
         if (sessionStorage.getItem("role") == '1003')
-            find_item.eq(5).children("a").html("<img title='实验' style='margin-bottom:6px' src='../image/exp.png'>");
+            find_item.eq(4).children("a").html("<img title='实验' style='margin-bottom:6px' src='../image/exp.png'>");
     }
 
     if (handle == 'panel2load') {
@@ -370,6 +386,8 @@ function loadSlDetail() {
                     $('#coverUrl').attr('src', imagepath + obj.coverUrl);
                     cpName = obj.lessonName;
                     $(".stu-wireless").find("span")[0].innerHTML = obj.isTest;
+
+                    $(".tea-wireless-mv").find("span")[0].innerHTML = obj.video;
                     $("#course_info").show(function () {
                         minify();
                     });
@@ -435,7 +453,7 @@ function loadChapter() {
                         if (list[i].childList.length > 0) {
                             for (var j = list[i].childList.length - 1; j >= 0; j--) {
 
-                                create_section(list[i].childList[j].chapterName, list[i].childList[j].businessId, i, j, panelType);
+                                create_section(list[i].childList[j].chapterName, list[i].childList[j].businessId, i, j, panelType,list[i].childList[j].isTest,list[i].childList[j].videoUrl);
                                 // create_section(list[i].childList[j].chapterName, i, j, 'panel2load');
                             }
 

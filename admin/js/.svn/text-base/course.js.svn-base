@@ -217,7 +217,10 @@ var vue = new Vue({
 
                     axios.post(globalurl + 'BLesson/excelImport', _formData, _config)
                         .then(function (response) {
+                            that.loadData(that.currentPage, that.pagesize);
+                            that.fullscreenLoading=false;
 
+                            $("#btn_file").val('');
                             var type = eduUtil.tip_custom(response.data.success);
                             // console.log(type);
                             if (type == "error") {
@@ -238,10 +241,7 @@ var vue = new Vue({
 
 
                             }
-                            that.loadData(that.currentPage, that.pagesize);
-                            that.fullscreenLoading=false;
-
-                            $("#btn_file").val('');
+                            
                         })
                         .catch(function (err) {
                             console.log(err);
@@ -308,26 +308,35 @@ var vue = new Vue({
             //confirm image
             confirm() {
                 var _this = this;
-                eduUtil.ajaxPostUtil(globalurl + 'BLesson/picImport', {
-                    importFile: cover,
-                    code: _this.teacode,
-                }, res => {
-                    _this.dialogVisible = false;
-                    var type = res.data.success;
-                    var message = res.data.message;
-                    type = eduUtil.tip_custom(type);
+                if(cover=="undefined"||cover==null){
                     _this.$notify({
                         title: '提示信息',
-                        message: message,
-                        type: type
+                        message: "上传文件不能为空",
+                        type: "warning"
                     });
-                    _this.loadData(_this.currentPage, _this.pagesize);
+                }else{
+                    eduUtil.ajaxPostUtil(globalurl + 'BLesson/picImport', {
+                        importFile: cover,
+                        code: _this.teacode,
+                    }, res => {
+                        _this.dialogVisible = false;
+                        var type = res.data.success;
+                        var message = res.data.message;
+                        type = eduUtil.tip_custom(type);
+                        _this.$notify({
+                            title: '提示信息',
+                            message: message,
+                            type: type
+                        });
+                        _this.loadData(_this.currentPage, _this.pagesize);
 
-                }, err => {
+                    }, err => {
 
-                    console.log(err);
-                })
+                        console.log(err);
+                    })
 
+                }
+                
 
             },
             beforeUpload(file){
@@ -339,6 +348,10 @@ var vue = new Vue({
             uploadCustom(){
                 cover = this.filelist[0];
 
+            },
+            removeCover(file,fileList){
+                console.log(fileList);
+                cover=null;
             },
 
             //改变课程

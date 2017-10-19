@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 66
-/svn/wisdomEdus/!svn/ver/330/trunk/wisdomEduClient/src/main/webapp
+/svn/wisdomEdus/!svn/ver/343/trunk/wisdomEduClient/src/main/webapp
 END
 .bowerrc
 K 25
@@ -13,13 +13,13 @@ gulpfile.js
 K 25
 svn:wc:ra_dav:version-url
 V 78
-/svn/wisdomEdus/!svn/ver/305/trunk/wisdomEduClient/src/main/webapp/gulpfile.js
+/svn/wisdomEdus/!svn/ver/343/trunk/wisdomEduClient/src/main/webapp/gulpfile.js
 END
 package.json
 K 25
 svn:wc:ra_dav:version-url
 V 79
-/svn/wisdomEdus/!svn/ver/327/trunk/wisdomEduClient/src/main/webapp/package.json
+/svn/wisdomEdus/!svn/ver/343/trunk/wisdomEduClient/src/main/webapp/package.json
 END
 rev.json
 K 25
