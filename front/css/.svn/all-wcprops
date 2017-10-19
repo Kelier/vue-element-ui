@@ -19,7 +19,7 @@ che.css
 K 25
 svn:wc:ra_dav:version-url
 V 84
-/svn/wisdomEdus/!svn/ver/351/trunk/wisdomEduClient/src/main/webapp/front/css/che.css
+/svn/wisdomEdus/!svn/ver/355/trunk/wisdomEduClient/src/main/webapp/front/css/che.css
 END
 course.css
 K 25
@@ -69,11 +69,11 @@ svn:wc:ra_dav:version-url
 V 92
 /svn/wisdomEdus/!svn/ver/343/trunk/wisdomEduClient/src/main/webapp/front/css/uploadVedio.css
 END
-pagination-my.css
+toastr.css
 K 25
 svn:wc:ra_dav:version-url
-V 94
-/svn/wisdomEdus/!svn/ver/299/trunk/wisdomEduClient/src/main/webapp/front/css/pagination-my.css
+V 87
+/svn/wisdomEdus/!svn/ver/323/trunk/wisdomEduClient/src/main/webapp/front/css/toastr.css
 END
 news.css
 K 25
@@ -81,11 +81,11 @@ svn:wc:ra_dav:version-url
 V 85
 /svn/wisdomEdus/!svn/ver/205/trunk/wisdomEduClient/src/main/webapp/front/css/news.css
 END
-toastr.css
+pagination-my.css
 K 25
 svn:wc:ra_dav:version-url
-V 87
-/svn/wisdomEdus/!svn/ver/323/trunk/wisdomEduClient/src/main/webapp/front/css/toastr.css
+V 94
+/svn/wisdomEdus/!svn/ver/299/trunk/wisdomEduClient/src/main/webapp/front/css/pagination-my.css
 END
 loading.css
 K 25
