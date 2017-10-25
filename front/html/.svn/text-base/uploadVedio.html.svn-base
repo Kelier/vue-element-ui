@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>上传课程视频</title>
+    <link rel="shortcut icon" href="../image/icon.ico"/>
     <link  rel="stylesheet" href="../css/flowplayer/skin/skin.css">
     <link rel="stylesheet" href="../css/uploadVedio.css">
     <link rel="stylesheet" href="../css/toastr.css">
 </head>
 <body>
     <div class="course-info-mv" style="display: flex;justify-content: center">
-        <h4 style="font-size: 1.5625rem;font-weight: 400;"></h4>
+        <h4></h4>
     </div>
 
     <div class="player"  data-swf="flowplayer.swf" data-ratio="0.4167">
@@ -18,15 +19,19 @@
 
 
     <br><br>
-    <div style="display: flex;justify-content: center;">
+    <div class="btn_div">
         <button id="browse" type="file" class="uv_button" >选择文件</button>
-        <input id="input_filename" class="uv_input" style="margin-right: 30px" disabled>
+
         <button id="start_upload" class="uv_button" >开始上传</button>
         <div class="uv_input">
-            <input id="input_progress" class="uv_input_progress"  disabled>
+            <div id="input_progress" class="uv_input_progress" ></div>
         </div>
-
+        <div>
+            <span id="span_filename"></span>
+            <span id="span_percent"></span>
+        </div>
     </div>
+
     <br><br><br><br>
 
 </body>

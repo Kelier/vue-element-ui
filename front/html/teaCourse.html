@@ -62,7 +62,7 @@
                         <img id="coverUrl" src="" alt=""
                              class="cover">
                         <!--<div class="lay-pen" id="lay_pen">-->
-                            <a data-open="cover_modal" class="pencil-lay"><img  src='../image/edit1.png' title="修改封面"></a>
+                            <a data-open="cover_modal" class="pencil-lay"><img  src='../image/edit1.png'></a>
                     <!--    </div>-->
                         <!-- This is the first modal -->
                         <div class="reveal cover_modal" id="cover_modal" data-reveal>
@@ -70,17 +70,22 @@
                             <p class="lead">
                             <hr>
                             </p>
-                            <div class="image-cover" id="image_cover"><img src="" id="cover_path">
+                            <button class="btn-select"  id="btn_select_file">
+                                点击选择文件
+                            </button>
+                            <!--<div class="image-cover" id="image_cover"><img src="" id="cover_path">-->
+                            <!--</div>-->
+                            <div class="div_prog">
+                                <div id="prog_file"></div>
                             </div>
-                            <input type="file" style="display: none;" id="file_cover" onchange="change_cover()">
+                           <!-- <input type="file" style="display: none;" id="file_cover" onchange="change_cover()">-->
                             <p class="lead-cover">可以上传jpg，gif，png格式的文件，图片建议尺寸至少为480X270px，文件大小不要超过2M</p>
                             <div class="padding-button">
-                                <button class="upload-cover-button button" onclick="upload_cover()" id="change-image">
-                                    选择要上传的图片
-                                </button>
-                                <button class="upload-cover-button button save-button" onclick="save_cover()"
-                                        id="save-image">
-                                    保存
+                                <!--<button class="upload-cover-button button" onclick="upload_cover()" id="change-image">-->
+                                    <!--选择要上传的图片-->
+                                <!--</button>-->
+                                <button class="upload-cover-button button" onclick="save_cover()">
+                                    上传封面
                                 </button>
                             </div>
 
@@ -98,6 +103,9 @@
                             <button class="btn-select"  id="btn_select_data">
                                 点击选择文件
                             </button>
+                            <div class="div_prog">
+                                <div id="prog_data"></div>
+                            </div>
                             <input type="file" style="display: none;" id="" onchange="change_cover()">
                             <p class="lead-cover">请添加一个文件，如果多文件请打包后再添加，文件大小不要超过10M</p>
                             <div class="padding-button">
@@ -108,7 +116,7 @@
                             </div>
 
                             <div class="upload-cover"></div>
-                            <button class="close-button" data-close aria-label="Close reveal" type="button">
+                            <button id="#btn_close_data" class="close-button" data-close aria-label="Close reveal" type="button">
                                 <span aria-hidden="true" class="close-custom">&times;</span>
                             </button>
                         </div>
@@ -119,13 +127,14 @@
                         <div class="course_title">
                             <span id="lessonName"></span>
                             <span class="span-config course-code" id="slCode"></span>
-                            <span class="span-config" id="span_config"><a onclick="echo_title()"><img  src='../image/edit2.png' title="修改简介"></a></span>
+                            <span class="span-config" id="span_config"><a onclick="echo_title()"><img  src='../image/edit2.png'></a></span>
                             <!--<div class="tri-label" id="tri-label"></div>-->
                             <!--<span class="tri-title" id="tri-title">已发布</span>-->
                         </div>
                         <div class="text_edit"><textarea name="title_edit" id="title_edit" placeholder="请输入课程简介"
                                                          cols="30"
                                                          rows="10" class="title-edit"
+                                                         onchange="saveUpateInfo()"
                                                          onkeydown="invokeHandle(event)"></textarea></div>
                         <div class="course_info" id="course_info" >
 
@@ -171,7 +180,7 @@
                             <div class="chapter-form">
                                  <label style="width: 80px;height: 40px;font-size: 1rem">章标题 </label>
                                   <div class="medium-10 columns">
-                             <input type="text" placeholder="" id="add_chapter_content">
+                             <input type="text" placeholder="最多输入60个字符" maxlength="60" id="add_chapter_content">
                             </div>
 
                             </div>
@@ -224,7 +233,7 @@
                             <div class="chapter-form">
                                 <label style="width: 80px;height: 40px; font-size: 1rem">节标题 </label>
                                 <div class="medium-10 columns">
-                                    <input type="text" placeholder="" id="edit_section_content">
+                                    <input type="text" placeholder="最多输入60个字符" maxlength="60" id="edit_section_content">
                                 </div>
 
                             </div>
@@ -233,10 +242,12 @@
                                 <label style="width: 80px;height: 40px; font-size: 1rem">教学手段 </label>
                                 <fieldset class="large-6 columns">
 
-                                    <input id="edit_trial_check" type="checkbox"><label
+                                    <input id="edit_trial_check" type="checkbox" checked disabled ><label
                                         for="edit_trial_check">实验</label>
                                     <input id="edit_video_check" type="checkbox"><label
                                         for="edit_video_check">视频</label>
+                                     <input id="edit_data_check" type="checkbox"><label
+                                        for="edit_data_check">资料</label>
                                 </fieldset>
 
                             </div>
@@ -296,7 +307,7 @@
                                 <div class="chapter-form">
                                     <label style="width: 80px;height: 40px; font-size: 1rem">节标题 </label>
                                     <div class="medium-10 columns">
-                                        <input type="text" placeholder="" id="add_section_title">
+                                        <input type="text" placeholder="最多输入60个字符" maxlength="60" id="add_section_title">
                                     </div>
 
                                 </div>
@@ -304,8 +315,9 @@
                                     <label style="width: 80px;height: 40px; font-size: 1rem">教学手段 </label>
                                     <fieldset class="large-6 columns">
 
-                                        <input id="trial_check" type="checkbox"><label for="trial_check">实验</label>
+                                        <input id="trial_check" type="checkbox" checked disabled><label for="trial_check" >实验</label>
                                         <input id="video_check" type="checkbox"><label for="video_check">视频</label>
+                                        <input id="data_check" type="checkbox"><label for="data_check">资料</label>
                                     </fieldset>
 
                                 </div>

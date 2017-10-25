@@ -65,6 +65,7 @@ function checkOldPwd() {
                 $("#old-pwd-ok").css("display","none");
                 $("#old-pwd").css("border","1px solid #FF4646");
                 $("#old-pwd-tip").css("color","#FF4646");
+                $("#old-pwd-tip").html("所输入的密码与当前用户不匹配");
                 $("#old-pwd-tip").show();
             }
         },
@@ -79,6 +80,13 @@ function checkOldPwd() {
 function savePwd() {
     confirmPwd();
     checkPwd();
+    if(!oldPwd_status){
+        $("#old-pwd-ok").css("display","none");
+        $("#old-pwd").css("border","1px solid #FF4646");
+        $("#old-pwd-tip").css("color","#FF4646");
+        $("#old-pwd-tip").html("请输入当前用户的登录密码");
+        $("#old-pwd-tip").show();
+    }
     console.log(cfPwd_status+"--"+ckPwd_status+"---"+oldPwd_status);
     if(!cfPwd_status||!ckPwd_status||!oldPwd_status){
         return;

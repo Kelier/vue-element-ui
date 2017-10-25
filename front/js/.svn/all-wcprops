@@ -1,13 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 75
-/svn/wisdomEdus/!svn/ver/343/trunk/wisdomEduClient/src/main/webapp/front/js
-END
-silder.min.js
-K 25
-svn:wc:ra_dav:version-url
-V 89
-/svn/wisdomEdus/!svn/ver/351/trunk/wisdomEduClient/src/main/webapp/front/js/silder.min.js
+/svn/wisdomEdus/!svn/ver/360/trunk/wisdomEduClient/src/main/webapp/front/js
 END
 Moxie.swf
 K 25
@@ -15,23 +9,17 @@ svn:wc:ra_dav:version-url
 V 85
 /svn/wisdomEdus/!svn/ver/343/trunk/wisdomEduClient/src/main/webapp/front/js/Moxie.swf
 END
+silder.min.js
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/wisdomEdus/!svn/ver/351/trunk/wisdomEduClient/src/main/webapp/front/js/silder.min.js
+END
 flowplayer.min.js
 K 25
 svn:wc:ra_dav:version-url
 V 93
 /svn/wisdomEdus/!svn/ver/343/trunk/wisdomEduClient/src/main/webapp/front/js/flowplayer.min.js
-END
-module.min.js
-K 25
-svn:wc:ra_dav:version-url
-V 89
-/svn/wisdomEdus/!svn/ver/128/trunk/wisdomEduClient/src/main/webapp/front/js/module.min.js
-END
-jquery.twbsPagination.js
-K 25
-svn:wc:ra_dav:version-url
-V 100
-/svn/wisdomEdus/!svn/ver/296/trunk/wisdomEduClient/src/main/webapp/front/js/jquery.twbsPagination.js
 END
 index.js
 K 25
@@ -39,11 +27,17 @@ svn:wc:ra_dav:version-url
 V 84
 /svn/wisdomEdus/!svn/ver/351/trunk/wisdomEduClient/src/main/webapp/front/js/index.js
 END
-login.js
+jquery.twbsPagination.js
 K 25
 svn:wc:ra_dav:version-url
-V 84
-/svn/wisdomEdus/!svn/ver/301/trunk/wisdomEduClient/src/main/webapp/front/js/login.js
+V 100
+/svn/wisdomEdus/!svn/ver/296/trunk/wisdomEduClient/src/main/webapp/front/js/jquery.twbsPagination.js
+END
+module.min.js
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/wisdomEdus/!svn/ver/128/trunk/wisdomEduClient/src/main/webapp/front/js/module.min.js
 END
 editor.min.js
 K 25
@@ -51,17 +45,11 @@ svn:wc:ra_dav:version-url
 V 89
 /svn/wisdomEdus/!svn/ver/264/trunk/wisdomEduClient/src/main/webapp/front/js/editor.min.js
 END
-hot.min.js
+login.js
 K 25
 svn:wc:ra_dav:version-url
-V 86
-/svn/wisdomEdus/!svn/ver/128/trunk/wisdomEduClient/src/main/webapp/front/js/hot.min.js
-END
-hasToken.js
-K 25
-svn:wc:ra_dav:version-url
-V 87
-/svn/wisdomEdus/!svn/ver/154/trunk/wisdomEduClient/src/main/webapp/front/js/hasToken.js
+V 84
+/svn/wisdomEdus/!svn/ver/360/trunk/wisdomEduClient/src/main/webapp/front/js/login.js
 END
 news.js
 K 25
@@ -69,11 +57,23 @@ svn:wc:ra_dav:version-url
 V 83
 /svn/wisdomEdus/!svn/ver/209/trunk/wisdomEduClient/src/main/webapp/front/js/news.js
 END
-loading.js
+hasToken.js
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/wisdomEdus/!svn/ver/154/trunk/wisdomEduClient/src/main/webapp/front/js/hasToken.js
+END
+hot.min.js
 K 25
 svn:wc:ra_dav:version-url
 V 86
-/svn/wisdomEdus/!svn/ver/271/trunk/wisdomEduClient/src/main/webapp/front/js/loading.js
+/svn/wisdomEdus/!svn/ver/128/trunk/wisdomEduClient/src/main/webapp/front/js/hot.min.js
+END
+startChe.js
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/wisdomEdus/!svn/ver/355/trunk/wisdomEduClient/src/main/webapp/front/js/startChe.js
 END
 jquery.toastmessage.js
 K 25
@@ -81,11 +81,11 @@ svn:wc:ra_dav:version-url
 V 98
 /svn/wisdomEdus/!svn/ver/296/trunk/wisdomEduClient/src/main/webapp/front/js/jquery.toastmessage.js
 END
-startChe.js
+loading.js
 K 25
 svn:wc:ra_dav:version-url
-V 87
-/svn/wisdomEdus/!svn/ver/355/trunk/wisdomEduClient/src/main/webapp/front/js/startChe.js
+V 86
+/svn/wisdomEdus/!svn/ver/271/trunk/wisdomEduClient/src/main/webapp/front/js/loading.js
 END
 checkCurrent.js
 K 25
@@ -115,7 +115,7 @@ uploadMv.js
 K 25
 svn:wc:ra_dav:version-url
 V 87
-/svn/wisdomEdus/!svn/ver/343/trunk/wisdomEduClient/src/main/webapp/front/js/uploadMv.js
+/svn/wisdomEdus/!svn/ver/360/trunk/wisdomEduClient/src/main/webapp/front/js/uploadMv.js
 END
 simditor.js
 K 25
@@ -133,7 +133,7 @@ stucourse.js
 K 25
 svn:wc:ra_dav:version-url
 V 88
-/svn/wisdomEdus/!svn/ver/355/trunk/wisdomEduClient/src/main/webapp/front/js/stucourse.js
+/svn/wisdomEdus/!svn/ver/360/trunk/wisdomEduClient/src/main/webapp/front/js/stucourse.js
 END
 Moxie.xap
 K 25
@@ -157,7 +157,7 @@ course.js
 K 25
 svn:wc:ra_dav:version-url
 V 85
-/svn/wisdomEdus/!svn/ver/355/trunk/wisdomEduClient/src/main/webapp/front/js/course.js
+/svn/wisdomEdus/!svn/ver/360/trunk/wisdomEduClient/src/main/webapp/front/js/course.js
 END
 editMark.js
 K 25
@@ -169,7 +169,7 @@ modifyPwd.js
 K 25
 svn:wc:ra_dav:version-url
 V 88
-/svn/wisdomEdus/!svn/ver/291/trunk/wisdomEduClient/src/main/webapp/front/js/modifyPwd.js
+/svn/wisdomEdus/!svn/ver/360/trunk/wisdomEduClient/src/main/webapp/front/js/modifyPwd.js
 END
 seeVedio.js
 K 25

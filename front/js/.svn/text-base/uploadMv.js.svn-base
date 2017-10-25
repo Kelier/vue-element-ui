@@ -7,7 +7,7 @@ $(function () {
     var getInfo = JSON.parse(GetQueryString("courseinfo"));
     console.log(getInfo);
     var vedioUrl = GetQueryString("vedioUrl");
-    var str ="《"+ decodeURI(decodeURI(getInfo.cname)) + "》&nbsp;&nbsp;&nbsp;&nbsp;" + decodeURI(decodeURI(getInfo.nodePid)) + " " + decodeURI(decodeURI(getInfo.nodePname)) + "---" + decodeURI(decodeURI(getInfo.nodeCid)) + " " + decodeURI(decodeURI(getInfo.nodeCname));
+    var str ="《"+ decodeURI(decodeURI(getInfo.cname)) + "》&nbsp;&nbsp;&nbsp;&nbsp;" + decodeURI(decodeURI(getInfo.nodePid)) + " " + decodeURI(decodeURI(getInfo.nodePname)) + " ——  " + decodeURI(decodeURI(getInfo.nodeCid)) + " " + decodeURI(decodeURI(getInfo.nodeCname));
     console.log(str+vedioUrl);
     $(".course-info-mv").find('h4').html(str);
     var thePlayer = flowplayer(".player", {
@@ -64,6 +64,7 @@ $(function () {
         multipart_params:{
             lessonId:GetQueryString('courseId'),
             chapterId:GetQueryString('businessId'),
+            type:"0"
         },
         flash_swf_url: './Moxie.swf', //swf文件，当需要使用swf方式进行上传时需要配置该参数
         silverlight_xap_url: './Moxie.xap' //silverlight文件，当需要使用silverlight方式进行上传时需要配置该参数
@@ -78,7 +79,9 @@ $(function () {
         //我们可以利用这些参数提供的信息来做比如更新UI，提示上传进度等操作
         console.log(files);
         var fileName = uploader.getFile(files[0].id);
-        $("#input_filename").val(files[files.length-1].name);
+        $("#span_filename").html(files[files.length-1].name);
+        $("#input_progress").css("width","0");
+        $("#span_percent").html("");
         console.log("added");
         console.log(fileName);
     });
@@ -86,6 +89,7 @@ $(function () {
         //每个事件监听函数都会传入一些很有用的参数，
         //我们可以利用这些参数提供的信息来做比如更新UI，提示上传进度等操作
         $("#input_progress").css("width",file.percent+"%");
+        $("#span_percent").html(file.percent+"%");
     });
     uploader.bind('Error', function(uploader, errObject) {
         //每个事件监听函数都会传入一些很有用的参数，

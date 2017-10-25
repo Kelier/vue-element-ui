@@ -11,9 +11,10 @@ function loginIndex() {
             password: $("#password").val()
         },
         success: function (res) {
-            var token = res.result.token;
-            var realtoken = 'Bearer ' + token;
+
             if (res.success) {
+                var token = res.result.token;
+                var realtoken = 'Bearer ' + token;
                 if (res.result.roleCode == "1001") {
                     toastr.warning('您的用户名或密码不正确');
                     return;

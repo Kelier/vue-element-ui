@@ -7,6 +7,7 @@
 }
 .inline-index-stu{
     display:inline-block;
+    float:left;
 }
 .inline-title-stu{
     display:inline-block;
@@ -32,10 +33,17 @@
 .view_icon_stu,.view_code_stu,.view_preface_stu,.view_scheme_stu,.view_pro_stu,.view_exp_stu_1,.view_exp_stu{
     display: inline-block;
 }
+.view_icon_stu{
+    float:left;
+}
 .view_icon_stu,.view_code_stu,.view_preface_stu{
     margin-left: 30px;
 }
-.view_exp_stu,.view_pro_stu,.view_exp_stu_1,.view_scheme_stu{
+.view_scheme_stu,.view_upload_stu {
+    min-height: 39px;
+    min-width: 18px;
+}
+.view_exp_stu,.view_pro_stu,.view_exp_stu_1,.view_scheme_stu,.view_upload_stu{
     float: right;
     margin-right: 39px;
 }
@@ -138,4 +146,13 @@ div.inline-index-stu,div.inline-title-stu{
 div.view_code_stu,div.view_preface_stu{
     font-size: 14px;
     font-weight: 400;
+}
+.view_code_stu{
+    float: left;
+}
+.view_preface_stu,.inline-title-stu{
+    width:500px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
 }

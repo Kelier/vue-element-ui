@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 77
-/svn/wisdomEdus/!svn/ver/343/trunk/wisdomEduClient/src/main/webapp/front/html
+/svn/wisdomEdus/!svn/ver/360/trunk/wisdomEduClient/src/main/webapp/front/html
 END
 stuCourse.html
 K 25
@@ -37,7 +37,7 @@ seeVedio.html
 K 25
 svn:wc:ra_dav:version-url
 V 91
-/svn/wisdomEdus/!svn/ver/343/trunk/wisdomEduClient/src/main/webapp/front/html/seeVedio.html
+/svn/wisdomEdus/!svn/ver/360/trunk/wisdomEduClient/src/main/webapp/front/html/seeVedio.html
 END
 eclipse.html
 K 25
@@ -61,13 +61,13 @@ login.html
 K 25
 svn:wc:ra_dav:version-url
 V 88
-/svn/wisdomEdus/!svn/ver/343/trunk/wisdomEduClient/src/main/webapp/front/html/login.html
+/svn/wisdomEdus/!svn/ver/360/trunk/wisdomEduClient/src/main/webapp/front/html/login.html
 END
 teaCourse.html
 K 25
 svn:wc:ra_dav:version-url
 V 92
-/svn/wisdomEdus/!svn/ver/351/trunk/wisdomEduClient/src/main/webapp/front/html/teaCourse.html
+/svn/wisdomEdus/!svn/ver/360/trunk/wisdomEduClient/src/main/webapp/front/html/teaCourse.html
 END
 proBook.html
 K 25
@@ -79,5 +79,5 @@ uploadVedio.html
 K 25
 svn:wc:ra_dav:version-url
 V 94
-/svn/wisdomEdus/!svn/ver/343/trunk/wisdomEduClient/src/main/webapp/front/html/uploadVedio.html
+/svn/wisdomEdus/!svn/ver/360/trunk/wisdomEduClient/src/main/webapp/front/html/uploadVedio.html
 END

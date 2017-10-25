@@ -1,4 +1,3 @@
-
 /**
  * Created by John Yan on 7/25/2017.
  */
@@ -126,8 +125,7 @@ function invokeHandle(e) {
     var key = e.keyCode;
     if (key == 13) {
         // alert("回车键");
-        var content = $("#title_edit").val();
-        $("#course_info").html(content);
+
 
         saveUpateInfo();
 
@@ -158,6 +156,8 @@ function showCourseSummary() {
 }
 
 function saveUpateInfo() {
+    var content = $("#title_edit").val();
+    $("#course_info").html(content);
     $.ajax({
         url: globalurl + 'BSl/updateNotes',
         method: 'post',
@@ -192,13 +192,57 @@ function minify() {
         $("#mini_more").css("display", "none");
     }
 }
+var addFileCount=0;
+var uploader_cover = new plupload.Uploader({
+    browse_button: 'btn_select_file', //触发文件选择对话框的按钮，为那个元素id
+    url:  globalurl +'BSl/uploadCover', //服务器端的上传页面地址
+    filters:{
+        max_file_size:'10mb',
+        prevent_duplicates:true,
+        // mime_types : [ //只允许上传图片和zip文件
+        //     { title : "Zip files", extensions : "zip" }
+        //     ],
+        prevent_duplicates : true //不允许选取重复文件
+    },
+    headers:{
+        Authorization:sessionStorage.getItem("token"),
+    },
+    multipart_params:{
+        id:GetQueryString('id')
+    },
+    flash_swf_url: './Moxie.swf', //swf文件，当需要使用swf方式进行上传时需要配置该参数
+    silverlight_xap_url: './Moxie.xap' //silverlight文件，当需要使用silverlight方式进行上传时需要配置该参数
+});
+uploader_cover.init();
+uploader_cover.bind('FilesAdded', function(uploader, files) {
+    var fileName = uploader.getFile(files[0].id);
+    $("#btn_select_file").html(files[files.length-1].name);
+    addFileCount++;
+    console.log("added");
+    console.log(fileName);
+});
+uploader_cover.bind('UploadProgress', function(uploader, file) {
+    //每个事件监听函数都会传入一些很有用的参数，
+    //我们可以利用这些参数提供的信息来做比如更新UI，提示上传进度等操作
+    $("#prog_file").css("width",file.percent+"%");
+});
+uploader_cover.bind('UploadComplete', function(uploader, file) {
+    //每个事件监听函数都会传入一些很有用的参数，
+    //我们可以利用这些参数提供的信息来做比如更新UI，提示上传进度等操作
+    console.log("UploadComplete");
+    addFileCount=0;
+    toastr.success('课程封面上传成功！');
+    location.reload(true);
+    // window.location.reload();
+
+});
 
 /*
  * 上传封面
  * */
-function upload_cover() {
-    $("#file_cover").click();
-}
+// function upload_cover() {
+//     $("#file_cover").click();
+// }
 function change_cover() {
     var dom = document.getElementById("file_cover");
     console.log(dom.files);
@@ -242,10 +286,15 @@ function tailor() {
  * 保存封面
  * */
 function save_cover() {
-
-    $("#save-image").attr("onclick", function () {
-        tailor();
-    });
+    if(addFileCount==0){
+        toastr.warning("请先添加一张图片！");
+        return;
+    }
+    // if(uploader_cover.)
+    uploader_cover.start();
+    // $("#save-image").attr("onclick", function () {
+    //     tailor();
+    // });
 }
 
 
@@ -276,21 +325,35 @@ uploader_data.init();
 uploader_data.bind('FilesAdded', function(uploader, files) {
     var fileName = uploader.getFile(files[0].id);
     $("#btn_select_data").html(files[files.length-1].name);
+    addFileCount++;
     console.log("added");
     console.log(fileName);
 });
-// uploader_data.bind('BeforeUpload', function (uploader, files) {
-//     uploader.settings.multipart_params = {
-//         lessonId:"sadfdasfd",
-//         chapterId:"fsadfasf",
-//         type:'1'
-//     };
-//     console.log(uploader);
-//     console.log(files);
-// });
+uploader_data.bind('UploadProgress', function(uploader, file) {
+    //每个事件监听函数都会传入一些很有用的参数，
+    //我们可以利用这些参数提供的信息来做比如更新UI，提示上传进度等操作
+    $("#prog_data").css("width",file.percent+"%");
+});
+uploader_data.bind('UploadComplete', function(uploader, file) {
+    //每个事件监听函数都会传入一些很有用的参数，
+    //我们可以利用这些参数提供的信息来做比如更新UI，提示上传进度等操作
+    addFileCount=0;
+    console.log("UploadComplete");
+    toastr.success('文件上传成功！');
+    location.reload(true);
+    // window.location.reload();
+
+});
+
+
 
 /*上传资料*/
 function upload_source(){
+    if(addFileCount==0){
+        toastr.warning("请先添加文件！");
+        return;
+    }
+ console.log("开始上传！");
  uploader_data.start();
 }
 function cur_courseinfo(chapter,section,courseId,secId) {
@@ -321,7 +384,10 @@ function create_chapter(chName, index, handle) {
 
     var chapterContent;
     if (handle == 'create') {
-
+        if($("#add_chapter_content").val().trim()==""){
+            toastr.warning("输入不能为空！");
+            return;
+        }
         chapterContent = $("#add_chapter_content").val();
     }
 
@@ -429,7 +495,7 @@ function create_chapter(chName, index, handle) {
 /*
  * 目录创建节
  * */
-function create_section(seName, chIndex, seIndex, handle, parti,vedioState,vedioUrl) {
+function create_section(seName, chIndex, seIndex, handle, parti,vedioState,vedioUrl,fileUrl) {
     var em_dd = create("dd");
     var em_inline_section = create("div");
     var em_inline_item_trial = create("a");
@@ -461,18 +527,30 @@ function create_section(seName, chIndex, seIndex, handle, parti,vedioState,vedio
         var currentSt = patch_chd.children();
     }
     if (handle == 'create') {
+        if($("#add_section_title").val().trim()==""){
+            toastr.warning("输入不能为空！");
+            return;
+        }
         var chapter_index = $("#chapter_sum").val();
         var parentId = parseInt(chapter_index);
         seName = $("#add_section_title").val();
         var test_val;
-        if ($('#trial_check').is(':checked')==true&&$('#video_check').is(':checked')==true) {
-            test_val = 5;
-        }else if ($('#trial_check').is(':checked')==true&&$('#video_check').is(':checked')==false) {
-            test_val = 1;
-        }else if ($('#trial_check').is(':checked')==false&&$('#video_check').is(':checked')==true) {
-            test_val = 2;
+        if ($('#trial_check').is(':checked')==true&&$('#video_check').is(':checked')==true&&$('#data_check').is(':checked')==true) {
+            test_val = "1,2,3";
+        }else if ($('#trial_check').is(':checked')==true&&$('#video_check').is(':checked')==false&&$('#data_check').is(':checked')==true) {
+            test_val = "1,3";
+        }else if ($('#trial_check').is(':checked')==false&&$('#video_check').is(':checked')==true&&$('#data_check').is(':checked')==true) {
+            test_val = "2,3";
+        }else if ($('#trial_check').is(':checked')==false&&$('#video_check').is(':checked')==false&&$('#data_check').is(':checked')==true) {
+            test_val = "3";
+        }else if ($('#trial_check').is(':checked')==true&&$('#video_check').is(':checked')==false&&$('#data_check').is(':checked')==false) {
+            test_val = "1";
+        }else if ($('#trial_check').is(':checked')==true&&$('#video_check').is(':checked')==true&&$('#data_check').is(':checked')==false) {
+            test_val = "1,2";
+        }else if ($('#trial_check').is(':checked')==false&&$('#video_check').is(':checked')==true&&$('#data_check').is(':checked')==false) {
+            test_val = "2";
         }else {
-            test_val = 0;
+            test_val = "0";
         }
 
         $.ajax({
@@ -493,8 +571,9 @@ function create_section(seName, chIndex, seIndex, handle, parti,vedioState,vedio
                     loadChapter();
                     loadSlDetail();
                     $("#add_section_title").val('');
-                    for(var i=6;i<12;i++)
-                        $("fieldset").find('input').eq(i)[0].checked=false;
+
+                    document.getElementById("video_check").checked=false;
+                    document.getElementById("data_check").checked=false;
                     toastr.success('成功');
                 } else {
                     toastr.error('创建章节失败，请联系管理员');
@@ -515,7 +594,7 @@ function create_section(seName, chIndex, seIndex, handle, parti,vedioState,vedio
         for (var i = 0; i < 7; i++)
             currentSt.append("<div></div>");
 
-        var css_inline = ["line_index", "line_preface", "line_delete", "line_handle", "line_scheme","line_upload","line_mv"];
+        var css_inline = ["line_index", "line_preface", "line_delete", "line_handle", "line_mv","line_upload","line_scheme"];
         for (var k = 0; k < 7; k++)
             currentSt.find("div").eq(k).addClass(css_inline[k]);
 
@@ -538,14 +617,14 @@ function create_section(seName, chIndex, seIndex, handle, parti,vedioState,vedio
         lessonAbout.nodeCid=encodeURI(encodeURI('第' + (seIndex + 1) + '节'));
         lessonAbout.nodeCname=encodeURI(encodeURI(seName));
         var res=JSON.stringify(lessonAbout);
-        find_item.eq(6).children().attr('href', 'uploadVedio.html?businessId=' + parti + '&courseId=' + coursebusId + '&id=' + GetQueryString('id')+"&courseinfo="+res+"&vedioUrl="+encodeURI(encodeURI(vedioUrl)));
-        find_item.eq(6).children().attr('target', '_blank');
+        find_item.eq(4).children().attr('href', 'uploadVedio.html?businessId=' + parti + '&courseId=' + coursebusId + '&id=' + GetQueryString('id')+"&courseinfo="+res+"&vedioUrl="+encodeURI(encodeURI(vedioUrl)));
+        find_item.eq(4).children().attr('target', '_blank');
         find_item.eq(5).children().attr('data-open', 'file_modal');
         find_item.eq(5).children().attr('target', '_blank');
-        find_item.eq(5).children().attr('onclick', 'cur_courseinfo("'+chIndex+'","'+seIndex+'","'+coursebusId+'","'+parti+'")');
+        find_item.eq(5).children().attr('onclick', 'cur_courseinfo('+chIndex+','+seIndex+',"'+coursebusId+'","'+parti+'")');
 
-        find_item.eq(4).children().attr('href', 'markdown.html?businessId=' + parti + '&courseId=' + coursebusId + '&id=' + GetQueryString('id')+"&courseinfo="+res);
-        find_item.eq(4).children().attr('target', '_blank');
+        find_item.eq(6).children().attr('href', 'markdown.html?businessId=' + parti + '&courseId=' + coursebusId + '&id=' + GetQueryString('id')+"&courseinfo="+res);
+        find_item.eq(6).children().attr('target', '_blank');
         find_item.eq(3).children().attr('data-open', 'edit-section');
         find_item.eq(3).children().attr('onclick', 'edit_section_about(event)');
         find_item.eq(2).children().attr('data-open', 'delete-section');
@@ -554,15 +633,37 @@ function create_section(seName, chIndex, seIndex, handle, parti,vedioState,vedio
         //往里塞值
         find_item.eq(0).html('第' + (seIndex + 1) + '节');
         find_item.eq(1).html(seName);
-        if(vedioState=="2"||vedioState=="5"){
-            find_item.eq(6).children().html("<img title='上传视频' src='../image/mv_icon.png'>");
+        console.log('第' + (seIndex + 1) + '节'+vedioState+vedioState.indexOf("2"));
+        if(vedioState.indexOf("2")!=-1) {
+            console.log("create");
+            if(vedioUrl==""){
+                find_item.eq(4).children().html("<img title='未上传视频' src='../image/mv_icon_no.png'>");
+            }else{
+                find_item.eq(4).children().html("<img title='上传视频' src='../image/mv_icon.png'>");
+            }
+
+            if(vedioState.indexOf("3")==-1) {
+                find_item.eq(4).css("position","relative");
+                find_item.eq(4).css("right","33px");
+            }
         }else{
-            find_item.eq(6).children().removeAttr('href');
-            find_item.eq(6).children().css('cursor','default');
-            find_item.eq(6).children().html("<img title='未开设视频' src='../image/mv_icon_no.png'>");
+            console.log("no create");
         }
-        find_item.eq(5).children().html("<img title='上传资料' src='../image/mv_icon_no.png'>");
-        find_item.eq(4).children().html("<img title='项目任务书' src='../image/icon_book.png'>");
+        if(vedioState.indexOf("3")!=-1) {
+            if(fileUrl==""){
+                find_item.eq(5).children().html("<img title='未上传资料' src='../image/icon_rar_no.png'>");
+            }else{
+                find_item.eq(5).children().html("<img title='上传资料' src='../image/icon_rar.png'>");
+            }
+
+        }
+        // }else{
+        //     find_item.eq(4).children().removeAttr('href');
+        //     find_item.eq(4).children().css('cursor','default');
+        //     find_item.eq(4).children().html("<img title='未开设视频' src='../image/mv_icon_no.png'>");
+        // }
+
+        find_item.eq(6).children().html("<img title='项目任务书' src='../image/icon_book.png'>");
         find_item.eq(3).children().html("<img title='编辑节' src='../image/edit3.png'>");
         find_item.eq(2).children().html("<img title='删除' src='../image/icon_del.png'>");
     }
@@ -617,7 +718,10 @@ function edit_chapter_about(e) {
     var chId = e.currentTarget.parentNode.parentNode.childNodes[0].innerHTML.match(/\d+/g)[0] - 1;
     $("#edit_chapter_content").val(chName);
     $("#edit_chapter").off().click(function () {
-
+        if($("#edit_chapter_content").val().trim()==""){
+            toastr.warning("输入不能为空！");
+            return;
+        }
         $.ajax({
             url: globalurl + 'BChapter/add',
             method: 'post',
@@ -665,6 +769,7 @@ function delete_chapter_about(e) {
                 if (res.success) {
 
                     loadChapter();
+                    loadSlDetail();
 
                     toastr.success('成功');
                 } else {
@@ -697,6 +802,7 @@ function delete_section_about(e) {
             }, success: function (res) {
                 if (res.success) {
                     loadChapter();
+                    loadSlDetail();
                     toastr.success('成功');
                 } else {
                     toastr.error(res.message);
@@ -715,6 +821,7 @@ function edit_section_about(e) {
     // console.log(e.target.parentNode.parentNode.parentNode)
     //借助保存的id，寻找到插入的位置
     // console.log(e.target);
+
     $("#chapter-select").empty();
     var chLen = $("#catalog-content").find("dt").length;
     for (var i = 0; i < chLen; i++) {
@@ -723,13 +830,55 @@ function edit_section_about(e) {
     var chId = e.currentTarget.parentNode.parentNode.parentNode.attributes[1].nodeValue;
     $("#chapter-select").val(chId.slice(0, 1));
     var seName = e.currentTarget.parentNode.parentNode.childNodes[1].innerHTML;
+    var contentVideo = e.currentTarget.parentNode.parentNode.childNodes[4].firstChild.innerHTML;
+    var contentData = e.currentTarget.parentNode.parentNode.childNodes[5].firstChild.innerHTML;
+    console.log(contentVideo+"-----"+contentData);
+    if(contentVideo!=""){
+        console.log("contentVideo   check");
+        document.getElementById('edit_video_check').checked=true;
+        // $("#edit_video_check").attr("checked", true);
+    }else{
+        console.log("contentVideo   check false");
+        document.getElementById("edit_video_check").checked=false;
+        // $("#edit_video_check").removeAttr("checked");
+    }
+    if(contentData!=""){
+        console.log("contentData  check");
+        document.getElementById("edit_data_check").checked=true;
+        // $("#edit_data_check").attr("checked", true);
+    }else{
+        console.log("contentData  check false");
+        document.getElementById("edit_data_check").checked=false;
+        // $("#edit_data_check").removeAttr("checked");
+    }
     var seId = e.currentTarget.parentNode.parentNode.childNodes[0].innerHTML.match(/\d+/g)[0] - 1;
     // console.log(seId)
     $("#edit_section_content").val(seName);
 
 
     $("#edit_section").off().click(function () {
-
+        if($("#edit_section_content").val().trim()==""){
+            toastr.warning("输入不能为空！");
+            return;
+        }
+        var test_val;
+        if ($('#edit_trial_check').is(':checked')==true&&$('#edit_video_check').is(':checked')==true&&$('#edit_data_check').is(':checked')==true) {
+            test_val = "1,2,3";
+        }else if ($('#edit_trial_check').is(':checked')==true&&$('#edit_video_check').is(':checked')==false&&$('#edit_data_check').is(':checked')==true) {
+            test_val = "1,3";
+        }else if ($('#edit_trial_check').is(':checked')==false&&$('#edit_video_check').is(':checked')==true&&$('#edit_data_check').is(':checked')==true) {
+            test_val = "2,3";
+        }else if ($('#edit_trial_check').is(':checked')==false&&$('#edit_video_check').is(':checked')==false&&$('#edit_data_check').is(':checked')==true) {
+            test_val = "3";
+        }else if ($('#edit_trial_check').is(':checked')==true&&$('#edit_video_check').is(':checked')==false&&$('#edit_data_check').is(':checked')==false) {
+            test_val = "1";
+        }else if ($('#edit_trial_check').is(':checked')==true&&$('#edit_video_check').is(':checked')==true&&$('#edit_data_check').is(':checked')==false) {
+            test_val = "1,2";
+        }else if ($('#edit_trial_check').is(':checked')==false&&$('#edit_video_check').is(':checked')==true&&$('#edit_data_check').is(':checked')==false) {
+            test_val = "2";
+        }else {
+            test_val = "0";
+        }
         $.ajax({
             url: globalurl + 'BChapter/add',
             method: 'post',
@@ -738,16 +887,18 @@ function edit_section_about(e) {
                 businessId: sectMap.get(parseInt(chId) + '-' + parseInt(seId)),
                 chapterName: $("#edit_section_content").val(),
                 chapterLevel: 2,
-                pid: chapMap.get(chapBusId)
+                pid: chapMap.get(chapBusId),
+                isTest: test_val
             },
             beforeSend: function (res) {
                 res.setRequestHeader("Authorization", sessionStorage.getItem("token"));
             }, success: function (res) {
                 if (res.success) {
                     loadChapter();
+                    loadSlDetail();
                     toastr.success('成功');
                 } else {
-                    toastr.error('删除章节失败，请联系管理员');
+                    toastr.error('修改节失败，请联系管理员');
                 }
             }, error: function (err) {
                 console.log(err)
@@ -787,7 +938,7 @@ function checkIt(e) {
                 },
                 success: function (res) {
                     if (res.success) {
-                        localStorage.setItem("timer",res.result.endTime);
+                        sessionStorage.setItem("timer",res.result.endTime);
                         window.open("eclipse.html?uri=" + encodeURIComponent(res.result.url) + "&businessId=" + chBusId + "&pnum=" + encodeURIComponent(res.result.port) + "&scode=" + code + "&ccode=" + slCode + "&id=" + GetQueryString("id"))
                     } else {
 
@@ -827,7 +978,7 @@ function checkIt(e) {
                             if(localStorage.getItem("teache")==null){
                                 sessionStorage.setItem("address","eclipse.html?uri=" + encodeURIComponent(res.result.url) + "&businessId=" + chBusId + "&pnum=" + encodeURIComponent(res.result.port) + "&scode=" + code + "&ccode=" + slCode + "&id=" + GetQueryString("id"));
                                 localStorage.setItem("teache","open");
-                                localStorage.setItem("timer",res.result.endTime);
+                                sessionStorage.setItem("timer",res.result.endTime);
                                 $("#water").fadeOut();
                                 $("#header").fadeIn();
                                 $("#content").fadeIn();
@@ -1146,10 +1297,12 @@ function loadSlDetail() {
                     });
                 }
             } else {
+                removeLoading('test');
                 alert(result.message);
             }
         },
         error: function (error) {
+            removeLoading('test');
             console.log(JSON.stringify(error));
             alert("访问服务器失败");
         }
@@ -1171,6 +1324,11 @@ function loadChapter() {
             res.setRequestHeader("Authorization", sessionStorage.getItem("token"));
         },
         success: function (result) {
+            if(result==undefined){
+                removeLoading('test');
+                alert("访问服务器异常！");
+                return;
+            }
             // console.log(JSON.stringify(result));
             if (result.success) {
                 if (result.result.chapterList.length < 1) {
@@ -1204,8 +1362,8 @@ function loadChapter() {
                         if (list[i].childList.length > 0) {
                             for (var j = 0; j < list[i].childList.length; j++, flag++) {
                                 stunum = list[i].childList[j].studentNum;
-                                create_section(list[i].childList[j].chapterName, i, j, 'panel1load', list[i].childList[j].businessId,list[i].childList[j].isTest,list[i].childList[j].videoUrl);
-                                create_section(list[i].childList[j].chapterName, i, j, 'panel2load', list[i].childList[j].businessId,list[i].childList[j].isTest,list[i].childList[j].videoUrl);
+                                create_section(list[i].childList[j].chapterName, i, j, 'panel1load', list[i].childList[j].businessId,list[i].childList[j].isTest,list[i].childList[j].videoUrl,list[i].childList[j].fileUrl);
+                                create_section(list[i].childList[j].chapterName, i, j, 'panel2load', list[i].childList[j].businessId,list[i].childList[j].isTest,list[i].childList[j].videoUrl,list[i].childList[j].fileUrl);
                                 $("#catalog-content").find('dd').eq(flag).attr('data-section-id', i + '-' + j);
                                 $("#score-content").find('dd').eq(flag).attr('data-section-id', i + '-' + j);
                                 sectMap.set(i + '-' + j, list[i].childList[j].businessId);
@@ -1220,10 +1378,12 @@ function loadChapter() {
                     removeLoading('test');
                 }
             } else {
+                removeLoading('test');
                 alert(result.message);
             }
         },
         error: function (error) {
+            removeLoading('test');
             console.log(JSON.stringify(error));
             alert("访问服务器失败");
         }
@@ -1258,3 +1418,9 @@ function initPagination(pagination,pages,pageNu,twicePagination){
         }
     });
 }
+
+
+
+
+
+

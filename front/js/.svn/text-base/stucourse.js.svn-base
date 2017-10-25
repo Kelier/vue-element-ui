@@ -7,7 +7,6 @@ $(document).ready(function () {
     var currentChapter = 0;
     var currentSection = 0;
 
-
     if (sessionStorage.getItem("role") == "1002") {
         if (GetQueryString("isP")||localStorage.getItem("isP")=="preview"){
             $('#a-setback').show();
@@ -68,7 +67,7 @@ function toJudgeOpen(seId,e) {
                 },
                 success: function (res) {
                     if (res.success) {
-                        localStorage.setItem("timer",res.result.endTime);
+                        sessionStorage.setItem("timer",res.result.endTime);
                         window.open("eclipse.html?uri=" + encodeURIComponent(res.result.url) + "&businessId=" + seId + "&pnum=" + encodeURIComponent(res.result.port) + "&scode=" + sessionStorage.getItem("stucode") + "&ccode=" + slCode + "&id=" + GetQueryString("id")+"&isC="+isC)
                     } else {
                         toastr.warning(res.message);
@@ -108,7 +107,7 @@ function toJudgeOpen(seId,e) {
                             if(localStorage.getItem("chestatus")==null){
                                 sessionStorage.setItem("address","eclipse.html?uri=" + encodeURIComponent(res.result.url) + "&businessId=" + seId + "&pnum=" + encodeURIComponent(res.result.port) + "&scode=" + sessionStorage.getItem("stucode") + "&ccode=" + slCode + "&id=" + GetQueryString("id")+"&isC="+isC);
                                 localStorage.setItem("chestatus","open");
-                                localStorage.setItem("timer",res.result.endTime);
+                                sessionStorage.setItem("timer",res.result.endTime);
                                 $("#water").fadeOut();
                                 $("#header").fadeIn();
                                 $("#content").fadeIn();
@@ -143,6 +142,56 @@ function toJudgeOpen(seId,e) {
 
 }
 
+
+function toDownload(seId,seIndex,chIndex,dataUrl) {
+    console.log(seId+"开始下载"+dataUrl);
+    if(dataUrl==""){
+        toastr.error('文件不存在！');
+    }else{
+        var a = document.createElement("a");
+        document.body.appendChild(a);
+        a.href = imagepath+dataUrl;
+        a.click();
+        // window.location.href=imagepath+"/default/2.jpg";
+    }
+  /* $.ajax({
+     url: globalurl +'BVideo/downloadFile',
+     method: 'post',
+     beforeSend: function (request) {
+         request.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+         request.setRequestHeader("Content-Type", 'application/x-www-form-urlencoded;charset=utf-8');
+     },
+
+     data: {
+        chapterId: seId
+     },
+     responseType: 'blob',
+     transformRequest: function (obj) {
+         var str = [];
+         for (var p in obj) {
+            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+         }
+         return str.join("&");
+     },
+     success: function (response) {
+         console.log( Base64.toString(response));
+         console.log(response.message);
+
+         var blob = new Blob([response], {type: "application/octet-stream"});
+         // var blob=new Blob();
+         // blob = response;
+         var a = document.createElement("a");
+         document.body.appendChild(a);
+         // a.download = "aaa.jpg";
+         a.href = URL.createObjectURL(blob);
+         a.click();
+         toastr.success('文件下载成功！');
+     }, error: function (err) {
+        toastr.error('文件下载失败！'+err);
+     }
+     });*/
+
+}
 /*返回界面*/
 function returnMe() {
     $("#water").fadeOut();
@@ -196,7 +245,7 @@ function create_chapter(chName, index, handle) {
 /*
  * 目录创建节
  * */
-function create_section(seName, seId, chIndex, seIndex, handle,vedioState,vedioUrl) {
+function create_section(seName, seId, chIndex, seIndex, handle,vedioState,vedioUrl,fileUrl) {
     var em_dd = create("dd");
     var em_inline_section = create("div");
     var em_inline_item_trial = create("a");
@@ -214,6 +263,13 @@ function create_section(seName, seId, chIndex, seIndex, handle,vedioState,vedioU
     patch_chd.children().addClass("section-inline-stu");
     var currentSt = patch_chd.children();
 
+    var lessonAbout={};
+    lessonAbout.cname=encodeURI(encodeURI(cpName));
+    lessonAbout.nodePid=encodeURI(encodeURI($("#catalog-content").find("dt").eq($("#catalog-content").find("dt").length-1)[0].children[0].children[0].innerHTML));
+    lessonAbout.nodePname=encodeURI(encodeURI($("#catalog-content").find("dt").eq($("#catalog-content").find("dt").length-1)[0].children[0].children[1].innerHTML));
+    lessonAbout.nodeCid=encodeURI(encodeURI('第' + (seIndex + 1) + '节'));
+    lessonAbout.nodeCname=encodeURI(encodeURI(seName));
+    var res=JSON.stringify(lessonAbout);
 
     if (handle == 'panel1load') {
 
@@ -232,14 +288,15 @@ function create_section(seName, seId, chIndex, seIndex, handle,vedioState,vedioU
 
 
         //创建容器
-        for (var i = 0; i < 6; i++)
+        for (var i = 0; i < 7; i++)
             currentSt.append("<div></div>");
+
         if (exsit&&score!="-1") {
-            var css_inline = ["view_icon_stu", "view_code_stu", "view_preface_stu",  "view_pro_stu", "view_exp_stu_1","view_scheme_stu"];
+            var css_inline = ["view_icon_stu","view_code_stu", "view_preface_stu","view_scheme_stu", "view_upload_stu", "view_pro_stu", "view_exp_stu_1"];
         } else {
-            var css_inline = ["view_icon_stu", "view_code_stu", "view_preface_stu",  "view_pro_stu", "view_exp_stu","view_scheme_stu"];
+            var css_inline = ["view_icon_stu","view_code_stu", "view_preface_stu","view_scheme_stu", "view_upload_stu", "view_pro_stu", "view_exp_stu"];
         }
-        for (var k = 0; k < 6; k++)
+        for (var k = 0; k < 7; k++)
             currentSt.find("div").eq(k).addClass(css_inline[k]);
 
         var find_item = currentSt.find("div");
@@ -258,7 +315,7 @@ function create_section(seName, seId, chIndex, seIndex, handle,vedioState,vedioU
         /* find_item.eq(0).children().addClass(icon_demo[0]);*/
 
         var trial_demo = ["align-hollow hollow button", "align-hollow hollow button", "align-hollow hollow button alert"];
-        for (var j = 0; j < 3; j++) {
+        for (var j = 0; j < 4; j++) {
             if (j == 1) {
                 if (exsit&&score!="-1") {
                     find_item.eq(j + 3).append("<span style='size: 13px;margin:0 3px 0 6px;display: inline-block;width: 45px;'>" + score + "分</span><a style='margin:0 5px'></a>");
@@ -275,40 +332,54 @@ function create_section(seName, seId, chIndex, seIndex, handle,vedioState,vedioU
 
         }
 
-        var lessonAbout={};
-        lessonAbout.cname=encodeURI(encodeURI(cpName));
-        lessonAbout.nodePid=encodeURI(encodeURI($("#catalog-content").find("dt").eq($("#catalog-content").find("dt").length-1)[0].children[0].children[0].innerHTML));
-        lessonAbout.nodePname=encodeURI(encodeURI($("#catalog-content").find("dt").eq($("#catalog-content").find("dt").length-1)[0].children[0].children[1].innerHTML));
-        lessonAbout.nodeCid=encodeURI(encodeURI('第' + (seIndex + 1) + '节'));
-        lessonAbout.nodeCname=encodeURI(encodeURI(seName));
-        var res=JSON.stringify(lessonAbout);
-        find_item.eq(3).children().attr('href', 'proBook.html?businessId=' + seId + '&a=' + encodeURI(encodeURI(cpName)) + '&b=' + encodeURI(encodeURI(seName)) + '&c=' + seIndex + '&d=' + GetQueryString('id'));
-        find_item.eq(4).find('a').attr('onclick', 'toJudgeOpen("' + seId + '",event)');
-        find_item.eq(5).children().attr('href', 'seeVedio.html?businessId=' + seId +'&id=' + GetQueryString('id')+"&courseinfo="+res+"&vedioUrl="+encodeURI(encodeURI(vedioUrl)));
-        if(vedioState=="2"||vedioState=="5"){
-            find_item.eq(5).children().html("<img title='课程视频' src='../image/mv_icon.png'>");
-        }else{
-            find_item.eq(5).children().removeAttr('href');
-            find_item.eq(5).children().css('cursor','default');
-            find_item.eq(5).children().html("<img title='未开设视频' src='../image/mv_icon_no.png'>");
+
+        find_item.eq(5).children().attr('href', 'proBook.html?businessId=' + seId + '&a=' + encodeURI(encodeURI(cpName)) + '&b=' + encodeURI(encodeURI(seName)) + '&c=' + seIndex + '&d=' + GetQueryString('id'));
+        find_item.eq(6).find('a').attr('onclick', 'toJudgeOpen("' + seId + '",event)');
+
+        find_item.eq(3).children().attr('href', 'seeVedio.html?businessId=' + seId +'&id=' + GetQueryString('id')+"&courseinfo="+res+"&vedioUrl="+encodeURI(encodeURI(vedioUrl)));
+
+        if(vedioState.indexOf("2")!=-1) {
+            if(vedioUrl==""){
+                find_item.eq(3).children().html("<img title='未上传视频' src='../image/mv_icon_no.png'>");
+                find_item.eq(3).children().removeAttr('href');
+                find_item.eq(3).children().css('cursor','default');
+            }else{
+                find_item.eq(3).children().html("<img title='课程视频' src='../image/mv_icon.png'>");
+            }
+            if(vedioState.indexOf("3")==-1) {
+                find_item.eq(3).css("position","relative");
+                find_item.eq(3).css("right","57px");
+            }
+        }
+        if(vedioState.indexOf("3")!=-1) {
+            if(fileUrl==""){
+                find_item.eq(4).children().html("<img title='未上传资料' src='../image/icon_rar_no.png'>");
+                find_item.eq(4).children().removeAttr('href');
+                find_item.eq(4).children().css('cursor','default');
+            }else{
+                find_item.eq(4).find('a').attr('onclick', 'toDownload("' + seId + '",'+seIndex+','+chIndex+',"'+fileUrl+'")');
+                find_item.eq(4).children().html("<img title='下载资料' src='../image/icon_rar.png'>");
+            }
+
         }
 
         //往里塞值
         find_item.eq(1).html('第' + (seIndex + 1) + '节');
         find_item.eq(2).html(seName);
-        find_item.eq(3).children().html("<img title='项目任务书' src='../image/pro.png'>");
+        find_item.eq(5).children().html("<img title='项目任务书' src='../image/pro.png'>");
 
         if (sessionStorage.getItem("role") == '1003')
-            find_item.eq(4).children("a").html("<img title='实验' style='margin-bottom:6px' src='../image/exp.png'>");
+            find_item.eq(6).children("a").html("<img title='实验' style='margin-bottom:6px' src='../image/exp.png'>");
     }
 
     if (handle == 'panel2load') {
         //创建容器
-        for (var i = 0; i < 4; i++)
+        for (var i = 0; i < 7; i++)
             currentSt.append("<div></div>");
 
-        var css_inline = ["view_code_stu", "view_preface_stu", "view_pro_stu", "view_exp_stu"];
-        for (var k = 0; k < 4; k++)
+        var css_inline = ["view_code_stu", "view_preface_stu","view_scheme_stu", "view_upload_stu", "view_pro_stu", "view_exp_stu"];
+
+        for (var k = 0; k < 7; k++)
             currentSt.find("div").eq(k).addClass(css_inline[k]);
 
         var find_item = currentSt.find("div");
@@ -317,21 +388,49 @@ function create_section(seName, seId, chIndex, seIndex, handle,vedioState,vedioU
         inline_tiral.push(em_inline_item_dele);
 
         var trial_demo = ["align-hollow hollow button", "align-hollow hollow button"];
-        for (var j = 0; j < 2; j++) {
+        for (var j = 0; j < 4; j++) {
             find_item.eq(j + 2).append("<a></a>");
             /* find_item.eq(j + 2).children().addClass(trial_demo[j]);*/
 
         }
 
-        find_item.eq(2).children().attr('href', 'proBook.html?businessId=' + seId + '&a=' + encodeURI(encodeURI(cpName)) + '&b=' + encodeURI(encodeURI(seName)) + '&c=' + seIndex + '&d=' + GetQueryString('id'));
-        find_item.eq(2).children().attr('class', 'light_off');
-        find_item.eq(3).children().attr('onclick',  'toJudgeOpen("' + seId + '",event)');
+        find_item.eq(4).children().attr('href', 'proBook.html?businessId=' + seId + '&a=' + encodeURI(encodeURI(cpName)) + '&b=' + encodeURI(encodeURI(seName)) + '&c=' + seIndex + '&d=' + GetQueryString('id'));
+        find_item.eq(4).children().attr('class', 'light_off');
+        find_item.eq(5).children().attr('onclick',  'toJudgeOpen("' + seId + '",event)');
 
         //往里塞值
         find_item.eq(0).html('第' + (seIndex + 1) + '节');
         find_item.eq(1).html(seName);
-        find_item.eq(2).children().html("<img  src='../image/pro.png'>");
-        find_item.eq(3).children().html("<img  src='../image/exp.png'>");
+        find_item.eq(4).children().html("<img  src='../image/pro.png'>");
+        find_item.eq(5).children().html("<img  src='../image/exp.png'>");
+
+        find_item.eq(2).children().attr('href', 'seeVedio.html?businessId=' + seId +'&id=' + GetQueryString('id')+"&courseinfo="+res+"&vedioUrl="+encodeURI(encodeURI(vedioUrl)));
+
+
+        if(vedioState.indexOf("2")!=-1) {
+            if(vedioUrl==""){
+                find_item.eq(2).children().html("<img title='未上传视频' src='../image/mv_icon_no.png'>");
+                find_item.eq(2).children().removeAttr('href');
+                find_item.eq(2).children().css('cursor','default');
+            }else{
+                find_item.eq(2).children().html("<img title='课程视频' src='../image/mv_icon.png'>");
+            }
+            if(vedioState.indexOf("3")==-1) {
+                find_item.eq(2).css("position","relative");
+                find_item.eq(2).css("right","57px");
+            }
+        }
+        if(vedioState.indexOf("3")!=-1) {
+            if(fileUrl==""){
+                find_item.eq(3).children().html("<img title='未上传资料' src='../image/icon_rar_no.png'>");
+                find_item.eq(3).children().removeAttr('href');
+                find_item.eq(3).children().css('cursor','default');
+            }else{
+                find_item.eq(3).find('a').attr('onclick', 'toDownload("' + seId + '",'+seIndex+','+chIndex+',"'+fileUrl+'")');
+                find_item.eq(3).children().html("<img title='下载资料' src='../image/icon_rar.png'>");
+            }
+
+        }
     }
 
 
@@ -453,7 +552,7 @@ function loadChapter() {
                         if (list[i].childList.length > 0) {
                             for (var j = list[i].childList.length - 1; j >= 0; j--) {
 
-                                create_section(list[i].childList[j].chapterName, list[i].childList[j].businessId, i, j, panelType,list[i].childList[j].isTest,list[i].childList[j].videoUrl);
+                                create_section(list[i].childList[j].chapterName, list[i].childList[j].businessId, i, j, panelType,list[i].childList[j].isTest,list[i].childList[j].videoUrl,list[i].childList[j].fileUrl);
                                 // create_section(list[i].childList[j].chapterName, i, j, 'panel2load');
                             }
 
@@ -503,7 +602,6 @@ function minify() {
         $("#mini_more").css("display", "none");
     }
 }
-
 
 
 

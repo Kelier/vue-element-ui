@@ -24,8 +24,11 @@ var vue = new Vue({
                     if (pattern.test(value) === false) {
                         return callback(new Error('仅支持字母、数字、下划线、-'));
                     } else {
+<<<<<<< .mine
                         if (value.length > 15||value.length <8) {
-
+=======
+                        if (value.length > 15||value.length<8) {
+>>>>>>> .r360
                             callback(new Error('编号应在8-15位之间'));
                         } else {
                             callback();

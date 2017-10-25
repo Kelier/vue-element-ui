@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 75
-/svn/wisdomEdus/!svn/ver/343/trunk/wisdomEduClient/src/main/webapp/admin/js
+/svn/wisdomEdus/!svn/ver/360/trunk/wisdomEduClient/src/main/webapp/admin/js
 END
 banner.js
 K 25
@@ -49,13 +49,13 @@ classManage.js
 K 25
 svn:wc:ra_dav:version-url
 V 90
-/svn/wisdomEdus/!svn/ver/351/trunk/wisdomEduClient/src/main/webapp/admin/js/classManage.js
+/svn/wisdomEdus/!svn/ver/361/trunk/wisdomEduClient/src/main/webapp/admin/js/classManage.js
 END
 teaManage.js
 K 25
 svn:wc:ra_dav:version-url
 V 88
-/svn/wisdomEdus/!svn/ver/351/trunk/wisdomEduClient/src/main/webapp/admin/js/teaManage.js
+/svn/wisdomEdus/!svn/ver/361/trunk/wisdomEduClient/src/main/webapp/admin/js/teaManage.js
 END
 axios.js
 K 25

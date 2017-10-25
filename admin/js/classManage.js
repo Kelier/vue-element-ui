@@ -391,10 +391,11 @@ var vue = new Vue({
             var that=this;
             eduUtil.ajaxPostUtil(globalurl+'BRClassStudent/remove',{
                 stuCode:that.gridData[index].snum,
-                classCode:that.tableData[index+1].cid
+                classCode:that.tableData[index].cid
             },(res)=>{
                 if(res.data.success){
                     rows.splice(index, 1);
+                    that.stutotal=res.data.total;
                     that.$notify({
                         title: '提示信息',
                         message: res.data.message,

@@ -3,14 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>课程视频</title>
+    <link rel="shortcut icon" href="../image/icon.ico"/>
     <link rel="stylesheet" href="../css/flowplayer/skin/skin.css">
+    <style>
+        body{
+            background: #434343;
+            background-image: linear-gradient(#404040 0.5px,transparent 0),linear-gradient(90deg,#404040 0.5px,transparent 0),linear-gradient(hsla(0,0%,100%,.3) 1px,transparent 0),linear-gradient(90deg,hsla(0,0%,100%,.3) 1px,transparent 0);
+            background-size: 6px 6px,6px 6px,0.5px 0.5px,0.5px 0.5px;
+        }
+
+    </style>
 </head>
 <body>
-    <div class="course-info-mv" style="display: flex;justify-content: center">
-        <h4 style="font-size: 1.5625rem;font-weight: 400;"></h4>
+    <div class="course-info-mv" style="display: flex;justify-content: center;">
+        <h4 style="font-size: 1.5625rem;font-weight: 400;color: #fff"></h4>
     </div>
 
-    <div class="player" style="width: 80%;height:600px;margin-left: 10%" data-swf="flowplayer.swf" data-ratio="0.4167">
+    <div class="player" style="width: 80%;height:460px;margin-left: 10%" data-swf="flowplayer.swf" data-ratio="0.4167">
 
     </div>
     <br><br>
