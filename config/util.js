@@ -8,6 +8,7 @@ Vue.prototype.$http=axios;
 
 axios.defaults.headers.common['Authorization']=sessionStorage.getItem("token");
 
+
 var eduUtil = {};
 
 eduUtil.substr = function(source,begin,len){

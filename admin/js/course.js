@@ -97,6 +97,7 @@ var vue = new Vue({
         },
         methods: {
             loadData(page, rows){
+                
                 //列表渲染数据
                 var data = [];
                 let url = globalurl + 'BLesson/queryBLessonsByPagination';
@@ -108,6 +109,7 @@ var vue = new Vue({
                         lessonName: _this.coursename,
                         sort:'create_date desc'
                     }, (function (res) {
+                        
                         var pages = res.data.rows;//查询过来的每页数据
                         _this.total = res.data.total;//总记录数
                         _this.bussid = [];
@@ -118,7 +120,7 @@ var vue = new Vue({
                             obj.tcode = pages[i].code;
                             obj.tlessonName = pages[i].lessonName;
                             obj.tname = pages[i].name;
-                            obj.tsex = (pages[i].sex == '1') ? '男' : '女';
+                            obj.tsex = (pages[i].sex == '1') ? '女' : '男';
                             obj.imageSrc = (pages[i].defaultUrl.toLocaleString().match(/\upload/)) ? imagepath + pages[i].defaultUrl : '../image/bg1.jpg';
                             _this.bussid.push(pages[i].businessId);
                             // obj.imageSrc="http://imgsrc.baidu.com/image/c0%3Dshijue1%2C0%2C0%2C294%2C40/sign=60aeee5da74bd11310c0bf7132c6ce7a/72f082025aafa40fe3c0c4f3a164034f78f0199d.jpg";
@@ -141,13 +143,14 @@ var vue = new Vue({
                 var that = this;
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-
+                        that.fullscreenLoading=true;
                         that.dialogFormVisible = false;
                         let _formData = new FormData();
                         _formData.append('code', that.form.id);
                         _formData.append('lessonName', that.form.name);
                         axios.post(globalurl + 'BLesson/add', _formData)
                             .then(function (response) {
+                                that.fullscreenLoading=false;
                                 // alert(JSON.stringify(response));
                                 var type = response.data.success;
                                 var message = response.data.message;
@@ -180,6 +183,7 @@ var vue = new Vue({
 
             fileupload() {
                 this.fullscreenLoading=true;
+
                 var dom = document.getElementById("btn_file");
 
                 var fileSize = dom.files[0].size; //文件的大小，单位为字节B
@@ -241,7 +245,7 @@ var vue = new Vue({
 
 
                             }
-                            
+
                         })
                         .catch(function (err) {
                             console.log(err);
@@ -258,7 +262,7 @@ var vue = new Vue({
                     $("#btn_file").val('');
 
                     this.loadData(this.currentPage, this.pagesize);
-                    this.fullscreenLoading=false;
+                    this.fullscreenLoading = false;
                     return false;
                 }
 
@@ -280,10 +284,12 @@ var vue = new Vue({
             },
             resetcover(index) {
                 //  alert(index);
+                this.fullscreenLoading=true;
                 var that = this;
                 eduUtil.ajaxPostUtil(globalurl + 'BLesson/defaultUrl', {
                     code: that.tableData[index].tcode
                 }, function (res) {
+                    that.fullscreenLoading=false;
                     if (res.data.success) {
                         that.$notify({
                             title: '提示信息',
@@ -315,10 +321,12 @@ var vue = new Vue({
                         type: "warning"
                     });
                 }else{
+                    _this.fullscreenLoading=true;
                     eduUtil.ajaxPostUtil(globalurl + 'BLesson/picImport', {
                         importFile: cover,
                         code: _this.teacode,
                     }, res => {
+                        _this.fullscreenLoading=true;
                         _this.dialogVisible = false;
                         var type = res.data.success;
                         var message = res.data.message;
@@ -356,16 +364,18 @@ var vue = new Vue({
 
             //改变课程
             change_course(formName, index) {
-
+                
                 // console.log(index)
                 var that = this;
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
+                        that.fullscreenLoading=true;
                         eduUtil.ajaxPostUtil(globalurl + 'BLesson/add', {
                                 businessId: that.bussid[index],
                                 code: that.formLabelAlign.id,
                                 lessonName: that.formLabelAlign.region
                             }, (function (response) {
+                                that.fullscreenLoading=false;
                                 // alert(JSON.stringify(response));
                                 var type = response.data.success;
                                 var message = response.data.message;
@@ -407,17 +417,20 @@ var vue = new Vue({
             //search
             removeCourse(index){
                 var that=this;
+                
                 this.$confirm('确定要删除吗?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
+                    that.fullscreenLoading=true;
                     eduUtil.ajaxPostUtil(globalurl + 'BLesson/remove',
                         {
                             id:that.bussid[index]
 
                         }
                         , (function (response) {
+                            that.fullscreenLoading=false;
                             // alert(JSON.stringify(response));
                             var type = response.data.success;
                             var message = response.data.message;

@@ -37,7 +37,7 @@
         <el-button type="success" class="mould" @click="importmould">导入教师信息<i class="el-icon-upload el-icon--right"></i>
         </el-button>
         <form name="subForm" method="post" style="display:none" enctype="multipart/form-data">
-            <input type="file" id="btn_file" @change="fileupload()" v-loading.fullscreen.lock="fullscreenLoading">
+            <input type="file" id="btn_file" @change="fileupload()" v-loading.fullscreen.lock="fullscreenLoading" element-loading-text="请稍等...">
         </form>
 
     </div>

@@ -17,11 +17,12 @@ function loadContent() {
         data: {
             businessId: GetQueryString('businessId')
         },
-       /* beforeSend: function(request) {
+        beforeSend: function(request) {
             request.setRequestHeader("Authorization", sessionStorage.getItem("token"));
-            },*/
+            tip.open('加载新闻中')
+            },
         success: function (result) {
-
+            tip.close();
             // console.log(JSON.stringify(result));
             if (result.success) {
               var obj=result.result;

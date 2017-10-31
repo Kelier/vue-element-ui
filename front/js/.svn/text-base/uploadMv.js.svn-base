@@ -7,9 +7,13 @@ $(function () {
     var getInfo = JSON.parse(GetQueryString("courseinfo"));
     console.log(getInfo);
     var vedioUrl = GetQueryString("vedioUrl");
-    var str ="《"+ decodeURI(decodeURI(getInfo.cname)) + "》&nbsp;&nbsp;&nbsp;&nbsp;" + decodeURI(decodeURI(getInfo.nodePid)) + " " + decodeURI(decodeURI(getInfo.nodePname)) + " ——  " + decodeURI(decodeURI(getInfo.nodeCid)) + " " + decodeURI(decodeURI(getInfo.nodeCname));
+    var str ="《"+ decodeURI(decodeURI(getInfo.cname)) + "》&nbsp;&nbsp;&nbsp;&nbsp;" + decodeURI(decodeURI(getInfo.nodePid)) + "&nbsp; " + decodeURI(decodeURI(getInfo.nodePname)) + " &nbsp;——&nbsp;" + decodeURI(decodeURI(getInfo.nodeCid)) + " " + decodeURI(decodeURI(getInfo.nodeCname));
     console.log(str+vedioUrl);
-    $(".course-info-mv").find('h4').html(str);
+    $("#cor_name").html("《"+ decodeURI(decodeURI(getInfo.cname)) + "》");
+    $("#chp_name").html(decodeURI(decodeURI(getInfo.nodePid)) + "&nbsp; " + decodeURI(decodeURI(getInfo.nodePname)));
+    var sectionInfo = decodeURI(decodeURI(getInfo.nodeCid)) + "&nbsp; " + decodeURI(decodeURI(getInfo.nodeCname));
+    $("#sec_name").html(sectionInfo);
+    $("#sec_name").attr("title",sectionInfo);
     var thePlayer = flowplayer(".player", {
         clip: {
             sources: [{

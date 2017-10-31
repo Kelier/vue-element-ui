@@ -151,7 +151,7 @@ div.view_code_stu,div.view_preface_stu{
     float: left;
 }
 .view_preface_stu,.inline-title-stu{
-    width:500px;
+    max-width:300px;
     overflow: hidden;
     text-overflow:ellipsis;
     white-space: nowrap;

@@ -127,7 +127,7 @@ function invokeHandle(e) {
         // alert("回车键");
 
 
-        saveUpateInfo();
+        // saveUpateInfo();
 
         $("#title_edit").hide();
         $("#mini_more").css("display", "-webkit-box");
@@ -169,11 +169,12 @@ function saveUpateInfo() {
             res.setRequestHeader("Authorization", sessionStorage.getItem("token"));
         }, success: function (res) {
             if (res.success) {
-                toastr.success('成功');
+                toastr.success('课程简介修改成功');
             } else {
-                toastr.error('修改简介失败，请联系管理员');
+                toastr.error('课程简介修改失败，请稍后重试！');
             }
         }, error: function (err) {
+            toastr.error('网络请求失败！');
             console.log(err)
         }
     });

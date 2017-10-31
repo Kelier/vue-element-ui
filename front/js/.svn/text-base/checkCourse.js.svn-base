@@ -35,6 +35,7 @@ $(function () {
 });
 
 function loadData() {
+   
     $.ajax({
         url: globalurl + 'BSl/mySlByStudentCode',
         method: 'post',
@@ -45,8 +46,10 @@ function loadData() {
         },
         beforeSend: function (res) {
             res.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+            tip.open('努力加载中')
         },
         success: function (result) {
+            tip.close();
             // console.log(JSON.stringify(result));
             var list = result.rows;
             var learn_do = '';

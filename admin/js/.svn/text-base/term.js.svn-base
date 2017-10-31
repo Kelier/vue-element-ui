@@ -30,6 +30,7 @@ var vue = new Vue({
             var pattern = new RegExp(/^[a-zA-Z0-9-_\u4e00-\u9fa5]+$/g);
             setTimeout(() => {
                 if (pattern.test(value) == false) {
+
                     callback(new Error('请不要输入特殊字符'));
                 } else {
                     callback();
@@ -37,15 +38,20 @@ var vue = new Vue({
             }, 1000);
         };
         var validateDate = (rule, value, callback) => {
-            if (value === '') {
-                return callback(new Error('请选择起始日期'));
+
+            if (Object.prototype.toString.call(value).slice(8, -1) == 'Undefined') {
+                callback(new Error('请选择日期'));
+            } else if (value[0] === null) {
+                callback(new Error('请选择日期'));
+                console.log('??')
             } else {
-                callback()
+                callback();
             }
         };
         return {
             //对话框
             dialogFormVisible: false,
+            fullscreenLoading:false,
             form: {
                 id: '',
                 name: '',
@@ -55,7 +61,7 @@ var vue = new Vue({
             termAbort: {
                 id: '',
                 name: '',
-                date: ''
+                date: [new Date(), new Date()]
             },
             labelPosition: 'right',
             termstatus: [],
@@ -67,7 +73,7 @@ var vue = new Vue({
                     {validator: validateName, trigger: 'blur'}
                 ],
                 date: [
-                    {validator: validateDate, trigger: 'blur'}
+                    {validator: validateDate, trigger: 'change'}
                 ]
             },
             //日期选择
@@ -115,15 +121,16 @@ var vue = new Vue({
 
 
     methods: {
-        loadData(page, rows){
+        loadData(page, rows) {
             //列表渲染数据
+
             var data = [];
             var url = globalurl + 'BTerm/queryBTermsByPagination';
             var _this = this;
             eduUtil.ajaxPostUtil(url, {
                     page: page,
                     rows: rows,
-                    sort:'create_date desc'
+                    sort: 'create_date desc'
                 }, (function (res) {
                     var pages = res.data.rows;//查询过来的每页数据
                     _this.total = res.data.total;//总记录数
@@ -147,24 +154,25 @@ var vue = new Vue({
                 })
             )
         },
-        bindThis(index){
+        bindThis(index) {
             // console.log(index);
             this.termAbort.id = this.tableData[index].tcode;
             this.termAbort.name = this.tableData[index].tname;
-            var start=this.tableData[index].tstart;
-            var end=this.tableData[index].tend;
-            var dateputs=$(".el-date-handlebar").find('input');
-            dateputs[dateputs.length-1].value=start+' - '+end;
-            /*new Date(Date.parse(start));
-            new Date(Date.parse(end));
-            this.$emit('pick', [start,end]);*/
+
+            var start = this.tableData[index].tstart.split('-');
+            var end = this.tableData[index].tend.split('-');
+
+            this.termAbort.date = [new Date(start[0], start[1], start[2]), new Date(end[0], end[1], end[2])]
         },
-        change_term(formName, index){
+        change_term(formName, index) {
             var that = this;
             this.$refs[formName].validate((valid) => {
                 if (valid) {
+                    that.fullscreenLoading=true;
                     //获取日期
                     //console.info(this.tempRange); 2017-08-11 - 2017-09-19
+
+
                     var tempDate = that.changerange;
                     var tempDateStart = eduUtil.substr(tempDate, 0, 10);
                     var tempDateEnd = eduUtil.substr(tempDate, 13, 10);
@@ -176,10 +184,11 @@ var vue = new Vue({
                             name: that.termAbort.name,
                             startDate: tempDateStart,
                             endDate: tempDateEnd,
-                            businessId:that.tableData[index].tbusinessId
+                            businessId: that.tableData[index].tbusinessId
 
                         }
                         , (function (response) {
+                            that.fullscreenLoading=false;
                             // alert(JSON.stringify(response));
                             var type = response.data.success;
                             var message = response.data.message;
@@ -199,7 +208,11 @@ var vue = new Vue({
 
                     // that.loadData(that.currentPage, that.pagesize);
                 } else {
-                    console.log('error submit!!');
+                    that.$notify({
+                        title: '提示信息',
+                        message: '请注意填写日期',
+                        type: 'warning'
+                    });
                     return false;
                 }
             });
@@ -235,20 +248,25 @@ var vue = new Vue({
             this.currentPage = val;
             this.loadData(this.currentPage, this.pagesize);
         },
-        saveRange(val){
+        saveRange(val) {
             this.tempRange = val;
         },
-        changeRange(val){
+        changeRange(val) {
+            if (Object.prototype.toString.call(val).slice(8, -1) == 'Undefined') {
+                this.termAbort.date = [null, null]
+            }
             this.changerange = val;
         },
 
-        createTerm(formName){
+        createTerm(formName) {
             var that = this;
             console.log(that.form.id)
             this.$refs[formName].validate((valid) => {
+                
+
                 if (valid) {
                     that.dialogFormVisible = false;
-
+                    that.fullscreenLoading=true;
                     //获取日期
                     //console.info(this.tempRange); 2017-08-11 - 2017-09-19
                     var tempDate = that.tempRange;
@@ -266,6 +284,7 @@ var vue = new Vue({
 
                         }
                         , (function (response) {
+                            that.fullscreenLoading=false;
                             // alert(JSON.stringify(response));
                             var type = response.data.success;
                             var message = response.data.message;
@@ -275,6 +294,7 @@ var vue = new Vue({
                                 message: message,
                                 type: type
                             });
+                            that.$refs[formName].resetFields();
                             that.loadData(that.currentPage, that.pagesize);
                         })
                         , (function (err) {
@@ -284,27 +304,31 @@ var vue = new Vue({
 
                     // that.loadData(that.currentPage, that.pagesize);
                 } else {
-                    console.log('error submit!!');
                     return false;
                 }
             });
 
 
         },
-
-        removeTerm(index){
-            var that=this;
+        callOf(formName) {
+            this.dialogFormVisible = false;
+            this.$refs[formName].resetFields();
+        },
+        removeTerm(index) {
+            var that = this;
             this.$confirm('确定要删除吗?', '提示', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
                 type: 'warning'
             }).then(() => {
+                that.fullscreenLoading=true;
                 eduUtil.ajaxPostUtil(globalurl + 'BTerm/remove',
                     {
-                        id:that.tableData[index].tbusinessId
+                        id: that.tableData[index].tbusinessId
 
                     }
                     , (function (response) {
+                        that.fullscreenLoading=false;
                         // alert(JSON.stringify(response));
                         var type = response.data.success;
                         var message = response.data.message;

@@ -46,6 +46,12 @@ new Vue({
             }).catch(function (err) {
                 console.log(err);
             })
+        },
+
+        keyLogin() {
+            if (event.keyCode==13){
+                     this.login();
+            }
         }
     }
 });

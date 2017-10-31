@@ -13,6 +13,7 @@
 
     <link rel="stylesheet" href="../css/login.css" />
     <link rel="stylesheet" href="../css/toastr.css">
+    <link rel="stylesheet" href="../css/loading.css">
 
 </head>
 <body>
@@ -21,7 +22,7 @@
     <form>
         <div class="login-box">
             <p>智慧教育平台</p>
-            <div class="text-box">
+            <div class="text-box" onkeydown="keyLogin()" >
                 <label for="number" class="text-input">
                  <img src="../image/login_number.png">
                     <input type="text" placeholder="请输入学号/工号" id="number">
@@ -31,7 +32,7 @@
 
                     <input type="password" placeholder="请输入密码" id="password">
                  </label>
-            <button type="button" class="button login-btn" onclick="loginIndex()">登&nbsp;&nbsp;&nbsp;&nbsp;录</button>
+                <button type="button" class="button login-btn" onclick="loginIndex()">登&nbsp;&nbsp;&nbsp;&nbsp;录</button>
             </div>
         </div>
     </form>
@@ -44,6 +45,7 @@
     <script src="../../config/ajaxUtils.js"></script>
     <script src="../js/toastr.min.js"></script>
     <script src="../js/login.js"></script>
+    <script src="../js/loading.js"></script>
 
 <script>
     $(document).foundation();

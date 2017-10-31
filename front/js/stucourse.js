@@ -437,23 +437,7 @@ function create_section(seName, seId, chIndex, seIndex, handle,vedioState,vedioU
 }
 
 function loadData() {
-    $('body').loading({
-        loadingWidth: 240,
-        title: '整理课程信息中...',
-        name: 'test',
-        discription: '这是一个描述...',
-        direction: 'row',
-        type: 'origin',
-        originBg: '#BF5A1F',
-        originDivWidth: 30,
-        originDivHeight: 30,
-        originWidth: 4,
-        originHeight: 4,
-        smallLoading: false,
-        titleColor: '#BF5A1F',
-        loadingBg: '#2B2B2B',
-        loadingMaskBg: 'rgba(0,0,0,0.6)'
-    });
+    
     loadSlDetail();
     loadChapter();
 }
@@ -467,7 +451,11 @@ function loadSlDetail() {
         data: {
             id: GetQueryString('id')
         },
+        beforeSend:function(xhr){
+            tip.open('加载课程信息中');
+        },
         success: function (result) {
+           
             console.log("loadSLDetail成功")
             if (result.success) {
                 if (result.result == null || result.result == '' || result == undefined) {
@@ -512,16 +500,15 @@ function loadChapter() {
         },
         beforeSend: function (res) {
             res.setRequestHeader("Authorization", sessionStorage.getItem("token"));
-
+           
         },
         success: function (res) {
-
+            tip.close();
             if (res.success) {
                 if (res.result.chapterList.length < 1) {
                     //TODO 该课程还没有章节
                     $("#nocontent").css("display","inline-block");
                     $("#catalog-content").css("text-align","center");
-                    removeLoading('test');
                 } else {
                     $("#nocontent").fadeOut();
                     $("#catalog-content").css("text-align","left");
@@ -560,7 +547,6 @@ function loadChapter() {
 
                     }
 
-                    removeLoading('test');
                 }
             } else {
                 alert(result.message);

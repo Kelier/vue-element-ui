@@ -255,34 +255,19 @@ $(function () {
     /*完成此节*/
     $("#archieve").click(function () {
         $(".reveal-overlay").fadeOut();
-        $('body').loading({
-            loadingWidth: 240,
-            title: '关闭che空间中...',
-            name: 'test',
-            discription: '这是一个描述...',
-            direction: 'row',
-            type: 'origin',
-            originBg: '#BF5A1F',
-            originDivWidth: 30,
-            originDivHeight: 30,
-            originWidth: 4,
-            originHeight: 4,
-            smallLoading: false,
-            titleColor: '#BF5A1F',
-            loadingBg: '#2B2B2B',
-            loadingMaskBg: 'rgba(0,0,0,0.6)'
-        });
+        
         $.ajax({
             url: globalurl + 'BChapter/complete',
             method: 'post',
             beforeSend: function (request) {
                 request.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+                tip.open('正在提交学习状态')
             },
             data: {
                 chapterId: busId
             },
             success: function (res) {
-                removeLoading('test');
+                tip.close();
                 if (res.success) {
                     setInterval(function () {
                         window.location.href = 'stuCourse.html?id=' + Id;
@@ -301,23 +286,7 @@ $(function () {
     });
     /*提交代码*/
     $("#taido-it").click(function () {
-        $('body').loading({
-            loadingWidth: 240,
-            title: '提交代码中...',
-            name: 'test',
-            discription: '这是一个描述...',
-            direction: 'row',
-            type: 'origin',
-            originBg: '#BF5A1F',
-            originDivWidth: 30,
-            originDivHeight: 30,
-            originWidth: 4,
-            originHeight: 4,
-            smallLoading: false,
-            titleColor: '#BF5A1F',
-            loadingBg: '#2B2B2B',
-            loadingMaskBg: 'rgba(0,0,0,0.6)'
-        });
+        tip.open('提交代码中');
         $.ajax({
             url: globalurl + 'BChapter/pushCode',
             method: 'post',
@@ -330,7 +299,7 @@ $(function () {
                 slCode: ccode
             },
             success: function (res) {
-                removeLoading('test');
+                tip.close();
                 if (res.success)
                     toastr.success('提交成功');
                 else
@@ -390,23 +359,7 @@ $(function () {
     /*关闭che*/
     $("#stop").click(function () {
         $(".reveal-overlay").fadeOut();
-        $('body').loading({
-            loadingWidth: 240,
-            title: '关闭che空间中...',
-            name: 'test',
-            discription: '这是一个描述...',
-            direction: 'row',
-            type: 'origin',
-            originBg: '#BF5A1F',
-            originDivWidth: 30,
-            originDivHeight: 30,
-            originWidth: 4,
-            originHeight: 4,
-            smallLoading: false,
-            titleColor: '#BF5A1F',
-            loadingBg: '#2B2B2B',
-            loadingMaskBg: 'rgba(0,0,0,0.6)'
-        });
+        tip.open('关闭che空间中');
         $.ajax({
             url:globalurl+'BChapter/cheStopWithoutAuth',
             method:'post',
@@ -417,7 +370,7 @@ $(function () {
                 port:pnum
             },
             success:function (res) {
-                removeLoading('test');
+                tip.close();
                 if(res.success){
 
                     toastr.success(res.message);

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../font/foundation-icons.css">
     <link rel="stylesheet" href="../css/nav.css">
     <link rel="stylesheet" href="../css/book.css">
+    <link rel="stylesheet" href="../css/loading.css">
 </head>
 <body>
 
@@ -113,6 +114,8 @@
 <script src="../../bower_components/foundation-sites/dist/js/foundation.min.js"></script>
 <script src="../../bower_components/foundation-sites/dist/js/plugins/foundation.util.motion.min.js"></script>
 <script src="../js/nav.js"></script>
+<script src="../js/loading.js"></script>
+<script src="../js/tooltip.js"></script>
 <script src="../../bower_components/marked/marked.min.js"></script>
 <script src="../js/proView.js"></script>
 

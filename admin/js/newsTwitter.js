@@ -7,7 +7,7 @@ var editor = Vue.component('editormd', {
     data: function () {
 
         return {
-            content: '',
+            content: ''
 
         }
     },
@@ -81,6 +81,7 @@ var vue = new Vue({
         };
         return {
             dialogFormVisible: false,
+            fullscreenLoading:false,
             form: {
                 caption: '',
                 checked: false,
@@ -215,6 +216,7 @@ var vue = new Vue({
             var that = this;
             this.$refs[formName].validate((valid) => {
                 if (valid) {
+                    that.fullscreenLoading=true;
                     that.dialogFormVisible = false;
                     eduUtil.ajaxPostUtil(globalurl + 'BNews/add', {
                             businessId: that.newsId,
@@ -222,6 +224,7 @@ var vue = new Vue({
                             newsContent: createnews,
                             attribute: that.form.checked ? '1' : '0'
                         }, (function (response) {
+                            that.fullscreenLoading=false;
                             // alert(JSON.stringify(response));
                             var type = response.data.success;
                             var message = response.data.message;

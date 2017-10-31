@@ -140,7 +140,7 @@ var vue = new Vue({
                         obj.tname = pages[i].name;
                         obj.is_recommend = pages[i].isRecommend == '0' ? '未推荐' : '推荐';
                         obj.recommend_order = pages[i].recommendOrder == 999 ? '' : pages[i].recommendOrder;
-                        obj.tsex = (pages[i].sex == '1') ? '男' : '女';
+                        obj.tsex = (pages[i].sex == '1') ? '女' : '男';
                         // obj.thandle = pages[i].isRecommend == '0' ? false : true;
                         obj.recommend = pages[i].isRecommend == '0' ? '推荐' : '取消推荐';
                         _this.bussid.push(pages[i].businessId);
@@ -181,7 +181,7 @@ var vue = new Vue({
                         obj.id = i + 1;
                         obj.sid = pages[i].code;
                         obj.sname = pages[i].name;
-                        obj.sex = (pages[i].sex == '1') ? '男' : '女';
+                        obj.sex = (pages[i].sex == '1') ? '女' : '男';
                         obj.is_recommend = pages[i].isRecommend == '0' ? '未推荐' : '推荐';
                         obj.recommend_order = pages[i].recommendOrder == 999 ? '' : pages[i].recommendOrder;
                         obj.recommend = pages[i].isRecommend == '0' ? '推荐' : '取消推荐';

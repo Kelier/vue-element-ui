@@ -87,10 +87,10 @@ var vue = new Vue({
                 formLabelWidth: '80px',
 
                 options: [{
-                    value: '1',
+                    value: '0',
                     label: '男'
                 }, {
-                    value: '2',
+                    value: '1',
                     label: '女'
                 }],
 
@@ -180,7 +180,7 @@ var vue = new Vue({
                             obj.tid = pages[i].code;
                             obj.tname = pages[i].name;
                             obj.tmail = pages[i].email;
-                            obj.tsex = (pages[i].sex == '1') ? '男' : '女';
+                            obj.tsex = (pages[i].sex == '1') ? '女' : '男';
                             obj.thandle = pages[i].isRecommend == '0' ? false : true;
                             _this.bussid.push(pages[i].businessId);
                             _this.isRecommend.push(pages[i].isRecommend);
@@ -228,6 +228,7 @@ var vue = new Vue({
                 var that = this;
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
+                        that.fullscreenLoading=true;
                         that.dialogFormVisible = false;
                         eduUtil.ajaxPostUtil(globalurl + 'BTeacher/add', {
                                 code: that.form.id,
@@ -235,6 +236,7 @@ var vue = new Vue({
                                 email:that.form.mail,
                                 sex: that.form.sex
                             }, (function (response) {
+                                that.fullscreenLoading=false;
                                 // alert(JSON.stringify(response));
                                 var type = response.data.success;
                                 var message = response.data.message;
@@ -263,12 +265,14 @@ var vue = new Vue({
                 var that = this;
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
+                        that.fullscreenLoading=true;
                         eduUtil.ajaxPostUtil(globalurl + 'BTeacher/add', {
                                 businessId: that.bussid[index],
                                 code: that.area.tid,
                                 name: that.area.tname,
                                 sex: that.area.tsex
                             }, (function (response) {
+                                that.fullscreenLoading=false;
                                 // alert(JSON.stringify(response));
                                 var type = response.data.success;
                                 var message = response.data.message;
@@ -442,11 +446,13 @@ var vue = new Vue({
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
+                    that.fullscreenLoading=true;
                     var code = this.tableData[index].tid;
 
                     eduUtil.ajaxPostUtil(globalurl + 'user/resetPasswordByAdmin', {
                             code: code
                         }, (function (response) {
+                            that.fullscreenLoading=false;
                             // alert(JSON.stringify(response));
                             console.log(response.data.success + response.data.message);
                             var type = tip_custom(response.data.success);
@@ -476,10 +482,12 @@ var vue = new Vue({
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    var code = this.tableData[index].tid;
+                    that.fullscreenLoading=true;
+                    var code = that.tableData[index].tid;
                     eduUtil.ajaxPostUtil(globalurl + 'BTeacher/remove', {
                             id:that.bussid[index],
                         }, (function (response) {
+                            that.fullscreenLoading=false;
                             var type = response.data.success;
                             var message = response.data.message;
                             type = tip_custom(type);

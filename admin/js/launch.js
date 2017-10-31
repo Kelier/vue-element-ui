@@ -417,9 +417,11 @@ var vue = new Vue({
                 cancelButtonText: '取消',
                 type: 'warning'
             }).then(() => {
+                _this.fullscreenLoading=false;
                 eduUtil.ajaxPostUtil(globalurl + 'BSl/remove', {
                     id:_this.bussid[index]
                 }, function (res) {
+                    _this.fullscreenLoading=true;
                     if(res.data.success){
                         rows.splice(index,1);
                         _this.$notify({
@@ -517,7 +519,7 @@ var vue = new Vue({
                         obj.id = i + 1;
                         obj.tid = pages[i].code;
                         obj.tname = pages[i].name;
-                        obj.tsex = (pages[i].sex == '1') ? '男' : '女';
+                        obj.tsex = (pages[i].sex == '1') ? '女' : '男';
                         data[i] = obj;
                     }
 
@@ -563,12 +565,14 @@ var vue = new Vue({
         },
         // change tea name
         changeTea(index){
+            this.fullscreenLoading=true;
             var businessId=this.bussid[this.outIndex];
             var here=this;
             eduUtil.ajaxPostUtil(globalurl+'BSl/add', {
                 businessId:businessId,
                 teacherCode:here.teaData[index].tid
             },res=>{
+                here.fullscreenLoading=false;
 
                 if(res.data.success){
                     here.tableData[here.outIndex].tnum=here.teaData[index].tid;
@@ -626,11 +630,12 @@ var vue = new Vue({
         },
         deleteRow(index, rows) {
             var that=this;
-
+            that.fullscreenLoading=true;
             eduUtil.ajaxPostUtil(globalurl+'BRSlStudent/remove',{
                 studentCode:that.gridData[index].snum,
                 slCode:that.tempslCode
             },(res)=>{
+                that.fullscreenLoading=false;
                 if(res.data.success){
                     rows.splice(index, 1);
                     that.$notify({

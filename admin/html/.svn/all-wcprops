@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 77
-/svn/wisdomEdus/!svn/ver/351/trunk/wisdomEduClient/src/main/webapp/admin/html
+/svn/wisdomEdus/!svn/ver/369/trunk/wisdomEduClient/src/main/webapp/admin/html
 END
 checkCourse.html
 K 25
@@ -13,37 +13,37 @@ classManage.html
 K 25
 svn:wc:ra_dav:version-url
 V 94
-/svn/wisdomEdus/!svn/ver/343/trunk/wisdomEduClient/src/main/webapp/admin/html/classManage.html
+/svn/wisdomEdus/!svn/ver/371/trunk/wisdomEduClient/src/main/webapp/admin/html/classManage.html
 END
 newsTwitter.html
 K 25
 svn:wc:ra_dav:version-url
 V 94
-/svn/wisdomEdus/!svn/ver/219/trunk/wisdomEduClient/src/main/webapp/admin/html/newsTwitter.html
+/svn/wisdomEdus/!svn/ver/371/trunk/wisdomEduClient/src/main/webapp/admin/html/newsTwitter.html
 END
 course.html
 K 25
 svn:wc:ra_dav:version-url
 V 89
-/svn/wisdomEdus/!svn/ver/361/trunk/wisdomEduClient/src/main/webapp/admin/html/course.html
+/svn/wisdomEdus/!svn/ver/371/trunk/wisdomEduClient/src/main/webapp/admin/html/course.html
 END
 teaManage.html
 K 25
 svn:wc:ra_dav:version-url
 V 92
-/svn/wisdomEdus/!svn/ver/343/trunk/wisdomEduClient/src/main/webapp/admin/html/teaManage.html
+/svn/wisdomEdus/!svn/ver/371/trunk/wisdomEduClient/src/main/webapp/admin/html/teaManage.html
 END
 stuManage.html
 K 25
 svn:wc:ra_dav:version-url
 V 92
-/svn/wisdomEdus/!svn/ver/343/trunk/wisdomEduClient/src/main/webapp/admin/html/stuManage.html
+/svn/wisdomEdus/!svn/ver/371/trunk/wisdomEduClient/src/main/webapp/admin/html/stuManage.html
 END
 banner.html
 K 25
 svn:wc:ra_dav:version-url
 V 89
-/svn/wisdomEdus/!svn/ver/223/trunk/wisdomEduClient/src/main/webapp/admin/html/banner.html
+/svn/wisdomEdus/!svn/ver/371/trunk/wisdomEduClient/src/main/webapp/admin/html/banner.html
 END
 groomLau.html
 K 25
@@ -61,25 +61,25 @@ term.html
 K 25
 svn:wc:ra_dav:version-url
 V 87
-/svn/wisdomEdus/!svn/ver/343/trunk/wisdomEduClient/src/main/webapp/admin/html/term.html
+/svn/wisdomEdus/!svn/ver/371/trunk/wisdomEduClient/src/main/webapp/admin/html/term.html
 END
 admin.html
 K 25
 svn:wc:ra_dav:version-url
 V 88
-/svn/wisdomEdus/!svn/ver/319/trunk/wisdomEduClient/src/main/webapp/admin/html/admin.html
+/svn/wisdomEdus/!svn/ver/362/trunk/wisdomEduClient/src/main/webapp/admin/html/admin.html
 END
 login.html
 K 25
 svn:wc:ra_dav:version-url
 V 88
-/svn/wisdomEdus/!svn/ver/343/trunk/wisdomEduClient/src/main/webapp/admin/html/login.html
+/svn/wisdomEdus/!svn/ver/369/trunk/wisdomEduClient/src/main/webapp/admin/html/login.html
 END
 launch.html
 K 25
 svn:wc:ra_dav:version-url
 V 89
-/svn/wisdomEdus/!svn/ver/351/trunk/wisdomEduClient/src/main/webapp/admin/html/launch.html
+/svn/wisdomEdus/!svn/ver/371/trunk/wisdomEduClient/src/main/webapp/admin/html/launch.html
 END
 imageManage.html
 K 25

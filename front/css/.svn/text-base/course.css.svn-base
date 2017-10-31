@@ -439,8 +439,8 @@ a[data-open]:hover{
     display: inline-block;
     margin-left: 25px;
 }
- .inline-title,.line_preface{
-     width:460px;
+ .inline-title,.line_preface,.line_face{
+     max-width:360px;
      overflow: hidden;
      text-overflow:ellipsis;
      white-space: nowrap;

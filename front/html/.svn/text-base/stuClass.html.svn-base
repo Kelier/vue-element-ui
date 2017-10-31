@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../font/foundation-icons.css">
     <link rel="stylesheet" href="../css/onlineclass.css"/>
     <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/loading.css">
 </head>
 <body>
 <!--头部-->
@@ -77,6 +78,8 @@
 <script src="../../bower_components/foundation-sites/dist/js/plugins/foundation.util.motion.min.js"></script>
 <script src="../js/nav.js"></script>
 <script src="../../config/url.js"></script>
+<script src="../js/loading.js"></script>
+<script src="../js/tooltip.js"></script>
 <script src="../js/checkCourse.js"></script>
 
 </body>

@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 76
-/svn/wisdomEdus/!svn/ver/259/trunk/wisdomEduClient/src/main/webapp/admin/css
+/svn/wisdomEdus/!svn/ver/362/trunk/wisdomEduClient/src/main/webapp/admin/css
 END
 login.css
 K 25
@@ -13,7 +13,7 @@ element.css
 K 25
 svn:wc:ra_dav:version-url
 V 88
-/svn/wisdomEdus/!svn/ver/128/trunk/wisdomEduClient/src/main/webapp/admin/css/element.css
+/svn/wisdomEdus/!svn/ver/371/trunk/wisdomEduClient/src/main/webapp/admin/css/element.css
 END
 simditor.css
 K 25
@@ -25,5 +25,5 @@ index.css
 K 25
 svn:wc:ra_dav:version-url
 V 86
-/svn/wisdomEdus/!svn/ver/259/trunk/wisdomEduClient/src/main/webapp/admin/css/index.css
+/svn/wisdomEdus/!svn/ver/371/trunk/wisdomEduClient/src/main/webapp/admin/css/index.css
 END

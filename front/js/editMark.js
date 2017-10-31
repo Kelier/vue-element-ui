@@ -43,11 +43,13 @@ $(function () {
         method: 'post',
         beforeSend: function (request) {
             request.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+            tip.open('获取任务书中');
         },
         data: {
             businessId: GetQueryString('businessId')
         },
         success: function (result) {
+            tip.close();
             // console.log(JSON.stringify(result));
             if (result.success) {
                 $("#editormd textarea").val(result.result);
@@ -68,23 +70,7 @@ $(function () {
 
 });
 function submitProBook() {
-    $('body').loading({
-        loadingWidth: 240,
-        title: '提交中...',
-        name: 'test',
-        discription: '这是一个描述...',
-        direction: 'row',
-        type: 'origin',
-        originBg: '#BF5A1F',
-        originDivWidth: 30,
-        originDivHeight: 30,
-        originWidth: 4,
-        originHeight: 4,
-        smallLoading: false,
-        titleColor: '#BF5A1F',
-        loadingBg: '#2B2B2B',
-        loadingMaskBg: 'rgba(0,0,0,0.6)'
-    });
+    
 //        var markcontent=$(".markdown-body.editormd-preview-container").html();
     var markcontent = $("#editormd textarea").val();
     $.ajax({
@@ -92,6 +78,7 @@ function submitProBook() {
         method: 'post',
         beforeSend: function (request) {
             request.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+            tip.open('提交中')
         },
         data: {
             slId: window.location.href.split('&')[1].split('=')[1],
@@ -99,8 +86,8 @@ function submitProBook() {
             mdFile: markcontent
         },
         success: function (result) {
+            tip.close();
             // console.log(JSON.stringify(result));
-            removeLoading('test');
             if (result.success) {
                 setInterval(function () {
                     window.location.href = 'teaCourse.html?id=' + GetQueryString('id');

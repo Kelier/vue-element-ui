@@ -1,3 +1,4 @@
+
 <div id="nav">
     <div class="breadNav">
         <el-breadcrumb separator="/">
@@ -9,7 +10,7 @@
     <div class="info_change">
         <el-button type="info" @click="dialogFormVisible=true">+ 新增</el-button>
 
-        <el-dialog title="" :visible.sync="dialogFormVisible" size="tiny">
+        <el-dialog title="" :visible.sync="dialogFormVisible" size="tiny" :close-on-click-modal="false">
             <el-form :model="form" style="margin-top: 1em;margin-right: 1em;" :rules="formrule" ref="form">
                 <el-form-item label="编号" :label-width="formLabelWidth" prop="id">
                     <el-input v-model="form.id" auto-complete="off"></el-input>
@@ -19,7 +20,7 @@
                 </el-form-item>
                 <el-form-item label="时间" :label-width="formLabelWidth" prop="date">
                     <div class="block">
-                        <el-date-picker v-model="form.date" type="daterange" placeholder="选择日期范围"
+                        <el-date-picker v-model="form.date" type="daterange" placeholder="选择日期范围" :editable=false
                                         :picker-options="pickerOptions2" @change="saveRange"  style="width: 100%">
                         </el-date-picker>
                     </div>
@@ -27,7 +28,7 @@
             </el-form>
 
             <div slot="footer" class="dialog-footer">
-                <el-button @click="dialogFormVisible = false">取 消</el-button>
+                <el-button @click="callOf('form')">取 消</el-button>
                 <el-button type="primary" @click="createTerm('form')">确 定</el-button>
             </div>
         </el-dialog>
@@ -36,7 +37,7 @@
     </div>
 
     <div class="table_box">
-        <el-table :data="tableData" border style="width: 100%">
+        <el-table :data="tableData" border style="width: 100%" >
             <el-table-column align="center" prop="tid" label="序号" width="80">
             </el-table-column>
             <el-table-column align="center" prop="tcode" label="编号" width="250">
@@ -56,13 +57,13 @@
                             </el-form-item>
                             <el-form-item label="时间" :label-width="formLabelWidth" prop="date">
                                 <div class="block">
-                                    <el-date-picker v-model="termAbort.date" type="daterange" placeholder="选择日期范围"
+                                    <el-date-picker v-model="termAbort.date" type="daterange" placeholder="选择日期范围" :editable=false
                                                     :picker-options="pickerOptions2" @change="changeRange"  style="width: 100%">
                                     </el-date-picker>
                                 </div>
                             </el-form-item>
                             <div style=" display: flex;justify-content: flex-end;">
-                                <el-button type="info" @click="change_term('termAbort',scope.$index)" style="margin-left: 80px;">确认
+                                <el-button type="info" @click="change_term('termAbort',scope.$index)" style="margin-left: 80px;" v-loading.fullscreen.lock="fullscreenLoading" element-loading-text="请稍等...">确认
                                 </el-button>
                             </div>
 
@@ -108,4 +109,3 @@
 </div>
 
 <script src="../js/term.js"/>
-

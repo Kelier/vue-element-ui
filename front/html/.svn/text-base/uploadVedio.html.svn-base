@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="course-info-mv" style="display: flex;justify-content: center">
-        <h4></h4>
+        <span id="cor_name"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span id="chp_name"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span id="sec_name"></span>
     </div>
 
     <div class="player"  data-swf="flowplayer.swf" data-ratio="0.4167">

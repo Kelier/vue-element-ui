@@ -46,7 +46,18 @@ function confirmPwd() {
 
 //判断旧密码是否正确
 function checkOldPwd() {
-    console.log($("#old-pwd").val());
+
+    var oldPwd = $("#old-pwd").val().trim();
+    if(oldPwd=="") {
+        oldPwd_status=false;
+        $("#old-pwd-ok").css("display","none");
+        $("#old-pwd").css("border","1px solid #FF4646");
+        $("#old-pwd-tip").css("color","#FF4646");
+        $("#old-pwd-tip").html("请输入当前用户的登录密码");
+        $("#old-pwd-tip").show();
+        return;
+    }
+
     $.ajax({
         url: globalurl + 'login/0',
         method: 'post',
@@ -84,7 +95,12 @@ function savePwd() {
         $("#old-pwd-ok").css("display","none");
         $("#old-pwd").css("border","1px solid #FF4646");
         $("#old-pwd-tip").css("color","#FF4646");
-        $("#old-pwd-tip").html("请输入当前用户的登录密码");
+        if($("#old-pwd").val().trim()==""){
+            $("#old-pwd-tip").html("请输入当前用户的登录密码");
+        }else{
+            $("#old-pwd-tip").html("所输入的密码与当前用户不匹配");
+        }
+
         $("#old-pwd-tip").show();
     }
     console.log(cfPwd_status+"--"+ckPwd_status+"---"+oldPwd_status);

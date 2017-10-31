@@ -20,7 +20,8 @@ var vue = new Vue({
                 businessId: ''
             },
             currentFile: [],
-            upload:''
+            upload:'',
+            fullscreenLoading:false
 
         }
     },
@@ -85,6 +86,7 @@ var vue = new Vue({
                 this.currentFile = [];
                 this.currentFile.push(file.raw);
                 var cover = this.currentFile[0];
+                console.log(cover)
                 var that = this;
                 eduUtil.ajaxPostUtil(globalurl + 'BCarousel/upload', {
                     file: cover
@@ -97,9 +99,21 @@ var vue = new Vue({
 
 
         },
+        cancelBanner(file,filelist){
+            console.log(file)
+            var that=this;
+            eduUtil.ajaxPostUtil(globalurl + 'BCarousel/upload', {
+                file: null
+            }, function (res) {
+                that.upload = res.data.result;
+            }, function (err) {
+                console.log(err)
+            });
+        },
         saveBanner(){
             var that = this;
             console.log(that.form.des)
+            that.fullscreenLoading=true;
             eduUtil.ajaxPostUtil(globalurl + 'BCarousel/add', {
                 imageType: "home_top_banner",
                 imageId: "c148428a53fd4a6c9109cec14c8d8d4c",
@@ -112,6 +126,7 @@ var vue = new Vue({
                 businessId: that.form.businessId
 
             }, function (res) {
+                that.fullscreenLoading=false;
                 if(res.data.success){
                     vue.loadTab(parseInt(that.activeName));
                     that.$notify({
@@ -129,6 +144,23 @@ var vue = new Vue({
 
             }, function (err) {
                 console.log(err)
+            });
+        },
+
+        toHomeTin(){
+            $("#page").fadeOut();
+
+            $.ajax({
+                url: 'imageManage.html',
+                async: false,
+                success:function(res){
+                    $("#page").fadeOut();
+                    $("#page").html(res.toLocaleString());
+                    $("#page").fadeIn();
+                },
+                err:function (err) {
+                    console.log(err)
+                }
             });
         }
 

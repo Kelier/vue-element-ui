@@ -36,7 +36,7 @@
         </el-button>
         <el-button type="success" class="mould" @click="importmould">导入学生信息<i class="el-icon-upload el-icon--right"></i>
         </el-button>
-        <input type="file" id="btn_file" style="display:none" @change="fileupload" v-loading.fullscreen.lock="fullscreenLoading">
+        <input type="file" id="btn_file" style="display:none" @change="fileupload" v-loading.fullscreen.lock="fullscreenLoading" element-loading-text="请稍等...">
 
     </div>
 

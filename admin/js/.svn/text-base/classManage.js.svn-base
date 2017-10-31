@@ -59,10 +59,10 @@ var vue = new Vue({
             formLabelWidth: '80px',
 
             options: [{
-                value: '1',
+                value: '0',
                 label: '男'
             }, {
-                value: '2',
+                value: '1',
                 label: '女'
             }],
 
@@ -169,11 +169,13 @@ var vue = new Vue({
             var that = this;
             this.$refs[formName].validate((valid) => {
                 if (valid) {
+                    that.fullscreenLoading=true;
             that.dialogFormVisible = false;
             eduUtil.ajaxPostUtil(globalurl + 'BClass/add', {
                     code: that.form.id,
                     className: that.form.name,
                 }, (function (response) {
+                    that.fullscreenLoading=false;
                     // alert(JSON.stringify(response));
                     var type = response.data.success;
                     var message = response.data.message;
@@ -295,12 +297,14 @@ var vue = new Vue({
             var that = this;
             this.$refs[formName].validate((valid) => {
                 if (valid) {
+                    that.fullscreenLoading=true;
             eduUtil.ajaxPostUtil(globalurl + 'BClass/add', {
                     businessId:that.bussid[index],
                     code:that.formLabelAlign.cid ,
                     className: that.formLabelAlign.region,
                     studentNum: that.formLabelAlign.cnum
                 }, (function (response) {
+                    that.fullscreenLoading=false;
                     // alert(JSON.stringify(response));
                     var type = response.data.success;
                     var message = response.data.message;
@@ -389,10 +393,12 @@ var vue = new Vue({
         deleteRow(index, rows) {
             console.log(index+","+rows)
             var that=this;
+            that.fullscreenLoading=true;
             eduUtil.ajaxPostUtil(globalurl+'BRClassStudent/remove',{
                 stuCode:that.gridData[index].snum,
-                classCode:that.tableData[index].cid
+                classCode:that.tableData[that.inIndex].cid
             },(res)=>{
+                that.fullscreenLoading=false;
                 if(res.data.success){
                     rows.splice(index, 1);
                     that.stutotal=res.data.total;
@@ -425,9 +431,11 @@ var vue = new Vue({
                 cancelButtonText: '取消',
                 type: 'warning'
             }).then(() => {
+                that.fullscreenLoading=true;
                 eduUtil.ajaxPostUtil(globalurl + 'BClass/remove', {
                         id:that.bussid[index],
                     }, (function (response) {
+                        that.fullscreenLoading=false;
                         var type = response.data.success;
                         var message = response.data.message;
                         type = tip_custom(type);

@@ -9,12 +9,13 @@ $(function () {
         method: 'post',
         beforeSend: function(request) {
             request.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+            tip.open('加载项目任务书中')
         },
         data: {
             businessId: GetQueryString('businessId')
         },
         success: function (result) {
-
+            
             if (result.success) {
                 console.log(result);
                 $(".book-title>p").html(decodeURI(decodeURI(GetQueryString('a'))));
@@ -39,6 +40,7 @@ $(function () {
             id: GetQueryString('d')
         },
         success: function (result) {
+            tip.close();
             console.log("loadSLDetail成功")
             if (result.success) {
                 if (result.result == null || result.result == '' || result == undefined) {

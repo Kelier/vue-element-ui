@@ -114,7 +114,7 @@ gulp.task('font', function () {
         .pipe(gulp.dest('dist/front/font'));
     return gulp.src('admin/css/fonts/*')
         .pipe(gulp.dest('dist/admin/css/fonts'))
-});
+}); 
 
 //转移第三方库
 gulp.task('library', () => {

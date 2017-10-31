@@ -4,6 +4,7 @@ var token = sessionStorage.getItem("token");
 if(token==null){
     window.location.href="login.html";
 }
+
 var vue = new Vue({
     el: '#app',
     data: function () {
@@ -57,7 +58,8 @@ var vue = new Vue({
                 checkpass: [
                     {validator: checkpass, trigger: 'blur'}
                 ]
-            }
+            },
+            fullscreenLoading:false
 
         }
     },
@@ -108,14 +110,14 @@ var vue = new Vue({
             var address = ['1-1', '1-2', '1-3', '1-4', '2-1', '2-2', '2-3', '3-1', '3-2', '3-3'];
             var routes = ['term.html', 'course.html', 'launch.html', 'checkCourse.html'
                 , 'teaManage.html', 'stuManage.html', 'classManage.html',
-                'groomLau.html', 'newsTwitter.html', 'banner.html'];
+                'groomLau.html', 'newsTwitter.html', 'imageManage.html'];
             var path;
             for (var i = 0; i < address.length; i++) {
                 if (flag == address[i]) {
                     path = routes[i];
                 }
             }
-
+            var that=this;
             $.ajax({
                 url: path,
                 async: false,
@@ -131,10 +133,14 @@ var vue = new Vue({
 
         },
         bringPass(formName){
+            
             console.log(formName)
             var that=this;
             this.$refs[formName].validate((valid) => {
                 if (valid) {
+                    
+                    that.fullscreenLoading=true;
+                    
                     that.changePassView = false;
                     let _formData = new FormData();
                     _formData.append('loginName', that.username);
@@ -142,6 +148,7 @@ var vue = new Vue({
                     _formData.append('oldPassword', that.passView.oldpass);
                     axios.post(globalurl + 'user/changePassword', _formData)
                         .then(function (response) {
+                            that.fullscreenLoading=false
                             // alert(JSON.stringify(response));
                             var type = response.data.success;
                             var message = response.data.message;
@@ -154,10 +161,10 @@ var vue = new Vue({
                                     message: message,
                                     type: type
                                 });
-                                setTimeout(function () {
+                                /*setTimeout(function () {
                                     sessionStorage.clear();
                                     window.location.href="login.html";
-                                },1000);
+                                },1000);*/
                             }else{
                                 that.$notify({
                                     title: '提示信息',
