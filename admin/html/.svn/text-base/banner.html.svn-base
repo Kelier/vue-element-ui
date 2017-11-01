@@ -32,7 +32,7 @@
                             <el-input v-model="form.des"></el-input>
                         </el-form-item>
                         <el-form-item label="链接地址">
-                            <el-input v-model="form.url"></el-input>
+                            <el-input v-model="form.url" placeholder="格式为http://..."></el-input>
                         </el-form-item>
                         <el-form-item label="新窗口打开">
                             <template>

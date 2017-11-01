@@ -43,14 +43,15 @@ $(function () {
         
 
         for(var i=0;i<res.rows.length;i++){
-            $("#bantop"+i).attr("data-op",res.rows[i].isOpen);
-            $("#bantop"+i).on('click',function () {
+            $("#bantop"+i).attr("data-op",res.rows[i].isNewWindow);
+            $("#bantop"+i).on('click',{toc:i},function (e) {
+                var i=e.data.toc
                 var banid='#'+$(this).attr("id");
                if($(banid).attr("data-op")=='1'){
-                   window.open('http://'+res.rows[$(this).attr("id").match(/\d+/g)].linkUrl)
+                   window.open(res.rows[$(this).attr("id").match(/\d+/g)].linkUrl)
                }
                 if($(banid).attr("data-op")=='0'){
-                    window.location.href='http://'+res.rows[i].linkUrl;
+                    window.location.href=res.rows[i].linkUrl;
                 }
             });
         }
@@ -168,6 +169,7 @@ $(function () {
         // console.log(res.rows[0].businessId)
         var str = '';
         for (var i = 0; i < res.rows.length; i++) {
+           
             str += '<div class="rows">' +
                 '<div class="medium-6 large-8 columns">' +
                 '<i class="fi-clock clock-icon"></i>' +
@@ -196,7 +198,11 @@ $(function () {
 
 
 function stuCourse(id) {
-    window.location.href = 'stuCourse.html?id=' + id;
+    var p;
+    if(sessionStorage.getItem("role")=="1003")
+        p='stuCourse.html?id=' + id;
+    else  p='stuCourse.html?id=' + id+'&isP=true';
+    window.location.href = p;
 }
 function show_side() {
     $(".silder-ctrl-prev").css("display", "inline-block");

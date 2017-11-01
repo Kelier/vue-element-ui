@@ -62,7 +62,7 @@
                         <img id="coverUrl" src="" alt=""
                              class="cover">
                         <!--<div class="lay-pen" id="lay_pen">-->
-                            <a data-open="cover_modal" class="pencil-lay"><img  src='../image/edit1.png'></a>
+                            <a data-open="cover_modal" class="pencil-lay"><img  src='../image/edit1.png' title="修改封面"></a>
                     <!--    </div>-->
                         <!-- This is the first modal -->
                         <div class="reveal cover_modal" id="cover_modal" data-reveal>
@@ -127,7 +127,7 @@
                         <div class="course_title">
                             <span id="lessonName"></span>
                             <span class="span-config course-code" id="slCode"></span>
-                            <span class="span-config" id="span_config"><a onclick="echo_title()"><img  src='../image/edit2.png'></a></span>
+                            <span class="span-config" id="span_config"><a onclick="echo_title()"><img  src='../image/edit2.png' title="修改课程简介"></a></span>
                             <!--<div class="tri-label" id="tri-label"></div>-->
                             <!--<span class="tri-title" id="tri-title">已发布</span>-->
                         </div>

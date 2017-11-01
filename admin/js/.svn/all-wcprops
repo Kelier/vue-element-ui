@@ -9,17 +9,17 @@ svn:wc:ra_dav:version-url
 V 85
 /svn/wisdomEdus/!svn/ver/371/trunk/wisdomEduClient/src/main/webapp/admin/js/banner.js
 END
-term.js
-K 25
-svn:wc:ra_dav:version-url
-V 83
-/svn/wisdomEdus/!svn/ver/371/trunk/wisdomEduClient/src/main/webapp/admin/js/term.js
-END
 module.min.js
 K 25
 svn:wc:ra_dav:version-url
 V 89
 /svn/wisdomEdus/!svn/ver/196/trunk/wisdomEduClient/src/main/webapp/admin/js/module.min.js
+END
+term.js
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/wisdomEdus/!svn/ver/371/trunk/wisdomEduClient/src/main/webapp/admin/js/term.js
 END
 hotkeys.min.js
 K 25
@@ -79,7 +79,7 @@ admin.js
 K 25
 svn:wc:ra_dav:version-url
 V 84
-/svn/wisdomEdus/!svn/ver/371/trunk/wisdomEduClient/src/main/webapp/admin/js/admin.js
+/svn/wisdomEdus/!svn/ver/372/trunk/wisdomEduClient/src/main/webapp/admin/js/admin.js
 END
 checkCourse.js
 K 25

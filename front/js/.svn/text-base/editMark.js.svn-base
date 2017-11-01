@@ -30,7 +30,34 @@ $(function () {
         imageUploadURL: globalurl + "BChapter/uploadMdFileWithoutAuth",
 
         onload: function () {
-            console.log(this)
+            $.ajax({
+                url: globalurl + 'BChapter/getMdFileById',
+                method: 'post',
+                beforeSend: function (request) {
+                    request.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+                    tip.open('获取任务书中');
+                },
+                data: {
+                    businessId: GetQueryString('businessId')
+                },
+                success: function (result) {
+                    tip.close();
+                    // console.log(JSON.stringify(result));
+                    if (result.success) {
+                        $("#editormd textarea").val(result.result);
+                        setInterval(function () {
+                            $(".sho_line").fadeIn();
+                        }, 1000);
+
+                    } else {
+                        alert(result.message);
+                    }
+                },
+                error: function (error) {
+                    console.log(JSON.stringify(error));
+                    alert("访问服务器失败");
+                }
+            });
 
         },
     });
@@ -38,34 +65,7 @@ $(function () {
     var str = decodeURI(decodeURI(getInfo.cname)) + "  " + decodeURI(decodeURI(getInfo.nodePid)) + " " + decodeURI(decodeURI(getInfo.nodePname)) + " " + decodeURI(decodeURI(getInfo.nodeCid)) + " " + decodeURI(decodeURI(getInfo.nodeCname));
     $(".course-info").find('h4').html(str);
 
-    $.ajax({
-        url: globalurl + 'BChapter/getMdFileById',
-        method: 'post',
-        beforeSend: function (request) {
-            request.setRequestHeader("Authorization", sessionStorage.getItem("token"));
-            tip.open('获取任务书中');
-        },
-        data: {
-            businessId: GetQueryString('businessId')
-        },
-        success: function (result) {
-            tip.close();
-            // console.log(JSON.stringify(result));
-            if (result.success) {
-                $("#editormd textarea").val(result.result);
-                setInterval(function () {
-                    $(".sho_line").fadeIn();
-                }, 1000);
-
-            } else {
-                alert(result.message);
-            }
-        },
-        error: function (error) {
-            console.log(JSON.stringify(error));
-            alert("访问服务器失败");
-        }
-    });
+   
 
 
 });

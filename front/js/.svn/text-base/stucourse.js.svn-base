@@ -401,8 +401,8 @@ function create_section(seName, seId, chIndex, seIndex, handle,vedioState,vedioU
         //往里塞值
         find_item.eq(0).html('第' + (seIndex + 1) + '节');
         find_item.eq(1).html(seName);
-        find_item.eq(4).children().html("<img  src='../image/pro.png'>");
-        find_item.eq(5).children().html("<img  src='../image/exp.png'>");
+        find_item.eq(4).children().html("<img title='任务书'  src='../image/pro.png'>");
+        find_item.eq(5).children().html("<img title='实验' src='../image/exp.png'>");
 
         find_item.eq(2).children().attr('href', 'seeVedio.html?businessId=' + seId +'&id=' + GetQueryString('id')+"&courseinfo="+res+"&vedioUrl="+encodeURI(encodeURI(vedioUrl)));
 
