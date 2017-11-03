@@ -3,6 +3,8 @@
  */
 
 $(document).ready(function () {
+
+    
     //Global变量
     var currentChapter = 0;
     var currentSection = 0;
@@ -33,12 +35,19 @@ $(document).ready(function () {
 
     loadData();
 });
+
 var scoreList = [];
 var cpName = '';
 
 var teaCode, slCode, flag;
 
+/**
+ * 启动che
+ * @param seId
+ * @param e
+ */
 function toJudgeOpen(seId,e) {
+    $('.tool-container').fadeOut();
     console.log(seId);
     var targetDom=e.target.parentNode.parentNode.parentNode.parentNode;
     var isC;
@@ -85,7 +94,6 @@ function toJudgeOpen(seId,e) {
                 $("#content").fadeOut();
                 $("#footer").fadeOut();
                 $("#water").fadeIn();
-
                 $.ajax({
                     url: globalurl + 'BChapter/cheStart',
                     method: 'post',
@@ -108,6 +116,7 @@ function toJudgeOpen(seId,e) {
                                 sessionStorage.setItem("address","eclipse.html?uri=" + encodeURIComponent(res.result.url) + "&businessId=" + seId + "&pnum=" + encodeURIComponent(res.result.port) + "&scode=" + sessionStorage.getItem("stucode") + "&ccode=" + slCode + "&id=" + GetQueryString("id")+"&isC="+isC);
                                 localStorage.setItem("chestatus","open");
                                 sessionStorage.setItem("timer",res.result.endTime);
+                                
                                 $("#water").fadeOut();
                                 $("#header").fadeIn();
                                 $("#content").fadeIn();
@@ -142,7 +151,35 @@ function toJudgeOpen(seId,e) {
 
 }
 
+/**
+ * 选择不同项目ide
+ * @param seId
+ * @param e
+ * @param type
+ */
+function codeNow(seId,e,type) {
+    $(".tool-container").fadeOut();
+    switch(type){
+        case "html":window.open('html_code_mir.html')
+            break;
+        case "single":window.open('single_code_mir.html')
+            break;
+        case "multi":window.open('multi_code_mir.html')
+            break;
+        case "linux":window.open('linux_code_mir.html')
+            break;
+        default: return;
+    }
+        
+}
 
+/**
+ * 下载文件
+ * @param seId
+ * @param seIndex
+ * @param chIndex
+ * @param dataUrl
+ */
 function toDownload(seId,seIndex,chIndex,dataUrl) {
     console.log(seId+"开始下载"+dataUrl);
     if(dataUrl==""){
@@ -192,7 +229,10 @@ function toDownload(seId,seIndex,chIndex,dataUrl) {
      });*/
 
 }
-/*返回界面*/
+
+/**
+ *返回界面
+ */
 function returnMe() {
     $("#water").fadeOut();
     $("#header").fadeIn();
@@ -202,16 +242,21 @@ function returnMe() {
 }
 
 
-/*
- * 创建元素
- * */
+/**
+ * 下在元素
+ * @param ele
+ * @returns {Element}
+ */
 function create(ele) {
     return document.createElement(ele);
 }
 
-/*
+/**
  * 目录创建章
- * */
+ * @param chName
+ * @param index
+ * @param handle
+ */
 function create_chapter(chName, index, handle) {
 
     var em_dt = create("dt");
@@ -242,9 +287,17 @@ function create_chapter(chName, index, handle) {
     $(".reveal-overlay").hide();
 }
 
-/*
+/**
  * 目录创建节
- * */
+ * @param seName
+ * @param seId
+ * @param chIndex
+ * @param seIndex
+ * @param handle
+ * @param vedioState
+ * @param vedioUrl
+ * @param fileUrl
+ */
 function create_section(seName, seId, chIndex, seIndex, handle,vedioState,vedioUrl,fileUrl) {
     var em_dd = create("dd");
     var em_inline_section = create("div");
@@ -334,8 +387,10 @@ function create_section(seName, seId, chIndex, seIndex, handle,vedioState,vedioU
 
 
         find_item.eq(5).children().attr('href', 'proBook.html?businessId=' + seId + '&a=' + encodeURI(encodeURI(cpName)) + '&b=' + encodeURI(encodeURI(seName)) + '&c=' + seIndex + '&d=' + GetQueryString('id'));
-        find_item.eq(6).find('a').attr('onclick', 'toJudgeOpen("' + seId + '",event)');
-
+        // find_item.eq(6).find('a').attr('onclick', 'toJudgeOpen("' + seId + '",event)');
+        find_item.eq(6).find('a').attr('data-toolbar', 'user-options');
+        find_item.eq(6).find('a').attr('data-seid', seId);
+        
         find_item.eq(3).children().attr('href', 'seeVedio.html?businessId=' + seId +'&id=' + GetQueryString('id')+"&courseinfo="+res+"&vedioUrl="+encodeURI(encodeURI(vedioUrl)));
 
         if(vedioState.indexOf("2")!=-1) {
@@ -436,13 +491,17 @@ function create_section(seName, seId, chIndex, seIndex, handle,vedioState,vedioU
 
 }
 
+/**
+ * 初始化
+ */
 function loadData() {
-    
     loadSlDetail();
     loadChapter();
 }
 
-
+/**
+ * 记载课程简介
+ */
 function loadSlDetail() {
     // alert(GetQueryString('id'));
     $.ajax({
@@ -490,6 +549,9 @@ function loadSlDetail() {
     })
 }
 
+/**
+ * 加载章节
+ */
 function loadChapter() {
     console.log("loadChapter-----------");
     $.ajax({
@@ -548,6 +610,31 @@ function loadChapter() {
                     }
 
                 }
+                var options={
+                    content: '#toolbar-options',
+                    style: 'warning',
+                    event: 'click',
+                    hideOnClick: true,
+                    position:'top',
+                    adjustment:35
+                };
+
+                //    在此添加另一个方法封装所有跳转编辑器，che另作处理
+                var csline=$(".section").length;
+                var tool=$('a[data-toolbar="user-options"]');
+                tool.toolbar(options);
+                
+                var che_evr=$('.tool-items');
+                for(var i=0;i<csline;i++){
+                    var index=tool[0].getAttribute("data-seid");
+                    che_evr.find('a')[(i+1)*5-1].setAttribute('onclick','toJudgeOpen("' + index + '",event)')
+                    che_evr.find('a')[(i+1)*5-5].setAttribute('onclick','codeNow("' + index + '",event,"html")')
+                    che_evr.find('a')[(i+1)*5-4].setAttribute('onclick','codeNow("' + index + '",event,"single")')
+                    che_evr.find('a')[(i+1)*5-3].setAttribute('onclick','codeNow("' + index + '",event,"multi")')
+                    che_evr.find('a')[(i+1)*5-2].setAttribute('onclick','codeNow("' + index + '",event,"linux")')
+                }
+                
+
             } else {
                 alert(result.message);
             }
@@ -559,6 +646,9 @@ function loadChapter() {
     })
 }
 
+/**
+ * 预览相关
+ */
 function backTeaSet() {
     if (sessionStorage.getItem("role") == "1002") {
         localStorage.removeItem("isP");
@@ -567,18 +657,19 @@ function backTeaSet() {
 
 }
 
-/*
- * 点击“更多”，显示课程简介的详情；
- * */
+/**
+ * 简介详情
+ */
 function showCourseSummary() {
     var content = $("#course_info").text();
     console.log(content);
     $("#div_sum_detail").html(content);
 
 }
-/*
- * "更多按钮显示"
- * */
+
+/**
+ * 按钮展示
+ */
 function minify() {
     var scrollHeight = $("#course_info").get(0).scrollHeight;
     var offsetHeight = $("#course_info").get(0).offsetHeight;

@@ -9,7 +9,7 @@
     <div class="info_change">
         <el-button type="info" @click="dialogFormVisible=true">+ 新增</el-button>
 
-        <el-dialog title="" :visible.sync="dialogFormVisible" size="tiny">
+        <el-dialog title="" :visible.sync="dialogFormVisible" size="tiny" :close-on-click-modal="false" @close="callOf('form')">
             <el-form :model="form" style="margin-top: 1em;margin-right: 1em;" :rules="formrule1" ref="form">
                 <el-form-item label="学号" :label-width="formLabelWidth" prop="id">
                     <el-input v-model="form.id" auto-complete="off"></el-input>

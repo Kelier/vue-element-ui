@@ -8,7 +8,7 @@
     </div>
     <div class="info_change">
         <div class="info_change">
-            <el-dialog title="" :visible.sync="dialogFormVisible1" size="tiny">
+            <el-dialog title="" :visible.sync="dialogFormVisible1" size="tiny" :close-on-click-modal="false" @close="callOf('form')">
                 <el-form :model="form" style="margin-top: 1em;margin-right: 1em;" :rules="formrule1" ref="form">
                     <el-form-item label="推荐序号" :label-width="formLabelWidth" prop="recommendOrder">
                         <el-input v-model="form.recommendOrder" auto-complete="off"></el-input>
@@ -20,10 +20,10 @@
                 </el-form>
                 <div slot="footer" class="dialog-footer">
                     <el-button @click="dialogFormVisible1 = false">取 消</el-button>
-                    <el-button type="primary" @click="updateRecommendState('form')">确 定</el-button>
+                    <el-button type="primary" @click="updateRecommendState('form')" v-loading.fullscreen.lock="fullscreenLoading" element-loading-text="请稍等...">确 定</el-button>
                 </div>
             </el-dialog>
-            <el-dialog title="" :visible.sync="dialogFormVisible2" size="tiny">
+            <el-dialog title="" :visible.sync="dialogFormVisible2" size="tiny" :close-on-click-modal="false" @close="callOf('formtea')">
                 <el-form :model="formtea" style="margin-top: 1em;margin-right: 1em;" :rules="formrule2" ref="formtea">
                     <el-form-item label="推荐序号" :label-width="formLabelWidth" prop="recommendOrder">
                         <el-input v-model="formtea.recommendOrder" auto-complete="off"></el-input>

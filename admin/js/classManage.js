@@ -163,13 +163,14 @@ var vue = new Vue({
         },
 
 
-        //新增用户
+        //新增班级
         createClasses(formName){
 
             var that = this;
+            that.fullscreenLoading=true;
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    that.fullscreenLoading=true;
+                    
             that.dialogFormVisible = false;
             eduUtil.ajaxPostUtil(globalurl + 'BClass/add', {
                     code: that.form.id,
@@ -193,10 +194,16 @@ var vue = new Vue({
             ;
                     that.loadData(that.currentPage, that.pagesize);
                 } else {
+                    that.fullscreenLoading=false;
                     console.log('error submit!!');
                     return false;
                 }
             });
+        },
+
+        callOf(formName) {
+            this.dialogFormVisible = false;
+            this.$refs[formName].resetFields();
         },
 
         //上传
@@ -244,6 +251,7 @@ var vue = new Vue({
 
                 this.$http.post(globalurl + 'BRClassStudent/excelImport', _formData, _config)
                     .then(function (response) {
+                        that.fullscreenLoading=false;
                         //  alert(JSON.stringify(response));
                         console.log(response.data.success + response.data.message);
                         var type = tip_custom(response.data.success);
@@ -263,13 +271,12 @@ var vue = new Vue({
 
                         }
                         that.loadData(that.currentPage, that.pagesize);
-                        that.fullscreenLoading=false;
+                       
                     })
                     .catch(function (err) {
                         console.log(err);
                     });
                 that.loadData(that.currentPage, that.pagesize);
-                that.fullscreenLoading=false;
                 $("#btn_file").val('');
                 return true;
             } else {
@@ -295,9 +302,10 @@ var vue = new Vue({
         change_course(formName,index) {
 
             var that = this;
+            that.fullscreenLoading=true;
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    that.fullscreenLoading=true;
+                    
             eduUtil.ajaxPostUtil(globalurl + 'BClass/add', {
                     businessId:that.bussid[index],
                     code:that.formLabelAlign.cid ,
@@ -323,6 +331,7 @@ var vue = new Vue({
             )
 
                 } else {
+                    that.fullscreenLoading=false;
                     console.log('error submit!!');
                     return false;
                 }

@@ -1,0 +1,110 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    @@include('include/common_style.html')
+    <style>
+
+        .CodeMirror {
+            width: 50%;
+            height: auto;
+        }
+
+        .myframe {
+            width: 50%;
+            height: 100%;
+        }
+
+        .main {
+            display: flex;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .flex-box {
+            display: flex;
+            width: 90%;
+            margin: 10px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="main" style="flex-direction: column">
+    <div class="flex-box">
+        <textarea id="editor" name="editor"></textarea>
+        <iframe class="myframe"></iframe>
+    </div>
+   
+</div>
+<!--common ibrary-->
+@@include('include/common_lib.html')
+
+<!--Mode-->
+
+<script src="../../bower_components/codemirror/hint/javascript-hint.js"></script>
+<script src="../../bower_components/codemirror/hint/html-hint.js"></script>
+<script src="../../bower_components/codemirror/hint/xml-hint.js"></script>
+<script src="../../bower_components/codemirror/hint/css-hint.js"></script>
+<script src="../../bower_components/codemirror/javascript/javascript.js"></script>
+<script src="../../bower_components/codemirror/xml/xml.js"></script>
+<script src="../../bower_components/codemirror/css/css.js"></script>
+<script src="../../bower_components/codemirror/htmlmixed/htmlmixed.js"></script>
+
+<script>
+    $(() => {
+
+        //初始化编辑器
+
+        let textarea = $("#editor")[0],
+            mode = "text/html",
+            keyMap = "sublime",
+            options = {
+                mode: mode,//加载模块
+                theme: "base16-dark",
+                keyMap: keyMap,//绑定编辑器键位
+                lineNumbers: true,
+                autofocus: true,
+                lineWrapping: true,
+                foldGutter: true,
+                gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],//代码折叠
+                auto: "auto",
+                matchBrackets: true,
+                autoCloseBrackets: true,//括号补全
+                autoCloseTags: true,//标签补全
+                completeSingle: false
+            },
+            codeEditor = CodeMirror.fromTextArea(textarea, options);
+
+        codeEditor.setValue("<!--start from here-->");
+
+        codeEditor.on('keypress', () => {
+            codeEditor.showHint(); //满足自动触发自动联想功能
+        });
+
+        /**
+         * 更新右侧preview
+         */
+        function updatePreview() {
+            var previewFrame = document.getElementsByClassName('myframe')[0];
+            var preview = previewFrame.contentDocument || previewFrame.contentWindow.document;
+            preview.open();
+            preview.write(codeEditor.getValue());
+            preview.close();
+        }
+
+        //此刻为html预览模式
+        var delay;
+        codeEditor.on("change", function () {
+            clearTimeout(delay);
+            delay = setTimeout(updatePreview, 300);
+        });
+
+    })
+</script>
+</body>
+</html>

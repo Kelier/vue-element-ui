@@ -209,9 +209,10 @@ var vue = new Vue({
         createUser(formName){
 
             var that = this;
+            that.fullscreenLoading=true;
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    that.fullscreenLoading=true;
+                    
                     that.dialogFormVisible = false;
                     eduUtil.ajaxPostUtil(globalurl + 'BStudent/add', {
                             code: that.form.id,
@@ -237,12 +238,16 @@ var vue = new Vue({
 
                     //  this.loadData(this.currentPage, this.pagesize);
                 } else {
+                    that.fullscreenLoading=false;
                     console.log('error submit!!');
                     return false;
                 }
             });
         },
-
+        callOf(formName) {
+            this.dialogFormVisible = false;
+            this.$refs[formName].resetFields();
+        },
         //上传
         importmould() {
             document.getElementById("btn_file").click();
@@ -287,6 +292,7 @@ var vue = new Vue({
                 this.$http.post(globalurl + 'BStudent/excelImport', _formData, _config)
                     .then(function (response) {
                         // alert(JSON.stringify(response));
+                        that.fullscreenLoading=false;
                         console.log(response.data.success + response.data.message);
                         var type = tip_custom(response.data.success);
                         if (type == "error") {
@@ -304,13 +310,12 @@ var vue = new Vue({
                             });
                             $("#btn_file").val('');
                             that.loadData(that.currentPage, that.pagesize);
-                            that.fullscreenLoading=false;
+                           
                         }
                     })
                     .catch(function (err) {
                         console.log(err);
                     });
-                that.fullscreenLoading=false;
 
                 return true;
             } else {
@@ -336,9 +341,10 @@ var vue = new Vue({
         change_course(formName, index) {
             // console.log(index)
             var that = this;
+            that.fullscreenLoading=true;
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    that.fullscreenLoading=true;
+                    
                     eduUtil.ajaxPostUtil(globalurl + 'BStudent/add', {
                             businessId: that.bussid[index],
                             code: that.formLabelAlign.sid,
@@ -363,6 +369,7 @@ var vue = new Vue({
                         })
                     )
                 } else {
+                    that.fullscreenLoading=false;
                     console.log('error submit!!');
                     return false;
                 }

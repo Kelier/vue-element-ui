@@ -41,7 +41,7 @@ var vue = new Vue({
 
             if (Object.prototype.toString.call(value).slice(8, -1) == 'Undefined') {
                 callback(new Error('请选择日期'));
-            } else if (value[0] === null) {
+            } else if (value[0] === null||value==='') {
                 callback(new Error('请选择日期'));
                 console.log('??')
             } else {
@@ -166,9 +166,10 @@ var vue = new Vue({
         },
         change_term(formName, index) {
             var that = this;
+            that.fullscreenLoading=true;
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    that.fullscreenLoading=true;
+
                     //获取日期
                     //console.info(this.tempRange); 2017-08-11 - 2017-09-19
 
@@ -208,6 +209,7 @@ var vue = new Vue({
 
                     // that.loadData(that.currentPage, that.pagesize);
                 } else {
+                    that.fullscreenLoading=false;
                     that.$notify({
                         title: '提示信息',
                         message: '请注意填写日期',
@@ -259,6 +261,7 @@ var vue = new Vue({
         },
 
         createTerm(formName) {
+            this.fullscreenLoading=true;
             var that = this;
             console.log(that.form.id)
             this.$refs[formName].validate((valid) => {
@@ -266,7 +269,7 @@ var vue = new Vue({
 
                 if (valid) {
                     that.dialogFormVisible = false;
-                    that.fullscreenLoading=true;
+
                     //获取日期
                     //console.info(this.tempRange); 2017-08-11 - 2017-09-19
                     var tempDate = that.tempRange;
@@ -304,6 +307,7 @@ var vue = new Vue({
 
                     // that.loadData(that.currentPage, that.pagesize);
                 } else {
+                    this.fullscreenLoading=false;
                     return false;
                 }
             });

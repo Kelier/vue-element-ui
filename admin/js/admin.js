@@ -161,10 +161,13 @@ var vue = new Vue({
                                     message: message,
                                     type: type
                                 });
-                                setTimeout(function () {
-                                    sessionStorage.clear();
-                                    window.location.href="login.html";
-                                },1000);
+                                if(response.data.success){
+                                    setTimeout(function () {
+                                        sessionStorage.clear();
+                                        window.location.href="login.html";
+                                    },1000);
+                                }
+                                
                             }else{
                                 that.$notify({
                                     title: '提示信息',

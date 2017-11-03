@@ -1,0 +1,44 @@
+body {
+    overflow: hidden;
+}
+
+.main {
+    width: auto;
+    height: 100%;
+    margin: 50px;
+}
+
+.CodeMirror {
+    height: 80%;
+    width: 80%;
+}
+
+.flex-select {
+    height: 10%;
+}
+
+.flex-box {
+    display: flex;
+
+}
+
+.doc-tree {
+    width: 20%;
+    border: 10px solid #4f2a35;
+    overflow: scroll;
+}
+
+.normal-margin {
+    margin-left: 20px;
+}
+
+.flex-line {
+    background: #4e2934;
+    height: 2%;
+}
+
+.flex-out {
+    height: 38%;
+    overflow-y: scroll;
+    background: #f2f2f2
+}

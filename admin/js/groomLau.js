@@ -55,6 +55,7 @@ var vue = new Vue({
         return {
             dialogFormVisible1: false,
             dialogFormVisible2: false,
+            fullscreenLoading:false,
             formLabelWidth: '80px',
             activeName: '0',
             form: {
@@ -281,8 +282,8 @@ var vue = new Vue({
 
         updateRecommendState(formName){
 
-            let _this = this;
-
+            var _this = this;
+            _this.fullscreenLoading=true;
             var url = '';
             if (_this.activeName == '0')
                 url = 'BTeacher/add';
@@ -300,6 +301,7 @@ var vue = new Vue({
                                 recommendCourse: _this.form.recommendCourse,
                                 isRecommend: _this.form.isRecommend == '0' ? '1' : '0',
                             }, (function (response) {
+                                _this.fullscreenLoading=false;
                                 var type = response.data.success;
                                 var message = response.data.message;
                                 _this.form.recommendOrder = '';
@@ -324,6 +326,7 @@ var vue = new Vue({
                             })
                         )
                     } else {
+                        _this.fullscreenLoading=false;
                         console.log('error submit!!');
                         return false;
                     }
@@ -336,6 +339,7 @@ var vue = new Vue({
                         recommendCourse: _this.form.recommendCourse,
                         isRecommend: _this.form.isRecommend == '0' ? '1' : '0',
                     }, (function (response) {
+                        _this.fullscreenLoading=false;
                         var type = response.data.success;
                         var message = response.data.message;
                         _this.form.recommendOrder = '';
@@ -362,8 +366,10 @@ var vue = new Vue({
             }
 
         },
+
         updateRecommendStateTea(formName){
-            let _this = this;
+            var _this = this;
+            _this.fullscreenLoading=true;
             var url = '';
             if (_this.activeName == '0')
                 url = 'BTeacher/add';
@@ -381,6 +387,7 @@ var vue = new Vue({
                                 recommendCourse: _this.formtea.recommendCourse,
                                 isRecommend: _this.formtea.isRecommend == '0' ? '1' : '0',
                             }, (function (response) {
+                                _this.fullscreenLoading=false;
                                 var type = response.data.success;
                                 var message = response.data.message;
                                 _this.formtea.recommendOrder = '';
@@ -417,6 +424,7 @@ var vue = new Vue({
                         recommendCourse: _this.formtea.recommendCourse,
                         isRecommend: _this.formtea.isRecommend == '0' ? '1' : '0',
                     }, (function (response) {
+                        _this.fullscreenLoading=false;
                         var type = response.data.success;
                         var message = response.data.message;
                         _this.formtea.recommendOrder = '';
@@ -489,7 +497,10 @@ var vue = new Vue({
                 this.sl_loadData(this.currentPage, this.pagesize);
             }
         },
-
+        callOf(formName) {
+            this.dialogFormVisible1 = false;
+            this.$refs[formName].resetFields();
+        },
 
     }
 });

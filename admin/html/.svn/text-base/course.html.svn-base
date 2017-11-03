@@ -10,7 +10,7 @@
     <div class="info_change">
         <el-button type="info" @click="dialogFormVisible=true">+ 新增</el-button>
 
-        <el-dialog title="" :visible.sync="dialogFormVisible" size="tiny">
+        <el-dialog title="" :visible.sync="dialogFormVisible" size="tiny" :close-on-click-modal="false" @close="callOf('form')">
             <el-form :model="form" style="margin-top: 1em;margin-right: 1em;" :rules="formrule1" ref="form">
                 <el-form-item label="课程编号" :label-width="formLabelWidth" prop="id">
                     <el-input v-model="form.id" auto-complete="off"></el-input>
@@ -142,18 +142,14 @@
 <script>
     function justEnter(event) {
         var node=event.relatedTarget;
-        $("#nav").append("<p id='pic' style='z-index: 1000'><img src='" + event.target.src + "' id='pic1'></p>");
+        $("#nav").append("<p id='pic' style='z-index: 1000;position: fixed'><img src='" + event.target.src + "' id='pic1'></p>");
         $(node).find('img').mousemove(function(e){
             console.log(e.pageY+","+e.clientY);
-            var trlen=$(".el-table__row").length;
-            var top;
-            if(trlen<4)
-                top=(e.clientY-800)+"px";
-            else if(trlen>=4||trlen<=6) top=(e.clientY-1200)+"px";
-            else top=(e.clientY-800)+"px";
             $("#pic").css({
-                "top": top,
-                "left":(e.pageX-800)+"px"
+                "top": (e.clientY-200)+"px",
+                "left":(e.pageX-600)+"px",
+                "width":"400px",
+                "height":"300px"
             }).fadeIn("fast");
             
 

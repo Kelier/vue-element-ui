@@ -1,0 +1,100 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--codeMirror-->
+    @@include('include/common_style.html')
+    <link rel="stylesheet" href="../css/codepen.css">
+    <style>
+        .CodeMirror{
+            width: 100%;
+            height: 50%;
+        }
+        .flex-select {
+            height: 5%;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <div class="flex-select">
+        <select name="language" id="lang-switch">
+            <option value="javascript">Javascript</option>
+            <option value="text/x-csrc">C</option>
+            <option value="text/x-c++src">C++</option>
+            <option value="text/x-csharp">C#</option>
+            <option value="text/x-java">Java</option>
+            <option value="python">Python3</option>
+            <option value="text/x-php">PHP</option>
+            <option value="text/x-sql">SQL</option>
+        </select>
+        <button value="运行" class="normal-margin">运行</button>
+    </div>
+    <div class="flex-box">
+        <textarea id="editor" name="editor"></textarea>
+    </div>
+    <div class="flex-box flex-line"></div>
+    <div class="flex-box flex-out">
+        //这里是输出
+    </div>
+
+
+</div>
+
+
+<!--Basic-->
+@@include('include/common_lib.html')
+@@include('include/common_language.html')
+
+
+<script>
+    $(() => {
+        
+        //初始化编辑器
+
+        var textarea = $("#editor")[0],
+            select = document.getElementById("lang-switch"),
+            mode = "javascript",
+            keyMap = "sublime",
+            options = {
+                mode: mode,//加载模块
+                theme: "base16-dark",
+                keyMap: keyMap,//绑定编辑器键位
+                lineNumbers: true,
+                autofocus: true,
+                lineWrapping: true,
+                foldGutter: true,
+                gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],//代码折叠
+                auto: "auto",
+                matchBrackets: true,
+                autoCloseBrackets: true,//括号补全
+                autoCloseTags: true,//标签补全
+                compvareSingle:false
+            },
+            codeEditor = CodeMirror.fromTextArea(textarea, options);
+
+        codeEditor.setValue("//start from here!");
+
+        codeEditor.on('keypress', () => {
+            codeEditor.showHint(); //满足自动触发自动联想功能
+        });
+        
+
+        select.addEventListener('change', () => {
+
+            var seIndex = select.selectedIndex;
+            mode = select[seIndex].value;
+
+            codeEditor.setValue("//start from here!");
+            codeEditor.setOption("mode", mode);
+            console.log(codeEditor.getOption("mode"))
+        })
+
+
+    })
+</script>
+</body>
+</html>

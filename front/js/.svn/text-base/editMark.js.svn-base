@@ -73,33 +73,38 @@ function submitProBook() {
     
 //        var markcontent=$(".markdown-body.editormd-preview-container").html();
     var markcontent = $("#editormd textarea").val();
-    $.ajax({
-        url: globalurl + 'BChapter/add',
-        method: 'post',
-        beforeSend: function (request) {
-            request.setRequestHeader("Authorization", sessionStorage.getItem("token"));
-            tip.open('提交中')
-        },
-        data: {
-            slId: window.location.href.split('&')[1].split('=')[1],
-            businessId: GetQueryString('businessId'),
-            mdFile: markcontent
-        },
-        success: function (result) {
-            tip.close();
-            // console.log(JSON.stringify(result));
-            if (result.success) {
-                setInterval(function () {
-                    window.location.href = 'teaCourse.html?id=' + GetQueryString('id');
-                }, 1000);
-                toastr.success('提交成功');
-            } else {
-                alert(result.message);
+    if(markcontent===null||markcontent===''||typeof markcontent==='undefined')
+        toastr.warning('正文不能为空')
+    else{
+        $.ajax({
+            url: globalurl + 'BChapter/add',
+            method: 'post',
+            beforeSend: function (request) {
+                request.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+                tip.open('提交中')
+            },
+            data: {
+                slId: window.location.href.split('&')[1].split('=')[1],
+                businessId: GetQueryString('businessId'),
+                mdFile: markcontent
+            },
+            success: function (result) {
+                tip.close();
+                // console.log(JSON.stringify(result));
+                if (result.success) {
+                    setInterval(function () {
+                        window.location.href = 'teaCourse.html?id=' + GetQueryString('id');
+                    }, 1000);
+                    toastr.success('提交成功');
+                } else {
+                    alert(result.message);
+                }
+            },
+            error: function (error) {
+                console.log(JSON.stringify(error));
+                alert("访问服务器失败");
             }
-        },
-        error: function (error) {
-            console.log(JSON.stringify(error));
-            alert("访问服务器失败");
-        }
-    })
+        })
+    }
+    
 }

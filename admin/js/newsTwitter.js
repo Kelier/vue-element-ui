@@ -214,9 +214,10 @@ var vue = new Vue({
             var createnews = $(".simditor-body").html();
             // console.log($(".simditor-body").find('p').html())
             var that = this;
+            that.fullscreenLoading=true;
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    that.fullscreenLoading=true;
+                    
                     that.dialogFormVisible = false;
                     eduUtil.ajaxPostUtil(globalurl + 'BNews/add', {
                             businessId: that.newsId,
@@ -250,10 +251,15 @@ var vue = new Vue({
                     )
 
                 } else {
+                    that.fullscreenLoading=false;
                     console.log('error submit!!');
                     return false;
                 }
             });
+        },
+        callOf(formName) {
+            this.dialogFormVisible1 = false;
+            this.$refs[formName].resetFields();
         },
         editnews(index){
             console.log("edit");

@@ -240,6 +240,7 @@ var vue = new Vue({
 
                 this.$http.post(globalurl + 'BRSlStudent/excelImport', _formData, _config)
                     .then(function (response) {
+                        that.fullscreenLoading=false;
                         // alert(JSON.stringify(response));
                         var type = tip_custom(response.data.success);
                         if (type == "error") {
@@ -260,7 +261,7 @@ var vue = new Vue({
                             that.loadData(that.currentPage, that.pagesize);
                         }
                         that.loadData(that.currentPage, that.pagesize);
-                        that.fullscreenLoading=false;
+                        
                         $("#file_stu").val('');
                     })
                     .catch(function (err) {
@@ -318,6 +319,7 @@ var vue = new Vue({
 
                 this.$http.post(globalurl + 'BSl/excelImport', _formData, _config)
                     .then(function (response) {
+                        that.fullscreenLoading=false;
                         //   alert(JSON.stringify(response));
                         var type = tip_custom(response.data.success);
                         if (type == "error") {
@@ -337,7 +339,6 @@ var vue = new Vue({
                             that.loadData(that.currentPage, that.pagesize);
                         }
                         that.loadData(that.currentPage, that.pagesize);
-                        that.fullscreenLoading=false;
                         $("#file_tea").val('');
                     })
                     .catch(function (err) {
@@ -631,17 +632,19 @@ var vue = new Vue({
         deleteRow(index, rows) {
             var that=this;
             that.fullscreenLoading=true;
+            
             eduUtil.ajaxPostUtil(globalurl+'BRSlStudent/remove',{
                 studentCode:that.gridData[index].snum,
                 slCode:that.tempslCode
             },(res)=>{
                 that.fullscreenLoading=false;
-                if(res.data.success){
+                var type=tip_custom(res.data.success)
+                if(type){
                     rows.splice(index, 1);
                     that.$notify({
                         title: '提示信息',
                         message: res.data.message,
-                        type: 'error'
+                        type: type
                     });
                 }
                     

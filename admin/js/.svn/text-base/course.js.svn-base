@@ -141,9 +141,10 @@ var vue = new Vue({
             //新增课程
             createClass(formName){
                 var that = this;
+                that.fullscreenLoading=true;
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        that.fullscreenLoading=true;
+                        
                         that.dialogFormVisible = false;
                         let _formData = new FormData();
                         _formData.append('code', that.form.id);
@@ -167,6 +168,7 @@ var vue = new Vue({
                             });
 
                     } else {
+                        that.fullscreenLoading=false;
                         console.log('error submit!!');
                         return false;
                     }
@@ -175,6 +177,10 @@ var vue = new Vue({
 
                 //  this.loadData(this.currentPage, this.pagesize);
 
+            },
+            callOf(formName) {
+                this.dialogFormVisible = false;
+                this.$refs[formName].resetFields();
             },
             //上传
             importmould() {
@@ -367,9 +373,10 @@ var vue = new Vue({
                 
                 // console.log(index)
                 var that = this;
+                that.fullscreenLoading=true;
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        that.fullscreenLoading=true;
+                        
                         eduUtil.ajaxPostUtil(globalurl + 'BLesson/add', {
                                 businessId: that.bussid[index],
                                 code: that.formLabelAlign.id,
@@ -393,6 +400,7 @@ var vue = new Vue({
                             })
                         )
                     } else {
+                        that.fullscreenLoading=false;
                         console.log('error submit!!');
                         return false;
                     }

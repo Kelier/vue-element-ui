@@ -103,6 +103,9 @@ gulp.task('image', function () {
     gulp.src('front/image/*.{jpg,png}')
         .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
         .pipe(gulp.dest('dist/front/image'));
+    gulp.src('front/css/img/*.{jpg,png,gif}')
+        .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
+        .pipe(gulp.dest('dist/front/css/img'));
     return gulp.src('admin/image/*.ico')
         .pipe(gulp.dest('dist/front/image'));
 
@@ -110,8 +113,8 @@ gulp.task('image', function () {
 
 /*字体压缩*/
 gulp.task('font', function () {
-    gulp.src('front/font/**/*')
-        .pipe(gulp.dest('dist/front/font'));
+    gulp.src('front/fonts/**/*')
+        .pipe(gulp.dest('dist/front/fonts'));
     return gulp.src('admin/css/fonts/*')
         .pipe(gulp.dest('dist/admin/css/fonts'))
 }); 
@@ -180,7 +183,7 @@ gulp.task('default',function (cb) {
    gulpSequence('clean',['library','handlebar','frontjs','adminjs','image','font','css'],'admin','replace',['server','watch'],cb);
 });
 
-// gulp.task('default', ['library','handlebar','frontjs','adminjs','image','font','css','admin','replace','server'], function() { //执行完[]任务后再执行minicss任务
+// gulp.task('default', ['library','handlebar','frontjs','adminjs','image','fonts','css','admin','replace','server'], function() { //执行完[]任务后再执行minicss任务
 //     gulp.watch('admin/html/**/*.html', ['admin']);
 //     gulp.watch('front/html/**/*.html', ['replace']);
 //     gulp.watch('front/js/*.js', ['frontjs']);
