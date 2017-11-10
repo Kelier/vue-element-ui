@@ -27,7 +27,8 @@ $(function () {
 
         } else {
             for (var i = 0; i < res.rows.length; i++) {
-                realpath = imagepath + res.rows[i].carouselUrl;
+                var path=res.rows[i].carouselUrl||default_carousel_location;
+                realpath = imagepath + path;
                 alt = res.rows[i].carouselDes;
                 banner.push({'img': realpath, 'alt': alt,'title':alt});
             }

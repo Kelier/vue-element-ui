@@ -939,7 +939,7 @@ function checkIt(e) {
                 },
                 success: function (res) {
                     if (res.success) {
-                        sessionStorage.setItem("timer",res.result.endTime);
+                        localStorage.setItem("timer",res.result.endTime);
                         window.open("eclipse.html?uri=" + encodeURIComponent(res.result.url) + "&businessId=" + chBusId + "&pnum=" + encodeURIComponent(res.result.port) + "&scode=" + code + "&ccode=" + slCode + "&id=" + GetQueryString("id"))
                     } else {
 
@@ -979,7 +979,7 @@ function checkIt(e) {
                             if(localStorage.getItem("teache")==null){
                                 sessionStorage.setItem("address","eclipse.html?uri=" + encodeURIComponent(res.result.url) + "&businessId=" + chBusId + "&pnum=" + encodeURIComponent(res.result.port) + "&scode=" + code + "&ccode=" + slCode + "&id=" + GetQueryString("id"));
                                 localStorage.setItem("teache","open");
-                                sessionStorage.setItem("timer",res.result.endTime);
+                                localStorage.setItem("timer",res.result.endTime);
                                 $("#water").fadeOut();
                                 $("#header").fadeIn();
                                 $("#content").fadeIn();

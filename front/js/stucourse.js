@@ -76,7 +76,7 @@ function toJudgeOpen(seId,e) {
                 },
                 success: function (res) {
                     if (res.success) {
-                        sessionStorage.setItem("timer",res.result.endTime);
+                        localStorage.setItem("timer",res.result.endTime);
                         window.open("eclipse.html?uri=" + encodeURIComponent(res.result.url) + "&businessId=" + seId + "&pnum=" + encodeURIComponent(res.result.port) + "&scode=" + sessionStorage.getItem("stucode") + "&ccode=" + slCode + "&id=" + GetQueryString("id")+"&isC="+isC)
                     } else {
                         toastr.warning(res.message);
@@ -115,7 +115,7 @@ function toJudgeOpen(seId,e) {
                             if(localStorage.getItem("chestatus")==null){
                                 sessionStorage.setItem("address","eclipse.html?uri=" + encodeURIComponent(res.result.url) + "&businessId=" + seId + "&pnum=" + encodeURIComponent(res.result.port) + "&scode=" + sessionStorage.getItem("stucode") + "&ccode=" + slCode + "&id=" + GetQueryString("id")+"&isC="+isC);
                                 localStorage.setItem("chestatus","open");
-                                sessionStorage.setItem("timer",res.result.endTime);
+                                localStorage.setItem("timer",res.result.endTime);
                                 
                                 $("#water").fadeOut();
                                 $("#header").fadeIn();
