@@ -30,6 +30,7 @@ $(function () {
         imageUploadURL: globalurl + "BChapter/uploadMdFileWithoutAuth",
 
         onload: function () {
+            console.log('1')
             $.ajax({
                 url: globalurl + 'BChapter/getMdFileById',
                 method: 'post',
