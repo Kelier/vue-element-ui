@@ -76,14 +76,19 @@
                 matchBrackets: true,
                 autoCloseBrackets: true,//括号补全
                 autoCloseTags: true,//标签补全
-                completeSingle: false
+                completeSingle:false
             },
             codeEditor = CodeMirror.fromTextArea(textarea, options);
 
         codeEditor.setValue("<!--start from here-->");
 
-        codeEditor.on('keypress', () => {
-            codeEditor.showHint(); //满足自动触发自动联想功能
+        codeEditor.on('keyup', (cm) => {
+            if (!cm.state.completionActive && /*Enables keyboard navigation in autocomplete list*/
+                event.keyCode != 13) {        /*Enter - do not open autocomplete list just after item has been selected in it*/
+                CodeMirror.commands.autocomplete(cm, null, {completeSingle: false});
+            }
+//                codeEditor.showHint(cm, CodeMirror.hint.javascript, {completeSingle: false}); //满足自动触发自动联想功能
+            
         });
 
         /**
