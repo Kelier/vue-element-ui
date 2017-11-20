@@ -80,8 +80,8 @@
                         </el-form-item>
                         <el-form-item>
 
-                            <el-button type="primary" size="large" @click="saveBanner">保存</el-button>
-                            <el-button type="primary" size="large">取消</el-button>
+                            <el-button type="primary" size="large" @click="saveBanner" v-loading.fullscreen.lock="fullscreenLoading" element-loading-text="请稍等...">保存</el-button>
+                            <el-button type="primary" size="large" @click="toHomeTin">返回</el-button>
                         </el-form-item>
 
                     </el-form>
@@ -118,8 +118,8 @@
                         </el-form-item>
                         <el-form-item>
 
-                            <el-button type="primary" size="large" @click="saveBanner">保存</el-button>
-                            <el-button type="primary" size="large">取消</el-button>
+                            <el-button type="primary" size="large" @click="saveBanner" v-loading.fullscreen.lock="fullscreenLoading" element-loading-text="请稍等...">保存</el-button>
+                            <el-button type="primary" size="large" @click="toHomeTin">返回</el-button>
                         </el-form-item>
 
                     </el-form>
@@ -156,8 +156,8 @@
                         </el-form-item>
                         <el-form-item>
 
-                            <el-button type="primary" size="large" @click="saveBanner">保存</el-button>
-                            <el-button type="primary" size="large">取消</el-button>
+                            <el-button type="primary" size="large" @click="saveBanner" v-loading.fullscreen.lock="fullscreenLoading" element-loading-text="请稍等...">保存</el-button>
+                            <el-button type="primary" size="large" @click="toHomeTin">返回</el-button>
                         </el-form-item>
 
                     </el-form>
@@ -194,8 +194,8 @@
                         </el-form-item>
                         <el-form-item>
 
-                            <el-button type="primary" size="large" @click="saveBanner">保存</el-button>
-                            <el-button type="primary" size="large" @click="toHomeTin">取消</el-button>
+                            <el-button type="primary" size="large" @click="saveBanner" v-loading.fullscreen.lock="fullscreenLoading" element-loading-text="请稍等...">保存</el-button>
+                            <el-button type="primary" size="large" @click="toHomeTin">返回</el-button>
                         </el-form-item>
 
                     </el-form>

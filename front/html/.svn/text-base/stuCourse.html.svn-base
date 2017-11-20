@@ -8,10 +8,13 @@
     <link rel="stylesheet" href="../css/loading.css">
     <link rel="stylesheet" href="../css/water.css">
     <link rel="stylesheet" href="../css/drop.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
 
     <link rel="stylesheet" href="../../bower_components/foundation-sites/dist/css/foundation.min.css">
     <link rel="stylesheet" href="../font/foundation-icons.css">
     <link rel="stylesheet" href="../../bower_components/cropper/dist/cropper.min.css">
+    <link rel="stylesheet" href="../css/jquery.toolbar.css">
+    
     <link rel="stylesheet" href="../css/nav.css">
     <link rel="stylesheet" href="../css/course.css">
     <link rel="stylesheet" href="../css/course2.css">
@@ -164,7 +167,7 @@
                                     <div class="stu_tilte">课程特色</div>
                                 </div>
                                 <div class="card_body">
-                                    <div class="stu-wire"><img style=" margin-left: -3px;margin-bottom:6px "
+                                    <div class="stu-wire"><img style="margin-bottom:6px "
                                                                src="../image/exp2.png"><span
                                             style="font-size:small;margin-left: 3px;">实验</span></div>
                                     <div class="stu-wireless"><span style="font-size: small">&nbsp;</span></div>
@@ -191,6 +194,14 @@
 </div>
 <footer id="footer" class="footer"> @@include('include/footer.html')</footer>
 
+<div id="toolbar-options" class="hidden">
+    <a href="#" title="HTML编辑器"><i class="fa fa-html5"></i></a>
+    <a href="#" title="单文本编辑器"><i class="fa fa-codepen"></i></a>
+    <a href="#" title="多文本编辑器"><i class="fa fa-slack"></i></a>
+    <a href="#" title="Linux命令行"><i class="fa fa-linux"></i></a>
+    <a href="#" title="Eclipse Che"><i class="fa fa-stumbleupon"></i></a>
+</div>
+
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
 <script src="../../bower_components/foundation-sites/dist/js/foundation.min.js"></script>
 <script src="../../bower_components/foundation-sites/dist/js/plugins/foundation.util.motion.min.js"></script>
@@ -198,6 +209,7 @@
 <script src="../../config/url.js"></script>
 <script src="../../config/ajaxUtils.js"></script>
 <script src="../js/toastr.min.js"></script>
+<script src="../js/jquery.toolbar.js"></script>
 <script src="../js/loading.js"></script>
 <script src="../js/tooltip.js"></script>
 <script src="../js/stucourse.js"></script>

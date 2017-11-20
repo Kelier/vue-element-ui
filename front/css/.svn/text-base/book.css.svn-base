@@ -137,6 +137,7 @@ div.book-cover{
 }
 
 .stu-wire {
+    float: left;
     display: inline-block;
     background-color: #fba443;
     border: 1px solid #fba443;
@@ -149,6 +150,9 @@ div.book-cover{
     text-align: center;
     margin-right: -4px;
 }
+
+
+
 .stu-wireless {
     display: inline-block;
     border: 1px solid #fba443;
@@ -161,4 +165,47 @@ div.book-cover{
     color: #fba443;
     background-color: #fff
 
+}
+.card_body{
+    height: 105px;
+    margin-left: 15px;
+    margin-top: 15px;
+}
+.tea-wire-mv {
+    background-color: #7ECEF3;
+    border: 1px solid #7ECEF3;
+    border-radius: 5px 0 0 5px;
+    border-right-width: 0;
+    color: #FFF;
+    width: 66px;
+    margin-right: -6px;
+}
+.tea-wireless-mv {
+    color: #7ECEF3;
+    background-color: #fff;
+    border: 1px solid #7ECEF3;
+    border-radius: 0 5px 5px 0;
+    border-left-width: 0;
+    width: 33px;
+}
+.tea-wire-mv,  .tea-wireless-mv {
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+.tea-info {
+    font-size: smaller;
+    margin-top: 25px;
+    color: #1a1a1a
+}
+
+.tea-info-course {
+    font-size: smaller;
+    margin-top: 10px;
+    color: #434343
+}
+.tea-info, .tea-info-course {
+    color: #434343;
+    font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif
 }

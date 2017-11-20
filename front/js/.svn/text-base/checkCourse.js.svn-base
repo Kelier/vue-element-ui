@@ -19,7 +19,7 @@ $(function () {
         e.preventDefault();
     });
 
-    $("#learn-before").on("click", function () {
+   /* $("#learn-before").on("click", function () {
         $("#learn-over").hide();
         $("#learn-do").show();
         $("#learn-before").addClass("axis");
@@ -30,7 +30,7 @@ $(function () {
         $("#learn-do").hide();
         $("#learn-delay").addClass("axis");
         $("#learn-before").removeClass("axis");
-    });
+    });*/
 
 });
 
@@ -45,7 +45,7 @@ function loadData() {
 
         },
         beforeSend: function (res) {
-            res.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+            res.setRequestHeader("Authorization", localStorage.getItem("token"));
             tip.open('努力加载中')
         },
         success: function (result) {
@@ -72,7 +72,7 @@ function loadData() {
                 }
             }
             $('#learn-do-list').html(learn_do);
-            $('#learn-over-list').html(learn_over);
+            // $('#learn-over-list').html(learn_over);
         },
         error: function (error) {
             alert('访问服务器失败');

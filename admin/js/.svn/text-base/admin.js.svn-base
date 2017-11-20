@@ -155,12 +155,20 @@ var vue = new Vue({
                             type = eduUtil.tip_custom(type);
 
                             if(type){
-
-                                that.$notify({
-                                    title: '提示信息',
-                                    message: message,
-                                    type: type
-                                });
+                                if(type=="error"){
+                                    that.$notify({
+                                        title: '提示信息',
+                                        message: '密码有误，请核对',
+                                        type: type
+                                    });
+                                }else{
+                                    that.$notify({
+                                        title: '提示信息',
+                                        message: message,
+                                        type: type
+                                    });
+                                }
+                                
                                 if(response.data.success){
                                     setTimeout(function () {
                                         sessionStorage.clear();

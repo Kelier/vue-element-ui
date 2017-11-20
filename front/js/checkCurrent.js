@@ -6,11 +6,11 @@ $(function () {
 });
 function readyCheck(){
     /*判断token*/
-    if (sessionStorage.getItem("token") != null) {
-        $("#username").html(sessionStorage.getItem("username"));
+    if (localStorage.getItem("token") != null) {
+        $("#username").html(localStorage.getItem("username"));
 
-        $("#avatar").attr("src", imagepath + sessionStorage.getItem("avatar"));
-        var roleCode = sessionStorage.getItem("role");
+        $("#avatar").attr("src", imagepath + localStorage.getItem("avatar"));
+        var roleCode = localStorage.getItem("role");
         if (roleCode == '1002') {
             $("#role").html('我的教学');
             $("#lay-name").show();
@@ -24,7 +24,7 @@ function readyCheck(){
 
     }
 
-    if (sessionStorage.getItem("token") == null) {
+    if (localStorage.getItem("token") == null) {
 
         $("#role").html('登录/注册');
         $("#lay-name").hide();
@@ -47,7 +47,7 @@ function ToCoursePage() {
 }
 
 function exitCurrent() {
-    $("#username").html(sessionStorage.clear());
+    $("#username").html(localStorage.clear());
     window.location.href = 'index.html';
 }
 

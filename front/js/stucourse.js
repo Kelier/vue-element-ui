@@ -3,13 +3,11 @@
  */
 
 $(document).ready(function () {
-
-    
     //Global变量
     var currentChapter = 0;
     var currentSection = 0;
 
-    if (sessionStorage.getItem("role") == "1002") {
+    if (localStorage.getItem("role") == "1002") {
         if (GetQueryString("isP")||localStorage.getItem("isP")=="preview"){
             $('#a-setback').show();
             localStorage.setItem("isP","preview");
@@ -35,204 +33,273 @@ $(document).ready(function () {
 
     loadData();
 });
-
 var scoreList = [];
 var cpName = '';
 
 var teaCode, slCode, flag;
 
-/**
- * 启动che
- * @param seId
- * @param e
- */
 function toJudgeOpen(seId,e) {
-    $('.tool-container').fadeOut();
-    console.log(seId);
-    var targetDom=e.target.parentNode.parentNode.parentNode.parentNode;
-    var isC;
-
-    if(targetDom.getAttribute('data-score')!=null){
-        isC="right";
+    var token =localStorage.getItem("token");
+    var stuCode = localStorage.getItem("stucode");
+    if(token==null) {
+        toastr.warning("请先登录！");
+        return;
     }
-    console.log(isC)
-    /*第一次开车*/
-    if(sessionStorage.getItem("role")=="1003"){
-        if(localStorage.getItem("chestatus")=="waited"){
-            toastr.warning("正在清理che空间，请等待1-2分钟");
-        }
-        if(localStorage.getItem("chestatus")=="open"){
-            $.ajax({
-                url: globalurl + 'BChapter/cheStart',
-                method: 'post',
-                beforeSend: function (request) {
-                    request.setRequestHeader("Authorization", sessionStorage.getItem("token"));
-                },
-                data: {
-                    teaCode: teaCode,
-                    stuCode: sessionStorage.getItem("stucode"),
-                    slCode: slCode,
-                    flag: (sessionStorage.getItem("role") == '1003' ? '1' : '0')
-                },
-                success: function (res) {
-                    if (res.success) {
-                        localStorage.setItem("timer",res.result.endTime);
-                        window.open("eclipse.html?uri=" + encodeURIComponent(res.result.url) + "&businessId=" + seId + "&pnum=" + encodeURIComponent(res.result.port) + "&scode=" + sessionStorage.getItem("stucode") + "&ccode=" + slCode + "&id=" + GetQueryString("id")+"&isC="+isC)
-                    } else {
-                        toastr.warning(res.message);
+    $.ajax({
+        url: globalurl + 'BSl/queryStuInLessionOrNotWithoutAuth',
+        method: 'post',
+        data: {
+            studentCode:stuCode,
+            selectCode: slCode
+        },
+        beforeSend:function(xhr){
+            tip.open('请求中...');
+        },
+        success: function (response) {
+            tip.close();
+            if(response.result==0){
+
+                toastr.warning("您没有在该课程的选课名单中，暂时不能查看！");
+                return;
+            }else{
+                var targetDom=e.target.parentNode.parentNode.parentNode.parentNode;
+                var isC;
+
+                if(targetDom.getAttribute('data-score')!=null){
+                    isC="right";
+                }
+                console.log(isC)
+                /*第一次开车*/
+                if(localStorage.getItem("role")=="1003"){
+                    if(localStorage.getItem("chestatus")=="waited"){
+                        toastr.warning("正在清理che空间，请等待1-2分钟");
+                    }
+                    if(localStorage.getItem("chestatus")=="open"){
+                        $.ajax({
+                            url: globalurl + 'BChapter/cheStart',
+                            method: 'post',
+                            beforeSend: function (request) {
+                                request.setRequestHeader("Authorization", localStorage.getItem("token"));
+                            },
+                            data: {
+                                teaCode: teaCode,
+                                stuCode: localStorage.getItem("stucode"),
+                                slCode: slCode,
+                                flag: (localStorage.getItem("role") == '1003' ? '1' : '0')
+                            },
+                            success: function (res) {
+                                if (res.success) {
+                                    localStorage.setItem("timer",res.result.endTime);
+                                    window.open("eclipse.html?uri=" + encodeURIComponent(res.result.url) + "&businessId=" + seId + "&pnum=" + encodeURIComponent(res.result.port) + "&scode=" + localStorage.getItem("stucode") + "&ccode=" + slCode + "&id=" + GetQueryString("id")+"&isC="+isC);
+                                } else {
+                                    toastr.warning(res.message);
+                                }
+
+                            }, error: function (err) {
+                                console.log(err);
+                            }
+                        });
                     }
 
-                }, error: function (err) {
-                    console.log(err)
-                }
-            });
-        }
+                    if(localStorage.getItem("chestatus")!="waited"){
+                        if(localStorage.getItem("chestatus")!="open"){
+                            $("#header").fadeOut();
+                            $("#content").fadeOut();
+                            $("#footer").fadeOut();
+                            $("#water").fadeIn();
 
-        if(localStorage.getItem("chestatus")!="waited"){
-            if(localStorage.getItem("chestatus")!="open"){
-                $("#header").fadeOut();
-                $("#content").fadeOut();
-                $("#footer").fadeOut();
-                $("#water").fadeIn();
-                $.ajax({
-                    url: globalurl + 'BChapter/cheStart',
-                    method: 'post',
-                    beforeSend: function (request) {
-                        request.setRequestHeader("Authorization", sessionStorage.getItem("token"));
-                    },
-                    data: {
-                        teaCode: teaCode,
-                        stuCode: sessionStorage.getItem("stucode"),
-                        slCode: slCode,
-                        flag: (sessionStorage.getItem("role") == '1003' ? '1' : '0')
-                    },
-                    success: function (res) {
-                        if (res.success) {
-                            if(localStorage.getItem("chestatus")=="waited"){
-                                sessionStorage.setItem("address","eclipse.html?uri=" + encodeURIComponent(res.result.url) + "&businessId=" + seId + "&pnum=" + encodeURIComponent(res.result.port) + "&scode=" + sessionStorage.getItem("stucode") + "&ccode=" + slCode + "&id=" + GetQueryString("id")+"&isC="+isC);
-                                localStorage.setItem("chestatus","open");
-                            }
-                            if(localStorage.getItem("chestatus")==null){
-                                sessionStorage.setItem("address","eclipse.html?uri=" + encodeURIComponent(res.result.url) + "&businessId=" + seId + "&pnum=" + encodeURIComponent(res.result.port) + "&scode=" + sessionStorage.getItem("stucode") + "&ccode=" + slCode + "&id=" + GetQueryString("id")+"&isC="+isC);
-                                localStorage.setItem("chestatus","open");
-                                localStorage.setItem("timer",res.result.endTime);
-                                
-                                $("#water").fadeOut();
-                                $("#header").fadeIn();
-                                $("#content").fadeIn();
-                                $("#footer").fadeIn();
-                                window.open(sessionStorage.getItem("address"));
-                            }
+                            $.ajax({
+                                url: globalurl + 'BChapter/cheStart',
+                                method: 'post',
+                                beforeSend: function (request) {
+                                    request.setRequestHeader("Authorization", localStorage.getItem("token"));
+                                },
+                                data: {
+                                    teaCode: teaCode,
+                                    stuCode: localStorage.getItem("stucode"),
+                                    slCode: slCode,
+                                    flag: (localStorage.getItem("role") == '1003' ? '1' : '0')
+                                },
+                                success: function (res) {
+                                    if (res.success) {
+                                        if(localStorage.getItem("chestatus")=="waited"){
+                                            localStorage.setItem("address","eclipse.html?uri=" + encodeURIComponent(res.result.url) + "&businessId=" + seId + "&pnum=" + encodeURIComponent(res.result.port) + "&scode=" + localStorage.getItem("stucode") + "&ccode=" + slCode + "&id=" + GetQueryString("id")+"&isC="+isC);
+                                            localStorage.setItem("chestatus","open");
+                                        }
+                                        if(localStorage.getItem("chestatus")==null){
+                                            localStorage.setItem("address","eclipse.html?uri=" + encodeURIComponent(res.result.url) + "&businessId=" + seId + "&pnum=" + encodeURIComponent(res.result.port) + "&scode=" + localStorage.getItem("stucode") + "&ccode=" + slCode + "&id=" + GetQueryString("id")+"&isC="+isC);
+                                            localStorage.setItem("chestatus","open");
+                                            localStorage.setItem("timer",res.result.endTime);
+                                            $("#water").fadeOut();
+                                            $("#header").fadeIn();
+                                            $("#content").fadeIn();
+                                            $("#footer").fadeIn();
+                                            window.open(localStorage.getItem("address"));
+                                        }
 
-                        } else {
-                            toastr.warning(res.message);
-                            $("#water").fadeOut();
-                            $("#header").fadeIn();
-                            $("#content").fadeIn();
-                            $("#footer").fadeIn();
+                                    } else {
+                                        toastr.warning(res.message);
+                                        $("#water").fadeOut();
+                                        $("#header").fadeIn();
+                                        $("#content").fadeIn();
+                                        $("#footer").fadeIn();
+                                    }
+
+                                }, error: function (err) {
+                                    console.log(err);
+                                }
+                            });
                         }
 
-                    }, error: function (err) {
-                        console.log(err)
+
+
                     }
-                });
+
+                }else{
+                    window.open("eclipse.html?businessId=" + seId  + "&scode=" + localStorage.getItem("stucode") + "&ccode=" + slCode + "&id=" + GetQueryString("id")+"&isC="+isC);
+
+                }
             }
 
-
-
+        },
+        error: function (error) {
+            tip.close();
+            alert("访问服务器失败");
         }
-
-    }else{
-        window.open("eclipse.html?businessId=" + seId  + "&scode=" + sessionStorage.getItem("stucode") + "&ccode=" + slCode + "&id=" + GetQueryString("id")+"&isC="+isC);
-
-    }
-
+    });
 
 
 }
 
-/**
- * 选择不同项目ide
- * @param seId
- * @param e
- * @param type
- */
-function codeNow(seId,e,type) {
-    $(".tool-container").fadeOut();
-    switch(type){
-        case "html":window.open('html_code_mir.html')
-            break;
-        case "single":window.open('single_code_mir.html')
-            break;
-        case "multi":window.open('multi_code_mir.html')
-            break;
-        case "linux":window.open('linux_code_mir.html')
-            break;
-        default: return;
+
+
+function toJudgeStatus(params,type){
+    var token =localStorage.getItem("token");
+    var stuCode = localStorage.getItem("stucode");
+    if(token==null) {
+        toastr.warning("请先登录！");
+        return;
     }
-        
+    $.ajax({
+        url: globalurl + 'BSl/queryStuInLessionOrNotWithoutAuth',
+        method: 'post',
+        data: {
+            studentCode:stuCode,
+            selectCode: slCode
+        },
+        beforeSend:function(xhr){
+            tip.open('请求中...');
+        },
+        success: function (response) {
+            tip.close();
+            if(response.result==0){
+                toastr.warning("您没有在该课程的选课名单中，暂时不能查看！");
+                return;
+            }else{
+                var openUrl = "";
+                if(type==1){
+                    openUrl ='proBook.html?businessId=' +params.bid + '&a=' + params.a + '&b=' + params.b + '&c=' + params.c + '&d=' + params.d;
+                }else if(type==2){
+                    openUrl ='seeVedio.html?businessId=' + params.bid +'&id=' + params.id +"&courseinfo="+params.courseinfo+"&vedioUrl="+params.vedioUrl;
+                }
+
+
+                window.open(openUrl);
+            }
+
+        },
+        error: function (error) {
+            tip.close();
+            alert("访问服务器失败");
+        }
+    });
+
 }
 
-/**
- * 下载文件
- * @param seId
- * @param seIndex
- * @param chIndex
- * @param dataUrl
- */
 function toDownload(seId,seIndex,chIndex,dataUrl) {
-    console.log(seId+"开始下载"+dataUrl);
-    if(dataUrl==""){
-        toastr.error('文件不存在！');
-    }else{
-        var a = document.createElement("a");
-        document.body.appendChild(a);
-        a.href = imagepath+dataUrl;
-        a.click();
-        // window.location.href=imagepath+"/default/2.jpg";
+    var token =localStorage.getItem("token");
+    var stuCode = localStorage.getItem("stucode");
+    if(token==null) {
+        toastr.warning("请先登录！");
+        return;
     }
-  /* $.ajax({
-     url: globalurl +'BVideo/downloadFile',
-     method: 'post',
-     beforeSend: function (request) {
-         request.setRequestHeader("Authorization", sessionStorage.getItem("token"));
-         request.setRequestHeader("Content-Type", 'application/x-www-form-urlencoded;charset=utf-8');
-     },
 
-     data: {
-        chapterId: seId
-     },
-     responseType: 'blob',
-     transformRequest: function (obj) {
-         var str = [];
-         for (var p in obj) {
-            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-         }
-         return str.join("&");
-     },
-     success: function (response) {
-         console.log( Base64.toString(response));
-         console.log(response.message);
+    $.ajax({
+        url: globalurl + 'BSl/queryStuInLessionOrNotWithoutAuth',
+        method: 'post',
+        beforeSend:function(xhr){
+            tip.open('请求中...');
+        },
+        data: {
+            studentCode:stuCode,
+            selectCode: slCode
+        },
+        success: function (response) {
+            tip.close();
+            if (!response.success){
+                toastr.warning("请先登录！");
+                return;
+            }
+            if(response.result==1){
+                if (dataUrl == "") {
+                    toastr.error('文件不存在！');
+                } else {
+                    var a = document.createElement("a");
+                    document.body.appendChild(a);
+                    a.href = imagepath + dataUrl;
+                    a.click();
+                    // window.location.href=imagepath+"/default/2.jpg";
+                }
+            }else {
+                toastr.warning("您没有在该课程的选课名单中，暂时不能查看！");
+                return;
+            }
+        },
+        error: function (error) {
+            tip.close();
+            alert("访问服务器失败");
+        }
+    });
 
-         var blob = new Blob([response], {type: "application/octet-stream"});
-         // var blob=new Blob();
-         // blob = response;
-         var a = document.createElement("a");
-         document.body.appendChild(a);
-         // a.download = "aaa.jpg";
-         a.href = URL.createObjectURL(blob);
-         a.click();
-         toastr.success('文件下载成功！');
-     }, error: function (err) {
-        toastr.error('文件下载失败！'+err);
-     }
-     });*/
+    /* $.ajax({
+       url: globalurl +'BVideo/downloadFile',
+       method: 'post',
+       beforeSend: function (request) {
+           request.setRequestHeader("Authorization", localStorage.getItem("token"));
+           request.setRequestHeader("Content-Type", 'application/x-www-form-urlencoded;charset=utf-8');
+       },
+  
+       data: {
+          chapterId: seId
+       },
+       responseType: 'blob',
+       transformRequest: function (obj) {
+           var str = [];
+           for (var p in obj) {
+              str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+           }
+           return str.join("&");
+       },
+       success: function (response) {
+           console.log( Base64.toString(response));
+           console.log(response.message);
+  
+           var blob = new Blob([response], {type: "application/octet-stream"});
+           // var blob=new Blob();
+           // blob = response;
+           var a = document.createElement("a");
+           document.body.appendChild(a);
+           // a.download = "aaa.jpg";
+           a.href = URL.createObjectURL(blob);
+           a.click();
+           toastr.success('文件下载成功！');
+       }, error: function (err) {
+          toastr.error('文件下载失败！'+err);
+       }
+       });*/
 
 }
-
-/**
- *返回界面
- */
+/*返回界面*/
 function returnMe() {
     $("#water").fadeOut();
     $("#header").fadeIn();
@@ -242,21 +309,16 @@ function returnMe() {
 }
 
 
-/**
- * 下在元素
- * @param ele
- * @returns {Element}
- */
+/*
+ * 创建元素
+ * */
 function create(ele) {
     return document.createElement(ele);
 }
 
-/**
+/*
  * 目录创建章
- * @param chName
- * @param index
- * @param handle
- */
+ * */
 function create_chapter(chName, index, handle) {
 
     var em_dt = create("dt");
@@ -287,17 +349,9 @@ function create_chapter(chName, index, handle) {
     $(".reveal-overlay").hide();
 }
 
-/**
+/*
  * 目录创建节
- * @param seName
- * @param seId
- * @param chIndex
- * @param seIndex
- * @param handle
- * @param vedioState
- * @param vedioUrl
- * @param fileUrl
- */
+ * */
 function create_section(seName, seId, chIndex, seIndex, handle,vedioState,vedioUrl,fileUrl) {
     var em_dd = create("dd");
     var em_inline_section = create("div");
@@ -385,13 +439,25 @@ function create_section(seName, seId, chIndex, seIndex, handle,vedioState,vedioU
 
         }
 
+        var paramBook = {
+            bid: seId,
+            a:encodeURI(encodeURI(cpName)),
+            b:encodeURI(encodeURI(seName)),
+            c:seIndex,
+            d:GetQueryString('id')
+        };
+        // find_item.eq(5).children().attr('href', 'proBook.html?businessId=' + seId + '&a=' + encodeURI(encodeURI(cpName)) + '&b=' + encodeURI(encodeURI(seName)) + '&c=' + seIndex + '&d=' + GetQueryString('id'));
+        find_item.eq(5).children().attr('onclick', 'toJudgeStatus('+ JSON.stringify(paramBook)+',1)');
+        find_item.eq(6).find('a').attr('onclick', 'toJudgeOpen("' + seId + '",event)');
 
-        find_item.eq(5).children().attr('href', 'proBook.html?businessId=' + seId + '&a=' + encodeURI(encodeURI(cpName)) + '&b=' + encodeURI(encodeURI(seName)) + '&c=' + seIndex + '&d=' + GetQueryString('id'));
-        // find_item.eq(6).find('a').attr('onclick', 'toJudgeOpen("' + seId + '",event)');
-        find_item.eq(6).find('a').attr('data-toolbar', 'user-options');
-        find_item.eq(6).find('a').attr('data-seid', seId);
-        
-        find_item.eq(3).children().attr('href', 'seeVedio.html?businessId=' + seId +'&id=' + GetQueryString('id')+"&courseinfo="+res+"&vedioUrl="+encodeURI(encodeURI(vedioUrl)));
+        var paramVideo = {
+            bid:seId,
+            id:GetQueryString('id'),
+            courseinfo:res,
+            vedioUrl:encodeURI(encodeURI(vedioUrl))
+        };
+        // find_item.eq(3).children().attr('href', 'seeVedio.html?businessId=' + seId +'&id=' + GetQueryString('id')+"&courseinfo="+res+"&vedioUrl="+encodeURI(encodeURI(vedioUrl)));
+        find_item.eq(3).children().attr('onclick', 'toJudgeStatus('+JSON.stringify(paramVideo) + ',2)');
 
         if(vedioState.indexOf("2")!=-1) {
             if(vedioUrl==""){
@@ -423,8 +489,10 @@ function create_section(seName, seId, chIndex, seIndex, handle,vedioState,vedioU
         find_item.eq(2).html(seName);
         find_item.eq(5).children().html("<img title='项目任务书' src='../image/pro.png'>");
 
-        if (sessionStorage.getItem("role") == '1003')
+        if (localStorage.getItem("role") == '1003'){
             find_item.eq(6).children("a").html("<img title='实验' style='margin-bottom:6px' src='../image/exp.png'>");
+        }
+
     }
 
     if (handle == 'panel2load') {
@@ -449,7 +517,15 @@ function create_section(seName, seId, chIndex, seIndex, handle,vedioState,vedioU
 
         }
 
-        find_item.eq(4).children().attr('href', 'proBook.html?businessId=' + seId + '&a=' + encodeURI(encodeURI(cpName)) + '&b=' + encodeURI(encodeURI(seName)) + '&c=' + seIndex + '&d=' + GetQueryString('id'));
+        var paramBook = {
+            bid: seId,
+            a:encodeURI(encodeURI(cpName)),
+            b:encodeURI(encodeURI(seName)),
+            c:seIndex,
+            d:GetQueryString('id')
+        };
+        find_item.eq(4).children().attr('onclick', 'toJudgeStatus('+ JSON.stringify(paramBook)+',1)');
+        // find_item.eq(4).children().attr('href', 'proBook.html?businessId=' + seId + '&a=' + encodeURI(encodeURI(cpName)) + '&b=' + encodeURI(encodeURI(seName)) + '&c=' + seIndex + '&d=' + GetQueryString('id'));
         find_item.eq(4).children().attr('class', 'light_off');
         find_item.eq(5).children().attr('onclick',  'toJudgeOpen("' + seId + '",event)');
 
@@ -459,7 +535,15 @@ function create_section(seName, seId, chIndex, seIndex, handle,vedioState,vedioU
         find_item.eq(4).children().html("<img title='任务书'  src='../image/pro.png'>");
         find_item.eq(5).children().html("<img title='实验' src='../image/exp.png'>");
 
-        find_item.eq(2).children().attr('href', 'seeVedio.html?businessId=' + seId +'&id=' + GetQueryString('id')+"&courseinfo="+res+"&vedioUrl="+encodeURI(encodeURI(vedioUrl)));
+
+        var paramVideo = {
+            bid:seId,
+            id:GetQueryString('id'),
+            courseinfo:res,
+            vedioUrl:encodeURI(encodeURI(vedioUrl))
+        };
+        find_item.eq(2).children().attr('onclick', 'toJudgeStatus('+JSON.stringify(paramVideo) + ',2)');
+        // find_item.eq(2).children().attr('href', 'seeVedio.html?businessId=' + seId +'&id=' + GetQueryString('id')+"&courseinfo="+res+"&vedioUrl="+encodeURI(encodeURI(vedioUrl)));
 
 
         if(vedioState.indexOf("2")!=-1) {
@@ -491,17 +575,13 @@ function create_section(seName, seId, chIndex, seIndex, handle,vedioState,vedioU
 
 }
 
-/**
- * 初始化
- */
 function loadData() {
+
     loadSlDetail();
     loadChapter();
 }
 
-/**
- * 记载课程简介
- */
+
 function loadSlDetail() {
     // alert(GetQueryString('id'));
     $.ajax({
@@ -514,7 +594,7 @@ function loadSlDetail() {
             tip.open('加载课程信息中');
         },
         success: function (result) {
-           
+
             console.log("loadSLDetail成功")
             if (result.success) {
                 if (result.result == null || result.result == '' || result == undefined) {
@@ -549,9 +629,6 @@ function loadSlDetail() {
     })
 }
 
-/**
- * 加载章节
- */
 function loadChapter() {
     console.log("loadChapter-----------");
     $.ajax({
@@ -561,8 +638,8 @@ function loadChapter() {
             slId: GetQueryString('id')
         },
         beforeSend: function (res) {
-            res.setRequestHeader("Authorization", sessionStorage.getItem("token"));
-           
+            res.setRequestHeader("Authorization", localStorage.getItem("token"));
+
         },
         success: function (res) {
             tip.close();
@@ -576,7 +653,7 @@ function loadChapter() {
                     $("#catalog-content").css("text-align","left");
                     var list = res.result.chapterList;
                     //TODO 渲染章节列表
-                    var panelType = sessionStorage.getItem("role") == "1003" ? "panel1load" : "panel2load";
+                    var panelType = localStorage.getItem("role") == "1003" ? "panel1load" : "panel2load";
                     if (panelType == "panel1load" && res.result.scoreList != "" && res.result.scoreList != null) {
 
                         scoreList = res.result.scoreList;
@@ -610,66 +687,38 @@ function loadChapter() {
                     }
 
                 }
-                var options={
-                    content: '#toolbar-options',
-                    style: 'warning',
-                    event: 'click',
-                    hideOnClick: true,
-                    position:'top',
-                    adjustment:35
-                };
-
-                //    在此添加另一个方法封装所有跳转编辑器，che另作处理
-                var csline=$(".section").length;
-                var tool=$('a[data-toolbar="user-options"]');
-                tool.toolbar(options);
-                
-                var che_evr=$('.tool-items');
-                for(var i=0;i<csline;i++){
-                    var index=tool[0].getAttribute("data-seid");
-                    che_evr.find('a')[(i+1)*5-1].setAttribute('onclick','toJudgeOpen("' + index + '",event)')
-                    che_evr.find('a')[(i+1)*5-5].setAttribute('onclick','codeNow("' + index + '",event,"html")')
-                    che_evr.find('a')[(i+1)*5-4].setAttribute('onclick','codeNow("' + index + '",event,"single")')
-                    che_evr.find('a')[(i+1)*5-3].setAttribute('onclick','codeNow("' + index + '",event,"multi")')
-                    che_evr.find('a')[(i+1)*5-2].setAttribute('onclick','codeNow("' + index + '",event,"linux")')
-                }
-                
-
             } else {
                 alert(result.message);
             }
         },
         error: function (err) {
+            tip.close();
             console.log(JSON.stringify(err));
             // alert("访问服务器失败");
         }
     })
 }
 
-/**
- * 预览相关
- */
 function backTeaSet() {
-    if (sessionStorage.getItem("role") == "1002") {
+    if (localStorage.getItem("role") == "1002") {
         localStorage.removeItem("isP");
         window.location.href = "teaCourse.html?id=" + GetQueryString('id');
     }
 
 }
 
-/**
- * 简介详情
- */
+/*
+ * 点击“更多”，显示课程简介的详情；
+ * */
 function showCourseSummary() {
     var content = $("#course_info").text();
     console.log(content);
     $("#div_sum_detail").html(content);
 
 }
-
-/**
- * 按钮展示
- */
+/*
+ * "更多按钮显示"
+ * */
 function minify() {
     var scrollHeight = $("#course_info").get(0).scrollHeight;
     var offsetHeight = $("#course_info").get(0).offsetHeight;

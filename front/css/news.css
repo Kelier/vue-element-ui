@@ -32,6 +32,9 @@
 .news-content>p{
     text-indent: 2em;
     line-height: 30px;
+    display: block;
+    overflow: hidden;
+    word-break: break-all;
 }
 .news-icon-custom{
     font-size: x-large;

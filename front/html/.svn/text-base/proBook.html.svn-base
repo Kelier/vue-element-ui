@@ -76,9 +76,9 @@
 
                             <div class="tea-panel">
                                 <img src="" alt="" class="tea-cover">
-                                <div class="tea-info">
-                                    <label></label>
-                                    <label></label>
+                                <div style="display: inline-block" id="tea-info">
+                                    <div class="tea-info"></div>
+                                    <div class="tea-info-course"></div>
                                 </div>
                             </div>
 
@@ -86,17 +86,23 @@
                         </div>
                     </div>
                     <div class="feature">
-                        <div class="card card-issue">
+                        <div class="card">
                             <div class="book_title_plat title_header card-title">
                                 <span>课程特色</span>
                             </div>
-
-                            <div class="tea-panel">
-                                <div class="button-group keep">
-                                    <div class="stu-wire"> <img style=" margin-left: -3px; margin-bottom: 12px;" src="../image/exp2.png"><span style="font-size:small;margin-left: 3px;">实验</span></div>
-                                    <div class="stu-wireless"><span style="font-size: small" id="wire-num">&nbsp;</span></div>
+                            <div class="card_body">
+                                <div class="stu-wire">
+                                    <img style=" position: relative;top: 2px;"src="../image/exp2.png">
+                                    <span style="font-size:small;">实验</span>
                                 </div>
+                                <div class="stu-wireless">
+                                    <span style="font-size: small"id="wire-num">&nbsp;</span>
+                                </div>
+
+                                <div class="tea-wire-mv" ><img style=" position: relative;top: 2px;" src="../image/mv_icon_w.png"><span style="font-size:small;margin-left: 3px;">视频</span></div>
+                                <div class="tea-wireless-mv"><span style="font-size: small" id="video-num">&nbsp;</span></div>
                             </div>
+
                         </div>
                     </div>
                 </div>

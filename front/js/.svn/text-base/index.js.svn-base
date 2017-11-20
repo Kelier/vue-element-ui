@@ -165,7 +165,7 @@ $(function () {
         rows: 6,
         isRelease: '1',
         attribute: '1',
-        sort: 'attribute'
+        sort: 'attribute desc,release_time desc'
     }, function (res) {
         // console.log(res.rows[0].businessId)
         var str = '';
@@ -200,7 +200,7 @@ $(function () {
 
 function stuCourse(id) {
     var p;
-    if(sessionStorage.getItem("role")=="1003")
+    if(localStorage.getItem("role")=="1003")
         p='stuCourse.html?id=' + id;
     else  p='stuCourse.html?id=' + id+'&isP=true';
     window.location.href = p;

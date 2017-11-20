@@ -16,9 +16,7 @@ var vue = new Vue({
             tformLabelWidth: '180px',
 
             //教师表单
-            teaform: {
-                name: ''
-            },
+            teaSearch:'',
             //教师表格
             teaData: [],
 
@@ -152,7 +150,7 @@ var vue = new Vue({
                     var pages = res.data.result;//查询过来的每页数据
                     for (var i = 0; i < pages.length; i++) {
                         var obj = {};
-                        obj.value = pages[i].name;
+                        obj.value = pages[i].code;
                         obj.label = pages[i].name;
                         term_data[i] = obj;
                     }
@@ -254,7 +252,7 @@ var vue = new Vue({
                         } else {
                             that.$notify({
                                 title: '成功',
-                                message: '数据导入成功',
+                                message: response.data.result,
                                 type: type
                             });
 
@@ -332,7 +330,7 @@ var vue = new Vue({
                         } else {
                             that.$notify({
                                 title: '成功',
-                                message: '您的模板已上传成功',
+                                message: response.data.result ,
                                 type: type
                             });
 
@@ -503,34 +501,8 @@ var vue = new Vue({
             var page=this.teacurrentPage;
             var rows=this.teapagesize;
             //列表渲染数据
-            var data = [];
-            var url = globalurl + 'BTeacher/queryBTeachersByPagination';
-            var _this = this;
-            // console.log(this.tempData);
-            eduUtil.ajaxPostUtil(url, {
-                    page: page,
-                    rows: rows,
-
-                }, (function (res) {
-
-                    var pages = res.data.rows;//查询过来的每页数据
-                    _this.teatotal = res.data.total;//总记录数
-                    for (var i = 0; i < pages.length; i++) {
-                        var obj = {};
-                        obj.id = i + 1;
-                        obj.tid = pages[i].code;
-                        obj.tname = pages[i].name;
-                        obj.tsex = (pages[i].sex == '1') ? '女' : '男';
-                        data[i] = obj;
-                    }
-
-                    _this.teaData = data;
-
-
-                }), (function (error) {
-                    console.log(error);
-                })
-            );
+            this.loadteaData(page,rows);
+            
         },
         loadteaData(page,rows){
             //列表渲染数据
@@ -539,12 +511,15 @@ var vue = new Vue({
             var url = globalurl + 'BTeacher/queryBTeachersByPagination';
             var _this = this;
             // console.log(_this.tableData[_this.tempIndex].tnum)
+            
             eduUtil.ajaxPostUtil(url, {
                     page: page,
                     rows: rows,
-                    name: _this.teaform.name,
+                    name: _this.teaSearch,
                     sort:'create_date desc'
                 }, (function (res) {
+                
+                
                     //  console.log(JSON.stringify(res.data.rows))
                     var pages = res.data.rows;//查询过来的每页数据
                     _this.teatotal = res.data.total;//总记录数
@@ -557,7 +532,8 @@ var vue = new Vue({
                     }
 
                     _this.teaData = data;
-
+                    
+                    
 
                 }), (function (error) {
                     console.log(error);

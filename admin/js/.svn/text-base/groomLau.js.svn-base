@@ -26,8 +26,8 @@ var vue = new Vue({
                 if (pattern.test(value) === false) {
                     return callback(new Error('仅支持数字'));
                 } else {
-                    if(value>999){
-                        callback(new Error('推荐序号不能大于999'));
+                    if(value>998){
+                        callback(new Error('推荐序号不能大于998'));
                     }else
                     if (value.length > 3) {
                         callback(new Error('推荐序号不能大于3位'));
@@ -412,6 +412,7 @@ var vue = new Vue({
                             })
                         )
                     } else {
+                        _this.fullscreenLoading=false;
                         console.log('error submit!!');
                         return false;
                     }

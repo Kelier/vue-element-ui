@@ -49,7 +49,7 @@ var globalclock;
 
             var target_date = new Date(settings.date), // set target date
                 current_date = currentDate(); // get fixed current date
-             // console.log(parseInt(sessionStorage.getItem("timer")) - current_date.getTime());
+             // console.log(parseInt(localStorage.getItem("timer")) - current_date.getTime());
             if (parseInt(localStorage.getItem("timer")) - current_date.getTime() <= 300000 && localStorage.getItem("timer") - current_date.getTime() >= 299000) {
 
                 toastr.warning('距离che空间关闭还有5分钟');

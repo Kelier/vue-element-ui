@@ -136,15 +136,15 @@
                                                          rows="10" class="title-edit"
                                                          onchange="saveUpateInfo()"
                                                          onkeydown="invokeHandle(event)"></textarea></div>
-                        <div class="course_info" id="course_info" >
+                        <pre class="course_info" id="course_info" >
 
-                        </div>
+                        </pre>
                         <div class="minify_text">
                             <a data-open="div_summary" onclick="showCourseSummary()"  id="mini_more" class="a-more"  ><span >更多>></span></a>
                             <div class="reveal summary_height" id="div_summary" data-reveal>
                                 <h5>课程简介</h5>
-                                <div class="summary_form" id="div_sum_detail">
-                                </div>
+                                <pre class="summary_form" id="div_sum_detail">
+                                </pre>
                                 <button class="close-button" data-close aria-label="Close modal" type="button">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -262,7 +262,7 @@
                             </div>
                              <div class="flex-right">
                                     <button class="hollow button secondary window-close" style="margin-right: 20px;"
-                                            data-close="">取消
+                                            data-close="" >取消
                                     </button>
                                     <button class="hollow button secondary window-save" id="edit_section">确定</button>
 
@@ -494,7 +494,7 @@
                                 <div class="center">
 
                                     <button class="hollow button secondary window-close"
-                                            data-close="">关闭
+                                            data-close="" onclick="javascript:$('#score-name').val('')">关闭
                                     </button>
 
                                 </div>

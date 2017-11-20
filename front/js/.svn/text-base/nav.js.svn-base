@@ -10,11 +10,11 @@ $(function () {
 
 function readyCheck() {
     /*判断token*/
-    if (sessionStorage.getItem("token") != null) {
-        $("#username").html(sessionStorage.getItem("username"));
+    if (localStorage.getItem("token") != null) {
+        $("#username").html(localStorage.getItem("username"));
 
-        $("#avatar").attr("src", imagepath + sessionStorage.getItem("avatar"));
-        var roleCode = sessionStorage.getItem("role");
+        $("#avatar").attr("src", imagepath + localStorage.getItem("avatar"));
+        var roleCode = localStorage.getItem("role");
         if (roleCode == '1002') {
             $("#role").html('我的教学');
             $("#lay-name").show();
@@ -28,7 +28,7 @@ function readyCheck() {
 
     }
 
-    if (sessionStorage.getItem("role") == null) {
+    if (localStorage.getItem("role") == null) {
 
         $("#role").html('登录/注册');
         $("#lay-name").hide();
@@ -52,7 +52,7 @@ function ToCoursePage() {
 }
 
 function exitCurrent() {
-    $("#username").html(sessionStorage.clear());
+    $("#username").html(localStorage.clear());
     window.location.href = 'index.html';
 }
 
@@ -76,3 +76,21 @@ function TabSwitch(obj) {
     function hide_li() {
         $("#ul-my").css("display", "none");
     }
+
+/**
+ * 添加监听搜索
+ */
+// document.getElementById("search_course").addEventListener('click',function () {
+//     var searchArea=document.getElementsByClassName("select-middle")[0].value;
+//     req(globalurl + 'BLesson/queryBLessonsByPagination', 'post', {
+//         page: 1,
+//         rows: 99999,
+//         lessonName:searchArea,
+//         sort:'create_date desc'
+//     },res=>{
+//         console.log(res)
+//     },err=>{
+//        
+//     });
+// })
+

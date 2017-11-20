@@ -30,7 +30,10 @@ var vue = new Vue({
                 }
                 var pattern = new RegExp(/^[a-zA-Z0-9-_\u4e00-\u9fa5]+$/g);
                 setTimeout(() => {
-                    if (pattern.test(value) == false) {
+                    if (value.length > 50) {
+                        callback(new Error('名称不能超过50位'));
+                    }
+                    else if (pattern.test(value) == false) {
                         callback(new Error('请不要输入特殊字符'));
                     } else {
                         callback();
@@ -245,7 +248,7 @@ var vue = new Vue({
                             } else {
                                 that.$notify({
                                     title: '成功',
-                                    message: '数据导入成功',
+                                    message: response.data.result,
                                     type: 'success'
                                 });
 
@@ -332,7 +335,7 @@ var vue = new Vue({
                         importFile: cover,
                         code: _this.teacode,
                     }, res => {
-                        _this.fullscreenLoading=true;
+                        _this.fullscreenLoading=false;
                         _this.dialogVisible = false;
                         var type = res.data.success;
                         var message = res.data.message;
@@ -345,7 +348,7 @@ var vue = new Vue({
                         _this.loadData(_this.currentPage, _this.pagesize);
 
                     }, err => {
-
+                        _this.fullscreenLoading=false;
                         console.log(err);
                     })
 

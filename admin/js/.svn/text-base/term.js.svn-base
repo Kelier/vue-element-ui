@@ -29,7 +29,10 @@ var vue = new Vue({
             }
             var pattern = new RegExp(/^[a-zA-Z0-9-_\u4e00-\u9fa5]+$/g);
             setTimeout(() => {
-                if (pattern.test(value) == false) {
+                if (value.length > 50) {
+                    callback(new Error('名称不能超过50位'));
+                }
+                else if (pattern.test(value) == false) {
 
                     callback(new Error('请不要输入特殊字符'));
                 } else {
@@ -210,11 +213,11 @@ var vue = new Vue({
                     // that.loadData(that.currentPage, that.pagesize);
                 } else {
                     that.fullscreenLoading=false;
-                    that.$notify({
-                        title: '提示信息',
-                        message: '请注意填写日期',
-                        type: 'warning'
-                    });
+                    // that.$notify({
+                    //     title: '提示信息',
+                    //     message: '请注意填写规范',
+                    //     type: 'warning'
+                    // });
                     return false;
                 }
             });

@@ -31,7 +31,7 @@ $(function () {
         url: globalurl + 'BChapter/getMdFileById',
         method: 'post',
         beforeSend: function (request) {
-            request.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+            request.setRequestHeader("Authorization", localStorage.getItem("token"));
         },
         data: {
             businessId: GetQueryString('businessId')
@@ -63,7 +63,7 @@ $(function () {
             prevent_duplicates:true
         },
         headers:{
-            Authorization:sessionStorage.getItem("token"),
+            Authorization:localStorage.getItem("token"),
         },
         multipart_params:{
             lessonId:GetQueryString('courseId'),

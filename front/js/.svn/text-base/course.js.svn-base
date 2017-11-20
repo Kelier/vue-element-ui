@@ -35,7 +35,8 @@ $(document).ready(function () {
             minify();
             $("#course_info").css("display", "-webkit-box");
             $("#title_edit").css("display", "none");
-
+            $("#mini_more").css("display", "-webkit-box");
+            minify();
         }
     });
 
@@ -123,9 +124,11 @@ function echo_title() {
  * */
 function invokeHandle(e) {
     var key = e.keyCode;
-    if (key == 13) {
+    if(e.shiftKey&&e.keyCode==13){
+        
+    }
+    else if (key == 13) {
         // alert("回车键");
-
 
         // saveUpateInfo();
 
@@ -166,7 +169,7 @@ function saveUpateInfo() {
             id: coursebusId
         },
         beforeSend: function (res) {
-            res.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+            res.setRequestHeader("Authorization", localStorage.getItem("token"));
         }, success: function (res) {
             if (res.success) {
                 toastr.success('课程简介修改成功');
@@ -206,7 +209,7 @@ var uploader_cover = new plupload.Uploader({
         prevent_duplicates : true //不允许选取重复文件
     },
     headers:{
-        Authorization:sessionStorage.getItem("token"),
+        Authorization:localStorage.getItem("token"),
     },
     multipart_params:{
         id:GetQueryString('id')
@@ -312,7 +315,7 @@ var uploader_data = new plupload.Uploader({
         prevent_duplicates : true //不允许选取重复文件
     },
     headers:{
-        Authorization:sessionStorage.getItem("token"),
+        Authorization:localStorage.getItem("token"),
     },
     // multipart_params:{
     //     lessonId:"",
@@ -419,7 +422,7 @@ function create_chapter(chName, index, handle) {
 
             },
             beforeSend: function (res) {
-                res.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+                res.setRequestHeader("Authorization", localStorage.getItem("token"));
             }, success: function (res) {
                 if (res.success) {
 
@@ -528,7 +531,7 @@ function create_section(seName, chIndex, seIndex, handle, parti,vedioState,vedio
         var currentSt = patch_chd.children();
     }
     if (handle == 'create') {
-        if($("#add_section_title").val().trim()==""){
+        if($("#add_section_title").val().trim()==""||$("#chapter_sum").val()==null){
             toastr.warning("输入不能为空！");
             return;
         }
@@ -565,7 +568,7 @@ function create_section(seName, chIndex, seIndex, handle, parti,vedioState,vedio
                 isTest: test_val
             },
             beforeSend: function (res) {
-                res.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+                res.setRequestHeader("Authorization", localStorage.getItem("token"));
             }, success: function (res) {
                 if (res.success) {
                     $(".no-content").fadeOut();
@@ -701,7 +704,8 @@ function create_section(seName, chIndex, seIndex, handle, parti,vedioState,vedio
         //往里塞值
         find_item.eq(0).html('<span style="display: inline-block">第' + (seIndex + 1) + '节</span>');
         find_item.eq(1).html(seName);
-        find_item.eq(3).children().html(stunum+"人  <img  style='margin-bottom: 3px;' src='../image/icon_bit.png'>");
+        var people=stunum==""?"0":stunum;
+        find_item.eq(3).children().html(people+"人  <img  style='margin-bottom: 3px;' src='../image/icon_bit.png'>");
         find_item.eq(2).children().html("<img style='margin-bottom: 3px;'  title='查看分数' src='../image/icon_seeCore.png'>");
     }
 
@@ -734,7 +738,7 @@ function edit_chapter_about(e) {
                 pid: '-1'
             },
             beforeSend: function (res) {
-                res.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+                res.setRequestHeader("Authorization", localStorage.getItem("token"));
             }, success: function (res) {
 
                 if (res.success) {
@@ -765,7 +769,7 @@ function delete_chapter_about(e) {
                 id: chapMap.get(parseInt(chId)),
             },
             beforeSend: function (res) {
-                res.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+                res.setRequestHeader("Authorization", localStorage.getItem("token"));
             }, success: function (res) {
                 if (res.success) {
 
@@ -799,7 +803,7 @@ function delete_section_about(e) {
                 id: sectMap.get(queryId),
             },
             beforeSend: function (res) {
-                res.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+                res.setRequestHeader("Authorization", localStorage.getItem("token"));
             }, success: function (res) {
                 if (res.success) {
                     loadChapter();
@@ -892,7 +896,7 @@ function edit_section_about(e) {
                 isTest: test_val
             },
             beforeSend: function (res) {
-                res.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+                res.setRequestHeader("Authorization", localStorage.getItem("token"));
             }, success: function (res) {
                 if (res.success) {
                     loadChapter();
@@ -921,7 +925,7 @@ function checkIt(e) {
     $(".reveal-overlay").fadeOut();
     var code=codeS[e.target.parentNode.parentNode.rowIndex-1];
     console.log(e.target)
-    if(sessionStorage.getItem("role")=="1002"){
+    if(localStorage.getItem("role")=="1002"){
         if(localStorage.getItem("teache")=="waited"){
             toastr.warning("正在清理che空间，请等待1-2分钟");
         }
@@ -930,16 +934,16 @@ function checkIt(e) {
                 url: globalurl + 'BChapter/cheStart',
                 method: 'post',
                 beforeSend: function (request) {
-                    request.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+                    request.setRequestHeader("Authorization", localStorage.getItem("token"));
                 },
                 data: {
-                    teaCode: sessionStorage.getItem("stucode"),
+                    teaCode: localStorage.getItem("stucode"),
                     slCode: slCode,
-                    flag: (sessionStorage.getItem("role") == '1003' ? '1' : '0')
+                    flag: (localStorage.getItem("role") == '1003' ? '1' : '0')
                 },
                 success: function (res) {
                     if (res.success) {
-                        sessionStorage.setItem("timer",res.result.endTime);
+                        localStorage.setItem("timer",res.result.endTime);
                         window.open("eclipse.html?uri=" + encodeURIComponent(res.result.url) + "&businessId=" + chBusId + "&pnum=" + encodeURIComponent(res.result.port) + "&scode=" + code + "&ccode=" + slCode + "&id=" + GetQueryString("id"))
                     } else {
 
@@ -963,28 +967,28 @@ function checkIt(e) {
                     url: globalurl + 'BChapter/cheStart',
                     method: 'post',
                     beforeSend: function (request) {
-                        request.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+                        request.setRequestHeader("Authorization", localStorage.getItem("token"));
                     },
                     data: {
-                        teaCode: sessionStorage.getItem("stucode"),
+                        teaCode: localStorage.getItem("stucode"),
                         slCode: slCode,
-                        flag: (sessionStorage.getItem("role") == '1003' ? '1' : '0')
+                        flag: (localStorage.getItem("role") == '1003' ? '1' : '0')
                     },
                     success: function (res) {
                         if (res.success) {
                             if(localStorage.getItem("teache")=="waited"){
-                                sessionStorage.setItem("address","eclipse.html?uri=" + encodeURIComponent(res.result.url) + "&businessId=" + chBusId + "&pnum=" + encodeURIComponent(res.result.port) + "&scode=" + code + "&ccode=" + slCode + "&id=" + GetQueryString("id"));
+                                localStorage.setItem("address","eclipse.html?uri=" + encodeURIComponent(res.result.url) + "&businessId=" + chBusId + "&pnum=" + encodeURIComponent(res.result.port) + "&scode=" + code + "&ccode=" + slCode + "&id=" + GetQueryString("id"));
                                 localStorage.setItem("teache","open");
                             }
                             if(localStorage.getItem("teache")==null){
-                                sessionStorage.setItem("address","eclipse.html?uri=" + encodeURIComponent(res.result.url) + "&businessId=" + chBusId + "&pnum=" + encodeURIComponent(res.result.port) + "&scode=" + code + "&ccode=" + slCode + "&id=" + GetQueryString("id"));
+                                localStorage.setItem("address","eclipse.html?uri=" + encodeURIComponent(res.result.url) + "&businessId=" + chBusId + "&pnum=" + encodeURIComponent(res.result.port) + "&scode=" + code + "&ccode=" + slCode + "&id=" + GetQueryString("id"));
                                 localStorage.setItem("teache","open");
-                                sessionStorage.setItem("timer",res.result.endTime);
+                                localStorage.setItem("timer",res.result.endTime);
                                 $("#water").fadeOut();
                                 $("#header").fadeIn();
                                 $("#content").fadeIn();
                                 $("#footer").fadeIn();
-                                window.open(sessionStorage.getItem("address"));
+                                window.open(localStorage.getItem("address"));
                             }
 
                         } else {
@@ -1006,7 +1010,7 @@ function checkIt(e) {
         }
 
     }else{
-        window.open("eclipse.html?businessId=" + chBusId  + "&scode=" + sessionStorage.getItem("stucode") + "&ccode=" + slCode + "&id=" + GetQueryString("id"));
+        window.open("eclipse.html?businessId=" + chBusId  + "&scode=" + localStorage.getItem("stucode") + "&ccode=" + slCode + "&id=" + GetQueryString("id"));
 
     }
 
@@ -1044,7 +1048,7 @@ function getWaitList(page){
             rows:10
         },
         beforeSend: function (res) {
-            res.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+            res.setRequestHeader("Authorization", localStorage.getItem("token"));
         }, success: function (res) {
                 var list = res.rows;
                 initPagination('pagination-yang', res.total, paginationPage, getWaitList);
@@ -1090,7 +1094,7 @@ function getWaitList(page){
                 scoreInfoList: JSON.stringify(obj)
             },
             beforeSend: function (res) {
-                res.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+                res.setRequestHeader("Authorization", localStorage.getItem("token"));
             }, success: function (res) {
                 if (res.success) {
                     $("#score-count").css("display", "none");
@@ -1133,7 +1137,7 @@ function searchScoreList(page) {
             stuInfo: $("#score-name").val(),
         },
         beforeSend: function (res) {
-            res.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+            res.setRequestHeader("Authorization", localStorage.getItem("token"));
         }, success: function (res) {
             // console.log(res)
             initPagination( 'pagination-yang2', res.total, scorepage, getLoanList);
@@ -1178,7 +1182,7 @@ function getLoanList(page) {
             rows:10
         },
         beforeSend: function (res) {
-            res.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+            res.setRequestHeader("Authorization", localStorage.getItem("token"));
         }, success: function (res) {
                 var list = res.rows;
                 initPagination( 'pagination-yang2', res.total, paginationPage, getLoanList);
@@ -1211,7 +1215,7 @@ function getLoanList(page) {
                         id: sid
                     },
                     beforeSend: function (res) {
-                        res.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+                        res.setRequestHeader("Authorization", localStorage.getItem("token"));
                     }, success: function (res) {
 
                         if (res.success) {
@@ -1322,7 +1326,7 @@ function loadChapter() {
             slId: GetQueryString('id')
         },
         beforeSend: function (res) {
-            res.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+            res.setRequestHeader("Authorization", localStorage.getItem("token"));
         },
         success: function (result) {
             if(result==undefined){

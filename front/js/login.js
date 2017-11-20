@@ -35,16 +35,17 @@ function loginIndex() {
                     toastr.warning('您的用户名或密码不正确');
                     return;
                 }
-                sessionStorage.setItem("token", realtoken);
-                sessionStorage.setItem("username", res.result.name);
-                sessionStorage.setItem("role", res.result.roleCode);
-                sessionStorage.setItem("avatar", res.result.headPic);
-                sessionStorage.setItem("stucode", $("#number").val());
-                localStorage.removeItem("chestatus");
+                localStorage.clear();
+                
+                localStorage.setItem("username", res.result.name);
+                localStorage.setItem("role", res.result.roleCode);
+                localStorage.setItem("avatar", res.result.headPic);
+                localStorage.setItem("stucode", $("#number").val());
+                localStorage.setItem("token", realtoken);
 
-                  window.location.href = 'index.html';
+                window.location.href = 'index.html';
             } else {
-                toastr.warning('您的用户名或密码不正确')
+                toastr.warning('您的用户名或密码不正确');
             }
         },
         error: function (err) {

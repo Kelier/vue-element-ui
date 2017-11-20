@@ -110,7 +110,6 @@ body.is-reveal-open {
     height: 82px;
     font-size: medium;
     padding-right: 30px;
-    text-indent: 2em;
     margin-top: 66px;
     padding-top: 10px;
     margin-bottom: 10px;
@@ -511,7 +510,6 @@ a[data-open]:hover{
     height: 450px;
 }
 .summary_height {
-    height: 500px;
     overflow-y: hidden;
     border-radius: 10px;
 

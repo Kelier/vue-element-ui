@@ -80,10 +80,10 @@
                             <i class="my-icon el-icon-edit" @click="choose_tea(props.$index)"></i>
 
                             <el-dialog title="选择老师" :visible.sync="dialogTeaTableVisible">
-                                <el-form :model="teaform" style="width: 100%;">
+                                <el-form style="width: 100%;">
                                     <el-form-item label="" :label-width="tformLabelWidth"
                                                   style="width: inherit;display: grid">
-                                        <el-input v-model="teaform.name" auto-complete="off" style="width: 70%;"
+                                        <el-input v-model="teaSearch" auto-complete="off" style="width: 70%;"
                                                   placeholder="请输入姓名"></el-input>
                                         <el-button type="primary" icon="search"
                                                    style="position: absolute;margin-left: 10%"

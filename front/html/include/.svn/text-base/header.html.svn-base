@@ -1,13 +1,13 @@
 <div class="box-content header-between">
     <div class="logo"><img src="../image/logo.png" alt=""></div>
-    <div class="search-info">
-        <ul class="menu menu-padding">
+    <!--<div class="search-info">-->
+        <!--<ul class="menu menu-padding">-->
 
-            <li><input type="search" placeholder="请输入课程关键字搜索" class="select-middle"></li>
-            <li>
-                <button type="button" class="button search-button select-right"><img src="../image/icon_search.png"></i>
-                </button>
-            </li>
-        </ul>
-    </div>
+            <!--<li><input type="search" placeholder="请输入课程关键字搜索" class="select-middle"></li>-->
+            <!--<li>-->
+                <!--<button type="button" class="button search-button select-right" id="search_course"><img src="../image/icon_search.png"></i>-->
+                <!--</button>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</div>-->
 </div>

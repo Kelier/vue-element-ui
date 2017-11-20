@@ -1,13 +1,13 @@
 K 25
 svn:wc:ra_dav:version-url
 V 77
-/svn/wisdomEdus/!svn/ver/374/trunk/wisdomEduClient/src/main/webapp/front/html
+/svn/wisdomEdus/!svn/ver/389/trunk/wisdomEduClient/src/main/webapp/front/html
 END
 stuCourse.html
 K 25
 svn:wc:ra_dav:version-url
 V 92
-/svn/wisdomEdus/!svn/ver/368/trunk/wisdomEduClient/src/main/webapp/front/html/stuCourse.html
+/svn/wisdomEdus/!svn/ver/392/trunk/wisdomEduClient/src/main/webapp/front/html/stuCourse.html
 END
 teaClass.html
 K 25
@@ -19,7 +19,7 @@ stuClass.html
 K 25
 svn:wc:ra_dav:version-url
 V 91
-/svn/wisdomEdus/!svn/ver/368/trunk/wisdomEduClient/src/main/webapp/front/html/stuClass.html
+/svn/wisdomEdus/!svn/ver/392/trunk/wisdomEduClient/src/main/webapp/front/html/stuClass.html
 END
 markdown.html
 K 25
@@ -49,13 +49,13 @@ publish.html
 K 25
 svn:wc:ra_dav:version-url
 V 90
-/svn/wisdomEdus/!svn/ver/368/trunk/wisdomEduClient/src/main/webapp/front/html/publish.html
+/svn/wisdomEdus/!svn/ver/382/trunk/wisdomEduClient/src/main/webapp/front/html/publish.html
 END
 index.html
 K 25
 svn:wc:ra_dav:version-url
 V 88
-/svn/wisdomEdus/!svn/ver/306/trunk/wisdomEduClient/src/main/webapp/front/html/index.html
+/svn/wisdomEdus/!svn/ver/392/trunk/wisdomEduClient/src/main/webapp/front/html/index.html
 END
 login.html
 K 25
@@ -67,13 +67,13 @@ teaCourse.html
 K 25
 svn:wc:ra_dav:version-url
 V 92
-/svn/wisdomEdus/!svn/ver/374/trunk/wisdomEduClient/src/main/webapp/front/html/teaCourse.html
+/svn/wisdomEdus/!svn/ver/388/trunk/wisdomEduClient/src/main/webapp/front/html/teaCourse.html
 END
 proBook.html
 K 25
 svn:wc:ra_dav:version-url
 V 90
-/svn/wisdomEdus/!svn/ver/368/trunk/wisdomEduClient/src/main/webapp/front/html/proBook.html
+/svn/wisdomEdus/!svn/ver/389/trunk/wisdomEduClient/src/main/webapp/front/html/proBook.html
 END
 uploadVedio.html
 K 25

@@ -62,7 +62,7 @@ function checkOldPwd() {
         url: globalurl + 'login/0',
         method: 'post',
         data: {
-            username: sessionStorage.getItem("stucode"),
+            username: localStorage.getItem("stucode"),
             password: $("#old-pwd").val()
         },
         success: function (res) {
@@ -110,7 +110,7 @@ function savePwd() {
     $('body').loading({
         loadingWidth: 240,
         title: '修改密码中...',
-        name: 'test',
+        name: 'mdPwd',
         discription: '正在修改密码...',
         direction: 'row',
         type: 'origin',
@@ -128,14 +128,15 @@ function savePwd() {
         url: globalurl + 'user/changePassword',
         method: 'post',
         data: {
-            loginName: sessionStorage.getItem("stucode"),
+            loginName: localStorage.getItem("stucode"),
             password: $("#new-pwd").val(),
             oldPassword: $("#old-pwd").val()
         },
         beforeSend: function (res) {
-            res.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+            res.setRequestHeader("Authorization", localStorage.getItem("token"));
         },
         success: function (res) {
+            removeLoading('mdPwd');
             if(res.success){
                 $("#modify-success").css("display","inline-block");
                 $(".mp-item").hide();
@@ -144,8 +145,9 @@ function savePwd() {
             }
         },
         error: function (err) {
-            toastr.warning('网络请求失败！')
-            console.log(err);
+            removeLoading('mdPwd');
+            toastr.warning('网络请求失败！');
+
         }
     });
 }

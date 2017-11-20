@@ -60,8 +60,8 @@ var vue = new Vue({
                 if (pattern.test(value) === false) {
                     return callback(new Error('请不要输入特殊字符'));
                 } else {
-                    if (value.length > 15) {
-                        callback(new Error('编号不超过15个字符'));
+                    if (value.length > 50) {
+                        callback(new Error('标题不超过50个字符'));
                     } else {
                         callback();
                     }
@@ -95,6 +95,9 @@ var vue = new Vue({
             }, {
                 value: '1',
                 label: '头条'
+            },{
+                value: '',
+                label: '全部'
             }],
             status: [{
                 value: '0',
@@ -105,6 +108,9 @@ var vue = new Vue({
             }, {
                 value: '2',
                 label: '回收站'
+            },{
+                value: '',
+                label: '全部'
             }],
 
             labelName: '',
@@ -145,10 +151,11 @@ var vue = new Vue({
             var i;
             var releasecode = this.selectattr;
             var butecode = this.selectstatus;
-
+            console.log(butecode)
             eduUtil.ajaxPostUtil(url, {
                     page: page,
                     rows: rows,
+                    newsName:_this.labelName,
                     isRelease: releasecode,
                     attribute: butecode
                 }, (function (res) {
@@ -259,7 +266,11 @@ var vue = new Vue({
         },
         callOf(formName) {
             this.dialogFormVisible1 = false;
+            this.dialogFormVisible = false;
             this.$refs[formName].resetFields();
+            this.form.checked=false
+            if(document.getElementsByClassName("simditor-body")[0].childNodes.length>0)
+            document.getElementsByClassName("simditor-body")[0].querySelector('p').innerText=""
         },
         editnews(index){
             console.log("edit");
@@ -339,6 +350,7 @@ var vue = new Vue({
                         message: message,
                         type: 'success'
                     });
+                    that.loadData(that.currentPage,that.pagesize)
                 } else {
                     that.$notify({
                         title: '提示信息',

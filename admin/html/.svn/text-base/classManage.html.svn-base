@@ -9,7 +9,8 @@
     <div class="info_change">
         <el-button type="info" @click="dialogFormVisible=true">+ 新增</el-button>
 
-        <el-dialog title="" :visible.sync="dialogFormVisible" size="tiny" :close-on-click-modal="false" @close="callOf('form')">
+        <el-dialog title="" :visible.sync="dialogFormVisible" size="tiny" :close-on-click-modal="false"
+                   @close="callOf('form')">
             <el-form :model="form" style="margin-top: 1em;margin-right: 1em;" :rules="formrule1" ref="form">
                 <el-form-item label="班级编号" :label-width="formLabelWidth" prop="id">
                     <el-input v-model="form.id" auto-complete="off"></el-input>
@@ -29,7 +30,8 @@
         <el-button type="success" class="mould" @click="importmould">导入班级与学生<i
                 class="el-icon-upload el-icon--right"></i>
         </el-button>
-        <input type="file" id="btn_file" style="display:none" @change="fileupload" v-loading.fullscreen.lock="fullscreenLoading" element-loading-text="请稍等...">
+        <input type="file" id="btn_file" style="display:none" @change="fileupload"
+               v-loading.fullscreen.lock="fullscreenLoading" element-loading-text="请稍等...">
 
     </div>
 
@@ -61,7 +63,8 @@
                             placement="right"
                             width="300"
                             trigger="click" @show="bindThis(scope.$index)">
-                        <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign" style="margin-top: 1em;margin-right: 1em" ref="formLabelAlign" :rules="formrule2">
+                        <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign"
+                                 style="margin-top: 1em;margin-right: 1em" ref="formLabelAlign" :rules="formrule2">
                             <el-form-item label="班级编号">
                                 <el-input v-model="formLabelAlign.cid" :disabled="true"></el-input>
                             </el-form-item>
@@ -70,15 +73,17 @@
                             </el-form-item>
 
                             <div style=" display: flex;justify-content: flex-end;">
-                                <el-button type="info" @click="change_course('formLabelAlign',scope.$index)" style="margin-left: 80px;">确认
+                                <el-button type="info" @click="change_course('formLabelAlign',scope.$index)"
+                                           style="margin-left: 80px;">确认
                                 </el-button>
                             </div>
 
                         </el-form>
                     </el-popover>
 
-                    <el-button v-popover:popover type="text"  >
-                        {{scope.row.cid}}</el-button>
+                    <el-button v-popover:popover type="text">
+                        {{scope.row.cid}}
+                    </el-button>
                 </template>
             </el-table-column>
             <el-table-column align="center" prop="cname" label="班级名称" width="250">
@@ -108,7 +113,7 @@
                                 班级编号：<span>{{currentCid}}</span>
                             </div>
                             <div class="course-name"
-                                 style="float: right;position: relative;margin-left: auto;margin-right: 100px;">
+                                 style="float: right;position: relative;margin-left: auto;margin-right: 100px;width: 200px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
                                 班级名称：<span>{{currentName}}</span>
                             </div>
 

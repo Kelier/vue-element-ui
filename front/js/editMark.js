@@ -35,7 +35,7 @@ $(function () {
                 url: globalurl + 'BChapter/getMdFileById',
                 method: 'post',
                 beforeSend: function (request) {
-                    request.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+                    request.setRequestHeader("Authorization", localStorage.getItem("token"));
                     tip.open('获取任务书中');
                 },
                 data: {
@@ -81,7 +81,7 @@ function submitProBook() {
             url: globalurl + 'BChapter/add',
             method: 'post',
             beforeSend: function (request) {
-                request.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+                request.setRequestHeader("Authorization", localStorage.getItem("token"));
                 tip.open('提交中')
             },
             data: {

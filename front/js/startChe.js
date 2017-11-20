@@ -110,19 +110,19 @@ $(function () {
     if(localStorage.getItem("isP")!="preview"){
         $("#lay").append("<iframe id='this'></iframe>");
     }
-    if(localStorage.getItem("isP")=="preview"&&sessionStorage.getItem("role")=="1002"){
+    if(localStorage.getItem("isP")=="preview"&&localStorage.getItem("role")=="1002"){
         $("#lay").append("<img src='../image/screenshot.jpg' id='search'></img>");
     }
 
 
     /*学生该有的界面*/
-    if (sessionStorage.getItem("role") == "1003") {
+    if (localStorage.getItem("role") == "1003") {
         $("#taido-it").fadeIn();
         $("#check-it").fadeIn();
 
     }
     /*获取地址栏参数*/
-    if (sessionStorage.getItem("role") == "1002" || sessionStorage.getItem("role") == "1003") {
+    if (localStorage.getItem("role") == "1002" || localStorage.getItem("role") == "1003") {
         xiaoche = decodeURIComponent(GetQueryString('uri'));
         busId = GetQueryString('businessId');
         pnum = decodeURIComponent(GetQueryString('pnum'));
@@ -133,13 +133,13 @@ $(function () {
 
     }
     /*检出代码*/
-    if (sessionStorage.getItem("role") == "1002") {
+    if (localStorage.getItem("role") == "1002") {
         if (localStorage.getItem("isP") != "preview") {
             $.ajax({
                 url: globalurl + 'BChapter/checkoutCode',
                 method: 'post',
                 beforeSend: function (request) {
-                    request.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+                    request.setRequestHeader("Authorization", localStorage.getItem("token"));
                 },
                 data: {
                     port: pnum,
@@ -164,10 +164,10 @@ $(function () {
     /*
      * 不同身份跳转
      * */
-    if(localStorage.getItem("isP")=="preview"||sessionStorage.getItem("role")=="1003")
+    if(localStorage.getItem("isP")=="preview"||localStorage.getItem("role")=="1003")
         $("#gohis").attr('href', 'stuCourse.html?id=' + Id);
 
-    if(sessionStorage.getItem("role")=="1002")
+    if(localStorage.getItem("role")=="1002")
         $("#gohis").attr('href', 'teaCourse.html?id=' + Id);
 
     if (localStorage.getItem("timer") != null&&localStorage.getItem("isP")!="preview") {
@@ -185,12 +185,12 @@ $(function () {
             toastr.warning('che已关闭');
             localStorage.removeItem("chestatus");
             localStorage.removeItem("teache");
-            if(sessionStorage.getItem("role")=="1003"){
+            if(localStorage.getItem("role")=="1003"){
                 setTimeout(function () {
                     window.location.href = 'stuCourse.html?id=' + Id;
                 },1000);
             }
-            if(sessionStorage.getItem("role")=="1002"){
+            if(localStorage.getItem("role")=="1002"){
                 setTimeout(function () {
                     window.location.href = 'teaCourse.html?id=' + Id;
                 },1000);
@@ -223,7 +223,7 @@ $(function () {
     var r = document.getElementById("lay");
 
 
-    if (sessionStorage.getItem("role") != "1003") {
+    if (localStorage.getItem("role") != "1003") {
         $("#gohis").attr('href', 'stuCourse.html?id=' + GetQueryString("id"));
         busId = GetQueryString("businessId");
     }
@@ -234,7 +234,7 @@ $(function () {
         url: globalurl + 'BChapter/getMdFileById',
         method: 'post',
         beforeSend: function (request) {
-            request.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+            request.setRequestHeader("Authorization", localStorage.getItem("token"));
         },
         data: {
             businessId: busId
@@ -260,7 +260,7 @@ $(function () {
             url: globalurl + 'BChapter/complete',
             method: 'post',
             beforeSend: function (request) {
-                request.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+                request.setRequestHeader("Authorization", localStorage.getItem("token"));
                 tip.open('正在提交学习状态')
             },
             data: {
@@ -291,7 +291,7 @@ $(function () {
             url: globalurl + 'BChapter/pushCode',
             method: 'post',
             beforeSend: function (request) {
-                request.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+                request.setRequestHeader("Authorization", localStorage.getItem("token"));
             },
             data: {
                 port: pnum,
@@ -317,7 +317,7 @@ $(function () {
             url: globalurl + ' BChapter/refreshChe',
             method: 'post',
             beforeSend: function (request) {
-                request.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+                request.setRequestHeader("Authorization", localStorage.getItem("token"));
             },
             data: {
                 port: pnum,
@@ -364,7 +364,7 @@ $(function () {
             url:globalurl+'BChapter/cheStopWithoutAuth',
             method:'post',
             beforeSend: function (request) {
-                request.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+                request.setRequestHeader("Authorization", localStorage.getItem("token"));
             },
             data:{
                 port:pnum
@@ -377,12 +377,12 @@ $(function () {
                     localStorage.removeItem("chestatus");
                     localStorage.removeItem("teache");
 
-                    if(sessionStorage.getItem("role")=="1003"){
+                    if(localStorage.getItem("role")=="1003"){
                         setTimeout(function () {
                             window.location.href = 'stuCourse.html?id=' + Id;
                         },1000);
                     }
-                    if(sessionStorage.getItem("role")=="1002"){
+                    if(localStorage.getItem("role")=="1002"){
                         setTimeout(function () {
                             window.location.href = 'teaCourse.html?id=' + Id;
                         },1000);

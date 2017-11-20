@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 85
-/svn/wisdomEdus/!svn/ver/351/trunk/wisdomEduClient/src/main/webapp/front/html/include
+/svn/wisdomEdus/!svn/ver/388/trunk/wisdomEduClient/src/main/webapp/front/html/include
 END
 footer.html
 K 25
@@ -13,11 +13,11 @@ nav.html
 K 25
 svn:wc:ra_dav:version-url
 V 94
-/svn/wisdomEdus/!svn/ver/351/trunk/wisdomEduClient/src/main/webapp/front/html/include/nav.html
+/svn/wisdomEdus/!svn/ver/388/trunk/wisdomEduClient/src/main/webapp/front/html/include/nav.html
 END
 header.html
 K 25
 svn:wc:ra_dav:version-url
 V 97
-/svn/wisdomEdus/!svn/ver/258/trunk/wisdomEduClient/src/main/webapp/front/html/include/header.html
+/svn/wisdomEdus/!svn/ver/392/trunk/wisdomEduClient/src/main/webapp/front/html/include/header.html
 END

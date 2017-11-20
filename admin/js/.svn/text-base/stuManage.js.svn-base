@@ -36,7 +36,10 @@ var vue = new Vue({
             }
             var pattern = new RegExp(/^[a-zA-Z0-9-_\u4e00-\u9fa5]+$/g);
             setTimeout(() => {
-                if (pattern.test(value) == false) {
+                if (value.length > 50) {
+                    callback(new Error('名称不能超过50位'));
+                }
+                else if (pattern.test(value) == false) {
                     callback(new Error('请不要输入特殊字符'));
                 } else {
                     callback();
@@ -305,7 +308,7 @@ var vue = new Vue({
                         } else {
                             that.$notify({
                                 title: '成功',
-                                message: '数据导入成功',
+                                message: response.data.result,
                                 type: type
                             });
                             $("#btn_file").val('');
