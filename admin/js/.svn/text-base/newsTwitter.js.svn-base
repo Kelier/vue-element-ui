@@ -12,7 +12,7 @@ var editor = Vue.component('editormd', {
         }
     },
     beforeMount: function () {
-
+        $(".simditor-body").html('');
     },
     mounted: function () {
         var editor = new Simditor(
@@ -21,13 +21,13 @@ var editor = Vue.component('editormd', {
                 toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent'],
                 pasteImage: true,
                 upload: {
-                    url: globalurl+'BCarousel/upload',
+                    url: globalurl + 'BCarousel/upload',
                     params: null,
                     fileKey: "file",
                     connectionCount: 1,
                     leaveConfirm: "正在上传,确定要取消上传文件吗?"
                 },
-                success:function (data) {
+                success: function (data) {
                     alert(data)
                 }
             }
@@ -39,7 +39,7 @@ var editor = Vue.component('editormd', {
 
 
     methods: {
-        boomThis(){
+        boomThis() {
             console.log(this.content);
         }
     },
@@ -81,7 +81,7 @@ var vue = new Vue({
         };
         return {
             dialogFormVisible: false,
-            fullscreenLoading:false,
+            fullscreenLoading: false,
             form: {
                 caption: '',
                 checked: false,
@@ -95,7 +95,7 @@ var vue = new Vue({
             }, {
                 value: '1',
                 label: '头条'
-            },{
+            }, {
                 value: '',
                 label: '全部'
             }],
@@ -106,9 +106,6 @@ var vue = new Vue({
                 value: '1',
                 label: '已发布'
             }, {
-                value: '2',
-                label: '回收站'
-            },{
                 value: '',
                 label: '全部'
             }],
@@ -142,8 +139,15 @@ var vue = new Vue({
     },
 
     methods: {
+        readyForthis(formName){
 
-        loadData(page, rows){
+            this.dialogFormVisible=true;
+            this.$refs[formName].resetFields();
+            this.form.caption="";
+            $(".simditor-body").html('');
+        },
+
+        loadData(page, rows) {
             //列表渲染数据
             var data = [];
             var url = globalurl + 'BNews/queryBNewssByPaginationWithoutAuth';
@@ -151,22 +155,23 @@ var vue = new Vue({
             var i;
             var releasecode = this.selectattr;
             var butecode = this.selectstatus;
+            
             console.log(butecode)
             eduUtil.ajaxPostUtil(url, {
                     page: page,
                     rows: rows,
-                    newsName:_this.labelName,
-                    isRelease: releasecode,
-                    attribute: butecode
+                    newsName: _this.labelName,
+                    isRelease: butecode,
+                    attribute: releasecode
                 }, (function (res) {
                     // console.log(JSON.stringify(res.data.rows))
                     var pages = res.data.rows;//查询过来的每页数据
                     _this.total = res.data.total;//总记录数
-                    var status = ["未发布", "已发布", "回收站"];
+                    var status = ["未发布", "已发布"];
 
-                _this.bussid=[];
-                _this.newscode=[];
-                _this.news=[];
+                    _this.bussid = [];
+                    _this.newscode = [];
+                    _this.news = [];
 
                     for (i = 0; i < pages.length; i++) {
                         var obj = {};
@@ -179,14 +184,14 @@ var vue = new Vue({
                         if (obj.launchstatus == "未发布") {
                             obj.otherfork1 = '编辑';
                             obj.otherfork2 = '发布';
-                            obj.otherfork3 = '回收站';
+                            // obj.otherfork3 = '回收站';
                         }
                         // console.log(obj.status)
                         if (obj.launchstatus == "已发布")
                             obj.otherfork2 = '取消发布';
-                        if (obj.launchstatus == "回收站") {
-                            obj.otherfork3 = '撤销删除';
-                        }
+                        // if (obj.launchstatus == "回收站") {
+                        //     obj.otherfork3 = '撤销删除';
+                        // }
 
                         _this.bussid.push(pages[i].businessId);
                         _this.newscode.push(pages[i].newsCode);
@@ -202,8 +207,7 @@ var vue = new Vue({
                 })
             );
         },
-        handleSizeChange(val)
-        {
+        handleSizeChange(val) {
             this.pagesize = val;
             this.bussid = [];
             this.loadData(this.currentPage, this.pagesize);
@@ -211,20 +215,19 @@ var vue = new Vue({
 
         }
         ,
-        handleCurrentChange(val)
-        {
+        handleCurrentChange(val) {
             this.currentPage = val;
             this.bussid = [];
             this.loadData(this.currentPage, this.pagesize);
         },
-        createNews(formName){
+        createNews(formName) {
             var createnews = $(".simditor-body").html();
             // console.log($(".simditor-body").find('p').html())
             var that = this;
-            that.fullscreenLoading=true;
+            that.fullscreenLoading = true;
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    
+
                     that.dialogFormVisible = false;
                     eduUtil.ajaxPostUtil(globalurl + 'BNews/add', {
                             businessId: that.newsId,
@@ -232,7 +235,7 @@ var vue = new Vue({
                             newsContent: createnews,
                             attribute: that.form.checked ? '1' : '0'
                         }, (function (response) {
-                            that.fullscreenLoading=false;
+                            that.fullscreenLoading = false;
                             // alert(JSON.stringify(response));
                             var type = response.data.success;
                             var message = response.data.message;
@@ -258,7 +261,7 @@ var vue = new Vue({
                     )
 
                 } else {
-                    that.fullscreenLoading=false;
+                    that.fullscreenLoading = false;
                     console.log('error submit!!');
                     return false;
                 }
@@ -268,11 +271,11 @@ var vue = new Vue({
             this.dialogFormVisible1 = false;
             this.dialogFormVisible = false;
             this.$refs[formName].resetFields();
-            this.form.checked=false
-            if(document.getElementsByClassName("simditor-body")[0].childNodes.length>0)
-            document.getElementsByClassName("simditor-body")[0].querySelector('p').innerText=""
+            this.form.checked = false
+            if (document.getElementsByClassName("simditor-body")[0].childNodes.length > 0)
+                document.getElementsByClassName("simditor-body")[0].querySelector('p').innerText = ""
         },
-        editnews(index){
+        editnews(index) {
             console.log("edit");
             var that = this;
             this.newsId = that.bussid[index];
@@ -293,11 +296,11 @@ var vue = new Vue({
                 console.log(err)
             })
         },
-        launchnews(index){
+        launchnews(index) {
             var statuscode = this.tableData[index].launchstatus;
 
             var that = this;
-            var status = ["未发布", "已发布", "回收站"];
+            var status = ["未发布", "已发布"];
             var realtop;
             for (var i = 0; i < status.length; i++) {
                 if (status[i] == statuscode) {
@@ -325,16 +328,16 @@ var vue = new Vue({
 
             })
         },
-        rabbish(index){
+        rabbish(index) {
             /*回收站*/
         },
-        touchnews(index){
+        touchnews(index) {
             /*跳转新闻详情页*/
             var that = this;
             window.location.href = "../../front/html/publish.html?businessId=" + that.bussid[index];
 
         },
-        toggle_pipe(index){
+        toggle_pipe(index) {
             // console.log(this.tableData[index].pipe == false)
             var that = this;
             var attribute = (this.tableData[index].pipe == false) ? '1' : '0';
@@ -350,7 +353,7 @@ var vue = new Vue({
                         message: message,
                         type: 'success'
                     });
-                    that.loadData(that.currentPage,that.pagesize)
+                    that.loadData(that.currentPage, that.pagesize)
                 } else {
                     that.$notify({
                         title: '提示信息',

@@ -1,11 +1,11 @@
 
 <div id="nav" xmlns:v-popover="http://www.w3.org/1999/xhtml" style="height: 100%">
     <div class="breadNav">
-        <el-breadcrumb separator="/">
-            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item>课程配置</el-breadcrumb-item>
-            <el-breadcrumb-item>课程管理</el-breadcrumb-item>
-        </el-breadcrumb>
+        <!--<el-breadcrumb separator="/">-->
+            <!--<el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>-->
+            <!--<el-breadcrumb-item>课程配置</el-breadcrumb-item>-->
+            <!--<el-breadcrumb-item>课程管理</el-breadcrumb-item>-->
+        <!--</el-breadcrumb>-->
     </div>
     <div class="info_change">
         <el-button type="info" @click="dialogFormVisible=true">+ 新增</el-button>

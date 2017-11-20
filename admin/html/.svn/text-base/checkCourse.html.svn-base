@@ -1,10 +1,10 @@
 <div id="nav">
     <div class="breadNav">
-        <el-breadcrumb separator="/">
-            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item>课程配置</el-breadcrumb-item>
-            <el-breadcrumb-item>开课审批</el-breadcrumb-item>
-        </el-breadcrumb>
+        <!--<el-breadcrumb separator="/">-->
+            <!--<el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>-->
+            <!--<el-breadcrumb-item>课程配置</el-breadcrumb-item>-->
+            <!--<el-breadcrumb-item>开课审批</el-breadcrumb-item>-->
+        <!--</el-breadcrumb>-->
     </div>
     <div class="info_change">
         <div class="info_change">

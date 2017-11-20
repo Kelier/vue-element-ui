@@ -1,13 +1,13 @@
 <div id="nav">
     <div class="breadNav">
-        <el-breadcrumb separator="/">
-            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item>课程配置</el-breadcrumb-item>
-            <el-breadcrumb-item>新闻管理</el-breadcrumb-item>
-        </el-breadcrumb>
+        <!--<el-breadcrumb separator="/">-->
+            <!--<el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>-->
+            <!--<el-breadcrumb-item>课程配置</el-breadcrumb-item>-->
+            <!--<el-breadcrumb-item>新闻管理</el-breadcrumb-item>-->
+        <!--</el-breadcrumb>-->
     </div>
     <div class="info_change">
-        <el-button type="info" @click="dialogFormVisible=true">+ 新增</el-button>
+        <el-button type="info" @click="readyForthis('form')">+ 新增</el-button>
 
         <el-dialog title="" :visible.sync="dialogFormVisible" :close-on-click-modal="false" @close="callOf('form')">
             <el-form :model="form" style="margin-top: 1em;margin-right: 1em;" :rules="formrule1" ref="form">
@@ -97,7 +97,7 @@
                 <template scope="scope">
                     <el-button type="text" @click="editnews(scope.$index)">{{scope.row.otherfork1}}</el-button>
                     <el-button type="text" @click="launchnews(scope.$index)">{{scope.row.otherfork2}}</el-button>
-                    <el-button type="text" @click="rabbish(scope.$index)">{{scope.row.otherfork3}}</el-button>
+                    <!--<el-button type="text" @click="rabbish(scope.$index)">{{scope.row.otherfork3}}</el-button>-->
                     <!--  <el-switch v-model="scope.row.thandle" on-color="#13ce66" off-color="#ff4949" on-text="推荐"
                                  off-text="取消" @change="toggle(scope.$index,scope.row)">
                       </el-switch>-->

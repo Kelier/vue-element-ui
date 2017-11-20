@@ -45,6 +45,103 @@ function toJudgeOpen(seId,e) {
         toastr.warning("请先登录！");
         return;
     }
+    if (sessionStorage.getItem("role") == "1002") {
+        var targetDom=e.target.parentNode.parentNode.parentNode.parentNode;
+        var isC;
+
+        if(targetDom.getAttribute('data-score')!=null){
+            isC="right";
+        }
+        window.open("eclipse.html?businessId=" + seId  + "&scode=" + sessionStorage.getItem("stucode") + "&ccode=" + slCode + "&id=" + GetQueryString("id")+"&isC="+isC);
+        return;
+        console.log(localStorage.getItem("teache")+"-----------------");
+        if(localStorage.getItem("teache")=="waited"){
+            toastr.warning("正在清理che空间，请等待1-2分钟");
+        }
+        if(localStorage.getItem("teache")=="open"){
+            console.log("open....");
+            $.ajax({
+                url: globalurl + 'BChapter/cheStart',
+                method: 'post',
+                beforeSend: function (request) {
+                    request.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+                },
+                data: {
+                    teaCode: sessionStorage.getItem("stucode"),
+                    slCode: slCode,
+                    flag: (sessionStorage.getItem("role") == '1003' ? '1' : '0')
+                },
+                success: function (res) {
+                    if (res.success) {
+                        localStorage.setItem("timer",res.result.endTime);
+                        window.open("eclipse.html?uri=" + encodeURIComponent(res.result.url) + "&businessId=" + chBusId + "&pnum=" + encodeURIComponent(res.result.port) + "&scode=" + code + "&ccode=" + slCode + "&id=" + GetQueryString("id"))
+                    } else {
+
+                        toastr.warning(res.message);
+                    }
+
+                }, error: function (err) {
+                    console.log(err)
+                }
+            });
+        }
+
+        if(localStorage.getItem("teache")!="waited"){
+            if(localStorage.getItem("teache")!="open"){
+                $("#header").fadeOut();
+                $("#content").fadeOut();
+                $("#footer").fadeOut();
+                $("#water").fadeIn();
+
+                $.ajax({
+                    url: globalurl + 'BChapter/cheStart',
+                    method: 'post',
+                    beforeSend: function (request) {
+                        request.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+                    },
+                    data: {
+                        teaCode: sessionStorage.getItem("stucode"),
+                        slCode: slCode,
+                        flag: (sessionStorage.getItem("role") == '1003' ? '1' : '0')
+                    },
+                    success: function (res) {
+                        if (res.success) {
+                            if(localStorage.getItem("teache")=="waited"){
+                                sessionStorage.setItem("address","eclipse.html?uri=" + encodeURIComponent(res.result.url) + "&businessId=" + chBusId + "&pnum=" + encodeURIComponent(res.result.port) + "&scode=" + code + "&ccode=" + slCode + "&id=" + GetQueryString("id"));
+                                localStorage.setItem("teache","open");
+                            }
+                            if(localStorage.getItem("teache")==null){
+                                sessionStorage.setItem("address","eclipse.html?uri=" + encodeURIComponent(res.result.url) + "&businessId=" + chBusId + "&pnum=" + encodeURIComponent(res.result.port) + "&scode=" + code + "&ccode=" + slCode + "&id=" + GetQueryString("id"));
+                                localStorage.setItem("teache","open");
+                                localStorage.setItem("timer",res.result.endTime);
+                                $("#water").fadeOut();
+                                $("#header").fadeIn();
+                                $("#content").fadeIn();
+                                $("#footer").fadeIn();
+                                window.open(sessionStorage.getItem("address"));
+                            }
+
+                        } else {
+                            toastr.warning(res.message);
+                            $("#water").fadeOut();
+                            $("#header").fadeIn();
+                            $("#content").fadeIn();
+                            $("#footer").fadeIn();
+                        }
+
+                    }, error: function (err) {
+                        console.log(err)
+                    }
+                });
+            }
+
+
+
+        }
+
+    }
+
+
     $.ajax({
         url: globalurl + 'BSl/queryStuInLessionOrNotWithoutAuth',
         method: 'post',
@@ -180,6 +277,18 @@ function toJudgeStatus(params,type){
         toastr.warning("请先登录！");
         return;
     }
+    if (sessionStorage.getItem("role") == "1002"){
+        var openUrl = "";
+        if(type==1){
+            openUrl ='proBook.html?businessId=' +params.bid + '&a=' + params.a + '&b=' + params.b + '&c=' + params.c + '&d=' + params.d;
+        }else if(type==2){
+            openUrl ='seeVedio.html?businessId=' + params.bid +'&id=' + params.id +"&courseinfo="+params.courseinfo+"&vedioUrl="+params.vedioUrl;
+        }
+
+
+        window.open(openUrl);
+        return;
+    }
     $.ajax({
         url: globalurl + 'BSl/queryStuInLessionOrNotWithoutAuth',
         method: 'post',
@@ -223,7 +332,18 @@ function toDownload(seId,seIndex,chIndex,dataUrl) {
         toastr.warning("请先登录！");
         return;
     }
-
+    if (sessionStorage.getItem("role") == "1002"){
+        if (dataUrl == "") {
+            toastr.error('文件不存在！');
+        } else {
+            var a = document.createElement("a");
+            document.body.appendChild(a);
+            a.href = imagepath + dataUrl;
+            a.click();
+            // window.location.href=imagepath+"/default/2.jpg";
+        }
+        return;
+    }
     $.ajax({
         url: globalurl + 'BSl/queryStuInLessionOrNotWithoutAuth',
         method: 'post',
@@ -237,7 +357,7 @@ function toDownload(seId,seIndex,chIndex,dataUrl) {
         success: function (response) {
             tip.close();
             if (!response.success){
-                toastr.warning("请先登录！");
+                toastr.warning("请重新登录！");
                 return;
             }
             if(response.result==1){
@@ -268,7 +388,7 @@ function toDownload(seId,seIndex,chIndex,dataUrl) {
            request.setRequestHeader("Authorization", localStorage.getItem("token"));
            request.setRequestHeader("Content-Type", 'application/x-www-form-urlencoded;charset=utf-8');
        },
-  
+
        data: {
           chapterId: seId
        },
@@ -283,7 +403,7 @@ function toDownload(seId,seIndex,chIndex,dataUrl) {
        success: function (response) {
            console.log( Base64.toString(response));
            console.log(response.message);
-  
+
            var blob = new Blob([response], {type: "application/octet-stream"});
            // var blob=new Blob();
            // blob = response;
@@ -423,7 +543,7 @@ function create_section(seName, seId, chIndex, seIndex, handle,vedioState,vedioU
 
         var trial_demo = ["align-hollow hollow button", "align-hollow hollow button", "align-hollow hollow button alert"];
         for (var j = 0; j < 4; j++) {
-            if (j == 1) {
+            if (j == 3) {
                 if (exsit&&score!="-1") {
                     find_item.eq(j + 3).append("<span style='size: 13px;margin:0 3px 0 6px;display: inline-block;width: 45px;'>" + score + "分</span><a style='margin:0 5px'></a>");
 

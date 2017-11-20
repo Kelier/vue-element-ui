@@ -340,6 +340,7 @@ var vue = new Vue({
                         $("#file_tea").val('');
                     })
                     .catch(function (err) {
+                        that.fullscreenLoading=false;
                         console.log(err);
                     });
 
@@ -416,11 +417,11 @@ var vue = new Vue({
                 cancelButtonText: '取消',
                 type: 'warning'
             }).then(() => {
-                _this.fullscreenLoading=false;
+                _this.fullscreenLoading=true;
                 eduUtil.ajaxPostUtil(globalurl + 'BSl/remove', {
                     id:_this.bussid[index]
                 }, function (res) {
-                    _this.fullscreenLoading=true;
+                    _this.fullscreenLoading=false;
                     if(res.data.success){
                         rows.splice(index,1);
                         _this.$notify({
@@ -429,6 +430,7 @@ var vue = new Vue({
                             type: 'success'
                         });
                     }else{
+                        _this.fullscreenLoading=false;
                         _this.$notify({
                             title: '提示信息',
                             message: '删除失败,请联系管理员',
@@ -436,7 +438,7 @@ var vue = new Vue({
                         });
                     }
                 },function (err) {
-
+                    _this.fullscreenLoading=false;
                 });
             }).catch(() => {
 

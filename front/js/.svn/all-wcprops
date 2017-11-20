@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 75
-/svn/wisdomEdus/!svn/ver/389/trunk/wisdomEduClient/src/main/webapp/front/js
+/svn/wisdomEdus/!svn/ver/393/trunk/wisdomEduClient/src/main/webapp/front/js
 END
 silder.min.js
 K 25
@@ -25,7 +25,7 @@ index.js
 K 25
 svn:wc:ra_dav:version-url
 V 84
-/svn/wisdomEdus/!svn/ver/392/trunk/wisdomEduClient/src/main/webapp/front/js/index.js
+/svn/wisdomEdus/!svn/ver/395/trunk/wisdomEduClient/src/main/webapp/front/js/index.js
 END
 login.js
 K 25
@@ -163,7 +163,7 @@ stucourse.js
 K 25
 svn:wc:ra_dav:version-url
 V 88
-/svn/wisdomEdus/!svn/ver/392/trunk/wisdomEduClient/src/main/webapp/front/js/stucourse.js
+/svn/wisdomEdus/!svn/ver/393/trunk/wisdomEduClient/src/main/webapp/front/js/stucourse.js
 END
 toastr.min.js
 K 25

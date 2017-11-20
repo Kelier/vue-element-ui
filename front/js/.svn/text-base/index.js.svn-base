@@ -28,6 +28,8 @@ $(function () {
         } else {
             for (var i = 0; i < res.rows.length; i++) {
                 var path=res.rows[i].carouselUrl||default_carousel_location;
+                if(path=="undefined")
+                    path="default/carousel.jpg";
                 realpath = imagepath + path;
                 alt = res.rows[i].carouselDes;
                 banner.push({'img': realpath, 'alt': alt,'title':alt});
