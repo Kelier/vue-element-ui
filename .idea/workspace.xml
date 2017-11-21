@@ -3,23 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ea4b365a-f478-4f13-8a73-e0172f113126" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/html/banner.html" afterPath="$PROJECT_DIR$/admin/html/banner.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/html/checkCourse.html" afterPath="$PROJECT_DIR$/admin/html/checkCourse.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/html/classManage.html" afterPath="$PROJECT_DIR$/admin/html/classManage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/html/course.html" afterPath="$PROJECT_DIR$/admin/html/course.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/html/groomLau.html" afterPath="$PROJECT_DIR$/admin/html/groomLau.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/html/imageManage.html" afterPath="$PROJECT_DIR$/admin/html/imageManage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/html/launch.html" afterPath="$PROJECT_DIR$/admin/html/launch.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/html/newsTwitter.html" afterPath="$PROJECT_DIR$/admin/html/newsTwitter.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/html/stuManage.html" afterPath="$PROJECT_DIR$/admin/html/stuManage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/html/teaManage.html" afterPath="$PROJECT_DIR$/admin/html/teaManage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/html/term.html" afterPath="$PROJECT_DIR$/admin/html/term.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/js/launch.js" afterPath="$PROJECT_DIR$/admin/js/launch.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/js/newsTwitter.js" afterPath="$PROJECT_DIR$/admin/js/newsTwitter.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/front/css/nav.css" afterPath="$PROJECT_DIR$/front/css/nav.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/front/css/course.css" afterPath="$PROJECT_DIR$/front/css/course.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/front/html/teaCourse.html" afterPath="$PROJECT_DIR$/front/html/teaCourse.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/front/js/index.js" afterPath="$PROJECT_DIR$/front/js/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/front/js/stucourse.js" afterPath="$PROJECT_DIR$/front/js/stucourse.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/front/js/course.js" afterPath="$PROJECT_DIR$/front/js/course.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -39,16 +25,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="admin.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/js/admin.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="78" column="14" lean-forward="false" selection-start-line="78" selection-start-column="14" selection-end-line="78" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="newsTwitter.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/js/newsTwitter.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -59,11 +35,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="course.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="course.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/front/css/course.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="104" column="19" lean-forward="false" selection-start-line="104" selection-start-column="19" selection-end-line="104" selection-end-column="19" />
+            <state relative-caret-position="248">
+              <caret line="505" column="21" lean-forward="true" selection-start-line="505" selection-start-column="21" selection-end-line="505" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -102,18 +78,45 @@
       <file leaf-file-name="nav.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/front/html/include/nav.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="16" column="100" lean-forward="false" selection-start-line="16" selection-start-column="100" selection-end-line="16" selection-end-column="100" />
+            <state relative-caret-position="230">
+              <caret line="10" column="57" lean-forward="false" selection-start-line="10" selection-start-column="57" selection-end-line="10" selection-end-column="57" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nav.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="nav.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/front/css/nav.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="409">
+            <state relative-caret-position="901">
               <caret line="190" column="20" lean-forward="false" selection-start-line="190" selection-start-column="20" selection-end-line="190" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="course.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/front/js/course.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="117" column="55" lean-forward="false" selection-start-line="117" selection-start-column="55" selection-end-line="117" selection-end-column="55" />
+              <folding>
+                <marker date="1511231186995" expanded="true" signature="22528:22549" ph="..." />
+                <marker date="1511231186995" expanded="true" signature="22729:22748" ph="..." />
+                <marker date="1511231186995" expanded="true" signature="22835:22854" ph="..." />
+                <marker date="1511231186995" expanded="true" signature="36088:36106" ph="..." />
+                <marker date="1511231186995" expanded="true" signature="39133:39151" ph="..." />
+                <marker date="1511231186995" expanded="true" signature="40732:40750" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="teaCourse.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/front/html/teaCourse.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="174">
+              <caret line="129" column="93" lean-forward="false" selection-start-line="129" selection-start-column="83" selection-end-line="129" selection-end-column="93" />
               <folding />
             </state>
           </provider>
@@ -124,16 +127,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="308">
               <caret line="16" column="73" lean-forward="false" selection-start-line="16" selection-start-column="73" selection-end-line="16" selection-end-column="73" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="term.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/html/term.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-280">
-              <caret line="3" column="7" lean-forward="false" selection-start-line="3" selection-start-column="7" selection-end-line="7" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -152,12 +145,7 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>saveUpateInfo()</find>
-      <find>invoke</find>
-      <find>loaddata</find>
-      <find>13</find>
       <find>div_sum_detail</find>
-      <find>course_info</find>
       <find>queryBChaptersWithoutAuth</find>
       <find>hollow button secondary window-close</find>
       <find>分数查看</find>
@@ -180,8 +168,13 @@
       <find>callOf</find>
       <find>call</find>
       <find>area</find>
-      <find>text-insha</find>
       <find>a-custom</find>
+      <find>text-insha</find>
+      <find>course_info</find>
+      <find>more</find>
+      <find>minify</find>
+      <find>edit</find>
+      <find>echo_title</find>
     </findStrings>
     <replaceStrings>
       <replace>localStorage</replace>
@@ -217,13 +210,10 @@
         <option value="$PROJECT_DIR$/admin/js/term.js" />
         <option value="$PROJECT_DIR$/front/html/include/nav.html" />
         <option value="$PROJECT_DIR$/admin/js/launch.js" />
-        <option value="$PROJECT_DIR$/front/css/course.css" />
-        <option value="$PROJECT_DIR$/front/html/teaCourse.html" />
         <option value="$PROJECT_DIR$/front/html/index.html" />
         <option value="$PROJECT_DIR$/front/html/include/header.html" />
         <option value="$PROJECT_DIR$/front/js/hasToken.js" />
         <option value="$PROJECT_DIR$/front/js/checkCurrent.js" />
-        <option value="$PROJECT_DIR$/front/js/course.js" />
         <option value="$PROJECT_DIR$/front/js/downCount.js" />
         <option value="$PROJECT_DIR$/front/js/index.js" />
         <option value="$PROJECT_DIR$/front/js/login.js" />
@@ -250,6 +240,9 @@
         <option value="$PROJECT_DIR$/admin/html/newsTwitter.html" />
         <option value="$PROJECT_DIR$/admin/js/newsTwitter.js" />
         <option value="$PROJECT_DIR$/front/css/nav.css" />
+        <option value="$PROJECT_DIR$/front/html/teaCourse.html" />
+        <option value="$PROJECT_DIR$/front/js/course.js" />
+        <option value="$PROJECT_DIR$/front/css/course.css" />
       </list>
     </option>
   </component>
@@ -364,6 +357,12 @@
               <item name="html" type="462c0819:PsiDirectoryNode" />
               <item name="include" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="webapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="front" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -426,15 +425,16 @@
       <workItem from="1510664757172" duration="583000" />
       <workItem from="1510706288655" duration="23380000" />
       <workItem from="1511149270469" duration="75000" />
-      <workItem from="1511165696393" duration="4896000" />
+      <workItem from="1511165696393" duration="7418000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134989000" />
+    <option name="totallyTimeSpent" value="137511000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19309373" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -444,7 +444,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23700121" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23700121" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -543,13 +543,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/front/html/teaCourse.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="496" column="103" lean-forward="false" selection-start-line="496" selection-start-column="103" selection-end-line="496" selection-end-column="103" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/ajaxUtils.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-309">
@@ -589,13 +582,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="159">
           <caret line="49" column="24" lean-forward="false" selection-start-line="49" selection-start-column="24" selection-end-line="49" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front/js/course.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="1012" column="72" lean-forward="false" selection-start-line="1012" selection-start-column="72" selection-end-line="1012" selection-end-column="72" />
         </state>
       </provider>
     </entry>
@@ -795,7 +781,7 @@
         <state relative-caret-position="267">
           <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding>
-            <element signature="n#style#0;n#el-form#0;n#el-dialog#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-form#0;n#el-dialog#0;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -832,26 +818,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/html/newsTwitter.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="16" column="73" lean-forward="false" selection-start-line="16" selection-start-column="73" selection-end-line="16" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/admin/js/newsTwitter.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="301">
           <caret line="14" column="37" lean-forward="false" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front/css/course.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="104" column="19" lean-forward="false" selection-start-line="104" selection-start-column="19" selection-end-line="104" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -880,18 +850,57 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/front/html/include/nav.html">
+    <entry file="file://$PROJECT_DIR$/front/css/nav.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="16" column="100" lean-forward="false" selection-start-line="16" selection-start-column="100" selection-end-line="16" selection-end-column="100" />
+        <state relative-caret-position="901">
+          <caret line="190" column="20" lean-forward="false" selection-start-line="190" selection-start-column="20" selection-end-line="190" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/front/css/nav.css">
+    <entry file="file://$PROJECT_DIR$/admin/html/newsTwitter.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="190" column="20" lean-forward="false" selection-start-line="190" selection-start-column="20" selection-end-line="190" selection-end-column="20" />
+        <state relative-caret-position="308">
+          <caret line="16" column="73" lean-forward="false" selection-start-line="16" selection-start-column="73" selection-end-line="16" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front/html/include/nav.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="10" column="57" lean-forward="false" selection-start-line="10" selection-start-column="57" selection-end-line="10" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front/html/teaCourse.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="129" column="93" lean-forward="false" selection-start-line="129" selection-start-column="83" selection-end-line="129" selection-end-column="93" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front/js/course.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="117" column="55" lean-forward="false" selection-start-line="117" selection-start-column="55" selection-end-line="117" selection-end-column="55" />
+          <folding>
+            <marker date="1511231186995" expanded="true" signature="22528:22549" ph="..." />
+            <marker date="1511231186995" expanded="true" signature="22729:22748" ph="..." />
+            <marker date="1511231186995" expanded="true" signature="22835:22854" ph="..." />
+            <marker date="1511231186995" expanded="true" signature="36088:36106" ph="..." />
+            <marker date="1511231186995" expanded="true" signature="39133:39151" ph="..." />
+            <marker date="1511231186995" expanded="true" signature="40732:40750" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front/css/course.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="505" column="21" lean-forward="true" selection-start-line="505" selection-start-column="21" selection-end-line="505" selection-end-column="21" />
           <folding />
         </state>
       </provider>

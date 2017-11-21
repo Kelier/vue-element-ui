@@ -31,12 +31,13 @@ $(document).ready(function () {
      */
     $(document).mouseup(function (e) {
         var _con = $('#title_edit');   // 设置目标区域
-        if (!_con.is(e.target) && _con.has(e.target).length === 0) { // Mark 1
-            minify();
+        console.log(e.target.id)
+        if (!_con.is(e.target) && _con.has(e.target).length === 0&&$("#title_edit")[0].style.display=="inline-block") { // Mark 1
             $("#course_info").css("display", "-webkit-box");
             $("#title_edit").css("display", "none");
             $("#mini_more").css("display", "-webkit-box");
             minify();
+            saveUpateInfo();
         }
     });
 
@@ -114,7 +115,7 @@ function echo_title() {
     $("#title_edit").css("display", "inline-block");
     $("#title_edit").css("margin-top", "76px");
     $("#title_edit").css("resize", "none");
-    $("#title_edit").val($("#course_info").text());
+    $("#title_edit").val($("#course_info")[0].innerText);
 
 
 }
@@ -127,18 +128,18 @@ function invokeHandle(e) {
     if(e.shiftKey&&e.keyCode==13){
         
     }
-    else if (key == 13) {
+    // else if (key == 13) {
         // alert("回车键");
 
         // saveUpateInfo();
 
-        $("#title_edit").hide();
-        $("#mini_more").css("display", "-webkit-box");
-        $("#course_info").css("display", "-webkit-box");
-        minify();
+        // $("#title_edit").hide();
+        // $("#mini_more").css("display", "-webkit-box");
+        // $("#course_info").css("display", "-webkit-box");
+        // minify();
 
         //将内容替换为content
-    }
+    // }
     if (key == 27) {
 //            alert("esc键");
         //退出编辑
@@ -152,7 +153,7 @@ function invokeHandle(e) {
  * 点击“更多”，显示课程简介的详情；
  * */
 function showCourseSummary() {
-    var content = $("#course_info").text();
+    var content = $("#course_info").html();
     console.log(content);
     $("#div_sum_detail").html(content);
 
@@ -160,7 +161,7 @@ function showCourseSummary() {
 
 function saveUpateInfo() {
     var content = $("#title_edit").val();
-    $("#course_info").html(content);
+    $("#course_info").html(content.replace(/\n/g,"<br/>"));
     $.ajax({
         url: globalurl + 'BSl/updateNotes',
         method: 'post',
@@ -1289,7 +1290,6 @@ function loadSlDetail() {
                     $('#teaPic').attr('src', imagepath + obj.teaPic);
                     $('#lessonName').html(obj.lessonName);
                     $('#slCode').html(obj.slCode);
-                    $('#course_info').html(obj.slNotes);
                     $('#course_info').html(obj.slNotes);
                     $('#coverUrl').attr('src', imagepath + obj.coverUrl);
                     coursebusId = obj.businessId;
