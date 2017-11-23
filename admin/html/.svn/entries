@@ -1,14 +1,14 @@
 10
 
 dir
-393
+402
 http://635073826%40qq.com@code.taobao.org/svn/wisdomEdus/trunk/wisdomEduClient/src/main/webapp/admin/html
 http://635073826%40qq.com@code.taobao.org/svn/wisdomEdus
 
 
 
-2017-11-20T02:33:07.634742Z
-392
+2017-11-21T08:55:49.404010Z
+400
 abc635073826
 
 
@@ -28,7 +28,7 @@ abc635073826
 
 classManage.html
 file
-395
+
 
 
 
@@ -65,7 +65,7 @@ dir
 
 teaManage.html
 file
-395
+
 
 
 
@@ -99,7 +99,7 @@ abc635073826
 
 stuManage.html
 file
-395
+
 
 
 
@@ -133,7 +133,7 @@ abc635073826
 
 groomLau.html
 file
-395
+
 
 
 
@@ -201,7 +201,7 @@ abc635073826
 
 imageManage.html
 file
-395
+
 
 
 
@@ -235,7 +235,7 @@ abc635073826
 
 checkCourse.html
 file
-395
+
 
 
 
@@ -269,7 +269,7 @@ abc635073826
 
 newsTwitter.html
 file
-395
+
 
 
 
@@ -303,7 +303,7 @@ abc635073826
 
 course.html
 file
-395
+
 
 
 
@@ -337,7 +337,7 @@ abc635073826
 
 banner.html
 file
-395
+
 
 
 
@@ -368,6 +368,40 @@ abc635073826
 
 
 11827
+
+term.html
+file
+
+
+
+
+2017-11-20T08:45:44.000000Z
+ac6c8df353d33c90d524a9158df41fa2
+2017-11-20T10:13:37.398726Z
+395
+abc635073826
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5773
 
 404.html
 file
@@ -402,40 +436,6 @@ abc635073826
 
 
 259
-
-term.html
-file
-395
-
-
-
-2017-11-20T08:45:44.000000Z
-ac6c8df353d33c90d524a9158df41fa2
-2017-11-20T10:13:37.398726Z
-395
-abc635073826
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-5773
 
 login.html
 file
@@ -473,14 +473,14 @@ Breaker
 
 launch.html
 file
-395
 
 
 
-2017-11-20T08:45:44.000000Z
+
+2017-11-21T08:50:14.000000Z
 5b4d080644e8387f8f770e5201204fb0
-2017-11-20T10:13:37.398726Z
-395
+2017-11-21T08:55:49.404010Z
+400
 abc635073826
 
 

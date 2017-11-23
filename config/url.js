@@ -8,11 +8,11 @@
 // var imagepath="http://47.94.246.175/eduServer/";//图片上传路径
 // var globalurl = "http://47.94.246.175:8080/wisdom-edu-server/";//接口地址
 
-var imagepath="http://106.2.3.134:10080/eduServer/";//图片上传路径
-var globalurl = "http://106.2.3.134:10098/edu/";//接口地址
+// var imagepath="http://106.2.3.134:10080/eduServer/";//图片上传路径
+// var globalurl = "http://106.2.3.134:10098/edu/";//接口地址
 
-// var globalurl = "http://192.168.0.149:8081/";//接口地址
-// var imagepath="http://192.168.0.174:10080/eduServer/";
+var globalurl = "http://192.168.0.109:8081/";//接口地址
+var imagepath="http://192.168.0.174:10080/eduServer/";
 // var globalurl="http://192.168.0.174:8081/";
 
 var default_course_location="default/course.jpg"; //课程默认图片路径

@@ -72,7 +72,7 @@ var vue = new Vue({
 
         };
         var validateEtext = (rule, value, callback) => {
-            value = $(".simditor-body")[0].innerText;
+            value = $(".simditor-body")[0].innerHTML;
             if (value.match(/^\s*$/)) {
                 return callback(new Error('请输入正文'));
             } else {

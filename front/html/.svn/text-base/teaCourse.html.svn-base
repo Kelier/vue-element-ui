@@ -127,14 +127,14 @@
                         <div class="course_title">
                             <span id="lessonName"></span>
                             <span class="span-config course-code" id="slCode"></span>
-                            <span class="span-config" id="span_config"><a onclick="echo_title()"><img  src='../image/edit2.png' title="修改课程简介"></a></span>
+                            <span class="span-config" id="span_config"><a onclick="echo_title()"><img  src='../image/edit2.png' title="修改课程简介" id="edit-area"></a></span>
                             <!--<div class="tri-label" id="tri-label"></div>-->
                             <!--<span class="tri-title" id="tri-title">已发布</span>-->
                         </div>
                         <div class="text_edit"><textarea name="title_edit" id="title_edit" placeholder="请输入课程简介"
                                                          cols="30"
                                                          rows="10" class="title-edit"
-                                                         onchange="saveUpateInfo()"
+                                                         onchange="saveUpdateInfo()"
                                                          onkeydown="invokeHandle(event)"></textarea></div>
                         <div class="course_info" id="course_info" >
 

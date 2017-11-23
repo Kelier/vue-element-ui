@@ -113,8 +113,8 @@ gulp.task('image', function () {
 
 /*字体压缩*/
 gulp.task('font', function () {
-    gulp.src('front/fonts/**/*')
-        .pipe(gulp.dest('dist/front/fonts'));
+    gulp.src('front/font/**/*')
+        .pipe(gulp.dest('dist/front/font'));
     return gulp.src('admin/css/fonts/*')
         .pipe(gulp.dest('dist/admin/css/fonts'))
 }); 

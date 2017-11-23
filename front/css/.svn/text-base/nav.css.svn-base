@@ -188,6 +188,9 @@ body {
     justify-content: center;
     height: 50px;
 
+    min-width: 70px;
+    overflow: hidden;
+
 }
 
 .a-custom:hover {

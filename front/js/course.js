@@ -37,7 +37,7 @@ $(document).ready(function () {
             $("#title_edit").css("display", "none");
             $("#mini_more").css("display", "-webkit-box");
             minify();
-            saveUpateInfo();
+            saveUpdateInfo();
         }
     });
 
@@ -159,7 +159,7 @@ function showCourseSummary() {
 
 }
 
-function saveUpateInfo() {
+function saveUpdateInfo() {
     var content = $("#title_edit").val();
     $("#course_info").html(content.replace(/\n/g,"<br/>"));
     $.ajax({

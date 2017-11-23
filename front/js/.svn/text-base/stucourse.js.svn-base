@@ -30,13 +30,36 @@ $(document).ready(function () {
         }
     });
 
-
+    loadRole();
     loadData();
 });
 var scoreList = [];
 var cpName = '';
-
 var teaCode, slCode, flag;
+
+function loadRole() {
+    $.ajax({
+        url: globalurl + 'BSl/queryBslTeacher',
+        method: 'post',
+        beforeSend: function (request) {
+            request.setRequestHeader("Authorization", localStorage.getItem("token"));
+        },
+        data: {
+            teacherCode: localStorage.getItem("stucode"),
+            businessId: GetQueryString("id")
+        },
+        success: function (res) {
+            if (res.result) {
+                console.log(res);
+            } else {
+                $("#a-setback").hide();
+            }
+
+        }, error: function (err) {
+            console.log(err)
+        }
+    });
+}
 
 function toJudgeOpen(seId,e) {
     var token =localStorage.getItem("token");
@@ -45,14 +68,14 @@ function toJudgeOpen(seId,e) {
         toastr.warning("请先登录！");
         return;
     }
-    if (sessionStorage.getItem("role") == "1002") {
+    if (localStorage.getItem("role") == "1002") {
         var targetDom=e.target.parentNode.parentNode.parentNode.parentNode;
         var isC;
 
         if(targetDom.getAttribute('data-score')!=null){
             isC="right";
         }
-        window.open("eclipse.html?businessId=" + seId  + "&scode=" + sessionStorage.getItem("stucode") + "&ccode=" + slCode + "&id=" + GetQueryString("id")+"&isC="+isC);
+        window.open("eclipse.html?businessId=" + seId  + "&scode=" + localStorage.getItem("stucode") + "&ccode=" + slCode + "&id=" + GetQueryString("id")+"&isC="+isC);
         return;
         console.log(localStorage.getItem("teache")+"-----------------");
         if(localStorage.getItem("teache")=="waited"){
@@ -64,12 +87,12 @@ function toJudgeOpen(seId,e) {
                 url: globalurl + 'BChapter/cheStart',
                 method: 'post',
                 beforeSend: function (request) {
-                    request.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+                    request.setRequestHeader("Authorization", localStorage.getItem("token"));
                 },
                 data: {
-                    teaCode: sessionStorage.getItem("stucode"),
+                    teaCode: localStorage.getItem("stucode"),
                     slCode: slCode,
-                    flag: (sessionStorage.getItem("role") == '1003' ? '1' : '0')
+                    flag: (localStorage.getItem("role") == '1003' ? '1' : '0')
                 },
                 success: function (res) {
                     if (res.success) {
@@ -97,28 +120,28 @@ function toJudgeOpen(seId,e) {
                     url: globalurl + 'BChapter/cheStart',
                     method: 'post',
                     beforeSend: function (request) {
-                        request.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+                        request.setRequestHeader("Authorization", localStorage.getItem("token"));
                     },
                     data: {
-                        teaCode: sessionStorage.getItem("stucode"),
+                        teaCode: localStorage.getItem("stucode"),
                         slCode: slCode,
-                        flag: (sessionStorage.getItem("role") == '1003' ? '1' : '0')
+                        flag: (localStorage.getItem("role") == '1003' ? '1' : '0')
                     },
                     success: function (res) {
                         if (res.success) {
                             if(localStorage.getItem("teache")=="waited"){
-                                sessionStorage.setItem("address","eclipse.html?uri=" + encodeURIComponent(res.result.url) + "&businessId=" + chBusId + "&pnum=" + encodeURIComponent(res.result.port) + "&scode=" + code + "&ccode=" + slCode + "&id=" + GetQueryString("id"));
+                                localStorage.setItem("address","eclipse.html?uri=" + encodeURIComponent(res.result.url) + "&businessId=" + chBusId + "&pnum=" + encodeURIComponent(res.result.port) + "&scode=" + code + "&ccode=" + slCode + "&id=" + GetQueryString("id"));
                                 localStorage.setItem("teache","open");
                             }
                             if(localStorage.getItem("teache")==null){
-                                sessionStorage.setItem("address","eclipse.html?uri=" + encodeURIComponent(res.result.url) + "&businessId=" + chBusId + "&pnum=" + encodeURIComponent(res.result.port) + "&scode=" + code + "&ccode=" + slCode + "&id=" + GetQueryString("id"));
+                                localStorage.setItem("address","eclipse.html?uri=" + encodeURIComponent(res.result.url) + "&businessId=" + chBusId + "&pnum=" + encodeURIComponent(res.result.port) + "&scode=" + code + "&ccode=" + slCode + "&id=" + GetQueryString("id"));
                                 localStorage.setItem("teache","open");
                                 localStorage.setItem("timer",res.result.endTime);
                                 $("#water").fadeOut();
                                 $("#header").fadeIn();
                                 $("#content").fadeIn();
                                 $("#footer").fadeIn();
-                                window.open(sessionStorage.getItem("address"));
+                                window.open(localStorage.getItem("address"));
                             }
 
                         } else {
@@ -277,7 +300,7 @@ function toJudgeStatus(params,type){
         toastr.warning("请先登录！");
         return;
     }
-    if (sessionStorage.getItem("role") == "1002"){
+    if (localStorage.getItem("role") == "1002"){
         var openUrl = "";
         if(type==1){
             openUrl ='proBook.html?businessId=' +params.bid + '&a=' + params.a + '&b=' + params.b + '&c=' + params.c + '&d=' + params.d;
@@ -332,7 +355,7 @@ function toDownload(seId,seIndex,chIndex,dataUrl) {
         toastr.warning("请先登录！");
         return;
     }
-    if (sessionStorage.getItem("role") == "1002"){
+    if (localStorage.getItem("role") == "1002"){
         if (dataUrl == "") {
             toastr.error('文件不存在！');
         } else {

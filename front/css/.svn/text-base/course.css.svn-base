@@ -504,7 +504,6 @@ a[data-open]:hover{
     align-items: baseline;
     margin-left: 5%;
     margin-right: 5%;
-    text-indent:2em;
     padding: 10px;
     overflow-y: auto;
     height: 450px;
