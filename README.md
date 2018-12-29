@@ -1,4 +1,7 @@
 # SmartEducation
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/Kelier/vue-element-ui.svg)](https://greenkeeper.io/)
+
 ### Vue Foundation
 ### Element Jquery
 
